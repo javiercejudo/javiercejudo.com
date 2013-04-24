@@ -3,8 +3,12 @@ body {
   padding-bottom: 40px;
 }
 
-.invisible {
-  visibility: hidden;
+ul.nav-pills {
+  margin-bottom: 0;
+}
+
+.top-contact {
+  padding-top: 8px;
 }
 
 /* Custom container */
@@ -18,7 +22,6 @@ body {
 
 /* Main message and sign up button */
 .main-message {
-  margin: 30px 0 30px 0;
   text-align: center;
 }
   .main-message h1 {
@@ -34,7 +37,6 @@ body {
 
 /* Supporting content */
 .latest-projects {
-  margin: 30px 0 60px 0;
 }
   .latest-projects p + h4 {
     margin-top: 28px;

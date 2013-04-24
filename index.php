@@ -28,18 +28,32 @@
     <div class="container">
 
       <div class="masthead">
-        <ul class="nav nav-pills">
-          <li class="pull-right">
-            <a href="http://contact.javiercejudo.com">
-              Contact
-            </a>
-          </li>
-          <li class="active pull-right">
-            <a href="#">
-              Home
-            </a>
-          </li>
-        </ul>
+        <div class="row-fluid">
+          <div class="span5">
+            <ul class="nav nav-pills">
+              <li class="active">
+                <a href="#">
+                  <i class="icon-home"></i>&nbsp;Home
+                </a>
+              </li>
+              <li>
+                <a href="http://contact.javiercejudo.com">
+                  <i class="icon-fast-backward"></i>&nbsp;Legacy site
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="span7 top-contact hidden-phone">
+            <div class="row-fluid">
+              <div class="span7">
+                <i class="icon-envelope"></i>&nbsp;<a href="mailto:javier@javiercejudo.com">javier@javiercejudo.com</a>
+              </div>
+              <div class="span5">
+                <i class="icon-signal"></i>&nbsp;(+61)&nbsp;0432&nbsp;429&nbsp;789
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <hr>
@@ -53,13 +67,13 @@
           I'm a young developer wishing to continue my career as a software engineer where skills in database systems, data processing and mathematical training can be used, with special interest in management systems (e.g. finance, e-commerce) and frontend development.
         </p>
 
-        <a class="btn btn-large btn-primary" href="docs/CVJavierCejudo_EN.pdf">See my CV in English</a>
-        <a class="btn btn-success" href="docs/CVJavierCejudo_ES.pdf">See my CV in Spanish</a>
+        <a class="btn btn-large btn-primary" href="docs/CVJavierCejudo_EN.pdf">See my CV in English…</a>
+        <a class="btn btn-success" href="docs/CVJavierCejudo_ES.pdf">… o ve mi CV en español</a>
       </div>
 
       <hr />
 
-      <div class="latest-projects">
+      <div class="latest-projects" id="my-latest-projects">
         <div class="row-fluid">
           <div class="span7">
             <h3>Latest projects</h3>
@@ -86,6 +100,10 @@
           </div>
         </div>
       </div>
+
+      <!-- <div class="contact" id="contact-container">
+        <h3>Contact</h3>
+      </div> -->
 
       <hr>
 
