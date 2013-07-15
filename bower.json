@@ -1,0 +1,18 @@
+{
+  "name": "javiercejudo.com",
+  "version": "0.0.0",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "components",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "angular": "~1.0.7",
+    "bootstrap": "~2.3.2",
+    "jquery": "~1.10.2",
+    "html5shiv": "~3.6.2"
+  }
+}

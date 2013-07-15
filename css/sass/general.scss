@@ -1,0 +1,46 @@
+body {
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+ul.nav-pills {
+  margin-bottom: 0;
+}
+
+.top-contact {
+  padding-top: 8px;
+}
+
+/* Custom container */
+.container {
+  margin: 0 auto;
+  max-width: 700px;
+  &> hr {
+    margin: 30px 0;
+  }
+}
+
+/* Main message and sign up button */
+.main-message {
+  text-align: center;
+  h1 {
+    font-size: 72px;
+    line-height: 1;
+  }
+
+  tags {
+    color: #cccccc;
+  }
+
+  .btn {
+    margin-bottom: 10px;
+  }
+}
+
+/* Supporting content */
+.latest-projects {
+  p + h4 {
+    margin-top: 28px;
+  }
+}
+

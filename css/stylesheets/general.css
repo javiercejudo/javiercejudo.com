@@ -1,0 +1,51 @@
+/* line 1, ../sass/general.scss */
+body {
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+
+/* line 6, ../sass/general.scss */
+ul.nav-pills {
+  margin-bottom: 0;
+}
+
+/* line 10, ../sass/general.scss */
+.top-contact {
+  padding-top: 8px;
+}
+
+/* Custom container */
+/* line 15, ../sass/general.scss */
+.container {
+  margin: 0 auto;
+  max-width: 700px;
+}
+/* line 18, ../sass/general.scss */
+.container > hr {
+  margin: 30px 0;
+}
+
+/* Main message and sign up button */
+/* line 24, ../sass/general.scss */
+.main-message {
+  text-align: center;
+}
+/* line 26, ../sass/general.scss */
+.main-message h1 {
+  font-size: 72px;
+  line-height: 1;
+}
+/* line 31, ../sass/general.scss */
+.main-message tags {
+  color: #cccccc;
+}
+/* line 35, ../sass/general.scss */
+.main-message .btn {
+  margin-bottom: 10px;
+}
+
+/* Supporting content */
+/* line 42, ../sass/general.scss */
+.latest-projects p + h4 {
+  margin-top: 28px;
+}
