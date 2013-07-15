@@ -5,7 +5,7 @@ body {
 }
 
 /* line 6, ../sass/general.scss */
-ul.nav-pills {
+.nav-pills {
   margin-bottom: 0;
 }
 
@@ -30,22 +30,22 @@ ul.nav-pills {
 .main-message {
   text-align: center;
 }
-/* line 26, ../sass/general.scss */
-.main-message h1 {
+/* line 27, ../sass/general.scss */
+.main-message .title {
   font-size: 72px;
   line-height: 1;
 }
-/* line 31, ../sass/general.scss */
-.main-message tags {
+/* line 32, ../sass/general.scss */
+.main-message .tags {
   color: #cccccc;
 }
-/* line 35, ../sass/general.scss */
+/* line 36, ../sass/general.scss */
 .main-message .btn {
   margin-bottom: 10px;
 }
 
 /* Supporting content */
-/* line 42, ../sass/general.scss */
-.latest-projects p + h4 {
+/* line 43, ../sass/general.scss */
+.latest-projects .title {
   margin-top: 28px;
 }

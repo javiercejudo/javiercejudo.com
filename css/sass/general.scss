@@ -3,7 +3,7 @@ body {
   padding-bottom: 40px;
 }
 
-ul.nav-pills {
+.nav-pills {
   margin-bottom: 0;
 }
 
@@ -23,12 +23,13 @@ ul.nav-pills {
 /* Main message and sign up button */
 .main-message {
   text-align: center;
-  h1 {
+  
+  .title {
     font-size: 72px;
     line-height: 1;
   }
 
-  tags {
+  .tags {
     color: #cccccc;
   }
 
@@ -39,7 +40,7 @@ ul.nav-pills {
 
 /* Supporting content */
 .latest-projects {
-  p + h4 {
+  .title {
     margin-top: 28px;
   }
 }
