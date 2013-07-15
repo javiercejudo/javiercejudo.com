@@ -77,7 +77,8 @@ module.exports = function(grunt) {
         ],
         tasks: [
           'compass:dist',
-          'csslint:strict'
+          'csslint:strict',
+          'cssmin'
         ],
         options: {
           nospawn: true,
