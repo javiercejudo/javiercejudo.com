@@ -1,5 +1,6 @@
 module.exports = function(grunt) {
   var jsPath = 'js';
+  var sassPath = 'css/sass';
   var cssPath = 'css/stylesheets';
   var bowerPath = 'bower_components';
   var assetsPath = 'assets';
@@ -10,7 +11,8 @@ module.exports = function(grunt) {
 
     jshint: {
       all: [
-        'Gruntfile.js'
+        'Gruntfile.js',
+        jsPath + '/**/*.js'
       ],
       options: {
         "globals": {
@@ -20,12 +22,12 @@ module.exports = function(grunt) {
     },
     
     clean: [
-      assetsPath
+      assetsPath + '/*'
     ],
     
     uglify: {
       options: {
-        mangle: false
+        mangle: true
       },
       dist: {
         files: {
@@ -33,6 +35,7 @@ module.exports = function(grunt) {
             bowerPath + '/jquery/jquery.js',
             bowerPath + '/angular/angular.js',
             bowerPath + '/bootstrap/bootstrap/js/bootstrap.js',
+            jsPath + '/**/*.js'
           ]
         }
       }
@@ -73,7 +76,7 @@ module.exports = function(grunt) {
     watch: {
       sass: {
         files: [
-          'css/sass/*.scss'
+          sassPath + '/**/*.scss'
         ],
         tasks: [
           'compass:dist',
@@ -84,6 +87,18 @@ module.exports = function(grunt) {
           nospawn: true,
         },
       },
+      js: {
+        files: [
+          jsPath + '/**/*.js'
+        ],
+        tasks: [
+          'jshint',
+          'uglify'
+        ],
+        options: {
+          nospawn: true,
+        },
+      }
     }
   });
 

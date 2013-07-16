@@ -3,6 +3,10 @@ body {
   padding-bottom: 40px;
 }
 
+.ng-cloak {
+  display: none;
+}
+
 .nav-pills {
   margin-bottom: 0;
 }
@@ -12,7 +16,7 @@ body {
 }
 
 /* Custom container */
-.container {
+.page {
   margin: 0 auto;
   max-width: 700px;
   &> hr {
