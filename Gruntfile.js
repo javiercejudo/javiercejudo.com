@@ -114,3 +114,4 @@ module.exports = function(grunt) {
   // Default task
   grunt.registerTask('default', ['jshint', 'clean', 'uglify', 'compass:dist', 'csslint:strict', 'cssmin']);
 };
+

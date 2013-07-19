@@ -13,7 +13,7 @@
       });
     
       // configure routes
-      $locationProvider.html5Mode(false).hashPrefix('!');
+      $locationProvider.html5Mode(true).hashPrefix('!');
     }]);
 }());
 
