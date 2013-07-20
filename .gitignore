@@ -1,6 +1,6 @@
 .*
 !.gitignore
-!.htaccess
+config.php
 *~
 
 /node_modules

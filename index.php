@@ -1,3 +1,5 @@
+<?php include 'config.php'; ?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -6,12 +8,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    
+<?php if (ENV == 'dev') : ?>
+    <link href="/bower_components/bootstrap/bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="/bower_components/bootstrap/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/css/stylesheets/general.css" rel="stylesheet">
+<?php else : ?>
     <link href="/assets/app.css" rel="stylesheet">
+<?php endif; ?>
     
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-      <script src="bower_components/html5shiv/dist/html5shiv.js"></script>
+<?php if (ENV == 'dev') : ?>
+      <script src="/bower_components/html5shiv/dist/html5shiv.js"></script>
+<?php else : ?>
+      <script src="/assets/html5shiv.js"></script>
+<?php endif; ?>
     <![endif]-->
     
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/ico/apple-touch-icon-144-precomposed.png">
@@ -21,7 +33,7 @@
     <link rel="shortcut icon"                                href="/ico/favicon.png">
   </head>
 
-  <body ng-app="cejudoApp" class="ng-cloak">
+  <body ng-app="JcApp" ng-controller="AppCtrl" class="ng-cloak">
     <div class="page" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Javier Cejudo">
       <meta itemprop="jobTitle" content="Web Developer">
@@ -50,10 +62,14 @@
           <div class="span7 top-contact hidden-phone">
             <div class="row-fluid">
               <div class="span7">
-                <i class="icon-envelope"></i>&nbsp;<a href="mailto:javier@javiercejudo.com" itemprop="email">javier@javiercejudo.com</a>
+                <i class="icon-envelope"></i>
+                <a href="mailto:javier@javiercejudo.com" itemprop="email">
+                  javier@javiercejudo.com
+                </a>
               </div>
               <div class="span5">
-                <i class="icon-signal"></i>&nbsp;<span itemprop="telephone">(+61) 0432 429 789</span>
+                <i class="icon-signal"></i>
+                <span itemprop="telephone">(+61) 0432 429 789</span>
               </div>
             </div>
           </div>
@@ -69,12 +85,25 @@
       <div class="footer">
         <p>
           &copy; javiercejudo.com 2013 //
-          by <a href="https://plus.google.com/107177203146640599248?rel=author">Javier Cejudo</a> //
-          <a href="https://github.com/javiercejudo/javiercejudo.com">View on GitHub</a>
+          by <a href="https://plus.google.com/107177203146640599248?rel=author">
+          Javier Cejudo</a> //
+          <a href="https://github.com/javiercejudo/javiercejudo.com">
+            View on GitHub
+          </a>
         </p>
       </div>
     </div> <!-- /page -->
 
+<?php if (ENV == 'dev') : ?>
+    <script src="/bower_components/jquery/jquery.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/bootstrap/bootstrap/js/bootstrap.js"></script>
+    <script src="/js/JcApp.js"></script>
+    <script src="/js/controllers/AppCtrl.js"></script>
+    <script src="/js/controllers/HomeCtrl.js"></script>
+<?php else : ?>
     <script src="/assets/app.js"></script>
+  <?php endif; ?>
   </body>
 </html>
+

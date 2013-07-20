@@ -36,6 +36,9 @@ module.exports = function(grunt) {
             bowerPath + '/angular/angular.js',
             bowerPath + '/bootstrap/bootstrap/js/bootstrap.js',
             jsPath + '/**/*.js'
+          ],
+          'assets/html5shiv.js': [
+            bowerPath + '/html5shiv/dist/html5shiv.js'
           ]
         }
       }

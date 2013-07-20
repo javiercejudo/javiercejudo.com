@@ -1,9 +1,9 @@
 /*global angular:true, browser:true */
 
-(function () {
+(function (angular) {
   'use strict';
 
-  angular.module('cejudoApp', [])
+  angular.module('JcApp', [])
 
     .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
       $routeProvider.when('/', {
@@ -15,5 +15,5 @@
       // configure routes
       $locationProvider.html5Mode(true).hashPrefix('!');
     }]);
-}());
+}(angular));
 
