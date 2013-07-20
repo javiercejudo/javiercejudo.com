@@ -27,7 +27,7 @@ framework for testing JavaScript code.
 
 ### JavasCript & CSS:
 
-- [Bootstrap](http://twitter.github.io/bootstrap/): Sleek, intuitive, and
+- [Bootstrap](http://twitter.github.io/bootstrap/): sleek, intuitive, and
 powerful front-end framework for faster and easier web development.
 
 ### Backend:
