@@ -6,14 +6,20 @@ My personal website.
 
 ### Workflow:
 
+- [NPM](https://npmjs.org/): the official package manager for
+[Node.js](http://nodejs.org/).
 - [Bower](http://bower.io/): a package manager for the web.
-- [Grunt](http://gruntjs.com/): the JavaScript Task Runner.
+- [Grunt](http://gruntjs.com/): the JavaScript task tunner.
+- [Karma](http://karma-runner.github.io/): spectacular test runner for
+JavaScript.
 
 ### JavaScript:
 
-- [AngularJS](http://angularjs.org/): superheroic JavaScript MVW Framework.
+- [AngularJS](http://angularjs.org/): superheroic JavaScript MVW framework.
 - [Modernizr](http://modernizr.com/): the feature detection library for
 HTML5/CSS3.
+- [Jasmine](http://pivotal.github.io/jasmine/): behavior-driven development
+framework for testing JavaScript code.
 
 ### CSS:
 
@@ -23,3 +29,8 @@ HTML5/CSS3.
 
 - [Bootstrap](http://twitter.github.io/bootstrap/): Sleek, intuitive, and
 powerful front-end framework for faster and easier web development.
+
+### Backend:
+
+- [PHP](http://php.net/): widely-used general-purpose scripting language that
+is especially suited for Web development.
