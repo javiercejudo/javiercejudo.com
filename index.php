@@ -17,14 +17,11 @@
     <link href="/assets/app.css" rel="stylesheet">
 <?php endif; ?>
     
-    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
 <?php if (ENV == 'dev') : ?>
-      <script src="/bower_components/html5shiv/dist/html5shiv.js"></script>
+    <script src="/bower_components/modernizr/modernizr.js"></script>
 <?php else : ?>
-      <script src="/assets/html5shiv.js"></script>
+    <script src="/assets/modernizr.js"></script>
 <?php endif; ?>
-    <![endif]-->
     
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/ico/apple-touch-icon-114-precomposed.png">
@@ -50,11 +47,6 @@
               <li class="active">
                 <a href="/">
                   <i class="icon-home"></i>&nbsp;Home
-                </a>
-              </li>
-              <li>
-                <a href="http://legacy.javiercejudo.com">
-                  <i class="icon-fast-backward"></i>&nbsp;Legacy site
                 </a>
               </li>
             </ul>

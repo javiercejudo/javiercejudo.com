@@ -38,8 +38,8 @@ module.exports = function(grunt) {
             bowerPath + '/bootstrap/bootstrap/js/bootstrap.js',
             jsPath + '/**/*.js'
           ],
-          'assets/html5shiv.js': [
-            bowerPath + '/html5shiv/dist/html5shiv.js'
+          'assets/modernizr.js': [
+            bowerPath + '/modernizr/modernizr.js'
           ]
         }
       }
@@ -130,6 +130,14 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jasmine');
 
   // Default task
-  grunt.registerTask('default', ['jshint:all', 'clean', 'uglify:dist', 'jasmine:pivotal', 'compass:dist', 'csslint:strict', 'cssmin:combine']);
+  grunt.registerTask('default', [
+    'jshint:all',
+    'clean',
+    'uglify:dist',
+    'jasmine:pivotal',
+    'compass:dist',
+    'csslint:strict',
+    'cssmin:combine'
+  ]);
 };
 
