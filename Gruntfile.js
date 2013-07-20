@@ -4,6 +4,7 @@ module.exports = function(grunt) {
   var cssPath = 'css/stylesheets';
   var bowerPath = 'bower_components';
   var assetsPath = 'assets';
+  var specsPath = 'tests/js';
 
   // Project configuration.
   grunt.initConfig({
@@ -66,6 +67,9 @@ module.exports = function(grunt) {
     
     cssmin: {
       combine: {
+        options: {
+          keepSpecialComments: 0
+        },
         files: {
           'assets/app.css': [
             bowerPath + '/bootstrap/bootstrap/css/bootstrap.css',
@@ -84,7 +88,7 @@ module.exports = function(grunt) {
         tasks: [
           'compass:dist',
           'csslint:strict',
-          'cssmin'
+          'cssmin:combine'
         ],
         options: {
           nospawn: true,
@@ -95,12 +99,22 @@ module.exports = function(grunt) {
           jsPath + '/**/*.js'
         ],
         tasks: [
-          'jshint',
-          'uglify'
+          'jshint:all',
+          'uglify:dist',
+          'jasmine:pivotal'
         ],
         options: {
           nospawn: true,
         },
+      }
+    },
+    
+    jasmine: {
+      pivotal: {
+        src: assetsPath + '/app.js',
+        options: {
+          specs: specsPath + '/*Spec.js'
+        }
       }
     }
   });
@@ -113,8 +127,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-csslint');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-jasmine');
 
   // Default task
-  grunt.registerTask('default', ['jshint', 'clean', 'uglify', 'compass:dist', 'csslint:strict', 'cssmin']);
+  grunt.registerTask('default', ['jshint:all', 'clean', 'uglify:dist', 'jasmine:pivotal', 'compass:dist', 'csslint:strict', 'cssmin:combine']);
 };
 
