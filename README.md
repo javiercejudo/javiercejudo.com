@@ -20,15 +20,15 @@ JavaScript.
 library.
 - [Modernizr](http://modernizr.com/): the feature detection library for
 HTML5/CSS3.
+- [Bootstrap](http://twitter.github.io/bootstrap/): sleek, intuitive, and
+powerful front-end framework for faster and easier web development.
 - [Jasmine](http://pivotal.github.io/jasmine/): behavior-driven development
 framework for testing JavaScript code.
 
 ### CSS:
 
 - [Sass](http://sass-lang.com/): Syntactically Awesome Stylesheets.
-
-### JavasCript & CSS:
-
+- [Compass](http://compass-style.org/): open-source CSS authoring framework.
 - [Bootstrap](http://twitter.github.io/bootstrap/): sleek, intuitive, and
 powerful front-end framework for faster and easier web development.
 

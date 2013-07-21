@@ -23,7 +23,8 @@ module.exports = function(grunt) {
     },
     
     clean: [
-      assetsPath + '/*'
+      assetsPath + '/**/*',
+      cssPath + '/**/*.css'
     ],
     
     uglify: {
@@ -60,7 +61,7 @@ module.exports = function(grunt) {
           import: 2
         },
         src: [
-          cssPath + '/general.css'
+          cssPath + '**/*.css'
         ]
       }
     },
@@ -74,7 +75,7 @@ module.exports = function(grunt) {
           'assets/app.css': [
             bowerPath + '/bootstrap/bootstrap/css/bootstrap.css',
             bowerPath + '/bootstrap/bootstrap/css/bootstrap-responsive.css',
-            cssPath + '/general.css'
+            cssPath + '/*.css'
           ]
         }
       }

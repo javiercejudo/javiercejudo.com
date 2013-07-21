@@ -12,7 +12,7 @@
 <?php if (ENV == 'dev') : ?>
     <link href="/bower_components/bootstrap/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="/bower_components/bootstrap/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
-    <link href="/css/stylesheets/general.css" rel="stylesheet">
+    <link href="/css/stylesheets/jcApp.css" rel="stylesheet">
 <?php else : ?>
     <link href="/assets/app.css" rel="stylesheet">
 <?php endif; ?>
@@ -30,7 +30,7 @@
     <link rel="shortcut icon"                                href="/ico/favicon.png">
   </head>
 
-  <body ng-app="JcApp" ng-controller="AppCtrl" class="ng-cloak">
+  <body ng-app="JcApp" ng-controller="AppCtrl">
     <div class="page" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Javier Cejudo">
       <meta itemprop="jobTitle" content="Web Developer">
@@ -70,7 +70,14 @@
 
       <hr>
 
-      <div ng-view></div>
+      <div ng-view>
+        <noscript>
+        <div class="no-script">
+          Please enable JavaScript to navigate through the site. Thanks!
+        </div>
+        <?php include 'partials/home.html' ?>
+        </noscript>
+      </div>
 
       <hr>
 
