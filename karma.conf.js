@@ -10,6 +10,8 @@ basePath = '';
 files = [
   JASMINE,
   JASMINE_ADAPTER,
+  'bower_components/angular/angular.js',
+  'bower_components/angular-mocks/angular-mocks.js',
   'assets/app.js',
   'tests/js/*Spec.js'
 ];

@@ -111,7 +111,11 @@ module.exports = function(grunt) {
     
     jasmine: {
       pivotal: {
-        src: assetsPath + '/app.js',
+        src: [
+          assetsPath + '/app.js',
+          'bower_components/angular/angular.js',
+          'bower_components/angular-mocks/angular-mocks.js',
+        ],
         options: {
           specs: specsPath + '/*Spec.js'
         }

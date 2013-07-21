@@ -16,6 +16,8 @@ JavaScript.
 ### JavaScript:
 
 - [AngularJS](http://angularjs.org/): superheroic JavaScript MVW framework.
+- [jQuery](http://jquery.com/): fast, small, and feature-rich JavaScript
+library.
 - [Modernizr](http://modernizr.com/): the feature detection library for
 HTML5/CSS3.
 - [Jasmine](http://pivotal.github.io/jasmine/): behavior-driven development

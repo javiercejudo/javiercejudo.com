@@ -9,6 +9,7 @@
       function ($scope, $window) {
         $scope.navigateWithFullReload = function (path) {
           $window.location.href = path;
+          return path;
         };
       }
     ]
