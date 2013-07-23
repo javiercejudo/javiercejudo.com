@@ -4,6 +4,7 @@
 config.php
 *~
 
+/css/stylesheets
 /bower_components
 /node_modules
 
