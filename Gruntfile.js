@@ -40,7 +40,7 @@ module.exports = function(grunt) {
             jsPath + '/**/*.js'
           ],
           'assets/modernizr.js': [
-            bowerPath + '/modernizr/modernizr.js'
+            bowerPath + '/modernizr/modernizr.custom.js'
           ]
         }
       }
@@ -75,10 +75,20 @@ module.exports = function(grunt) {
           'assets/app.css': [
             bowerPath + '/bootstrap/bootstrap/css/bootstrap.css',
             bowerPath + '/bootstrap/bootstrap/css/bootstrap-responsive.css',
-            cssPath + '/*.css'
+            cssPath + '/**/*.css'
           ]
         }
       }
+    },
+    
+    modernizr: {
+      "devFile" : bowerPath + '/modernizr/modernizr.js',
+      "outputFile" : bowerPath + '/modernizr/modernizr.custom.js',
+      "files": [
+        jsPath + '/**/*.js',
+        sassPath + '/**/*.scss'
+      ],
+      "uglify" : false
     },
     
     watch: {
@@ -97,6 +107,7 @@ module.exports = function(grunt) {
       },
       js: {
         files: [
+          'Gruntfile.js',
           jsPath + '/**/*.js'
         ],
         tasks: [
@@ -118,7 +129,7 @@ module.exports = function(grunt) {
           'bower_components/angular-mocks/angular-mocks.js',
         ],
         options: {
-          specs: specsPath + '/*Spec.js'
+          specs: specsPath + '/**/*Spec.js'
         }
       }
     }
@@ -131,6 +142,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-csslint');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-modernizr');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
 
@@ -138,6 +150,7 @@ module.exports = function(grunt) {
   grunt.registerTask('default', [
     'jshint:all',
     'clean',
+    'modernizr',
     'uglify:dist',
     'jasmine:pivotal',
     'compass:dist',
