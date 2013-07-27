@@ -1,4 +1,4 @@
-<?php include 'config.php'; ?>
+<?php require 'config.php'; ?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html lang="en" class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-<?php if (ENV == 'dev') : ?>
+<?php if (ENV === 'dev') : ?>
     <link href="/bower_components/bootstrap/bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="/bower_components/bootstrap/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
     <link href="/css/stylesheets/jcApp.css" rel="stylesheet">
@@ -22,7 +22,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72"   href="/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed"                 href="/ico/apple-touch-icon-57-precomposed.png">
     <link rel="shortcut icon"                                href="/ico/favicon.png">
-<?php if (ENV == 'dev') : ?>
+<?php if (ENV === 'dev') : ?>
     <script src="/bower_components/modernizr/modernizr.js"></script>
 <?php else : ?>
     <script src="/assets/modernizr.js"></script>
@@ -92,7 +92,7 @@
       </div>
     </div> <!-- /page -->
 
-<?php if (ENV == 'dev') : ?>
+<?php if (ENV === 'dev') : ?>
     <script src="/bower_components/jquery/jquery.js"></script>
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/bootstrap/bootstrap/js/bootstrap.js"></script>
@@ -101,7 +101,7 @@
     <script src="/js/controllers/HomeCtrl.js"></script>
 <?php else : ?>
     <script src="/assets/app.js"></script>
-  <?php endif; ?>
+<?php endif; ?>
   </body>
 </html>
 
