@@ -3,15 +3,6 @@ body {
   overflow-y: scroll;
 }
 
-.no-script {
-  background-color: #CC0000;
-  color: white;
-  margin-bottom: 20px;
-  padding: 10px;
-  text-align: center;
-  @include border-radius(5px);
-}
-
 .ng-cloak {
   display: none;
 }

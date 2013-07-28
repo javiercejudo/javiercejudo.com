@@ -71,7 +71,7 @@
 
       <div ng-view>
         <noscript>
-        <div class="no-script">
+        <div class="alert alert-danger">
           Please enable JavaScript to navigate through the site. Thanks!
         </div>
         <?php include 'partials/home.html' ?>
