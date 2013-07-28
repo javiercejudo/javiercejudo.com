@@ -27,6 +27,16 @@ module.exports = function(grunt) {
       cssPath + '/**/*.css'
     ],
     
+    modernizr: {
+      "devFile" : bowerPath + '/modernizr/modernizr.js',
+      "outputFile" : bowerPath + '/modernizr/modernizr.custom.js',
+      "files": [
+        jsPath + '/**/*.js',
+        sassPath + '/**/*.scss'
+      ],
+      "uglify" : false
+    },
+    
     uglify: {
       options: {
         mangle: true
@@ -81,14 +91,20 @@ module.exports = function(grunt) {
       }
     },
     
-    modernizr: {
-      "devFile" : bowerPath + '/modernizr/modernizr.js',
-      "outputFile" : bowerPath + '/modernizr/modernizr.custom.js',
-      "files": [
-        jsPath + '/**/*.js',
-        sassPath + '/**/*.scss'
-      ],
-      "uglify" : false
+    imagemin: {
+      dist: {
+        options: {
+          optimizationLevel: 3
+        },
+        files: [
+          {
+            expand: true,
+            cwd: 'img/',
+            src: ['**/*'],
+            dest: 'img/'
+          }
+        ]
+      }
     },
     
     watch: {
@@ -138,11 +154,12 @@ module.exports = function(grunt) {
   // Load plugins used by this task gruntfile
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-modernizr');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-csslint');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-modernizr');
+  grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
 
