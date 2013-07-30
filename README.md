@@ -21,7 +21,7 @@ library.
 - [Modernizr](http://modernizr.com/): the feature detection library for
 HTML5/CSS3.
 - [Bootstrap](http://getbootstrap.com/): Sleek, intuitive, and powerful
-mobile-first front-end framework .
+mobile-first front-end framework.
 - [Jasmine](http://pivotal.github.io/jasmine/): behavior-driven development
 framework for testing JavaScript code.
 
@@ -30,7 +30,7 @@ framework for testing JavaScript code.
 - [Sass](http://sass-lang.com/): Syntactically Awesome Stylesheets.
 - [Compass](http://compass-style.org/): open-source CSS authoring framework.
 - [Bootstrap](http://getbootstrap.com/): Sleek, intuitive, and powerful
-mobile-first front-end framework .
+mobile-first front-end framework.
 
 ### Backend:
 
