@@ -1,0 +1,19 @@
+<div class="cv" ng-controller="CvCtrl" ng-init="initCv()">
+  <div>
+    <ul class="nav nav-pills">
+      <li ng-class="{active: cv.params.language == 'english'}">
+        <a href="/cv/english">
+          English
+        </a>
+      </li>
+      <li ng-class="{active: cv.params.language == 'spanish'}">
+        <a href="/cv/spanish">
+          Spanish
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="well">
+    {{cv.data[cv.language].name.label}}: {{cv.data[cv.language].name.value}}
+  </div>
+</div>

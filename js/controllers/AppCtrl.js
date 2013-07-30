@@ -5,12 +5,11 @@
 
   angular.module('JcApp').controller(
     'AppCtrl', 
-    ['$scope', '$window',
-      function ($scope, $window) {
-        $scope.navigateWithFullReload = function (path) {
-          $window.location.href = path;
-          return path;
-        };
+    ['$scope', '$location',
+      function ($scope, $location) {
+        $scope.$on('$routeChangeSuccess', function() { 
+          $scope.path = $location.path();
+        });
       }
     ]
   );

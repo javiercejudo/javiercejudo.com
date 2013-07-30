@@ -44,9 +44,9 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'assets/app.js': [
-            bowerPath + '/jquery/jquery.js',
+            //bowerPath + '/jquery/jquery.js',
             bowerPath + '/angular/angular.js',
-            bowerPath + '/bootstrap/bootstrap/js/bootstrap.js',
+            //bowerPath + '/bootstrap/dist/js/bootstrap.js',
             jsPath + '/**/*.js'
           ],
           'assets/modernizr.js': [
@@ -83,8 +83,7 @@ module.exports = function(grunt) {
         },
         files: {
           'assets/app.css': [
-            bowerPath + '/bootstrap/bootstrap/css/bootstrap.css',
-            bowerPath + '/bootstrap/bootstrap/css/bootstrap-responsive.css',
+            bowerPath + '/bootstrap/dist/css/bootstrap.css',
             cssPath + '/**/*.css'
           ]
         }

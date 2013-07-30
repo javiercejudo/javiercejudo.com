@@ -11,7 +11,7 @@
   ],
   "devDependencies": {
     "angular": "~1.0.7",
-    "bootstrap": "~2.3.2",
+    "bootstrap": "~3.0.0-rc1",
     "jquery": "~1.10.2",
     "modernizr": "~2.6.2",
     "angular-mocks": "~1.0.7"

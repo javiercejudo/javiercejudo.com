@@ -5,9 +5,9 @@
 
   angular.module('JcApp').controller(
     'HomeCtrl', 
-    ['$scope', '$window',
-      function ($scope, $window) {
-        
+    ['$scope',
+      function ($scope) {
+
       }
     ]
   );

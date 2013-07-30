@@ -11,8 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 <?php if (ENV === 'dev') : ?>
-    <link href="/bower_components/bootstrap/bootstrap/css/bootstrap.css" rel="stylesheet">
-    <link href="/bower_components/bootstrap/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link href="/css/stylesheets/jcApp.css" rel="stylesheet">
 <?php else : ?>
     <link href="/assets/app.css" rel="stylesheet">
@@ -39,29 +38,25 @@
       <meta itemprop="familyName" content="Cejudo">
       <meta itemprop="gender" content="Male">
       <meta itemprop="url" content="http://javiercejudo.com">
-      <div class="masthead">
-        <div class="row-fluid">
-          <div class="span5">
-            <ul class="nav nav-pills">
-              <li class="active">
-                <a href="/">
-                  <i class="icon-home"></i>&nbsp;Home
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="span7 top-contact hidden-phone">
-            <div class="row-fluid">
-              <div class="span7">
-                <i class="icon-envelope"></i>
-                <a href="mailto:javier@javiercejudo.com" itemprop="email">
-                  javier@javiercejudo.com
-                </a>
-              </div>
-              <div class="span5">
-                <i class="icon-signal"></i>
-                <span itemprop="telephone">(+61) 0432 429 789</span>
-              </div>
+      <div class="masthead row">
+        <div class="col-lg-5">
+          <ul class="nav nav-pills">
+            <li ng-class="{active: path == '/'}">
+              <a href="/">
+                Home
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="col-lg-7 top-contact hidden-sm">
+          <div class="row">
+            <div class="col-lg-7">
+              <a href="mailto:javier@javiercejudo.com" itemprop="email">
+                javier@javiercejudo.com
+              </a>
+            </div>
+            <div class="col-lg-5">
+              <span itemprop="telephone">(+61) 0432 429 789</span>
             </div>
           </div>
         </div>
@@ -80,25 +75,28 @@
 
       <hr>
 
-      <div class="footer">
-        <p>
-          &copy; javiercejudo.com 2013 //
-          by <a href="https://plus.google.com/107177203146640599248?rel=author">
-          Javier Cejudo</a> //
-          <a href="https://github.com/javiercejudo/javiercejudo.com">
-            View on GitHub
-          </a>
-        </p>
+      <div class="footer row">
+        <div class="col-lg-12">
+          <p>
+            &copy; javiercejudo.com 2013 //
+            by <a href="https://plus.google.com/107177203146640599248?rel=author">
+            Javier Cejudo</a> //
+            <a href="https://github.com/javiercejudo/javiercejudo.com">
+              View on GitHub
+            </a>
+          </p>
+        </div>
       </div>
     </div> <!-- /page -->
 
 <?php if (ENV === 'dev') : ?>
-    <script src="/bower_components/jquery/jquery.js"></script>
+    <!--<script src="/bower_components/jquery/jquery.js"></script>-->
     <script src="/bower_components/angular/angular.js"></script>
-    <script src="/bower_components/bootstrap/bootstrap/js/bootstrap.js"></script>
+    <!--<script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>-->
     <script src="/js/JcApp.js"></script>
     <script src="/js/controllers/AppCtrl.js"></script>
     <script src="/js/controllers/HomeCtrl.js"></script>
+    <script src="/js/controllers/CvCtrl.js"></script>
 <?php else : ?>
     <script src="/assets/app.js"></script>
 <?php endif; ?>
