@@ -1,19 +1,54 @@
-<div class="cv" ng-controller="CvCtrl" ng-init="initCv()">
-  <div>
-    <ul class="nav nav-pills">
+<div class="cv row ng-cloak" ng-controller="CvCtrl" ng-init="initCv()">
+  <div class="col-sm-12 col-lg-12">
+    <ul class="nav nav-pills lang-selector">
       <li ng-class="{active: cv.params.language == 'english'}">
         <a href="/cv/english">
-          English
+          CV in English
         </a>
       </li>
       <li ng-class="{active: cv.params.language == 'spanish'}">
         <a href="/cv/spanish">
-          Spanish
+          CV en español
         </a>
       </li>
     </ul>
   </div>
-  <div class="well">
-    {{cv.data[cv.language].name.label}}: {{cv.data[cv.language].name.value}}
+  <div class="well col-sm-12 col-lg-12">
+    <h1>Javier Cejudo</h1>
+    <div>
+      <p>
+        {{cv.data[cv.language].email.label}}:
+        {{cv.data[cv.language].email.value}}
+      </p>
+      <p>
+        {{cv.data[cv.language].phone.label}}:
+        {{cv.data[cv.language].phone.value}}
+      </p>
+    </div>
+    <div>
+      <h3>{{cv.data[cv.language].career_objectives.label}}</h3>
+      <p>
+        {{cv.data[cv.language].career_objectives.value}}
+      </p>
+    </div>
+    <div>
+      <h3>{{cv.data[cv.language].education.label}}</h3>
+      <ul>
+        <li ng-repeat="education in cv.data[cv.language].education.list">
+          {{education}}
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h3>{{cv.data[cv.language].work_experience.label}}</h3>
+      <ul class="job-list">
+        <li ng-repeat="job in cv.data[cv.language].work_experience.list">
+          <em>{{job.title}}</em>
+          <p class="job-description">
+            {{job.description}}
+          </p>
+        </li>
+      </ul>
+    </div>
   </div>
 </div>

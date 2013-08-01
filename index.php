@@ -39,7 +39,7 @@
       <meta itemprop="gender" content="Male">
       <meta itemprop="url" content="http://javiercejudo.com">
       <div class="masthead row">
-        <div class="col-lg-5">
+        <div class="col-sm-5 col-lg-5">
           <ul class="nav nav-pills">
             <li ng-class="{active: path == '/'}">
               <a href="/">
@@ -48,14 +48,14 @@
             </li>
           </ul>
         </div>
-        <div class="col-lg-7 top-contact hidden-sm">
+        <div class="col-sm-7 col-lg-7 top-contact hidden-sm">
           <div class="row">
-            <div class="col-lg-7">
+            <div class="col-sm-7 col-lg-7">
               <a href="mailto:javier@javiercejudo.com" itemprop="email">
                 javier@javiercejudo.com
               </a>
             </div>
-            <div class="col-lg-5">
+            <div class="col-sm-5 col-lg-5">
               <span itemprop="telephone">(+61) 0432 429 789</span>
             </div>
           </div>
@@ -76,7 +76,7 @@
       <hr>
 
       <div class="footer row">
-        <div class="col-lg-12">
+        <div class="col-sm-12 col-lg-12">
           <p>
             &copy; javiercejudo.com 2013 //
             by <a href="https://plus.google.com/107177203146640599248?rel=author">
@@ -92,6 +92,7 @@
 <?php if (ENV === 'dev') : ?>
     <!--<script src="/bower_components/jquery/jquery.js"></script>-->
     <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
     <!--<script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>-->
     <script src="/js/JcApp.js"></script>
     <script src="/js/controllers/AppCtrl.js"></script>

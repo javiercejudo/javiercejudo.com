@@ -46,6 +46,7 @@ module.exports = function(grunt) {
           'assets/app.js': [
             //bowerPath + '/jquery/jquery.js',
             bowerPath + '/angular/angular.js',
+            bowerPath + '/angular-sanitize/angular-sanitize.js',
             //bowerPath + '/bootstrap/dist/js/bootstrap.js',
             jsPath + '/**/*.js'
           ],
@@ -164,6 +165,15 @@ module.exports = function(grunt) {
 
   // Default task
   grunt.registerTask('default', [
+    'jshint:all',
+    'clean',
+    'modernizr',
+    'compass:dist',
+    'csslint:strict',
+  ]);
+  
+  // Built assets for production
+  grunt.registerTask('build', [
     'jshint:all',
     'clean',
     'modernizr',
