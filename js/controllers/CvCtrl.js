@@ -5,8 +5,8 @@
 
   angular.module('JcApp').controller(
     'CvCtrl',
-    ['$scope', '$routeParams',
-      function ($scope, $routeParams) {
+    ['$scope', '$routeParams', '$location',
+      function ($scope, $routeParams, $location) {
         $scope.cv = {
           params: $routeParams,
           languages: ['english', 'spanish'],
@@ -108,8 +108,8 @@
           cv.language = params.language;
 
           if (!params.language || languages.indexOf(params.language) === -1) {
-            params.language = 'english';
-            cv.language = params.language;
+            $location.path('/cv/english');
+            $location.replace();
           }
         };
       }]
