@@ -54,7 +54,7 @@
             spanish: {
               email: {
                 label: "Correo electrónico",
-                list: "javier@javiercejudo.com"
+                value: "javier@javiercejudo.com"
               },
               phone: {
                 label: "Teléfono",
@@ -77,11 +77,11 @@
                 label: "Experiencia laboral",
                 list: [
                   {
-                    title: "January 2013 - Present, Desarrollador web en Zanui.com.au",
+                    title: "Enero 2013 - Presente, Desarrollador web en Zanui.com.au",
                     description: "Participo en el desarrollo front end y back end del sitio web, incluyendo la versión móvil, creada desde cero con AngularJS y Symfony 2. Desarrollé su sistema de seguimiento de pedidos, que se ha consolidado entre las 10 páginas con más visitantes únicos de la web."
                   },
                   {
-                    title: "Abril 2010 - presente, Desarrollador de software en Get App Spain, S.L.",
+                    title: "Abril 2010 - Octubre 2012, Desarrollador de software en Get App Spain, S.L.",
                     description: "Participación en varios proyectos de compañías líderes en diversos sectores. Creación de un cliente SOAP en PHP para generar listados cacehables bajo demanda y del front end de una tienda electrónica en JavaScript + jQuery con animaciones complejas y soporte para drag & drop."
                   },
                   {
