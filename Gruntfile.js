@@ -148,6 +148,32 @@ module.exports = function(grunt) {
           specs: specsPath + '/**/*Spec.js'
         }
       }
+    },
+    
+    docular: {
+      groups: [
+        {
+          groupTitle: 'javiercejudo.com',
+          groupId: 'javiercejudo',
+          groupIcon: 'icon-rocket',
+          showSource: true,
+          sections: [
+            {
+              id: "api",
+              title: "JavierCejudo.com API",
+              showSource: true,
+              scripts: [
+                  "js/JcApp.js"
+              ],
+              rank: {
+                'JcApp':1
+              }
+            }
+          ]
+        }
+      ],
+      showDocularDocs: true,
+      showAngularDocs: false
     }
   });
 
@@ -162,6 +188,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
+  grunt.loadNpmTasks('grunt-docular');
 
   // Default task
   grunt.registerTask('default', [

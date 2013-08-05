@@ -1,25 +1,45 @@
 /*global angular:true, browser:true */
 
+/**
+ * @doc overview
+ * @name index
+ * @description
+ * 
+ * #JcApp
+ * 
+ * My personal website.
+ */
+
 (function (angular) {
   'use strict';
-
+  
+  /**
+   * @ngdoc module
+   * @name JcApp
+   * @description
+   *
+   * ## JcApp definition
+   *
+   * Lists the dependencies for the app and defines the routing.
+   */
   angular.module('JcApp', [])
-
-    .config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
-      $routeProvider.when('/', {
-          templateUrl: '/partials/home.html',
-          controller: 'HomeCtrl'
-      }).when('/cv', {
-          redirectTo: '/cv/english'
-      }).when('/cv/:language', {
-          templateUrl: '/partials/cv.html',
-          controller: 'CvCtrl'
-      }).otherwise({
-          redirectTo: '/'
-      });
-    
-      // configure routes
-      $locationProvider.html5Mode(true).hashPrefix('!');
+    .config([
+      '$routeProvider', '$locationProvider',
+      function ($routeProvider, $locationProvider) {
+        $routeProvider.when('/', {
+            templateUrl: '/partials/home.html',
+            controller: 'HomeCtrl'
+        }).when('/cv', {
+            redirectTo: '/cv/english'
+        }).when('/cv/:language', {
+            templateUrl: '/partials/cv.html',
+            controller: 'CvCtrl'
+        }).otherwise({
+            redirectTo: '/'
+        });
+      
+        // configure routes
+        $locationProvider.html5Mode(true).hashPrefix('!');
     }]);
 }(angular));
 
