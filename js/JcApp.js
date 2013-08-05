@@ -14,7 +14,7 @@
   'use strict';
   
   /**
-   * @ngdoc module
+   * @doc module
    * @name JcApp
    * @description
    *

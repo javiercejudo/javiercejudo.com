@@ -155,7 +155,7 @@ module.exports = function(grunt) {
         {
           groupTitle: 'javiercejudo.com',
           groupId: 'javiercejudo',
-          groupIcon: 'icon-rocket',
+          groupIcon: 'icon-bolt',
           showSource: true,
           sections: [
             {
@@ -173,7 +173,7 @@ module.exports = function(grunt) {
         }
       ],
       showDocularDocs: true,
-      showAngularDocs: false
+      showAngularDocs: true
     }
   });
 
