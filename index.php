@@ -12,6 +12,7 @@
     <meta name="author" content="">
 <?php if (ENV === 'dev') : ?>
     <link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="/bower_components/bootstrap-glyphicons/css/bootstrap-glyphicons.css" rel="stylesheet">
     <link href="/css/stylesheets/jcApp.css" rel="stylesheet">
 <?php else : ?>
     <link href="/assets/app.css" rel="stylesheet">
@@ -43,6 +44,7 @@
           <ul class="nav nav-pills">
             <li ng-class="{active: path == '/'}">
               <a href="/">
+                <span class="glyphicon glyphicon-home"></span>
                 Home
               </a>
             </li>
@@ -51,11 +53,13 @@
         <div class="col-sm-7 col-lg-7 top-contact hidden-sm">
           <div class="row">
             <div class="col-sm-7 col-lg-7">
+              <span class="glyphicon glyphicon-envelope vertical-middle"></span>
               <a href="mailto:javier@javiercejudo.com" itemprop="email">
                 javier@javiercejudo.com
               </a>
             </div>
             <div class="col-sm-5 col-lg-5">
+              <span class="glyphicon glyphicon-phone vertical-middle"></span>
               <span itemprop="telephone">(+61) 0432 429 789</span>
             </div>
           </div>

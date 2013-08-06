@@ -2,8 +2,8 @@
   "name": "javiercejudo.com",
   "version": "1.0.0",
   "repository": {
-      "type": "git",
-      "url": "https://github.com/javiercejudo/javiercejudo.com.git"
+    "type": "git",
+    "url": "https://github.com/javiercejudo/javiercejudo.com.git"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -20,6 +20,7 @@
     "grunt-docular": "~0.1.1",
     "grunt-modernizr": "~0.3.0",
     "grunt-contrib-imagemin": "~0.1.4",
-    "grunt-contrib-coffee": "~0.7.0"
+    "grunt-contrib-coffee": "~0.7.0",
+    "grunt-contrib-copy": "~0.4.1"
   }
 }

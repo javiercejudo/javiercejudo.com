@@ -31,6 +31,8 @@
             controller: 'HomeCtrl'
         }).when('/cv', {
             redirectTo: '/cv/english'
+        }).when('/curriculum', {
+            redirectTo: '/cv/english'
         }).when('/cv/:language', {
             templateUrl: '/partials/cv.html',
             controller: 'CvCtrl'

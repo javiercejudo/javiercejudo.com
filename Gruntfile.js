@@ -1,4 +1,5 @@
 module.exports = function(grunt) {
+  var fontsPath = 'fonts';
   var jsPath = 'js';
   var sassPath = 'css/sass';
   var cssPath = 'css/stylesheets';
@@ -24,8 +25,17 @@ module.exports = function(grunt) {
     
     clean: [
       assetsPath + '/**/*',
-      cssPath + '/**/*.css'
+      cssPath + '/**/*.css',
+      fontsPath + '/**/*'
     ],
+    
+    copy: {
+      main: {
+        files: [
+          {expand: true, cwd: bowerPath + '/bootstrap-glyphicons/fonts/', src: ['**'], dest: fontsPath + '/', filter: 'isFile'}
+        ]
+      }
+    },
     
     modernizr: {
       "devFile" : bowerPath + '/modernizr/modernizr.js',
@@ -85,6 +95,7 @@ module.exports = function(grunt) {
         files: {
           'assets/app.css': [
             bowerPath + '/bootstrap/dist/css/bootstrap.css',
+            bowerPath + '/bootstrap-glyphicons/css/bootstrap-glyphicons.css',
             cssPath + '/**/*.css'
           ]
         }
@@ -180,6 +191,7 @@ module.exports = function(grunt) {
   // Load plugins used by this task gruntfile
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-modernizr');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-compass');
@@ -194,6 +206,7 @@ module.exports = function(grunt) {
   grunt.registerTask('default', [
     'jshint:all',
     'clean',
+    'copy',
     'modernizr',
     'compass:dist',
     'csslint:strict',
@@ -203,6 +216,7 @@ module.exports = function(grunt) {
   grunt.registerTask('build', [
     'jshint:all',
     'clean',
+    'copy',
     'modernizr',
     'uglify:dist',
     'jasmine:pivotal',

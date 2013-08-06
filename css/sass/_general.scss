@@ -15,12 +15,16 @@ body {
   padding-top: 10px;
 }
 
-/* Custom container */
 .page {
   margin: 0 auto;
   max-width: 700px;
+
   &> hr {
     margin: 15px 0;
   }
+}
+
+.vertical-middle {
+  vertical-align: middle;
 }
 
