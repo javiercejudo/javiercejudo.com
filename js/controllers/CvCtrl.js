@@ -5,21 +5,23 @@
 
   angular.module('JcApp').controller(
     'CvCtrl',
-    ['$scope', '$routeParams', '$location',
-      function ($scope, $routeParams, $location) {
+    ['$rootScope', '$scope', '$routeParams', '$location',
+      function ($rootScope, $scope, $routeParams, $location) {
         $scope.cv = {
           params: $routeParams,
           languages: ['english', 'spanish'],
           data: {
             english: {
-              email: {
-                label: "Email",
-                value: "javier@javiercejudo.com"
-              },
-              phone: {
-                label: "Phone",
-                value: "(+61) 0432 429 789"
-              },
+              contact : [
+                {
+                  label: "Email",
+                  value: "javier@javiercejudo.com"
+                },
+                {
+                  label: "Phone",
+                  value: "(+61) 0432 429 789"
+                }
+              ],
               career_objectives: {
                 label: "Career Objectives",
                 value: "Wish to continue career as a software engineer where skills in database systems, data processing and mathematical training can be used, with special interest in management systems (e.g. finance, e-commerce) and frontend development."
@@ -52,14 +54,16 @@
               }
             },
             spanish: {
-              email: {
-                label: "Correo electrónico",
-                value: "javier@javiercejudo.com"
-              },
-              phone: {
-                label: "Teléfono",
-                value: "(+61) 0432 429 789"
-              },
+              contact: [
+                {
+                  label: "Correo electrónico",
+                  value: "javier@javiercejudo.com"
+                },
+                {
+                  label: "Teléfono",
+                  value: "(+61) 0432 429 789"
+                }
+              ],
               career_objectives: {
                 label: "Objetivos profesionales",
                 value: "Busco continuar mi carrera como desarrollador en un puesto que requiera habilidades relacionadas con sistemas de bases de datos, procesamiento de información y entrenamiento matemático, con especial interés en sistemas de gestión (por ejemplo: finanzas, comercio electrónico, etc.)."
@@ -107,10 +111,13 @@
 
           cv.language = params.language;
 
-          if (!params.language || languages.indexOf(params.language) === -1) {
-            $location.path('/cv/english');
-            $location.replace();
+          if (params.language && languages.indexOf(params.language) !== -1) {
+            $rootScope.pageTitle = 'CV: ' + params.language;
+            return;
           }
+
+          $location.path('/cv/english');
+          $location.replace();
         };
       }]
   );

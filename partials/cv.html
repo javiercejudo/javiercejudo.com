@@ -16,13 +16,8 @@
   <div class="well col-sm-12 col-lg-12">
     <h1>Javier Cejudo</h1>
     <div>
-      <p>
-        {{cv.data[cv.language].email.label}}:
-        {{cv.data[cv.language].email.value}}
-      </p>
-      <p>
-        {{cv.data[cv.language].phone.label}}:
-        {{cv.data[cv.language].phone.value}}
+      <p ng-repeat="contactDetail in cv.data[cv.language].contact">
+        {{contactDetail.label}}: {{contactDetail.value}}
       </p>
     </div>
     <div>

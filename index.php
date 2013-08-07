@@ -6,7 +6,7 @@
 <!--[if gt IE 8]><!--> <html ng-app="JcApp" ng-controller="AppCtrl" lang="en" class="no-js"> <!--<![endif]-->
   <head>
     <meta charset="utf-8">
-    <title>Javier Cejudo · Web Developer</title>
+    <title ng-bind-template="{{pageTitle}} | Javier Cejudo · Web Developer"></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -97,11 +97,20 @@
     <!--<script src="/bower_components/jquery/jquery.js"></script>-->
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <!--<script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>-->
-    <script src="/js/JcApp.js"></script>
-    <script src="/js/controllers/AppCtrl.js"></script>
-    <script src="/js/controllers/HomeCtrl.js"></script>
-    <script src="/js/controllers/CvCtrl.js"></script>
+    <!--<script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>-->    
+<?php
+  $jsPath = '/js';
+
+  $it = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(__DIR__ . $jsPath));
+
+  while($it->valid()) {
+      if (!$it->isDot()) {
+          echo '<script src="' . $jsPath . '/' . $it->getSubPathName() . '"></script>' . "\n";
+      }
+
+      $it->next();
+  }
+?>
 <?php else : ?>
     <script src="/assets/app.js"></script>
 <?php endif; ?>
