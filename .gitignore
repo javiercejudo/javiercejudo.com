@@ -7,6 +7,8 @@ config.php
 /css/stylesheets
 /bower_components
 /node_modules
+libpeerconnection.log
+C:\\nppdf32Log\\debuglog.txt
 
 # OS generated files #
 ######################

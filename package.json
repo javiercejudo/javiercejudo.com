@@ -14,13 +14,22 @@
     "grunt-contrib-clean": "~0.4.1",
     "grunt-contrib-watch": "~0.4.4",
     "grunt-contrib-csslint": "~0.1.2",
-    "grunt-contrib-jasmine": "~0.5.1",
     "jasmine-node-karma": "~1.6.1",
     "bower": "~0.10.0",
     "grunt-docular": "~0.1.1",
     "grunt-modernizr": "~0.3.0",
     "grunt-contrib-imagemin": "~0.1.4",
     "grunt-contrib-coffee": "~0.7.0",
-    "grunt-contrib-copy": "~0.4.1"
+    "grunt-contrib-copy": "~0.4.1",
+    "karma-script-launcher": "~0.1.0",
+    "karma-chrome-launcher": "~0.1.0",
+    "karma-firefox-launcher": "~0.1.0",
+    "karma-html2js-preprocessor": "~0.1.0",
+    "karma-jasmine": "~0.1.0",
+    "karma-requirejs": "~0.1.0",
+    "karma-coffee-preprocessor": "~0.1.0",
+    "karma-phantomjs-launcher": "~0.1.0",
+    "karma": "~0.10.1",
+    "grunt-karma": "~0.6.1"
   }
 }

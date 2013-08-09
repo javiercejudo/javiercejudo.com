@@ -5,8 +5,8 @@
 
   angular.module('JcApp').controller(
     'CvCtrl',
-    ['$rootScope', '$scope', '$routeParams', '$location',
-      function ($rootScope, $scope, $routeParams, $location) {
+    ['$rootScope', '$scope', '$routeParams', '$location', '$filter',
+      function ($rootScope, $scope, $routeParams, $location, $filter) {
         $scope.cv = {
           params: $routeParams,
           languages: ['english', 'spanish'],
@@ -112,7 +112,7 @@
           cv.language = params.language;
 
           if (params.language && languages.indexOf(params.language) !== -1) {
-            $rootScope.pageTitle = 'CV: ' + params.language;
+            $rootScope.pageTitle = 'CV: ' + $filter('jcCapitalise')(params.language);
             return;
           }
 

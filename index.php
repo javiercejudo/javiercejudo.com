@@ -97,20 +97,13 @@
     <!--<script src="/bower_components/jquery/jquery.js"></script>-->
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <!--<script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>-->    
-<?php
-  $jsPath = '/js';
-
-  $it = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(__DIR__ . $jsPath));
-
-  while($it->valid()) {
-      if (!$it->isDot()) {
-          echo '<script src="' . $jsPath . '/' . $it->getSubPathName() . '"></script>' . "\n";
-      }
-
-      $it->next();
-  }
-?>
+    <!--<script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>-->   
+     
+    <script src="/js/JcApp.js"></script>
+    <script src="/js/AppFilters.js"></script>
+    <script src="/js/controllers/AppCtrl.js"></script>
+    <script src="/js/controllers/HomeCtrl.js"></script>
+    <script src="/js/controllers/CvCtrl.js"></script>
 <?php else : ?>
     <script src="/assets/app.js"></script>
 <?php endif; ?>

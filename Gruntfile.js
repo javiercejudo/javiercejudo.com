@@ -148,16 +148,16 @@ module.exports = function(grunt) {
       }
     },
     
-    jasmine: {
-      pivotal: {
-        src: [
-          assetsPath + '/app.js',
-          'bower_components/angular/angular.js',
-          'bower_components/angular-mocks/angular-mocks.js',
-        ],
-        options: {
-          specs: specsPath + '/**/*Spec.js'
-        }
+    karma: {
+      options: {
+        configFile: 'karma.conf.js',
+        singleRun: true
+      },
+      dev: {
+        browsers: ['PhantomJS']
+      },
+      dist: {
+        browsers: ['Chrome', 'Firefox']
       }
     },
     
@@ -199,7 +199,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-jasmine');
+  grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-docular');
 
   // Default task
@@ -208,6 +208,7 @@ module.exports = function(grunt) {
     'clean',
     'copy',
     'modernizr',
+    'karma:dev',
     'compass:dist',
     'csslint:strict',
   ]);
@@ -219,7 +220,7 @@ module.exports = function(grunt) {
     'copy',
     'modernizr',
     'uglify:dist',
-    'jasmine:pivotal',
+    'karma:dist',
     'compass:dist',
     'csslint:strict',
     'cssmin:combine'
