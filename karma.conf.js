@@ -11,7 +11,7 @@ module.exports = function(karma) {
       'bower_components/angular-mocks/angular-mocks.js',
       'js/JcApp.js',
       'js/AppFilters.js',
-      'js/controllers/*.js',
+      'js/**/*.js',
       'tests/js/**/*Spec.js'
     ],
 

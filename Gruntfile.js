@@ -58,6 +58,8 @@ module.exports = function(grunt) {
             bowerPath + '/angular/angular.js',
             bowerPath + '/angular-sanitize/angular-sanitize.js',
             //bowerPath + '/bootstrap/dist/js/bootstrap.js',
+            jsPath + '/JcApp.js',
+            jsPath + '/AppFilters.js',
             jsPath + '/**/*.js'
           ],
           'assets/modernizr.js': [
