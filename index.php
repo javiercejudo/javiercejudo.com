@@ -44,7 +44,7 @@
       <meta itemprop="name" content="Javier Cejudo">
       <meta itemprop="jobTitle" content="Web Developer">
       
-      <?php include 'partials/header.html' ?>
+      <header ng-include="'/partials/header.html'"></header>
 
       <section ng-view>
         <noscript>
@@ -57,7 +57,7 @@
         </noscript>
       </section>
       
-      <?php include 'partials/footer.html' ?>
+      <footer ng-include="'/partials/footer.html'"></footer>
       
     </div> <!-- /page -->
 
