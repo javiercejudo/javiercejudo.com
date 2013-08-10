@@ -98,6 +98,8 @@
           },
           language: null
         };
+        
+        $scope.cvLan = null;
 
         $scope.initCv = function () {
           $scope.setLanguage();
@@ -113,6 +115,7 @@
 
           if (params.language && languages.indexOf(params.language) !== -1) {
             $rootScope.pageTitle = 'CV: ' + $filter('jcCapitalise')(params.language);
+            $scope.cvLocal = cv.data[params.language];
             return;
           }
 

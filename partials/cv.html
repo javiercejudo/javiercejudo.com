@@ -16,28 +16,28 @@
   <div class="well col-sm-12 col-lg-12">
     <h1>Javier Cejudo</h1>
     <div>
-      <p ng-repeat="contactDetail in cv.data[cv.language].contact">
+      <p ng-repeat="contactDetail in cvLocal.contact">
         {{contactDetail.label}}: {{contactDetail.value}}
       </p>
     </div>
     <div>
-      <h3>{{cv.data[cv.language].career_objectives.label}}</h3>
+      <h3>{{cvLocal.career_objectives.label}}</h3>
       <p>
-        {{cv.data[cv.language].career_objectives.value}}
+        {{cvLocal.career_objectives.value}}
       </p>
     </div>
     <div>
-      <h3>{{cv.data[cv.language].education.label}}</h3>
+      <h3>{{cvLocal.education.label}}</h3>
       <ul>
-        <li ng-repeat="education in cv.data[cv.language].education.list">
+        <li ng-repeat="education in cvLocal.education.list">
           {{education}}
         </li>
       </ul>
     </div>
     <div>
-      <h3>{{cv.data[cv.language].work_experience.label}}</h3>
+      <h3>{{cvLocal.work_experience.label}}</h3>
       <ul class="job-list">
-        <li ng-repeat="job in cv.data[cv.language].work_experience.list">
+        <li ng-repeat="job in cvLocal.work_experience.list">
           <em>{{job.title}}</em>
           <p class="job-description">
             {{job.description}}
