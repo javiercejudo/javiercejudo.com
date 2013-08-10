@@ -59,7 +59,7 @@ module.exports = function(grunt) {
           'assets/app.js': [
             //bowerPath + '/jquery/jquery.js',
             bowerPath + '/angular/angular.js',
-            bowerPath + '/angular-sanitize/angular-sanitize.js',
+            //bowerPath + '/angular-sanitize/angular-sanitize.js',
             //bowerPath + '/bootstrap/dist/js/bootstrap.js',
             jsPath + '/JcApp.js',
             jsPath + '/AppFilters.js',
