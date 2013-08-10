@@ -31,9 +31,12 @@ module.exports = function(grunt) {
     
     copy: {
       main: {
-        files: [
-          {expand: true, cwd: bowerPath + '/bootstrap-glyphicons/fonts/', src: ['**'], dest: fontsPath + '/', filter: 'isFile'}
-        ]
+        files: [{
+          expand: true,
+          cwd: bowerPath + '/bootstrap-glyphicons/fonts/',
+          src: ['**'],
+          dest: fontsPath + '/', filter: 'isFile'
+        }]
       }
     },
     
@@ -195,13 +198,13 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-modernizr');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-csslint');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
-  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-docular');
 
   // Default task
@@ -210,22 +213,22 @@ module.exports = function(grunt) {
     'clean',
     'copy',
     'modernizr',
-    'karma:dev',
     'compass:dist',
-    'csslint:strict',
+    'csslint:strict'
   ]);
   
   // Built assets for production
   grunt.registerTask('build', [
-    'jshint:all',
-    'clean',
-    'copy',
-    'modernizr',
+    'default',
     'uglify:dist',
-    'karma:dist',
-    'compass:dist',
-    'csslint:strict',
-    'cssmin:combine'
+    'cssmin:combine',
+    'imagemin:dist'
+  ]);
+  
+  // Built assets for production and runs tests
+  grunt.registerTask('test', [
+    'build',
+    'karma:dist'
   ]);
 };
 

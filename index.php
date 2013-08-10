@@ -33,64 +33,22 @@
     <div class="page" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Javier Cejudo">
       <meta itemprop="jobTitle" content="Web Developer">
-      <meta itemprop="honorificPrefix" content="Mr">
-      <meta itemprop="name" content="Javier Cejudo">
-      <meta itemprop="givenName" content="Javier">
-      <meta itemprop="familyName" content="Cejudo">
-      <meta itemprop="gender" content="Male">
-      <meta itemprop="url" content="http://javiercejudo.com">
-      <div class="masthead row">
-        <div class="col-sm-5 col-lg-5">
-          <ul class="nav nav-pills">
-            <li ng-class="{active: path == '/'}">
-              <a href="/">
-                <span class="glyphicon glyphicon-home"></span>
-                Home
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div class="col-sm-7 col-lg-7 top-contact hidden-sm">
-          <div class="row">
-            <div class="col-sm-7 col-lg-7">
-              <span class="glyphicon glyphicon-envelope vertical-middle"></span>
-              <a href="mailto:javier@javiercejudo.com" itemprop="email">
-                javier@javiercejudo.com
-              </a>
-            </div>
-            <div class="col-sm-5 col-lg-5">
-              <span class="glyphicon glyphicon-phone vertical-middle"></span>
-              <span itemprop="telephone">(+61) 0432 429 789</span>
-            </div>
-          </div>
-        </div>
-      </div>
+      
+      <header ng-include="'partials/header.html'"></header>
 
-      <hr>
-
-      <div ng-view>
+      <section ng-view>
         <noscript>
+        <?php include 'partials/header.html' ?>
         <div class="alert alert-danger">
           Please enable JavaScript to navigate through the site. Thanks!
         </div>
         <?php include 'partials/home.html' ?>
+        <?php include 'partials/footer.html' ?>
         </noscript>
-      </div>
-
-      <hr>
-
-      <div class="footer row">
-        <div class="col-sm-12 col-lg-12">
-          <p>
-            &copy; javiercejudo.com 2013 //
-            by <a href="https://plus.google.com/107177203146640599248?rel=author">
-            Javier Cejudo</a> //
-            <a href="https://github.com/javiercejudo/javiercejudo.com">
-              View on GitHub
-            </a>
-          </p>
-        </div>
-      </div>
+      </section>
+      
+      <footer ng-include="'partials/footer.html'"></footer>
+      
     </div> <!-- /page -->
 
 <?php if (ENV === 'dev') : ?>
