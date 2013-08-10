@@ -5,10 +5,11 @@
 
   angular.module('JcApp').controller(
     'AppCtrl', 
-    ['$scope', '$location',
-      function ($scope, $location) {
+    ['$scope', '$window', '$location',
+      function ($scope, $window, $location) {
         $scope.$on('$routeChangeSuccess', function() { 
           $scope.path = $location.path();
+          $window._gaq.push(['_trackPageview', $location.path()]);
         });
       }
     ]
