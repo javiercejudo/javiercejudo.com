@@ -9,7 +9,7 @@
       function ($scope, $window, $location) {
         $scope.$on('$routeChangeSuccess', function() { 
           $scope.path = $location.path();
-          $window._gaq.push(['_trackPageview', $location.path()]);
+          $window.ga('send', 'pageview', $location.path());
         });
       }
     ]
