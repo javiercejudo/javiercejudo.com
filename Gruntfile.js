@@ -59,7 +59,7 @@ module.exports = function(grunt) {
           'assets/app.js': [
             //bowerPath + '/jquery/jquery.js',
             bowerPath + '/angular/angular.js',
-            //bowerPath + '/angular-sanitize/angular-sanitize.js',
+            bowerPath + '/angular-sanitize/angular-sanitize.js',
             //bowerPath + '/bootstrap/dist/js/bootstrap.js',
             jsPath + '/JcApp.js',
             jsPath + '/AppFilters.js',
@@ -130,8 +130,7 @@ module.exports = function(grunt) {
         ],
         tasks: [
           'compass:dist',
-          'csslint:strict',
-          'cssmin:combine'
+          'csslint:strict'
         ],
         options: {
           nospawn: true,
@@ -143,9 +142,7 @@ module.exports = function(grunt) {
           jsPath + '/**/*.js'
         ],
         tasks: [
-          'jshint:all',
-          'uglify:dist',
-          'jasmine:pivotal'
+          'jshint:all'
         ],
         options: {
           nospawn: true,

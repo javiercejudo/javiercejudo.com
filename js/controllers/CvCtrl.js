@@ -12,13 +12,19 @@
           languages: ['english', 'spanish'],
           data: {
             english: {
-              contact : [
+              name: "Javier Cejudo",
+              tag: "CV in English",
+              contact: [
                 {
-                  label: "Email",
-                  value: "javier@javiercejudo.com"
+                  label: "<span class='glyphicon glyphicon-envelope vertical-middle'></span> Email",
+                  value: "<a href='mailto:javier@javiercejudo.com'>javier@javiercejudo.com</a>"
                 },
                 {
-                  label: "Phone",
+                  label: "<span class='glyphicon glyphicon-link vertical-middle'></span> GitHub",
+                  value: "<a href='https://github.com/javiercejudo'>github.com/javiercejudo</a>"
+                },
+                {
+                  label: "<span class='glyphicon glyphicon-phone vertical-middle'></span> Phone",
                   value: "(+61) 0432 429 789"
                 }
               ],
@@ -39,28 +45,37 @@
                 label: "Work Experience",
                 list: [
                   {
-                    title: "January 2013 - Present, Web developer at Zanui.com.au",
+                    title: "Web developer at <a href='http://www.zanui.com.au'>Zanui.com.au</a>",
+                    dates: "January 2013 - Present",
                     description: "Participate in the front end and back end development of their online site including a built from scratch mobile version using AngularJS and Symfony 2. Developed their order tracking page which has consistently been in the top 10 visited pages of the site."
                   },
                   {
-                    title: "April 2012 - October 2012, Web developer at JIG Internet Consulting S.L.",
+                    title: "Web developer at <a href='http://www.jig.es/'>JIG Internet Consulting S.L.</a>",
+                    dates: "April 2012 - October 2012",
                     description: "Participated in a number of projects working on front end (including rich animations) and back end development. Created a custom SOAP client in PHP to generate dynamic cacheable listings on demand."
                   },
                   {
-                    title: "May 2010 - March 2012, Developer & Innovation Consultant at Ingeniería e Innovación S.L.",
+                    title: "Developer & Innovation Consultant at <a href='http://www.ingenieriaeinnovacion.com/index.php?idioma=en'>Ingeniería e Innovación S.L.</a>",
+                    dates: "May 2010 - March 2012",
                     description: "Developed a human resource management tool for R&D projects in PHP and MySQL that managed information of more than 50 client companies and saved the company up to 10 hours per project."
                   }
                 ]
               }
             },
             spanish: {
+              name: "Javier Cejudo",
+              tag: "CV en español",
               contact: [
                 {
-                  label: "Correo electrónico",
-                  value: "javier@javiercejudo.com"
+                  label: "<span class='glyphicon glyphicon-envelope vertical-middle'></span> Correo electrónico",
+                  value: "<a href='mailto:javier@javiercejudo.com'>javier@javiercejudo.com</a>"
                 },
                 {
-                  label: "Teléfono",
+                  label: "<span class='glyphicon glyphicon-link vertical-middle'></span> GitHub",
+                  value: "<a href='https://github.com/javiercejudo'>github.com/javiercejudo</a>"
+                },
+                {
+                  label: "<span class='glyphicon glyphicon-phone vertical-middle'></span> Teléfono",
                   value: "(+61) 0432 429 789"
                 }
               ],
@@ -81,15 +96,18 @@
                 label: "Experiencia laboral",
                 list: [
                   {
-                    title: "Enero 2013 - Presente, Desarrollador web en Zanui.com.au",
+                    title: "Desarrollador web en <a href='http://www.zanui.com.au'>Zanui.com.au</a>",
+                    dates: "Enero 2013 - Presente",
                     description: "Participo en el desarrollo front end y back end del sitio web, incluyendo la versión móvil, creada desde cero con AngularJS y Symfony 2. Desarrollé su sistema de seguimiento de pedidos, que se ha consolidado entre las 10 páginas con más visitantes únicos de la web."
                   },
                   {
-                    title: "Abril 2010 - Octubre 2012, Desarrollador de software en Get App Spain, S.L.",
+                    title: "Desarrollador de software en <a href='http://www.jig.es/'>JIG Internet Consulting S.L.</a>",
+                    dates: "Abril 2010 - Octubre 2012",
                     description: "Participación en varios proyectos de compañías líderes en diversos sectores. Creación de un cliente SOAP en PHP para generar listados cacehables bajo demanda y del front end de una tienda electrónica en JavaScript + jQuery con animaciones complejas y soporte para drag & drop."
                   },
                   {
-                    title: "Mayo 2010 - Marzo 2012, Técnico de I+D en A&B Ingeniería e Innovación, S.L.",
+                    title: "Técnico de I+D en <a href='http://www.ingenieriaeinnovacion.com/index.php?idioma=es'>Ingeniería e Innovación S.L.</a>",
+                    dates: "Mayo 2010 - Marzo 2012",
                     description: "Desarrollo de una herramienta de apoyo para la gestión de recursos humanos en el desarrollo de proyectos de I+D en PHP-MySQL que actualmente gestiona información de más de 60 clientes y ha ahorrado a la empresa hasta 10 horas de tareas de bajo valor añadido por proyecto."
                   }
                 ]

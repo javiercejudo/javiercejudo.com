@@ -9,6 +9,7 @@ module.exports = function(karma) {
     files: [
       'bower_components/angular/angular.js',
       'bower_components/angular-mocks/angular-mocks.js',
+      'bower_components/angular-sanitize/angular-sanitize.js',
       'js/JcApp.js',
       'js/AppFilters.js',
       'js/**/*.js',
@@ -64,7 +65,7 @@ module.exports = function(karma) {
 
     // If browser does not capture in given timeout [ms], kill it
     // CLI --capture-timeout 5000
-    captureTimeout: 15000,
+    captureTimeout: 30000,
 
     // Auto run tests on start (when browsers are captured) and exit
     // CLI --single-run --no-single-run

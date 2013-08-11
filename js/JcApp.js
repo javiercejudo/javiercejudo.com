@@ -22,7 +22,7 @@
    *
    * Lists the dependencies for the app and defines the routing.
    */
-  angular.module('JcApp', [])
+  angular.module('JcApp', ['ngSanitize'])
     .config([
       '$routeProvider', '$locationProvider',
       function ($routeProvider, $locationProvider) {
@@ -40,7 +40,6 @@
             redirectTo: '/'
         });
       
-        // configure routes
         $locationProvider.html5Mode(true).hashPrefix('!');
     }]);
 }(angular));
