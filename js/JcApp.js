@@ -26,19 +26,33 @@
     .config([
       '$routeProvider', '$locationProvider',
       function ($routeProvider, $locationProvider) {
-        $routeProvider.when('/', {
-            templateUrl: '/partials/home.html',
-            controller: 'HomeCtrl'
-        }).when('/cv', {
-            redirectTo: '/cv/english'
-        }).when('/curriculum', {
-            redirectTo: '/cv/english'
-        }).when('/cv/:language', {
-            templateUrl: '/partials/cv.html',
-            controller: 'CvCtrl'
-        }).otherwise({
-            templateUrl: '/partials/404.html'
-        });
+        $routeProvider
+          
+          .when('/', {
+              templateUrl: '/partials/home.html',
+              controller: 'HomeCtrl'
+          })
+          
+          .when('/cv/:language', {
+              templateUrl: '/partials/cv.html',
+              controller: 'CvCtrl'
+          })
+          
+          .when('/en', {
+              redirectTo: '/'
+          })
+          
+          .when('/es', {
+              redirectTo: '/cv/spanish'
+          })
+          
+          .when('/cv', {
+              redirectTo: '/cv/english'
+          })
+          
+          .otherwise({
+              templateUrl: '/partials/404.html'
+          });
       
         $locationProvider.html5Mode(true).hashPrefix('!');
     }]);
