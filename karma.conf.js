@@ -65,7 +65,7 @@ module.exports = function(karma) {
 
     // If browser does not capture in given timeout [ms], kill it
     // CLI --capture-timeout 5000
-    captureTimeout: 30000,
+    captureTimeout: 60000,
 
     // Auto run tests on start (when browsers are captured) and exit
     // CLI --single-run --no-single-run

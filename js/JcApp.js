@@ -37,7 +37,7 @@
             templateUrl: '/partials/cv.html',
             controller: 'CvCtrl'
         }).otherwise({
-            redirectTo: '/'
+            templateUrl: '/partials/404.html'
         });
       
         $locationProvider.html5Mode(true).hashPrefix('!');
