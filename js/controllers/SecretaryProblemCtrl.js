@@ -128,7 +128,6 @@
 
         $scope.endGame = function () {
           var game = $scope.game;
-          var max = Math.max.apply(null, game.items);
 
           if (game.itemSelected === -1) {
             $scope.selectItem(game.lastItemShown, false);
