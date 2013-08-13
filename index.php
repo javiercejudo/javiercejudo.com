@@ -69,6 +69,7 @@
     <script src="/js/controllers/AppCtrl.js"></script>
     <script src="/js/controllers/HomeCtrl.js"></script>
     <script src="/js/controllers/CvCtrl.js"></script>
+    <script src="/js/controllers/SecretaryProblemCtrl.js"></script>
 <?php else : ?>
     <script src="/assets/app.js"></script>
     <script>
