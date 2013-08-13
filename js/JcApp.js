@@ -22,7 +22,12 @@
    *
    * Lists the dependencies for the app and defines the routing.
    */
-  angular.module('JcApp', ['ngSanitize'])
+  angular.module(
+    'JcApp',
+    [
+      'ngSanitize'
+    ]
+  )
     .config([
       '$routeProvider', '$locationProvider',
       function ($routeProvider, $locationProvider) {
