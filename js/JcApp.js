@@ -44,7 +44,7 @@
           })
 
           .when('/game', {
-              templateUrl: '/partials/secretary-problem.html'
+              templateUrl: '/partials/secretary-problem-standalone.html'
           })
 
           .when('/en', {
