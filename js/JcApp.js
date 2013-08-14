@@ -43,8 +43,12 @@
               controller: 'CvCtrl'
           })
 
-          .when('/game', {
+          .when('/game/:n', {
               templateUrl: '/partials/secretary-problem-standalone.html'
+          })
+
+          .when('/game', {
+              redirectTo: '/game/10'
           })
 
           .when('/en', {
