@@ -59,7 +59,7 @@
           numDigitsThis.max = Math.max.apply(null, randomNumDigitsArray);
 
           for (i = 0; i < n; i++) {
-            items[i] = 0;
+            items[i] = -1;
           }
         };
 
@@ -72,7 +72,7 @@
           var min;
           var max;
 
-          if (items[index] !== 0) {
+          if (items[index] !== -1) {
             return;
           }
 
@@ -92,7 +92,7 @@
           var i;
 
           for (i = 0; i < n; i++) {
-            if (items[i] === 0) {
+            if (items[i] === -1) {
               $scope.generateItemValue(i);
             }
           }
@@ -114,6 +114,12 @@
           var game = $scope.game;
 
           return (game.itemSelected === -1 && game.numItemsShown !== 0);
+        };
+
+        $scope.isCurrent = function (index) {
+          var game = $scope.game;
+
+          return (game.lastItemShown == index && game.itemSelected == -1);
         };
 
         $scope.isMax = function (index) {
