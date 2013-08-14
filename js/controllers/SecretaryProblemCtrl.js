@@ -33,8 +33,6 @@
           };
 
           $scope.$watch('game.numItemsShown', function (numItemsShown) {
-            console.log(numItemsShown);
-            console.log($scope.game.n);
             if (numItemsShown === $scope.game.n) {
               $scope.endGame();
             }
@@ -186,8 +184,6 @@
 
           $scope.endGame = function () {
             var game = $scope.game;
-
-            console.log(game.itemSelected);
 
             if (game.itemSelected === -1) {
               $scope.selectItem(game.lastItemShown, false);
