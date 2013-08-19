@@ -52,7 +52,7 @@ module.exports = function(grunt) {
 
     uglify: {
       options: {
-        mangle: true,
+        mangle: false,
         sourceMap: function(path) {
           return path.replace(/^assets/, '.').replace(/.js$/, '.map');
         }
@@ -145,7 +145,9 @@ module.exports = function(grunt) {
           jsPath + '/**/*.js'
         ],
         tasks: [
-          'jshint:all'
+          'jshint:all',
+          'modernizr',
+          'uglify:dist'
         ],
         options: {
           nospawn: true,
@@ -214,13 +216,13 @@ module.exports = function(grunt) {
     'copy',
     'modernizr',
     'compass:dist',
-    'csslint:strict'
+    'csslint:strict',
+    'uglify:dist'
   ]);
 
   // Built assets for production
   grunt.registerTask('build', [
     'default',
-    'uglify:dist',
     'cssmin:combine',
     'imagemin:dist'
   ]);

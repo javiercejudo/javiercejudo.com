@@ -17,7 +17,7 @@
             },
             numDigits: {
               min: 1,
-              max: 11
+              max: 9
             },
             numDigitsThis: {
               min: null,
@@ -58,8 +58,8 @@
             game.won = null;
 
             randomNumDigitsArray = [
-              $scope.getRandomInt(1, numDigits.max),
-              $scope.getRandomInt(1, numDigits.max)
+              $scope.getRandomInt(numDigits.min, numDigits.max),
+              $scope.getRandomInt(numDigits.min, numDigits.max)
             ];
 
             numDigitsThis.min = Math.min.apply(null, randomNumDigitsArray);
@@ -86,12 +86,10 @@
               return;
             }
 
-            if (candidateN > 256) {
-              candidateN = 256;
-            }
-
             if (candidateN < 2) {
               candidateN = 2;
+            } else if (candidateN > 256) {
+              candidateN = 256;
             }
 
             if (candidateN.toString() === $routeParams.n) {
@@ -108,10 +106,9 @@
             var items = game.items;
             var numDigits = game.numDigitsThis;
             var n = game.n;
+            var willBeMax;
             var digits;
-            var base;
-            var min;
-            var max;
+            var value;
 
             if (items[index] !== -1) {
               if (!$scope.isRejected(index)) {
@@ -120,14 +117,15 @@
               return;
             }
 
-            digits = $scope.getRandomInt(numDigits.min, numDigits.max);
+            willBeMax = (1 === $scope.getRandomInt(1, game.numItemsShown + 1) / (game.numItemsShown + 1));
 
-            // numDigits does not mean actual num digits as we are playing
-            // with the base of the power :)
-            base = $scope.getRandomInt(2, 9);
-            min = Math.pow(base, digits - 1);
-            max = Math.pow(base, digits);
-            items[index] = $scope.getRandomInt(min, max);
+            if (willBeMax) {
+              value = $scope.getRandomInt($scope.getMax(), Math.pow(10, numDigits.max));
+            } else {
+              value = $scope.getRandomInt(Math.pow(10, numDigits.min - 1), $scope.getMax());
+            }
+
+            items[index] = value;
 
             game.lastItemShown = index;
             game.numItemsShown += 1;
@@ -183,7 +181,13 @@
               return false;
             }
 
-            return (game.items[index] >= Math.max.apply(null, game.items));
+            return (game.items[index] >= $scope.getMax());
+          };
+
+          $scope.getMax = function () {
+            var game = $scope.game;
+
+            return Math.max.apply(null, game.items);
           };
 
           $scope.endGame = function () {
