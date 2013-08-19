@@ -17,11 +17,10 @@
 
 <?php if (ENV === 'dev') : ?>
     <link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-    <link href="/bower_components/bootstrap-glyphicons/css/bootstrap-glyphicons.css" rel="stylesheet">
     <link href="/css/stylesheets/jcApp.css" rel="stylesheet">
 <?php else : ?>
     <link href="/assets/app.css" rel="stylesheet">
-<?php endif; ?>
+<?php endif ?>
 
     <!--
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/ico/apple-touch-icon-144-precomposed.png">
@@ -39,9 +38,7 @@
       <meta itemprop="name" content="Javier Cejudo">
       <meta itemprop="jobTitle" content="Web Developer">
 
-      <header>
-        <?php include 'partials/header.html' ?>
-      </header>
+      <?php include 'partials/header.html' ?>
 
       <section ng-view>
         <noscript>
@@ -52,13 +49,21 @@
         </noscript>
       </section>
 
-      <footer>
-        <?php include 'partials/footer.html' ?>
-      </footer>
+      <?php include 'partials/footer.html' ?>
     </div> <!-- /page -->
 
+<?php if (ENV === 'dev') : ?>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
+
+    <script src="/js/JcApp.js"></script>
+    <script src="/js/AppFilters.js"></script>
+    <script src="/js/controllers/AppCtrl.js"></script>
+    <script src="/js/controllers/HomeCtrl.js"></script>
+    <script src="/js/controllers/CvCtrl.js"></script>
+    <script src="/js/controllers/SecretaryProblemCtrl.js"></script>
+<?php else : ?>
     <script src="/assets/app.js"></script>
-<?php if (ENV === 'live') : ?>
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
       function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
@@ -67,7 +72,7 @@
       r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
       ga('create','<?php echo GA_UA ?>');ga('send','pageview');
     </script>
-<?php endif; ?>
+<?php endif ?>
   </body>
 </html>
 

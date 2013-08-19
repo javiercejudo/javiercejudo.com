@@ -111,7 +111,10 @@
             var value;
 
             if (items[index] !== -1) {
-              if (!$scope.isRejected(index)) {
+              if (game.itemSelected !== -1) {
+                $scope.initSecretaryProblem();
+                $scope.generateItemValue(index);
+              } else if (!$scope.isRejected(index)) {
                 $scope.selectItem(index, true);
               }
               return;
