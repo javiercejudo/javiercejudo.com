@@ -14,7 +14,7 @@
                    mathematical training can be used, with special interest in frontend
                    development and management systems (e.g. e-commerce, finance).">
     <meta name="author" content="Javier Cejudo">
-    
+
 <?php if (ENV === 'dev') : ?>
     <link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link href="/bower_components/bootstrap-glyphicons/css/bootstrap-glyphicons.css" rel="stylesheet">
@@ -30,55 +30,42 @@
     <link rel="apple-touch-icon-precomposed"                 href="/ico/apple-touch-icon-57-precomposed.png">
     <link rel="shortcut icon"                                href="/ico/favicon.png">
     -->
-<?php if (ENV === 'dev') : ?>
-    <script src="/bower_components/modernizr/modernizr.js"></script>
-<?php else : ?>
+
     <script src="/assets/modernizr.js"></script>
-<?php endif; ?>
   </head>
 
   <body>
     <div class="page" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Javier Cejudo">
       <meta itemprop="jobTitle" content="Web Developer">
-      
-      <header ng-include="'/partials/header.html'"></header>
+
+      <header>
+        <?php include 'partials/header.html' ?>
+      </header>
 
       <section ng-view>
         <noscript>
-        <?php include 'partials/header.html' ?>
         <div class="alert alert-danger">
           Please enable JavaScript to navigate through the site. Thanks!
         </div>
         <?php include 'partials/home.html' ?>
-        <?php include 'partials/footer.html' ?>
         </noscript>
       </section>
-      
-      <footer ng-include="'/partials/footer.html'"></footer>
+
+      <footer>
+        <?php include 'partials/footer.html' ?>
+      </footer>
     </div> <!-- /page -->
 
-<?php if (ENV === 'dev') : ?>
-    <!--<script src="/bower_components/jquery/jquery.js"></script>-->
-    <script src="/bower_components/angular/angular.js"></script>
-    <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <!--<script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>-->   
-     
-    <script src="/js/JcApp.js"></script>
-    <script src="/js/AppFilters.js"></script>
-    <script src="/js/controllers/AppCtrl.js"></script>
-    <script src="/js/controllers/HomeCtrl.js"></script>
-    <script src="/js/controllers/CvCtrl.js"></script>
-    <script src="/js/controllers/SecretaryProblemCtrl.js"></script>
-<?php else : ?>
     <script src="/assets/app.js"></script>
+<?php if (ENV === 'live') : ?>
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
       function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
       e=o.createElement(i);r=o.getElementsByTagName(i)[0];
       e.src='//www.google-analytics.com/analytics.js';
       r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','UA-43072086-1');ga('send','pageview');
+      ga('create','<?php echo GA_UA ?>');ga('send','pageview');
     </script>
 <?php endif; ?>
   </body>

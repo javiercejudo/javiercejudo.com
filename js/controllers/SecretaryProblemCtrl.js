@@ -80,23 +80,27 @@
 
             candidateN = parseInt($routeParams.n, 10);
 
-            if (!isNaN(candidateN)) {
-              if (candidateN > 256) {
-                candidateN = 256;
-              }
-              if (candidateN < 2) {
-                candidateN = 2;
-              }
-              if (candidateN.toString() === $routeParams.n) {
-                game.n = candidateN;
-              } else {
-                $location.path('/game/' + candidateN);
-                $location.replace();
-              }
-            } else {
-              $location.path('/game/10');
+            if (isNaN(candidateN)) {
+              $location.path('/game');
               $location.replace();
+              return;
             }
+
+            if (candidateN > 256) {
+              candidateN = 256;
+            }
+
+            if (candidateN < 2) {
+              candidateN = 2;
+            }
+
+            if (candidateN.toString() === $routeParams.n) {
+              game.n = candidateN;
+              return;
+            }
+
+            $location.path('/game/' + candidateN);
+            $location.replace();
           };
 
           $scope.generateItemValue = function (index) {

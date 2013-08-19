@@ -26,11 +26,31 @@ body {
 }
 
 .glyphicon {
-  display: inline-block;
   min-width: 14px;
 }
 
-.vertical-middle {
-  vertical-align: middle;
+.jc-btn-default {
+  color: #FFF;
+  background-color: #474949;
+  border-color: #474949;
+
+  &:hover, &:focus, &:active {
+    color: #FFF;
+    background-color: #3A3C3C;
+    border-color: #2E2F2F;
+  }
+}
+
+.home-link {
+  position: relative;
+
+  .home-icon {
+    position: absolute;
+    top: 10px;
+  }
+
+  .home-text {
+    padding-left: 20px;
+  }
 }
 

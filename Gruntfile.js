@@ -22,24 +22,24 @@ module.exports = function(grunt) {
         }
       }
     },
-    
+
     clean: [
       assetsPath + '/**/*',
       cssPath + '/**/*.css',
       fontsPath + '/**/*'
     ],
-    
+
     copy: {
       main: {
         files: [{
           expand: true,
-          cwd: bowerPath + '/bootstrap-glyphicons/fonts/',
+          cwd: bowerPath + '/bootstrap/dist/fonts/',
           src: ['**'],
           dest: fontsPath + '/', filter: 'isFile'
         }]
       }
     },
-    
+
     modernizr: {
       "devFile" : bowerPath + '/modernizr/modernizr.js',
       "outputFile" : bowerPath + '/modernizr/modernizr.custom.js',
@@ -49,10 +49,13 @@ module.exports = function(grunt) {
       ],
       "uglify" : false
     },
-    
+
     uglify: {
       options: {
-        mangle: true
+        mangle: true,
+        sourceMap: function(path) {
+          return path.replace(/^assets/, '.').replace(/.js$/, '.map');
+        }
       },
       dist: {
         files: {
@@ -80,7 +83,7 @@ module.exports = function(grunt) {
         }
       }
     },
-    
+
     csslint: {
       strict: {
         options: {
@@ -91,7 +94,7 @@ module.exports = function(grunt) {
         ]
       }
     },
-    
+
     cssmin: {
       combine: {
         options: {
@@ -106,7 +109,7 @@ module.exports = function(grunt) {
         }
       }
     },
-    
+
     imagemin: {
       dist: {
         options: {
@@ -122,7 +125,7 @@ module.exports = function(grunt) {
         ]
       }
     },
-    
+
     watch: {
       sass: {
         files: [
@@ -149,7 +152,7 @@ module.exports = function(grunt) {
         },
       }
     },
-    
+
     karma: {
       options: {
         configFile: 'karma.conf.js',
@@ -162,7 +165,7 @@ module.exports = function(grunt) {
         browsers: ['Chrome', 'Firefox']
       }
     },
-    
+
     docular: {
       groups: [
         {
@@ -213,7 +216,7 @@ module.exports = function(grunt) {
     'compass:dist',
     'csslint:strict'
   ]);
-  
+
   // Built assets for production
   grunt.registerTask('build', [
     'default',
@@ -221,7 +224,7 @@ module.exports = function(grunt) {
     'cssmin:combine',
     'imagemin:dist'
   ]);
-  
+
   // Built assets for production and runs tests
   grunt.registerTask('test', [
     'build',
