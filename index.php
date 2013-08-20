@@ -1,4 +1,9 @@
-<?php require 'config.php'; ?>
+<?php
+require 'config.php';
+
+$assetsMapFile = file_get_contents('assets/assets.map.json');
+$assetsMap = json_decode($assetsMapFile, true);
+?>
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html ng-app="JcApp" ng-controller="AppCtrl" lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html ng-app="JcApp" ng-controller="AppCtrl" lang="en" class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -19,7 +24,7 @@
     <link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link href="/css/stylesheets/jcApp.css" rel="stylesheet">
 <?php else : ?>
-    <link href="/assets/app.css" rel="stylesheet">
+    <link href="/assets/<?php echo $assetsMap['app.css'] ?>" rel="stylesheet">
 <?php endif ?>
 
     <!--
@@ -30,7 +35,7 @@
     <link rel="shortcut icon"                                href="/ico/favicon.png">
     -->
 
-    <script src="/assets/modernizr.js"></script>
+    <script src="/assets/<?php echo $assetsMap['modernizr.js'] ?>"></script>
   </head>
 
   <body>
@@ -63,7 +68,9 @@
     <script src="/js/controllers/CvCtrl.js"></script>
     <script src="/js/controllers/SecretaryProblemCtrl.js"></script>
 <?php else : ?>
-    <script src="/assets/app.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular-sanitize.min.js"></script>
+    <script src="/assets/<?php echo $assetsMap['app.js'] ?>"></script>
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
       function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;

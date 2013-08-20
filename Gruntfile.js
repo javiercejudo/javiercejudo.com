@@ -60,8 +60,6 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'assets/app.js': [
-            bowerPath + '/angular/angular.js',
-            bowerPath + '/angular-sanitize/angular-sanitize.js',
             jsPath + '/JcApp.js',
             jsPath + '/AppFilters.js',
             jsPath + '/**/*.js'
@@ -106,6 +104,13 @@ module.exports = function(grunt) {
           ]
         }
       }
+    },
+
+    hash: {
+      options: {
+        mapping: 'assets/assets.map.json',
+      },
+      assets: 'assets/*.{js,css}'
     },
 
     imagemin: {
@@ -202,6 +207,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-csslint');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-hash');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-contrib-watch');
@@ -222,6 +228,7 @@ module.exports = function(grunt) {
   grunt.registerTask('build', [
     'default',
     'cssmin:combine',
+    'hash',
     'imagemin:dist'
   ]);
 

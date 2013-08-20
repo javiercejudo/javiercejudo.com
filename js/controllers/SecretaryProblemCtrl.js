@@ -3,7 +3,7 @@
 (function (angular) {
   'use strict';
 
-  angular.module('JcApp')
+  angular.module('SecretaryProblem', [])
 
     .controller(
       'SecretaryProblemCtrl',

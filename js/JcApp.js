@@ -25,7 +25,8 @@
   angular.module(
     'JcApp',
     [
-      'ngSanitize'
+      'ngSanitize',
+      'SecretaryProblem'
     ]
   )
     .config([
