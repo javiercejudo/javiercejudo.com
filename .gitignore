@@ -4,6 +4,10 @@
 config.php
 *~
 
+/assets/modernizr.js
+/assets/app.js
+/assets/app.css
+
 *.map
 /css/stylesheets
 /bower_components
