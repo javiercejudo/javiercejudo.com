@@ -7,8 +7,8 @@
 
     .controller(
       'SecretaryProblemCtrl',
-      ['$scope', '$timeout', '$routeParams', '$location', '$filter', 'localStorageService',
-        function ($scope, $timeout, $routeParams, $location, $filter, localStorageService) {
+      ['$scope', '$routeParams', '$location', '$filter', 'localStorageService',
+        function ($scope, $routeParams, $location, $filter, localStorageService) {
           $scope.game = {
             info: {
               name: 'Secretary Problem',
@@ -260,9 +260,12 @@
             localStorageService.remove('sp-games-won-' + game.n);
             localStorageService.remove('sp-games-played-' + game.n);
 
-            $timeout(function () {
-              $scope.initSecretaryProblem();
-            }, 100);
+            if (game.lastItemShown === -1) {
+              localStorageService.set('sp-games-played-' + game.n, 1);
+              return;
+            }
+
+            $scope.initSecretaryProblem();
           };
 
           $scope.getRandomInt = function (min, max) {
