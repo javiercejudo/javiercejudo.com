@@ -60,6 +60,7 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'assets/app.js': [
+            bowerPath + '/angular-localstorage/localStorageModule.js',
             jsPath + '/JcApp.js',
             jsPath + '/AppFilters.js',
             jsPath + '/**/*.js'

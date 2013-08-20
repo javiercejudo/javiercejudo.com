@@ -10,6 +10,7 @@ module.exports = function(karma) {
       'bower_components/angular/angular.js',
       'bower_components/angular-mocks/angular-mocks.js',
       'bower_components/angular-sanitize/angular-sanitize.js',
+      'bower_components/angular-localstorage/localStorageModule.js',
       'js/JcApp.js',
       'js/AppFilters.js',
       'js/**/*.js',

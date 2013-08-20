@@ -60,6 +60,7 @@ $assetsMap = json_decode($assetsMapFile, true);
 <?php if (ENV === 'dev') : ?>
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="/bower_components/angular-localstorage/localStorageModule.js"></script>
 
     <script src="/js/JcApp.js"></script>
     <script src="/js/AppFilters.js"></script>
