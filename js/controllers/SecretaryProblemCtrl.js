@@ -16,13 +16,18 @@
               author: 'Javier Cejudo'
             },
             numDigits: {
-              min: 1,
+              min: 3,
               max: 9
             },
             numDigitsThis: {
               min: null,
               max: null
             },
+            base: {
+              min: 6,
+              max: 14
+            },
+            baseThis: null,
             n: 10,
             items: [],
             unknownValue: '?',
@@ -65,6 +70,8 @@
             numDigitsThis.min = Math.min.apply(null, randomNumDigitsArray);
             numDigitsThis.max = Math.max.apply(null, randomNumDigitsArray);
 
+            game.baseThis = $scope.getRandomInt(base.min, base.max);
+
             for (i = 0; i < game.n; i++) {
               items[i] = -1;
             }
@@ -105,7 +112,6 @@
             var game = $scope.game;
             var items = game.items;
             var numDigits = game.numDigitsThis;
-            var n = game.n;
             var willBeMax;
             var digits;
             var value;
@@ -120,12 +126,25 @@
               return;
             }
 
-            willBeMax = (1 === $scope.getRandomInt(1, game.numItemsShown + 1) / (game.numItemsShown + 1));
+            if (game.numItemsShown > 0) {
+              willBeMax = (1 === $scope.getRandomInt(1, game.numItemsShown + 1) / (game.numItemsShown + 1));
 
-            if (willBeMax) {
-              value = $scope.getRandomInt($scope.getMax(), Math.pow(10, numDigits.max));
+              if (willBeMax) {
+                value = $scope.getRandomInt(
+                  $scope.getMax(),
+                  Math.pow(game.baseThis, numDigits.max)
+                );
+              } else {
+                value = $scope.getRandomInt(
+                  Math.pow(game.baseThis, numDigits.min - 1),
+                  $scope.getMax()
+                );
+              }
             } else {
-              value = $scope.getRandomInt(Math.pow(10, numDigits.min - 1), $scope.getMax());
+              value = $scope.getRandomInt(
+                Math.pow(game.baseThis, numDigits.min - 1),
+                Math.pow(game.baseThis, numDigits.max)
+              );
             }
 
             items[index] = value;
