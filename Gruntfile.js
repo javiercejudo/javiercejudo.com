@@ -99,7 +99,6 @@ module.exports = function(grunt) {
         files: {
           'assets/app.css': [
             bowerPath + '/bootstrap/dist/css/bootstrap.css',
-            bowerPath + '/bootstrap-glyphicons/css/bootstrap-glyphicons.css',
             cssPath + '/**/*.css'
           ]
         }
