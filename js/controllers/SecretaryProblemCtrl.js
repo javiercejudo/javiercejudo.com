@@ -70,7 +70,7 @@
             numDigitsThis.min = Math.min.apply(null, randomNumDigitsArray);
             numDigitsThis.max = Math.max.apply(null, randomNumDigitsArray);
 
-            game.baseThis = $scope.getRandomInt(base.min, base.max);
+            game.baseThis = $scope.getRandomInt(game.base.min, game.base.max);
 
             for (i = 0; i < game.n; i++) {
               items[i] = -1;
