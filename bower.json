@@ -16,7 +16,7 @@
     "angular-mocks": "~1.0.7",
     "angular-resource": "~1.0.7",
     "angular-sanitize": "~1.0.7",
-    "bootstrap": "latest",
-    "angular-localstorage": "latest"
+    "angular-localstorage": "latest",
+    "bootstrap": "~3.0.0"
   }
 }
