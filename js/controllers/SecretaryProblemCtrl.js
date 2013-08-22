@@ -34,7 +34,8 @@
             numItemsShown: null,
             lastItemShown: null,
             itemSelected: null,
-            won: null
+            won: null,
+            record: {}
           };
 
           $scope.$watch('game.numItemsShown', function (numItemsShown) {
@@ -49,7 +50,6 @@
             var numDigits = game.numDigits;
             var numDigitsThis = game.numDigitsThis;
             var randomNumDigitsArray = [];
-            var gamesPlayed;
             var i;
 
             if (game.lastItemShown === -1) {
@@ -62,6 +62,7 @@
             game.lastItemShown = -1;
             game.itemSelected = -1;
             game.won = null;
+            $scope.setRecord();
 
             randomNumDigitsArray = [
               $scope.getRandomInt(numDigits.min, numDigits.max),
@@ -76,9 +77,6 @@
             for (i = 0; i < game.n; i++) {
               items[i] = -1;
             }
-
-            gamesPlayed = localStorageService.get('sp-games-played-' + game.n) || 0;
-            localStorageService.set('sp-games-played-' + game.n, parseInt(gamesPlayed, 10) + 1);
           };
 
           $scope.processN = function () {
@@ -119,6 +117,7 @@
             var willBeMax;
             var digits;
             var value;
+            var gamesPlayed;
 
             if (items[index] !== -1) {
               if (game.itemSelected !== -1) {
@@ -155,6 +154,13 @@
 
             game.lastItemShown = index;
             game.numItemsShown += 1;
+
+            if (game.numItemsShown > 1) {
+              return;
+            }
+
+            gamesPlayed = localStorageService.get('sp-games-played-' + game.n) || 0;
+            localStorageService.set('sp-games-played-' + game.n, parseInt(gamesPlayed, 10) + 1);
           };
 
           $scope.generateRestOfItemValues = function () {
@@ -218,54 +224,55 @@
 
           $scope.endGame = function () {
             var game = $scope.game;
+            var gamesPlayed;
             var gamesWon;
 
             if (game.itemSelected === -1) {
               $scope.selectItem(game.lastItemShown, false);
             }
 
-            if ($scope.isMax(game.itemSelected)) {
-              game.won = true;
-              gamesWon = localStorageService.get('sp-games-won-' + game.n) || 0;
-              localStorageService.set('sp-games-won-' + game.n, parseInt(gamesWon, 10) + 1);
-              return;
+            if (!localStorageService.get('sp-games-played-' + game.n)) {
+              localStorageService.set('sp-games-played-' + game.n, 1);
             }
 
-            game.won = false;
+            if ($scope.isMax(game.itemSelected)) {
+              game.won = true;
+
+              gamesWon = localStorageService.get('sp-games-won-' + game.n) || 0;
+              localStorageService.set('sp-games-won-' + game.n, parseInt(gamesWon, 10) + 1);
+            } else {
+              game.won = false;
+            }
+
+            $scope.setRecord();
           };
 
-          $scope.getRecord = function () {
+          $scope.setRecord = function () {
             var game = $scope.game;
             var gamesPlayed = localStorageService.get('sp-games-played-' + game.n) || 0;
             var gamesWon = localStorageService.get('sp-games-won-' + game.n) || 0;
-            var percentage;
+            var record = $scope.game.record;
 
             gamesWon = parseInt(gamesWon, 10);
             gamesPlayed = parseInt(gamesPlayed, 10);
-            if (game.itemSelected === -1) {
+
+            // don't account for the ongoing game
+            if (game.numItemsShown > 1 && game.itemSelected === -1) {
               gamesPlayed -= 1;
             }
 
             if (gamesPlayed > 0) {
-              percentage = 100 * gamesWon / gamesPlayed;
-
-              return gamesWon + '/' + gamesPlayed + ' (' + $filter('number')(percentage, 2) + '%)';
+              record.gamesWon = gamesWon;
+              record.gamesPlayed = gamesPlayed;
             }
-
-            return '';
           };
 
           $scope.resetRecord = function () {
             var game = $scope.game;
+
             localStorageService.remove('sp-games-won-' + game.n);
             localStorageService.remove('sp-games-played-' + game.n);
-
-            if (game.lastItemShown === -1) {
-              localStorageService.set('sp-games-played-' + game.n, 1);
-              return;
-            }
-
-            $scope.initSecretaryProblem();
+            $scope.game.record = {};
           };
 
           $scope.getRandomInt = function (min, max) {
