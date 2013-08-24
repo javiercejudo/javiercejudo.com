@@ -545,10 +545,12 @@ AddCharset utf-8 .atom .css .js .json .rss .vtt .xml
 <IfModule mod_rewrite.c>
   RewriteCond %{REQUEST_URI} !^/index\.php
   RewriteCond %{REQUEST_URI} !^/assets/.*
+  RewriteCond %{REQUEST_URI} !^/css/.*
   RewriteCond %{REQUEST_URI} !^/docs/.*
   RewriteCond %{REQUEST_URI} !^/fonts/.*
   RewriteCond %{REQUEST_URI} !^/ico/.*
   RewriteCond %{REQUEST_URI} !^/img/.*
+  RewriteCond %{REQUEST_URI} !^/js/.*
   RewriteCond %{REQUEST_URI} !^/partials/.*
   RewriteRule ^(.*)$ index.php?q=$1 [L]
 </IfModule>
