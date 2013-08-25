@@ -168,6 +168,16 @@ module.exports = function(grunt) {
       },
       dist: {
         browsers: ['Chrome', 'Firefox']
+      },
+      // e2e tests have their own config file
+      // so we need to overwrite the general one
+      e2eDev: {
+        configFile: 'karma-e2e.conf.js',
+        browsers: ['PhantomJS']
+      },
+      e2eLive: {
+        configFile: 'karma-e2e.conf.js',
+        browsers: ['Chrome', 'Firefox']
       }
     },
 
@@ -235,7 +245,8 @@ module.exports = function(grunt) {
   // Built assets for production and runs tests
   grunt.registerTask('test', [
     'build',
-    'karma:dist'
+    'karma:dist',
+    'karma:e2eLive'
   ]);
 };
 

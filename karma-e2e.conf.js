@@ -3,24 +3,22 @@ module.exports = function(karma) {
     // base path, that will be used to resolve files and exclude
     basePath: '.',
 
-    frameworks: ['jasmine'],
+    frameworks: ['ng-scenario'],
 
     // list of files / patterns to load in the browser
     files: [
-      'bower_components/angular/angular.js',
-      'bower_components/angular-mocks/angular-mocks.js',
-      'bower_components/angular-sanitize/angular-sanitize.js',
-      'bower_components/angular-localstorage/localStorageModule.js',
-      'js/JcApp.js',
-      'js/AppFilters.js',
-      'js/**/*.js',
-      'tests/unit/**/*Spec.js'
+      'tests/e2e/**/*.js'
     ],
 
     // list of files to exclude
-    exclude: [
-      'tests/unit/testSpec.js'
-    ],
+    exclude: [],
+
+    // this might be needed at some point
+    //urlRoot: '/_karma_/',
+
+    proxies: {
+      '/': 'http://javiercejudo.lc/'
+    },
 
     // use dolts reporter, as travis terminal does not support escaping sequences
     // possible values: 'dots', 'progress', 'junit', 'teamcity'
@@ -29,7 +27,7 @@ module.exports = function(karma) {
 
     junitReporter: {
       // will be resolved to basePath (in the same way as files/exclude patterns)
-      outputFile: 'test-results.xml'
+      outputFile: 'e2e-test-results.xml'
     },
 
     // web server port
@@ -64,8 +62,8 @@ module.exports = function(karma) {
     // CLI --browsers Chrome,Firefox,Safari
     browsers: [
       'PhantomJS',
-      //'Chrome',
-      //'Firefox'
+      'Chrome',
+      'Firefox'
     ],
 
     // If browser does not capture in given timeout [ms], kill it
@@ -78,7 +76,7 @@ module.exports = function(karma) {
 
     // report which specs are slower than 500ms
     // CLI --report-slower-than 500
-    reportSlowerThan: 500,
+    reportSlowerThan: 2000,
 
     // compile coffee scripts
     preprocessors: {
@@ -86,7 +84,7 @@ module.exports = function(karma) {
     },
 
     plugins: [
-      'karma-jasmine',
+      'karma-ng-scenario',
       'karma-phantomjs-launcher',
       'karma-chrome-launcher',
       'karma-firefox-launcher'

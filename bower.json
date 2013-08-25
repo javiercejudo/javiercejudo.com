@@ -10,13 +10,14 @@
     "tests"
   ],
   "devDependencies": {
-    "angular": "~1.0.7",
+    "angular": "~1.0.8",
     "jquery": "~1.10.2",
     "modernizr": "~2.6.2",
-    "angular-mocks": "~1.0.7",
-    "angular-resource": "~1.0.7",
-    "angular-sanitize": "~1.0.7",
+    "angular-mocks": "~1.0.8",
+    "angular-resource": "~1.0.8",
+    "angular-sanitize": "~1.0.8",
     "angular-localstorage": "latest",
-    "bootstrap": "~3.0.0"
+    "bootstrap": "~3.0.0",
+    "angular-scenario": "~1.0.8"
   }
 }

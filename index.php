@@ -69,8 +69,8 @@ $assetsMap = json_decode($assetsMapFile, true);
     <script src="/js/controllers/CvCtrl.js"></script>
     <script src="/js/controllers/SecretaryProblemCtrl.js"></script>
 <?php else : ?>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular-sanitize.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular-sanitize.min.js"></script>
     <script src="/assets/<?php echo $assetsMap['app.js'] ?>"></script>
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=

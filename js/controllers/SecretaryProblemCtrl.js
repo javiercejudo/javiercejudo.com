@@ -124,7 +124,7 @@
                 $scope.initSecretaryProblem();
                 $scope.generateItemValue(index);
               } else if (!$scope.isRejected(index)) {
-                $scope.selectItem(index, true);
+                $scope.selectItem(index);
               }
               return;
             }
@@ -176,14 +176,16 @@
             }
           };
 
-          $scope.selectItem = function (index, generateRest) {
+          $scope.selectItem = function (index) {
             if (!$scope.canSelectItem()) {
               return;
             }
 
-            $scope.game.itemSelected = index;
+            var game = $scope.game;
 
-            if (generateRest) {
+            game.itemSelected = index;
+
+            if (game.numItemsShown < game.n) {
               $scope.generateRestOfItemValues();
             }
           };
@@ -228,7 +230,7 @@
             var gamesWon;
 
             if (game.itemSelected === -1) {
-              $scope.selectItem(game.lastItemShown, false);
+              $scope.selectItem(game.lastItemShown);
             }
 
             if (!localStorageService.get('sp-games-played-' + game.n)) {
