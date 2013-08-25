@@ -26,7 +26,7 @@ describe("E2E: Testing Routes", function() {
 
     expect(browser().location().path()).toBe("/invalidURL");
 
-    expect(element('[ng-view] .error-code').count()).toBeGreaterThan(0);
+    expect(element('[ng-view] .error-page').count()).toEqual(1);
   });
 
   it('should jump to the /game/10 path when /game is accessed', function() {

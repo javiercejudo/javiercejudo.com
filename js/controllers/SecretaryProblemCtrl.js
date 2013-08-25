@@ -7,8 +7,8 @@
 
     .controller(
       'SecretaryProblemCtrl',
-      ['$scope', '$routeParams', '$location', '$filter', 'localStorageService',
-        function ($scope, $routeParams, $location, $filter, localStorageService) {
+      ['$scope', '$routeParams', '$location', '$filter', '$log', 'localStorageService',
+        function ($scope, $routeParams, $location, $filter, $log, localStorageService) {
           $scope.game = {
             info: {
               name: 'Secretary Problem',
@@ -35,7 +35,8 @@
             lastItemShown: null,
             itemSelected: null,
             won: null,
-            record: {}
+            record: {},
+            automaticGame: false
           };
 
           $scope.$watch('game.numItemsShown', function (numItemsShown) {
@@ -176,6 +177,22 @@
             }
           };
 
+          $scope.showNext = function () {
+            if (!$scope.canShowNext()) {
+              return;
+            }
+
+            var game = $scope.game;
+
+            $scope.generateItemValue(game.items.indexOf(-1));
+          };
+
+          $scope.canShowNext = function () {
+            var game = $scope.game;
+
+            return (game.itemSelected === -1);
+          };
+
           $scope.selectItem = function (index) {
             if (!$scope.canSelectItem()) {
               return;
@@ -205,7 +222,7 @@
           $scope.isRejected = function (index) {
             var game = $scope.game;
 
-            return (game.items[index] !== -1 && !$scope.isCurrent(index) && game.itemSelected == -1);
+            return (game.items[index] !== -1 && !$scope.isCurrent(index) && game.itemSelected === -1);
           };
 
           $scope.isMax = function (index) {
@@ -216,6 +233,20 @@
             }
 
             return (game.items[index] >= $scope.getMax());
+          };
+
+          $scope.getCurrentValue = function () {
+            var game = $scope.game;
+
+            if (game.itemSelected !== -1) {
+              return game.items[game.itemSelected];
+            }
+
+            if (game.lastItemShown !== -1) {
+              return game.items[game.lastItemShown];
+            }
+
+            return -1;
           };
 
           $scope.getMax = function () {
@@ -279,6 +310,63 @@
 
           $scope.getRandomInt = function (min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
+          };
+
+          $scope.automaticGame = function (numberOfGames) {
+            var game = $scope.game;
+            var strategyCandidate1 = Math.floor(game.n / Math.E);
+            var strategyCandidate2 = strategyCandidate1 + 1;
+            var strategy;
+            var sum;
+            var sumIndex;
+            var itemIndex;
+            var gameIndex;
+            var currentValue;
+            var maxValue;
+
+            numberOfGames = numberOfGames || 1;
+
+            if (isNaN(parseInt(numberOfGames, 10))) {
+              $log.warn('The parameter must be an integer number');
+              return;
+            }
+
+            for(gameIndex = 0; gameIndex < numberOfGames; gameIndex += 1) {
+              if ((gameIndex + 1) % 10 === 0) {
+                $log.log('Game ' + (gameIndex + 1) + ' started.');
+              }
+
+              $scope.initSecretaryProblem();
+
+              $scope.$digest();
+
+              sum = 0;
+
+              for(sumIndex = strategyCandidate1 + 2; sumIndex <= game.n; sumIndex += 1) {
+                sum += 1 / (sumIndex - 1);
+              }
+
+              strategy = sum > 1 ? strategyCandidate2 : strategyCandidate1;
+
+              for(itemIndex = 0; itemIndex < strategy; itemIndex += 1) {
+                $scope.showNext();
+
+                maxValue = $scope.getMax();
+              }
+
+              for(itemIndex = strategy; itemIndex < game.n; itemIndex += 1) {
+                $scope.showNext();
+
+                currentValue = $scope.getCurrentValue();
+                maxValue = $scope.getMax();
+
+                if (currentValue === maxValue && itemIndex + 1 !== game.n) {
+                  $scope.selectItem(itemIndex);
+                }
+              }
+
+              $scope.$digest();
+            }
           };
         }
       ]

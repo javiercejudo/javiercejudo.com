@@ -1,3 +1,4 @@
+
 <?php
 require 'config.php';
 
@@ -35,7 +36,11 @@ $assetsMap = json_decode($assetsMapFile, true);
     <link rel="shortcut icon"                                href="/ico/favicon.png">
     -->
 
+<?php if (ENV === 'dev') : ?>
+    <link href="/bower_components/modernizr/modernizr.custom.js" rel="stylesheet">
+<?php else : ?>
     <script src="/assets/<?php echo $assetsMap['modernizr.js'] ?>"></script>
+<?php endif ?>
   </head>
 
   <body>
@@ -83,4 +88,3 @@ $assetsMap = json_decode($assetsMapFile, true);
 <?php endif ?>
   </body>
 </html>
-
