@@ -47,17 +47,22 @@
 
           $scope.initSecretaryProblem = function () {
             var game = $scope.game;
-            var items = game.items;
-            var numDigits = game.numDigits;
-            var numDigitsThis = game.numDigitsThis;
-            var randomNumDigitsArray = [];
-            var i;
 
             if (game.lastItemShown === -1) {
               return;
             }
 
             $scope.processN();
+            $scope.initContext();
+          };
+
+          $scope.initContext = function () {
+            var game = $scope.game;
+            var items = game.items;
+            var numDigits = game.numDigits;
+            var numDigitsThis = game.numDigitsThis;
+            var randomNumDigitsArray;
+            var i;
 
             game.numItemsShown = 0;
             game.lastItemShown = -1;
@@ -116,7 +121,6 @@
             var items = game.items;
             var numDigits = game.numDigitsThis;
             var willBeMax;
-            var digits;
             var value;
             var gamesPlayed;
 
@@ -257,7 +261,6 @@
 
           $scope.endGame = function () {
             var game = $scope.game;
-            var gamesPlayed;
             var gamesWon;
 
             if (game.itemSelected === -1) {
@@ -317,7 +320,7 @@
             var strategyCandidate1 = Math.floor(game.n / Math.E);
             var strategyCandidate2 = strategyCandidate1 + 1;
             var strategy;
-            var sum;
+            var sum = 0;
             var sumIndex;
             var itemIndex;
             var gameIndex;
@@ -331,27 +334,23 @@
               return;
             }
 
+            for(sumIndex = strategyCandidate1 + 2; sumIndex <= game.n; sumIndex += 1) {
+              sum += 1 / (sumIndex - 1);
+            }
+
+            strategy = sum > 1 ? strategyCandidate2 : strategyCandidate1;
+
             for(gameIndex = 0; gameIndex < numberOfGames; gameIndex += 1) {
               if ((gameIndex + 1) % 10 === 0) {
-                $log.log('Game ' + (gameIndex + 1) + ' started.');
+                $log.log('Game ' + (gameIndex + 1) + ' completed.');
               }
 
               $scope.initSecretaryProblem();
 
               $scope.$digest();
 
-              sum = 0;
-
-              for(sumIndex = strategyCandidate1 + 2; sumIndex <= game.n; sumIndex += 1) {
-                sum += 1 / (sumIndex - 1);
-              }
-
-              strategy = sum > 1 ? strategyCandidate2 : strategyCandidate1;
-
               for(itemIndex = 0; itemIndex < strategy; itemIndex += 1) {
                 $scope.showNext();
-
-                maxValue = $scope.getMax();
               }
 
               for(itemIndex = strategy; itemIndex < game.n; itemIndex += 1) {
