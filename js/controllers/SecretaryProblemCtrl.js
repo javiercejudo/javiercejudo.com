@@ -7,8 +7,8 @@
 
     .controller(
       'SecretaryProblemCtrl',
-      ['$scope', '$routeParams', '$location', '$filter', '$log', 'localStorageService',
-        function ($scope, $routeParams, $location, $filter, $log, localStorageService) {
+      ['$scope', '$routeParams', '$location', '$filter', '$log', '$timeout', 'localStorageService',
+        function ($scope, $routeParams, $location, $filter, $log, $timeout, localStorageService) {
           $scope.game = {
             info: {
               name: 'Secretary Problem',
@@ -315,10 +315,9 @@
             return Math.floor(Math.random() * (max - min + 1)) + min;
           };
 
-          $scope.automaticGame = function (numberOfGames) {
+          $scope.automaticGame = function (n, numberOfGames) {
             var game = $scope.game;
-            var strategyCandidate1 = Math.floor(game.n / Math.E);
-            var strategyCandidate2 = strategyCandidate1 + 1;
+            var strategyCandidate;
             var strategy;
             var sum = 0;
             var sumIndex;
@@ -326,19 +325,32 @@
             var gameIndex;
             var currentValue;
             var maxValue;
+            var wonGamesCount = 0;
 
             numberOfGames = numberOfGames || 1;
+            game.n = n || game.n;
 
-            if (isNaN(parseInt(numberOfGames, 10))) {
-              $log.warn('The parameter must be an integer number');
+            if (isNaN(parseInt(game.n, 10))) {
+              $log.warn('The parameter "n" must be an integer number');
               return;
             }
 
-            for(sumIndex = strategyCandidate1 + 2; sumIndex <= game.n; sumIndex += 1) {
+            if (isNaN(parseInt(numberOfGames, 10))) {
+              $log.warn('The parameter "numberOfGames" must be an integer number');
+              return;
+            }
+
+            $routeParams.n = game.n;
+
+            strategyCandidate = Math.floor(game.n / Math.E);
+
+            $scope.$digest();
+
+            for(sumIndex = strategyCandidate + 2; sumIndex <= game.n; sumIndex += 1) {
               sum += 1 / (sumIndex - 1);
             }
 
-            strategy = sum > 1 ? strategyCandidate2 : strategyCandidate1;
+            strategy = sum > 1 ? strategyCandidate + 1 : strategyCandidate;
 
             for(gameIndex = 0; gameIndex < numberOfGames; gameIndex += 1) {
               if ((gameIndex + 1) % 10 === 0) {
@@ -365,7 +377,15 @@
               }
 
               $scope.$digest();
+
+              if (game.won) {
+                wonGamesCount += 1;
+              }
             }
+
+            $log.log('Success rate:', wonGamesCount / numberOfGames);
+
+            return wonGamesCount / numberOfGames;
           };
         }
       ]
