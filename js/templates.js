@@ -14,7 +14,7 @@ angular.module("partials/404.html", []).run(["$templateCache", function($templat
     "    <div class=\"col-xs-12\">\n" +
     "      <h4>Since you are here, up for a little game?</h4>\n" +
     "    </div>\n" +
-    "    <div class=\"col-xs-12\" ng-include=\"'/partials/secretary-problem.html'\"></div>\n" +
+    "    <div class=\"col-xs-12\" ng-include=\"'partials/secretary-problem.html'\"></div>\n" +
     "  </div>\n" +
     "</div>\n" +
     "");
@@ -234,7 +234,7 @@ angular.module("partials/home.html", []).run(["$templateCache", function($templa
 angular.module("partials/secretary-problem-standalone.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("partials/secretary-problem-standalone.html",
     "<div class=\"row\">\n" +
-    "  <div class=\"col-xs-12\" ng-include=\"'/partials/secretary-problem.html'\"></div>\n" +
+    "  <div class=\"col-xs-12\" ng-include=\"'partials/secretary-problem.html'\"></div>\n" +
     "</div>\n" +
     "");
 }]);
