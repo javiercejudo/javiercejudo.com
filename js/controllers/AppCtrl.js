@@ -4,11 +4,11 @@
   'use strict';
 
   angular.module('JcApp').controller(
-    'AppCtrl', 
+    'AppCtrl',
     ['$scope', '$window', '$location',
       function ($scope, $window, $location) {
 
-        $scope.$on('$routeChangeSuccess', function() { 
+        $scope.$on('$routeChangeSuccess', function() {
           $scope.path = $location.path();
 
           if ($window.hasOwnProperty('ga')) {

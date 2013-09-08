@@ -26,6 +26,7 @@
     'JcApp',
     [
       'ngSanitize',
+      'templates-main',
       'SecretaryProblem'
     ]
   )
@@ -35,17 +36,17 @@
         $routeProvider
 
           .when('/', {
-              templateUrl: '/partials/home.html',
+              templateUrl: 'partials/home.html',
               controller: 'HomeCtrl'
           })
 
           .when('/cv/:language', {
-              templateUrl: '/partials/cv.html',
+              templateUrl: 'partials/cv.html',
               controller: 'CvCtrl'
           })
 
           .when('/game/:n', {
-              templateUrl: '/partials/secretary-problem-standalone.html'
+              templateUrl: 'partials/secretary-problem-standalone.html'
           })
 
           .when('/game', {
@@ -65,7 +66,7 @@
           })
 
           .otherwise({
-              templateUrl: '/partials/404.html'
+              templateUrl: 'partials/404.html'
           });
 
         $locationProvider.html5Mode(true).hashPrefix('!');

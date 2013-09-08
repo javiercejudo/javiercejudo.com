@@ -6,6 +6,7 @@ module.exports = function(grunt) {
   var bowerPath = 'bower_components';
   var assetsPath = 'assets';
   var specsPath = 'tests/js';
+  var partialsPath = 'partials';
 
   // Project configuration.
   grunt.initConfig({
@@ -48,6 +49,16 @@ module.exports = function(grunt) {
         sassPath + '/**/*.scss'
       ],
       "uglify" : false
+    },
+
+    html2js: {
+      options: {
+        base: '.'
+      },
+      main: {
+        src: [partialsPath + '/**/*.html'],
+        dest: jsPath + '/templates.js'
+      },
     },
 
     uglify: {
@@ -215,6 +226,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-modernizr');
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-csslint');
+  grunt.loadNpmTasks('grunt-html2js');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-hash');
@@ -231,6 +243,7 @@ module.exports = function(grunt) {
     'modernizr',
     'compass:dist',
     'csslint:strict',
+    'html2js:main',
     'uglify:dist'
   ]);
 
