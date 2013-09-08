@@ -63,10 +63,10 @@ module.exports = function(grunt) {
 
     uglify: {
       options: {
-        mangle: false,
-        sourceMap: function(path) {
-          return path.replace(/^assets/, '.').replace(/.js$/, '.map');
-        }
+        mangle: false
+        // sourceMap: function(path) {
+        //   return path.replace(/^assets/, '.').replace(/.js$/, '.map');
+        // }
       },
       dist: {
         files: {
