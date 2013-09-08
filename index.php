@@ -43,7 +43,7 @@ $assetsMap = json_decode($assetsMapFile, true);
 <?php endif ?>
   </head>
 
-  <body>
+  <body ng-cloak>
     <div class="page" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Javier Cejudo">
       <meta itemprop="jobTitle" content="Web Developer">
