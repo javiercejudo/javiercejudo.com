@@ -162,7 +162,7 @@ module.exports = function(grunt) {
           assetsPath + '/**/*.{css,js}',
           fontsPath + '/**/*'
         ],
-        dest: 'manifest.appcache'
+        dest: 'cache.manifest'
       }
     },
 
