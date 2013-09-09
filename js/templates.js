@@ -26,10 +26,10 @@ angular.module("partials/cv.html", []).run(["$templateCache", function($template
     "  <div class=\"col-sm-12 col-lg-12\">\n" +
     "    <ul class=\"nav nav-pills lang-selector\">\n" +
     "      <li ng-class=\"{active: cv.params.language == 'english'}\">\n" +
-    "        <a href=\"/cv/english\" ng-bind-html=\"cv.data.english.tag\"></a>\n" +
+    "        <a href=\"#!/cv/english\" ng-bind-html=\"cv.data.english.tag\"></a>\n" +
     "      </li>\n" +
     "      <li ng-class=\"{active: cv.params.language == 'spanish'}\">\n" +
-    "        <a href=\"/cv/spanish\" ng-bind-html=\"cv.data.spanish.tag\"></a>\n" +
+    "        <a href=\"#!/cv/spanish\" ng-bind-html=\"cv.data.spanish.tag\"></a>\n" +
     "      </li>\n" +
     "    </ul>\n" +
     "  </div>\n" +
@@ -104,7 +104,7 @@ angular.module("partials/header.html", []).run(["$templateCache", function($temp
     "  <div class=\"col-xs-5\">\n" +
     "    <ul class=\"nav nav-pills\">\n" +
     "      <li ng-class=\"{active: path == '/'}\">\n" +
-    "        <a href=\"/\" class=\"home-link\">\n" +
+    "        <a href=\"#!/\" class=\"home-link\">\n" +
     "          <span class=\"glyphicon glyphicon-home home-icon\"></span>\n" +
     "          <span class=\"home-text\">Home</span>\n" +
     "        </a>\n" +
@@ -154,10 +154,10 @@ angular.module("partials/home.html", []).run(["$templateCache", function($templa
     "        development and management systems (e.g. e-commerce, finance).\n" +
     "      </p>\n" +
     "\n" +
-    "      <a class=\"btn btn-lg btn-success\" href=\"/cv/english\">\n" +
+    "      <a class=\"btn btn-lg btn-success\" href=\"#!/cv/english\">\n" +
     "        See my CV in English…\n" +
     "      </a>\n" +
-    "      <a class=\"btn btn-default jc-btn-default\" href=\"/cv/spanish\">\n" +
+    "      <a class=\"btn btn-default jc-btn-default\" href=\"#!/cv/spanish\">\n" +
     "        … o ve mi CV en español\n" +
     "      </a>\n" +
     "    </div>\n" +
@@ -203,7 +203,7 @@ angular.module("partials/home.html", []).run(["$templateCache", function($templa
     "          <a href=\"https://github.com/javiercejudo/javiercejudo.com/blob/master/js/controllers/SecretaryProblemCtrl.js\">\n" +
     "            AngularJs Game</a>\n" +
     "          <small>\n" +
-    "            <a href=\"/game\">(play)</a>\n" +
+    "            <a href=\"#!/game\">(play)</a>\n" +
     "          </small>\n" +
     "        </h4>\n" +
     "        <p>\n" +
@@ -251,14 +251,14 @@ angular.module("partials/secretary-problem.html", []).run(["$templateCache", fun
     "  </p>\n" +
     "  <p class=\"num-items\">\n" +
     "    Number of briefcases:\n" +
-    "    <a href=\"/game/2\"   ng-class=\"{current: game.n == 2  }\">2</a>   ·\n" +
-    "    <a href=\"/game/3\"   ng-class=\"{current: game.n == 3  }\">3</a>   ·\n" +
-    "    <a href=\"/game/5\"   ng-class=\"{current: game.n == 5  }\">5</a>   ·\n" +
-    "    <a href=\"/game/10\"  ng-class=\"{current: game.n == 10 }\">10</a>  ·\n" +
-    "    <a href=\"/game/20\"  ng-class=\"{current: game.n == 20 }\">20</a>  ·\n" +
-    "    <a href=\"/game/50\"  ng-class=\"{current: game.n == 50 }\">50</a>  ·\n" +
-    "    <a href=\"/game/100\" ng-class=\"{current: game.n == 100}\">100</a> ·\n" +
-    "    <a href=\"/game/256\" ng-class=\"{current: game.n == 256}\">256</a>\n" +
+    "    <a href=\"#!/game/2\"   ng-class=\"{current: game.n == 2  }\">2</a>   ·\n" +
+    "    <a href=\"#!/game/3\"   ng-class=\"{current: game.n == 3  }\">3</a>   ·\n" +
+    "    <a href=\"#!/game/5\"   ng-class=\"{current: game.n == 5  }\">5</a>   ·\n" +
+    "    <a href=\"#!/game/10\"  ng-class=\"{current: game.n == 10 }\">10</a>  ·\n" +
+    "    <a href=\"#!/game/20\"  ng-class=\"{current: game.n == 20 }\">20</a>  ·\n" +
+    "    <a href=\"#!/game/50\"  ng-class=\"{current: game.n == 50 }\">50</a>  ·\n" +
+    "    <a href=\"#!/game/100\" ng-class=\"{current: game.n == 100}\">100</a> ·\n" +
+    "    <a href=\"#!/game/256\" ng-class=\"{current: game.n == 256}\">256</a>\n" +
     "  </p>\n" +
     "  <p class=\"visible-xs\">\n" +
     "    Find controls at the bottom.\n" +
