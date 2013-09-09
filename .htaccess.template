@@ -545,7 +545,7 @@ AddCharset utf-8 .atom .css .js .json .rss .vtt .xml
 <IfModule mod_rewrite.c>
   RewriteCond %{REQUEST_URI} !^/index\.php
   RewriteCond %{REQUEST_URI} !^/.*\.map
-  RewriteCond %{REQUEST_URI} !^/manifest.appcache
+  RewriteCond %{REQUEST_URI} !^/cache.manifest
   RewriteCond %{REQUEST_URI} !^/assets/.*
   RewriteCond %{REQUEST_URI} !^/css/.*
   RewriteCond %{REQUEST_URI} !^/docs/.*
