@@ -5,7 +5,6 @@ module.exports = function(grunt) {
   var cssPath = 'css/stylesheets';
   var bowerPath = 'bower_components';
   var assetsPath = 'assets';
-  var specsPath = 'tests/js';
   var partialsPath = 'partials';
 
   // Project configuration.
@@ -58,7 +57,7 @@ module.exports = function(grunt) {
       main: {
         src: [partialsPath + '/**/*.html'],
         dest: jsPath + '/templates.js'
-      },
+      }
     },
 
     uglify: {
@@ -87,7 +86,7 @@ module.exports = function(grunt) {
       dist: {
         options: {
           sassDir: 'css/sass',
-          cssDir: 'css/stylesheets',
+          cssDir: 'css/stylesheets'
         }
       }
     },
@@ -119,7 +118,7 @@ module.exports = function(grunt) {
 
     hash: {
       options: {
-        mapping: 'assets/assets.map.json',
+        mapping: 'assets/assets.map.json'
       },
       assets: 'assets/*.{js,css}'
     },
@@ -140,6 +139,33 @@ module.exports = function(grunt) {
       }
     },
 
+    manifest: {
+      generate: {
+        options: {
+          basePath: '.',
+          // cache: ['js/app.js', 'css/style.css'],
+          // network: ['http://*', 'https://*'],
+          // fallback: ['/ /offline.html'],
+          exclude: [
+            assetsPath + '/app.css',
+            assetsPath + '/modernizr.js',
+            assetsPath + '/app.js'
+          ],
+          // preferOnline: true,
+          verbose: false,
+          timestamp: false,
+          hash: false,
+          master: ['index.php']
+        },
+        src: [
+          partialsPath + '/**/*.html',
+          assetsPath + '/**/*.{css,js}',
+          fontsPath + '/**/*'
+        ],
+        dest: 'manifest.appcache'
+      }
+    },
+
     watch: {
       sass: {
         files: [
@@ -150,8 +176,8 @@ module.exports = function(grunt) {
           'csslint:strict'
         ],
         options: {
-          nospawn: true,
-        },
+          nospawn: true
+        }
       },
       js: {
         files: [
@@ -164,8 +190,8 @@ module.exports = function(grunt) {
           'uglify:dist'
         ],
         options: {
-          nospawn: true,
-        },
+          nospawn: true
+        }
       }
     },
 
@@ -231,6 +257,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-hash');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
+  grunt.loadNpmTasks('grunt-manifest');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-docular');
@@ -252,7 +279,8 @@ module.exports = function(grunt) {
     'default',
     'cssmin:combine',
     'hash',
-    'imagemin:dist'
+    'imagemin:dist',
+    'manifest:generate'
   ]);
 
   // Built assets for production and runs tests

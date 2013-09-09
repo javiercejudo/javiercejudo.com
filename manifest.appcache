@@ -1,0 +1,20 @@
+CACHE MANIFEST
+
+CACHE:
+partials/404.html
+partials/cv.html
+partials/footer.html
+partials/header.html
+partials/home.html
+partials/secretary-problem-standalone.html
+partials/secretary-problem.html
+assets/app.4eefb193.js
+assets/app.621a8dc9.css
+assets/modernizr.9fcc59fc.js
+fonts/glyphicons-halflings-regular.eot
+fonts/glyphicons-halflings-regular.svg
+fonts/glyphicons-halflings-regular.ttf
+fonts/glyphicons-halflings-regular.woff
+
+NETWORK:
+*

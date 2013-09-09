@@ -3,13 +3,22 @@
 require 'config.php';
 
 $assetsMapFile = file_get_contents('assets/assets.map.json');
-$assetsMap = json_decode($assetsMapFile, true);
+$assetsMap     = json_decode($assetsMapFile, true);
+
+$almaArray = array(
+    'angular'  => 'ng-app="JcApp" ng-controller="AppCtrl"',
+    'lang'     => 'lang="en"',
+    'manifest' => 'manifest="manifest.appcache"'
+);
+
+$alma = implode(' ', $almaArray);
+
 ?>
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html ng-app="JcApp" ng-controller="AppCtrl" lang="en" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html ng-app="JcApp" ng-controller="AppCtrl" lang="en" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html ng-app="JcApp" ng-controller="AppCtrl" lang="en" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html ng-app="JcApp" ng-controller="AppCtrl" lang="en" class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>      <html <?php echo $alma ?> class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html <?php echo $alma ?> class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html <?php echo $alma ?> class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html <?php echo $alma ?> class="no-js"> <!--<![endif]-->
   <head>
     <meta charset="utf-8">
     <title ng-bind-template="{{pageTitle}} | Javier Cejudo · Web Developer"></title>
