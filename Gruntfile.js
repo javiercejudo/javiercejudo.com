@@ -158,7 +158,7 @@ module.exports = function(grunt) {
           master: ['index.php']
         },
         src: [
-          partialsPath + '/**/*.html',
+          // partialsPath + '/**/*.html',
           assetsPath + '/**/*.{css,js}',
           fontsPath + '/**/*'
         ],
