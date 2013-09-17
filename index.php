@@ -7,9 +7,12 @@ $assetsMap     = json_decode($assetsMapFile, true);
 
 $almaArray = array(
     'angular'  => 'ng-app="JcApp" ng-controller="AppCtrl"',
-    'lang'     => 'lang="en"',
-    'manifest' => 'manifest="cache.manifest"'
+    'lang'     => 'lang="en"'
 );
+
+if ($_SERVER['REQUEST_URI'] === '/') {
+    $almaArray['manifest'] = 'manifest="cache.manifest"';
+}
 
 $alma = implode(' ', $almaArray);
 

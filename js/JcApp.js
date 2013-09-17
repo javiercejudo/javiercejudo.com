@@ -69,7 +69,7 @@
               templateUrl: 'partials/404.html'
           });
 
-        $locationProvider.html5Mode(false).hashPrefix('!');
+        $locationProvider.html5Mode(true).hashPrefix('!');
     }]);
 }(angular));
 

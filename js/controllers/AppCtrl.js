@@ -8,6 +8,9 @@
     ['$scope', '$window', '$location',
       function ($scope, $window, $location) {
 
+        // leave empty if using html5mode; otherwise it should be #[hashPrefix]
+        $scope.prefixLink = '';
+
         $scope.$on('$routeChangeSuccess', function() {
           $scope.path = $location.path();
 

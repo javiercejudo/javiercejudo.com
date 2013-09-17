@@ -2,10 +2,10 @@
   <div class="col-sm-12 col-lg-12">
     <ul class="nav nav-pills lang-selector">
       <li ng-class="{active: cv.params.language == 'english'}">
-        <a href="#!/cv/english" ng-bind-html="cv.data.english.tag"></a>
+        <a ng-href="{{ prefixLink }}/cv/english" ng-bind-html="cv.data.english.tag"></a>
       </li>
       <li ng-class="{active: cv.params.language == 'spanish'}">
-        <a href="#!/cv/spanish" ng-bind-html="cv.data.spanish.tag"></a>
+        <a ng-href="{{ prefixLink }}/cv/spanish" ng-bind-html="cv.data.spanish.tag"></a>
       </li>
     </ul>
   </div>
