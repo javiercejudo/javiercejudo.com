@@ -6,11 +6,11 @@ $assetsMapFile = file_get_contents('assets/assets.map.json');
 $assetsMap     = json_decode($assetsMapFile, true);
 
 $almaArray = array(
-    'angular'  => 'ng-app="JcApp" ng-controller="AppCtrl"',
-    'lang'     => 'lang="en"'
+    'angular' => 'ng-app="JcApp" ng-controller="AppCtrl"',
+    'lang'    => 'lang="en"'
 );
 
-if ($_SERVER['REQUEST_URI'] === '/') {
+if ($_SERVER['REQUEST_URI'] === '/' && ENV === 'live') {
     $almaArray['manifest'] = 'manifest="cache.manifest"';
 }
 
