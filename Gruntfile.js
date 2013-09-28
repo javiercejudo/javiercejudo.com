@@ -71,7 +71,7 @@ module.exports = function(grunt) {
         files: {
           'assets/app.js': [
             bowerPath + '/angular/angular.js',
-            bowerPath + '/angular-resource/angular-resource.js',
+            bowerPath + '/angular-sanitize/angular-sanitize.js',
             bowerPath + '/angular-localstorage/localStorageModule.js',
             jsPath + '/JcApp.js',
             jsPath + '/AppFilters.js',
