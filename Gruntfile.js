@@ -70,6 +70,8 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'assets/app.js': [
+            bowerPath + '/angular/angular.js',
+            bowerPath + '/angular-resource/angular-resource.js',
             bowerPath + '/angular-localstorage/localStorageModule.js',
             jsPath + '/JcApp.js',
             jsPath + '/AppFilters.js',
@@ -151,9 +153,9 @@ module.exports = function(grunt) {
             assetsPath + '/modernizr.js',
             assetsPath + '/app.js'
           ],
-          // preferOnline: true,
+          preferOnline: false,
           verbose: false,
-          timestamp: true,
+          timestamp: false,
           hash: false,
           master: ['index.php']
         },
