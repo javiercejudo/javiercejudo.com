@@ -94,7 +94,7 @@ $alma = implode(' ', $almaArray);
       e=o.createElement(i);r=o.getElementsByTagName(i)[0];
       e.src='//www.google-analytics.com/analytics.js';
       r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','<?php echo GA_UA ?>');ga('send','pageview');
+      ga('create','<?php echo GA_UA ?>');
     </script>
 <?php endif ?>
   </body>
