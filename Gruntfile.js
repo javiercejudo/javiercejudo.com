@@ -155,8 +155,8 @@ module.exports = function(grunt) {
           ],
           preferOnline: false,
           verbose: false,
-          timestamp: false,
-          hash: false,
+          timestamp: true,
+          hash: true,
           master: ['index.php']
         },
         src: [
