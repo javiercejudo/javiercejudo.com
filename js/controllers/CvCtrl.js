@@ -16,6 +16,43 @@
           language: null
         };
 
+        $scope.initCv = function () {
+          var cv = $scope.cv;
+
+          cv.loading = true;
+
+          if (!$rootScope.online) {
+            $scope.setCvDataFromBackup();
+          } else {
+            $scope.setCvData();
+          }
+        };
+
+        $scope.setCvData = function () {
+          var cv = $scope.cv;
+
+          $http.get($scope.firebaseUrl + '/cv.json', {cache: true})
+            .success(function (response) {
+              $scope.successCallback(response);
+            })
+            .error(function (error) {
+              $scope.setCvDataFromBackup();
+            });
+        };
+
+        $scope.setCvDataFromBackup = function () {
+          var cv = $scope.cv;
+
+          $http.get($scope.firebaseBackupUrl, {cache: true})
+            .success(function (response) {
+              $scope.successCallback(response.cv);
+            })
+            .error(function (error) {
+              cv.loading = false;
+              cv.error = true;
+            });
+        };
+
         $scope.successCallback = function (response) {
           var cv = $scope.cv;
 
@@ -23,27 +60,6 @@
           cv.data = response;
 
           $scope.setLanguage();
-        };
-        
-        $scope.initCv = function () {
-          var cv = $scope.cv;
-
-          cv.loading = true;
-
-          $http.get($scope.firebaseUrl + '/cv.json', {cache: true})
-            .success(function (response) {
-              $scope.successCallback(response);
-            })
-            .error(function (error) {
-              $http.get($scope.firebaseBackupUrl, {cache: true})
-                .success(function (response) {
-                  $scope.successCallback(response.cv);
-                })
-                .error(function (error) {
-                  cv.loading = false;
-                  cv.error = true;
-                });
-            });
         };
         
         $scope.setLanguage = function () {

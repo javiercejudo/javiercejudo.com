@@ -11,6 +11,8 @@
         // leave empty if using html5mode; otherwise it should be #[hashPrefix]
         $scope.prefixLink = '';
 
+        // offline
+
         // firebase root URL
         $scope.firebaseUrl = 'https://c3jud0.firebaseio.com';
 
