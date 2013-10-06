@@ -14,10 +14,10 @@ module.exports = function(karma) {
     exclude: [],
 
     // this might be needed at some point
-    //urlRoot: '/_karma_/',
+    urlRoot: '/_karma_/',
 
     proxies: {
-      '/': 'http://javiercejudo.lc/'
+      '/': 'http://javiercejudo.lc/#!/'
     },
 
     // use dolts reporter, as travis terminal does not support escaping sequences
