@@ -2,8 +2,10 @@
 <?php
 require 'config.php';
 
-$assetsMapFile = file_get_contents('assets/assets.map.json');
-$assetsMap     = json_decode($assetsMapFile, true);
+if (ENV === 'live') {
+    $assetsMapFile = file_get_contents('assets/assets.map.json');
+    $assetsMap     = json_decode($assetsMapFile, true);
+}
 
 $almaArray = array(
     'angular' => 'ng-app="JcApp" ng-controller="AppCtrl"',
@@ -63,6 +65,7 @@ $alma = implode(' ', $almaArray);
       <?php include 'partials/header.html' ?>
 
       <section ng-view>
+        <div ng-include="'partials/loading.html'"></div>
         <noscript>
         <div class="alert alert-danger">
           Please enable JavaScript to navigate through the site. Thanks!

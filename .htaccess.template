@@ -548,6 +548,7 @@ AddCharset utf-8 .atom .css .js .json .rss .vtt .xml
   RewriteCond %{REQUEST_URI} !^/cache.manifest
   RewriteCond %{REQUEST_URI} !^/assets/.*
   RewriteCond %{REQUEST_URI} !^/css/.*
+  RewriteCond %{REQUEST_URI} !^/data/.*
   RewriteCond %{REQUEST_URI} !^/docs/.*
   RewriteCond %{REQUEST_URI} !^/fonts/.*
   RewriteCond %{REQUEST_URI} !^/ico/.*

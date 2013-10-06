@@ -4,6 +4,10 @@
 
 @import "general";
 
+.loading-indicator {
+  @import "partials/loading-indicator";
+}
+
 .home {
   @import "partials/home";
 }

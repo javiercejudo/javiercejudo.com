@@ -6,6 +6,7 @@ module.exports = function(grunt) {
   var bowerPath = 'bower_components';
   var assetsPath = 'assets';
   var partialsPath = 'partials';
+  var dataPath = 'data';
 
   // Project configuration.
   grunt.initConfig({
@@ -55,14 +56,16 @@ module.exports = function(grunt) {
         base: '.'
       },
       main: {
-        src: [partialsPath + '/**/*.html'],
+        src: [
+          partialsPath + '/**/*.html'
+        ],
         dest: jsPath + '/templates.js'
       }
     },
 
     uglify: {
       options: {
-        mangle: false
+        mangle: true
         // sourceMap: function(path) {
         //   return path.replace(/^assets/, '.').replace(/.js$/, '.map');
         // }

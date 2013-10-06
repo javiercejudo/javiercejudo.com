@@ -1,4 +1,8 @@
-<div class="cv row ng-cloak" ng-init="initCv()">
+<div ng-include="'partials/loading.html'" ng-show="cv.loading"></div>
+
+<div ng-include="'partials/500.html'" ng-show="!cv.loading && cv.error"></div>
+
+<div class="cv row" ng-init="initCv()" ng-show="!cv.loading && !cv.error">
   <div class="col-sm-12 col-lg-12">
     <ul class="nav nav-pills lang-selector">
       <li ng-class="{active: cv.params.language == 'english'}">

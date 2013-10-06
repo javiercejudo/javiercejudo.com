@@ -1,4 +1,4 @@
-angular.module('templates-main', ['partials/404.html', 'partials/cv.html', 'partials/footer.html', 'partials/header.html', 'partials/home.html', 'partials/secretary-problem-standalone.html', 'partials/secretary-problem.html']);
+angular.module('templates-main', ['partials/404.html', 'partials/500.html', 'partials/cv.html', 'partials/footer.html', 'partials/header.html', 'partials/home.html', 'partials/loading.html', 'partials/secretary-problem-standalone.html', 'partials/secretary-problem.html']);
 
 angular.module("partials/404.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("partials/404.html",
@@ -20,9 +20,35 @@ angular.module("partials/404.html", []).run(["$templateCache", function($templat
     "");
 }]);
 
+angular.module("partials/500.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("partials/500.html",
+    "<div class=\"error-page\">\n" +
+    "  <div class=\"error-wrapper row\">\n" +
+    "    <p class=\"error-code col-12\">\n" +
+    "      <span class=\"glyphicon glyphicon-exclamation-sign\"></span>\n" +
+    "    </p>\n" +
+    "    <p class=\"error-message col-12\">Check your connection and try again</p>\n" +
+    "  </div>\n" +
+    "\n" +
+    "  <hr>\n" +
+    "\n" +
+    "  <div class=\"row\">\n" +
+    "    <div class=\"col-xs-12\">\n" +
+    "      <h4>Since you are here, up for a little game?</h4>\n" +
+    "    </div>\n" +
+    "    <div class=\"col-xs-12\" ng-include=\"'partials/secretary-problem.html'\"></div>\n" +
+    "  </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
 angular.module("partials/cv.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("partials/cv.html",
-    "<div class=\"cv row ng-cloak\" ng-init=\"initCv()\">\n" +
+    "<div ng-include=\"'partials/loading.html'\" ng-show=\"cv.loading\"></div>\n" +
+    "\n" +
+    "<div ng-include=\"'partials/500.html'\" ng-show=\"!cv.loading && cv.error\"></div>\n" +
+    "\n" +
+    "<div class=\"cv row\" ng-init=\"initCv()\" ng-show=\"!cv.loading && !cv.error\">\n" +
     "  <div class=\"col-sm-12 col-lg-12\">\n" +
     "    <ul class=\"nav nav-pills lang-selector\">\n" +
     "      <li ng-class=\"{active: cv.params.language == 'english'}\">\n" +
@@ -226,6 +252,19 @@ angular.module("partials/home.html", []).run(["$templateCache", function($templa
     "        <p>Code samples and extensive documentation (in Spanish)</p>\n" +
     "      </div>\n" +
     "    </div>\n" +
+    "  </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
+angular.module("partials/loading.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("partials/loading.html",
+    "<div class=\"loading-indicator\">\n" +
+    "  <div class=\"loading-wrapper row\">\n" +
+    "    <p class=\"loading-icon col-12\">\n" +
+    "      <span class=\"glyphicon glyphicon-flash\"></span>\n" +
+    "    </p>\n" +
+    "    <p class=\"loading-message col-12\">Loading…</p>\n" +
     "  </div>\n" +
     "</div>\n" +
     "");
