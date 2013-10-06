@@ -72,7 +72,7 @@
         $locationProvider.html5Mode(true).hashPrefix('!');
     }])
 
-    .run(function($window, $rootScope) {
+    .run(['$window', '$rootScope', function($window, $rootScope) {
       $rootScope.online = navigator.onLine;
 
       $window.addEventListener("offline", function () {
@@ -86,6 +86,6 @@
           $rootScope.online = true;
         });
       }, false);
-    });
+    }]);
 }(angular));
 
