@@ -1,6 +1,6 @@
 <div ng-include="'partials/loading.html'" ng-show="cv.loading"></div>
 
-<div ng-include="'partials/500.html'" ng-show="!cv.loading && cv.error"></div>
+<div ng-include="'partials/offline.html'" ng-show="!cv.loading && cv.error"></div>
 
 <div class="cv row" ng-init="initCv()" ng-show="!cv.loading && !cv.error">
   <div class="col-sm-12 col-lg-12">

@@ -1,4 +1,4 @@
-angular.module('templates-main', ['partials/404.html', 'partials/500.html', 'partials/cv.html', 'partials/footer.html', 'partials/header.html', 'partials/home.html', 'partials/loading.html', 'partials/secretary-problem-standalone.html', 'partials/secretary-problem.html']);
+angular.module('templates-main', ['partials/404.html', 'partials/cv.html', 'partials/footer.html', 'partials/header.html', 'partials/home.html', 'partials/loading.html', 'partials/offline.html', 'partials/secretary-problem-standalone.html', 'partials/secretary-problem.html']);
 
 angular.module("partials/404.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("partials/404.html",
@@ -20,33 +20,11 @@ angular.module("partials/404.html", []).run(["$templateCache", function($templat
     "");
 }]);
 
-angular.module("partials/500.html", []).run(["$templateCache", function($templateCache) {
-  $templateCache.put("partials/500.html",
-    "<div class=\"error-page\">\n" +
-    "  <div class=\"error-wrapper row\">\n" +
-    "    <p class=\"error-code col-12\">\n" +
-    "      <span class=\"glyphicon glyphicon-exclamation-sign\"></span>\n" +
-    "    </p>\n" +
-    "    <p class=\"error-message col-12\">Check your connection and try again</p>\n" +
-    "  </div>\n" +
-    "\n" +
-    "  <hr>\n" +
-    "\n" +
-    "  <div class=\"row\">\n" +
-    "    <div class=\"col-xs-12\">\n" +
-    "      <h4>Since you are here, up for a little game?</h4>\n" +
-    "    </div>\n" +
-    "    <div class=\"col-xs-12\" ng-include=\"'partials/secretary-problem.html'\"></div>\n" +
-    "  </div>\n" +
-    "</div>\n" +
-    "");
-}]);
-
 angular.module("partials/cv.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("partials/cv.html",
     "<div ng-include=\"'partials/loading.html'\" ng-show=\"cv.loading\"></div>\n" +
     "\n" +
-    "<div ng-include=\"'partials/500.html'\" ng-show=\"!cv.loading && cv.error\"></div>\n" +
+    "<div ng-include=\"'partials/offline.html'\" ng-show=\"!cv.loading && cv.error\"></div>\n" +
     "\n" +
     "<div class=\"cv row\" ng-init=\"initCv()\" ng-show=\"!cv.loading && !cv.error\">\n" +
     "  <div class=\"col-sm-12 col-lg-12\">\n" +
@@ -270,9 +248,31 @@ angular.module("partials/loading.html", []).run(["$templateCache", function($tem
     "");
 }]);
 
+angular.module("partials/offline.html", []).run(["$templateCache", function($templateCache) {
+  $templateCache.put("partials/offline.html",
+    "<div class=\"error-page\">\n" +
+    "  <div class=\"error-wrapper row\">\n" +
+    "    <p class=\"error-code col-12\">\n" +
+    "      <span class=\"glyphicon glyphicon-exclamation-sign\"></span>\n" +
+    "    </p>\n" +
+    "    <p class=\"error-message col-12\">Check your connection and try again</p>\n" +
+    "  </div>\n" +
+    "\n" +
+    "  <hr>\n" +
+    "\n" +
+    "  <div class=\"row\">\n" +
+    "    <div class=\"col-xs-12\">\n" +
+    "      <h4>Since you are here, up for a little game?</h4>\n" +
+    "    </div>\n" +
+    "    <div class=\"col-xs-12\" ng-include=\"'partials/secretary-problem.html'\"></div>\n" +
+    "  </div>\n" +
+    "</div>\n" +
+    "");
+}]);
+
 angular.module("partials/secretary-problem-standalone.html", []).run(["$templateCache", function($templateCache) {
   $templateCache.put("partials/secretary-problem-standalone.html",
-    "<div class=\"row\">\n" +
+    "<div class=\"row\" ng-init=\"$root.pageTitle = 'Game';\">\n" +
     "  <div class=\"col-xs-12\" ng-include=\"'partials/secretary-problem.html'\"></div>\n" +
     "</div>\n" +
     "");
@@ -282,7 +282,7 @@ angular.module("partials/secretary-problem.html", []).run(["$templateCache", fun
   $templateCache.put("partials/secretary-problem.html",
     "<div class=\"secretary-problem\"\n" +
     "     ng-controller=\"SecretaryProblemCtrl\"\n" +
-    "     ng-init=\"$root.pageTitle = 'Game'; initSecretaryProblem();\">\n" +
+    "     ng-init=\"initSecretaryProblem();\">\n" +
     "  <p>\n" +
     "    Click on a briefcase to see its content. If you stop and bet on the one with\n" +
     "    the highest amount of money, you win; otherwise you lose.\n" +
