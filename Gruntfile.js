@@ -30,14 +30,34 @@ module.exports = function(grunt) {
       fontsPath + '/**/*'
     ],
 
+    curl: {
+      'data/c3jud0-export.json': 'https://c3jud0.firebaseio.com/.json?print=pretty'
+    },
+
     copy: {
-      main: {
+      fonts: {
         files: [{
           expand: true,
           cwd: bowerPath + '/bootstrap/dist/fonts/',
           src: ['**'],
-          dest: fontsPath + '/', filter: 'isFile'
+          dest: fontsPath + '/',
+          filter: 'isFile'
         }]
+      },
+      data: {
+        files: [{
+          expand: true,
+          cwd: dataPath + '',
+          src: ['**'],
+          dest: dataPath + '/min/',
+          filter: 'isFile'
+        }]
+      }
+    },
+
+    'json-minify': {
+      dist: {
+        files: dataPath + '/min/c3jud0-export.json'
       }
     },
 
@@ -171,10 +191,6 @@ module.exports = function(grunt) {
       }
     },
 
-    curl: {
-      'data/c3jud0-export.json': 'https://c3jud0.firebaseio.com/.json'
-    },
-
     watch: {
       sass: {
         files: [
@@ -257,7 +273,9 @@ module.exports = function(grunt) {
   // Load plugins used by this task gruntfile
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-curl');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-json-minify');
   grunt.loadNpmTasks('grunt-modernizr');
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-csslint');
@@ -267,7 +285,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-hash');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-manifest');
-  grunt.loadNpmTasks('grunt-curl');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-docular');
@@ -276,7 +293,9 @@ module.exports = function(grunt) {
   grunt.registerTask('default', [
     'jshint:all',
     'clean',
+    'curl',
     'copy',
+    'json-minify:dist',
     'modernizr',
     'compass:dist',
     'csslint:strict',
@@ -290,8 +309,7 @@ module.exports = function(grunt) {
     'cssmin:combine',
     'hash',
     'imagemin:dist',
-    'manifest:generate',
-    'curl'
+    'manifest:generate'
   ]);
 
   // Built assets for production and runs tests
