@@ -5,8 +5,8 @@
 
   angular.module('JcApp').controller(
     'CvCtrl',
-    ['$rootScope', '$scope', '$routeParams', '$location', '$http', '$filter',
-      function ($rootScope, $scope, $routeParams, $location, $http, $filter) {
+    ['$rootScope', '$scope', '$routeParams', '$location', '$http', '$filter', '$timeout',
+      function ($rootScope, $scope, $routeParams, $location, $http, $filter, $timeout) {
         $scope.cv = {
           loading: true,
           error: false,
@@ -14,6 +14,15 @@
           languages: ['english', 'spanish'],
           data: null,
           language: null
+        };
+
+        $scope.successCallback = function (response) {
+          var cv = $scope.cv;
+
+          cv.loading = false;
+          cv.data = response;
+
+          $scope.setLanguage();
         };
         
         $scope.initCv = function () {
@@ -23,13 +32,17 @@
 
           $http.get($scope.firebaseUrl + '/cv.json', {cache: true})
             .success(function (response) {
-              cv.loading = false;
-              cv.data = response;
-              $scope.setLanguage();
+              $scope.successCallback(response);
             })
             .error(function (error) {
-              cv.loading = false;
-              cv.error = true;
+              $http.get($scope.firebaseBackupUrl, {cache: true})
+                .success(function (response) {
+                  $scope.successCallback(response.cv);
+                })
+                .error(function (error) {
+                  cv.loading = false;
+                  cv.error = true;
+                });
             });
         };
         

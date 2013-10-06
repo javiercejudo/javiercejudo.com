@@ -14,6 +14,9 @@
         // firebase root URL
         $scope.firebaseUrl = 'https://c3jud0.firebaseio.com';
 
+        // firebase local backup
+        $scope.firebaseBackupUrl = '/data/min/c3jud0-export.json';
+
         $scope.$on('$routeChangeSuccess', function() {
           $scope.path = $location.path();
 

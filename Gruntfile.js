@@ -48,7 +48,7 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: dataPath + '',
-          src: ['**'],
+          src: ['*'],
           dest: dataPath + '/min/',
           filter: 'isFile'
         }]
@@ -185,7 +185,8 @@ module.exports = function(grunt) {
         src: [
           // partialsPath + '/**/*.html',
           assetsPath + '/**/*.{css,js}',
-          fontsPath + '/**/*'
+          fontsPath + '/**/*',
+          dataPath + '/min/**/*'
         ],
         dest: 'cache.manifest'
       }
