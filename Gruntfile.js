@@ -171,6 +171,10 @@ module.exports = function(grunt) {
       }
     },
 
+    curl: {
+      'data/c3jud0-export.json': 'https://c3jud0.firebaseio.com/.json'
+    },
+
     watch: {
       sass: {
         files: [
@@ -263,6 +267,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-hash');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-manifest');
+  grunt.loadNpmTasks('grunt-curl');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-docular');
@@ -285,7 +290,8 @@ module.exports = function(grunt) {
     'cssmin:combine',
     'hash',
     'imagemin:dist',
-    'manifest:generate'
+    'manifest:generate',
+    'curl'
   ]);
 
   // Built assets for production and runs tests

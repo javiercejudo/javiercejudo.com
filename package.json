@@ -34,6 +34,7 @@
     "grunt-hash": "~0.3.0",
     "karma-ng-scenario": "~0.1.0",
     "grunt-html2js": "~0.1.7",
-    "grunt-manifest": "~0.4.0"
+    "grunt-manifest": "~0.4.0",
+    "grunt-curl": "~1.1.1"
   }
 }
