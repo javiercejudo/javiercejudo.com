@@ -54,7 +54,7 @@ $alma = implode(' ', $almaArray);
     -->
 
 <?php if (ENV === 'dev') : ?>
-    <link href="/bower_components/modernizr/modernizr.custom.js" rel="stylesheet">
+    <script src="/bower_components/modernizr/modernizr.custom.js"></script>
 <?php else : ?>
     <script src="/assets/<?php echo $assetsMap['modernizr.js'] ?>"></script>
 <?php endif ?>
@@ -87,6 +87,7 @@ $alma = implode(' ', $almaArray);
     <script src="/js/templates.js"></script>
 
     <script src="/js/JcApp.js"></script>
+    <script src="/js/AppDirectives.js"></script>
     <script src="/js/AppFilters.js"></script>
     <script src="/js/controllers/AppCtrl.js"></script>
     <script src="/js/controllers/HomeCtrl.js"></script>

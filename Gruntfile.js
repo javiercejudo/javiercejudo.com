@@ -97,6 +97,7 @@ module.exports = function(grunt) {
             bowerPath + '/angular-sanitize/angular-sanitize.js',
             bowerPath + '/angular-localstorage/localStorageModule.js',
             jsPath + '/JcApp.js',
+            jsPath + '/AppDirectives.js',
             jsPath + '/AppFilters.js',
             jsPath + '/**/*.js'
           ],
@@ -193,6 +194,9 @@ module.exports = function(grunt) {
     },
 
     watch: {
+      options: {
+        nospawn: true
+      },
       sass: {
         files: [
           sassPath + '/**/*.scss'
@@ -200,10 +204,7 @@ module.exports = function(grunt) {
         tasks: [
           'compass:dist',
           'csslint:strict'
-        ],
-        options: {
-          nospawn: true
-        }
+        ]
       },
       js: {
         files: [
@@ -214,10 +215,15 @@ module.exports = function(grunt) {
           'jshint:all',
           'modernizr',
           'uglify:dist'
+        ]
+      },
+      partials: {
+        files: [
+          partialsPath + '/**/*.html'
         ],
-        options: {
-          nospawn: true
-        }
+        tasks: [
+          'html2js:main'
+        ]
       }
     },
 
@@ -300,13 +306,13 @@ module.exports = function(grunt) {
     'modernizr',
     'compass:dist',
     'csslint:strict',
-    'html2js:main',
-    'uglify:dist'
+    'html2js:main'
   ]);
 
   // Built assets for production
   grunt.registerTask('build', [
     'default',
+    'uglify:dist',
     'cssmin:combine',
     'hash',
     'imagemin:dist',
