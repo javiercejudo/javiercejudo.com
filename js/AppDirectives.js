@@ -15,7 +15,7 @@
 
     .directive('jcPageTitle', ['$rootScope', function ($rootScope) {
       return function (scope, element, attrs) {
-        if (!attrs.hasOwnProperty('jcPageTitle')) {
+        if (attrs.jcPageTitle === '') {
           attrs.jcPageTitle = 'Welcome';
         }
 
