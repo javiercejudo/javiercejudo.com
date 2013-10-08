@@ -11,7 +11,7 @@ if (ENV === 'live') {
 }
 
 $almaArray = array(
-    'angular' => 'ng-app="JcApp" data-ng-controller="AppCtrl"',
+    'angular' => 'data-ng-app="JcApp" data-ng-controller="AppCtrl"',
     'lang'    => 'lang="en"'
 );
 
@@ -29,7 +29,7 @@ $alma = implode(' ', $almaArray);
 <!--[if gt IE 8]><!--> <html <?php echo $alma ?> class="no-js"> <!--<![endif]-->
   <head>
     <meta charset="utf-8">
-    <title data-ng-bind-template="{{pageTitle}} | Javier Cejudo · Web Developer"></title>
+    <title data-ng-bind-template="{{pageTitle}} | Javier Cejudo · Web Developer">Loading…</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
           content="I'm a young software engineer wishing to continue my career as a web
