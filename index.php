@@ -2,13 +2,16 @@
 
 require 'config.php';
 
+$assetsMapFile = '';
+$assetsMap     = '';
+
 if (ENV === 'live') {
     $assetsMapFile = file_get_contents('assets/assets.map.json');
     $assetsMap     = json_decode($assetsMapFile, true);
 }
 
 $almaArray = array(
-    'angular' => 'ng-app="JcApp" ng-controller="AppCtrl"',
+    'angular' => 'ng-app="JcApp" data-ng-controller="AppCtrl"',
     'lang'    => 'lang="en"'
 );
 
@@ -26,7 +29,7 @@ $alma = implode(' ', $almaArray);
 <!--[if gt IE 8]><!--> <html <?php echo $alma ?> class="no-js"> <!--<![endif]-->
   <head>
     <meta charset="utf-8">
-    <title ng-bind-template="{{pageTitle}} | Javier Cejudo · Web Developer"></title>
+    <title data-ng-bind-template="{{pageTitle}} | Javier Cejudo · Web Developer"></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
           content="I'm a young software engineer wishing to continue my career as a web
@@ -57,15 +60,15 @@ $alma = implode(' ', $almaArray);
 <?php endif ?>
   </head>
 
-  <body ng-cloak>
+  <body data-ng-cloak>
     <div class="page" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Javier Cejudo">
       <meta itemprop="jobTitle" content="Web Developer">
 
       <?php include 'partials/header.html' ?>
 
-      <section ng-view>
-        <div ng-include="'partials/loading.html'"></div>
+      <section data-ng-view>
+        <div data-ng-include="'partials/loading.html'"></div>
         <noscript>
         <div class="alert alert-danger">
           Please enable JavaScript to navigate through the site. Thanks!

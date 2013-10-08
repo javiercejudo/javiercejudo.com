@@ -1,56 +1,56 @@
-<div ng-include="'partials/loading.html'" ng-show="cv.loading"></div>
+<div data-ng-include="'partials/loading.html'" data-ng-show="cv.loading"></div>
 
-<div ng-include="'partials/offline.html'" ng-show="!cv.loading && cv.error"></div>
+<div data-ng-include="'partials/offline.html'" data-ng-show="!cv.loading && cv.error"></div>
 
-<div class="cv row" ng-init="initCv()" ng-show="!cv.loading && !cv.error">
+<div class="cv row" data-ng-init="initCv()" data-ng-show="!cv.loading && !cv.error">
   <div class="col-sm-12 col-lg-12">
     <ul class="nav nav-pills lang-selector">
-      <li ng-class="{active: cv.params.language == 'english'}">
-        <a ng-href="{{ prefixLink }}/cv/english" ng-bind-html="cv.data.english.tag"></a>
+      <li data-ng-class="{active: cv.params.language == 'english'}">
+        <a data-ng-href="{{ prefixLink }}/cv/english" data-ng-bind-html="cv.data.english.tag"></a>
       </li>
-      <li ng-class="{active: cv.params.language == 'spanish'}">
-        <a ng-href="{{ prefixLink }}/cv/spanish" ng-bind-html="cv.data.spanish.tag"></a>
+      <li data-ng-class="{active: cv.params.language == 'spanish'}">
+        <a data-ng-href="{{ prefixLink }}/cv/spanish" data-ng-bind-html="cv.data.spanish.tag"></a>
       </li>
     </ul>
   </div>
   <div class="well col-sm-12 col-lg-12">
-    <h1 ng-bind-html="cvLocal.name"></h1>
+    <h1 data-ng-bind-html="cvLocal.name"></h1>
     
     <hr>
     
     <div class="contact-details">
-      <p ng-repeat="contactDetail in cvLocal.contact">
-        <span ng-bind-html="contactDetail.label"></span>:
-        <span ng-bind-html="contactDetail.value"></span>
+      <p data-ng-repeat="contactDetail in cvLocal.contact">
+        <span data-ng-bind-html="contactDetail.label"></span>:
+        <span data-ng-bind-html="contactDetail.value"></span>
       </p>
     </div>
     
     <hr>
     
     <div class="career-objectives">
-      <h3 ng-bind-html="cvLocal.career_objectives.label"></h3>
-      <p ng-bind-html="cvLocal.career_objectives.value"></p>
+      <h3 data-ng-bind-html="cvLocal.career_objectives.label"></h3>
+      <p data-ng-bind-html="cvLocal.career_objectives.value"></p>
     </div>
     
     <hr>
     
     <div class="education">
-      <h3 ng-bind-html="cvLocal.education.label"></h3>
+      <h3 data-ng-bind-html="cvLocal.education.label"></h3>
       <ul class="education-list">
-        <li ng-repeat="education in cvLocal.education.list"
-            ng-bind-html="education"></li>
+        <li data-ng-repeat="education in cvLocal.education.list"
+            data-ng-bind-html="education"></li>
       </ul>
     </div>
     
     <hr>
     
     <div class="work-experience">
-      <h3 ng-bind-html="cvLocal.work_experience.label"></h3>
+      <h3 data-ng-bind-html="cvLocal.work_experience.label"></h3>
       <ul class="job-list">
-        <li ng-repeat="job in cvLocal.work_experience.list">
-          <p class="job-title" ng-bind-html="job.title"></p>
-          <p class="job-dates" ng-bind-html="job.dates"></p>
-          <p class="job-description" ng-bind-html="job.description"></p>
+        <li data-ng-repeat="job in cvLocal.work_experience.list">
+          <p class="job-title" data-ng-bind-html="job.title"></p>
+          <p class="job-dates" data-ng-bind-html="job.dates"></p>
+          <p class="job-description" data-ng-bind-html="job.description"></p>
         </li>
       </ul>
     </div>
