@@ -11,7 +11,13 @@
           e.preventDefault();
         });
       };
-    });
+    })
+
+    .directive('jcPageTitle', ['$rootScope', function ($rootScope) {
+      return function (scope, element, attrs) {
+        $rootScope.pageTitle = attrs.jcPageTitle;
+      };
+    }]);
 
 }(angular));
 
