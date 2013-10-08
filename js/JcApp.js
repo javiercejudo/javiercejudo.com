@@ -46,7 +46,8 @@
           })
 
           .when('/game/:n', {
-              templateUrl: 'partials/secretary-problem-standalone.html'
+              templateUrl: 'partials/secretary-problem-standalone.html',
+              controller: 'SecretaryProblemCtrl'
           })
 
           .when('/game', {
@@ -66,7 +67,7 @@
           })
 
           .otherwise({
-              templateUrl: 'partials/404.html'
+              templateUrl: 'partials/404.html',
           });
 
         $locationProvider.html5Mode(false).hashPrefix('!');
