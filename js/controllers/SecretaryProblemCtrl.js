@@ -332,12 +332,12 @@
 
             if (isNaN(parseInt(game.n, 10))) {
               $log.warn('The parameter "n" must be an integer number');
-              return;
+              return null;
             }
 
             if (isNaN(parseInt(numberOfGames, 10))) {
               $log.warn('The parameter "numberOfGames" must be an integer number');
-              return;
+              return null;
             }
 
             $routeParams.n = game.n;

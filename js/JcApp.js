@@ -67,7 +67,7 @@
           })
 
           .otherwise({
-              templateUrl: 'partials/404.html',
+              templateUrl: 'partials/404.html'
           });
 
         $locationProvider.html5Mode(false).hashPrefix('!');

@@ -5,8 +5,8 @@
 
   angular.module('JcApp').controller(
     'CvCtrl',
-    ['$rootScope', '$scope', '$routeParams', '$location', '$http', '$filter', '$timeout',
-      function ($rootScope, $scope, $routeParams, $location, $http, $filter, $timeout) {
+    ['$rootScope', '$scope', '$routeParams', '$location', '$http', '$filter',
+      function ($rootScope, $scope, $routeParams, $location, $http, $filter) {
         $scope.cv = {
           loading: true,
           error: false,
@@ -35,7 +35,7 @@
             .success(function (response) {
               $scope.successCallback(response);
             })
-            .error(function (error) {
+            .error(function () {
               $scope.setCvDataFromBackup();
             });
         };
@@ -47,7 +47,7 @@
             .success(function (response) {
               $scope.successCallback(response.cv);
             })
-            .error(function (error) {
+            .error(function () {
               cv.loading = false;
               cv.error = true;
             });
