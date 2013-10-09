@@ -16,15 +16,6 @@
           language: null
         };
 
-        $scope.$watch('cv.data', function (data) {
-          if (!data) {
-            return;
-          }
-
-          $scope.cv.loading = false;
-          $scope.setLanguage();
-        });
-
         $scope.firebase = {
           ref: null
         };
@@ -32,28 +23,36 @@
         $scope.initCv = function () {
           var cv = $scope.cv;
           var firebaseRef = $scope.firebase.ref;
+          var firebasePromise;
 
           cv.loading = true;
 
-          $scope.setCvDataFromBackup();
-
-          if ($rootScope.online) {
-            firebaseRef = new Firebase('https://c3jud0.firebaseio.com/cv');
-            angularFire(firebaseRef, $scope, 'cv.data');
+          if (!$rootScope.online) {
+            $scope.setCvDataFromBackup();
           }
+
+          firebaseRef = new Firebase('https://c3jud0.firebaseio.com/cv');
+          firebasePromise = angularFire(firebaseRef, $scope, 'cv.data');
+
+          firebasePromise.then(function () {
+            cv.loading = false;
+            $scope.setLanguage();
+          }, function () {
+            $scope.setCvDataFromBackup();
+          });
         };
 
-        $scope.setCvData = function () {
-          var cv = $scope.cv;
-
-          $http.get($scope.firebaseUrl + '/cv.json', {cache: true})
-            .success(function (response) {
-              $scope.successCallback(response);
-            })
-            .error(function () {
-              $scope.setCvDataFromBackup();
-            });
-        };
+//        $scope.setCvData = function () {
+//          var cv = $scope.cv;
+//
+//          $http.get($scope.firebaseUrl + '/cv.json', {cache: true})
+//            .success(function (response) {
+//              $scope.successCallback(response);
+//            })
+//            .error(function () {
+//              $scope.setCvDataFromBackup();
+//            });
+//        };
 
         $scope.setCvDataFromBackup = function () {
           var cv = $scope.cv;
