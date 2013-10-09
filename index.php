@@ -96,7 +96,7 @@ $alma = implode(' ', $almaArray);
     <script src="/js/controllers/CvCtrl.js"></script>
     <script src="/js/controllers/SecretaryProblemCtrl.js"></script>
 <?php else : ?>
-    <script src='https://cdn.firebase.com/v0/firebase.js'></script>
+    <script src='/vendor/firebase/firebase.js'></script>
     <script src="/assets/<?php echo $assetsMap['app.js'] ?>"></script>
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
