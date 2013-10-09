@@ -20,19 +20,29 @@
           ref: null
         };
 
+        $scope.$watch('cv.data', function (data) {
+          if (!data) {
+            return;
+          }
+
+          $scope.cv.loading = false;
+          $scope.setLanguage();
+        });
+
         $scope.initCv = function () {
           var cv = $scope.cv;
-          var firebaseRef = $scope.firebase.ref;
+          var firebase = $scope.firebase;
           var firebasePromise;
 
           cv.loading = true;
 
           if (!$rootScope.online) {
             $scope.setCvDataFromBackup();
+            return;
           }
 
-          firebaseRef = new Firebase('https://c3jud0.firebaseio.com/cv');
-          firebasePromise = angularFire(firebaseRef, $scope, 'cv.data');
+          firebase.ref = new Firebase('https://c3jud0.firebaseio.com/cv');
+          firebasePromise = angularFire(firebase.ref, $scope, 'cv.data');
 
           firebasePromise.then(function () {
             cv.loading = false;

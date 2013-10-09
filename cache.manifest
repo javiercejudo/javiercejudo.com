@@ -1,9 +1,9 @@
 CACHE MANIFEST
-# Time: Thu Oct 10 2013 02:30:47 GMT+1100 (EST)
+# Time: Thu Oct 10 2013 02:43:46 GMT+1100 (EST)
 
 CACHE:
+assets/app.0c734d0b.js
 assets/app.97caf2ec.css
-assets/app.bc58e242.js
 assets/modernizr.8149b573.js
 vendor/firebase/firebase.js
 fonts/glyphicons-halflings-regular.eot
