@@ -97,6 +97,7 @@ module.exports = function(grunt) {
             bowerPath + '/angular/angular.js',
             bowerPath + '/angular-sanitize/angular-sanitize.js',
             bowerPath + '/firebase/firebase.js',
+            bowerPath + '/angular-fire/angularFire.js',
             bowerPath + '/angular-localstorage/localStorageModule.js',
             jsPath + '/JcApp.js',
             jsPath + '/AppDirectives.js',
