@@ -83,7 +83,9 @@ $alma = implode(' ', $almaArray);
 <?php if (ENV === 'dev') : ?>
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="/bower_components/angular-localstorage/localStorageModule.js"></script>
+    <script src='/bower_components/firebase/firebase.js'></script>
+    <script src="/bower_components/angular-fire/angularFire.js"></script>
+    <script src="/bower_components/angular-localstorage/angular-local-storage.js"></script>
     <script src="/js/templates.js"></script>
 
     <script src="/js/JcApp.js"></script>

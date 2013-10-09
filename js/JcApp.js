@@ -26,6 +26,7 @@
     'JcApp',
     [
       'ngSanitize',
+      'firebase',
       'templates-main',
       'SecretaryProblem'
     ]

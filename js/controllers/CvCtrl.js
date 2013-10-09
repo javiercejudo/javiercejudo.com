@@ -1,12 +1,12 @@
-/*global angular:true, browser:true */
+/*global angular:true, Firebase:true, browser:true */
 
 (function (angular) {
   'use strict';
 
   angular.module('JcApp').controller(
     'CvCtrl',
-    ['$rootScope', '$scope', '$routeParams', '$location', '$http', '$filter',
-      function ($rootScope, $scope, $routeParams, $location, $http, $filter) {
+    ['$rootScope', '$scope', '$routeParams', '$location', '$http', '$filter', 'angularFire',
+      function ($rootScope, $scope, $routeParams, $location, $http, $filter, angularFire) {
         $scope.cv = {
           loading: true,
           error: false,
@@ -16,15 +16,30 @@
           language: null
         };
 
+        $scope.$watch('cv.data', function (data) {
+          if (!data) {
+            return;
+          }
+
+          $scope.cv.loading = false;
+          $scope.setLanguage();
+        });
+
+        $scope.firebase = {
+          ref: null
+        };
+
         $scope.initCv = function () {
           var cv = $scope.cv;
+          var firebaseRef = $scope.firebase.ref;
 
           cv.loading = true;
 
-          if (!$rootScope.online) {
-            $scope.setCvDataFromBackup();
-          } else {
-            $scope.setCvData();
+          $scope.setCvDataFromBackup();
+
+          if ($rootScope.online) {
+            firebaseRef = new Firebase('https://c3jud0.firebaseio.com/cv');
+            angularFire(firebaseRef, $scope, 'cv.data');
           }
         };
 

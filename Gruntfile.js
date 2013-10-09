@@ -31,7 +31,8 @@ module.exports = function(grunt) {
     ],
 
     curl: {
-      'data/c3jud0-export.json': 'https://c3jud0.firebaseio.com/.json?print=pretty'
+      'data/c3jud0-export.json': 'https://c3jud0.firebaseio.com/.json?print=pretty',
+      'bower_components/firebase/firebase.js': 'https://cdn.firebase.com/v0/firebase.js'
     },
 
     copy: {
@@ -95,6 +96,7 @@ module.exports = function(grunt) {
           'assets/app.js': [
             bowerPath + '/angular/angular.js',
             bowerPath + '/angular-sanitize/angular-sanitize.js',
+            bowerPath + '/firebase/firebase.js',
             bowerPath + '/angular-localstorage/localStorageModule.js',
             jsPath + '/JcApp.js',
             jsPath + '/AppDirectives.js',
