@@ -556,6 +556,7 @@ AddCharset utf-8 .atom .css .js .json .rss .vtt .xml
   RewriteCond %{REQUEST_URI} !^/img/.*
   RewriteCond %{REQUEST_URI} !^/js/.*
   RewriteCond %{REQUEST_URI} !^/partials/.*
+  RewriteCond %{REQUEST_URI} !^/vendor/.*
   RewriteRule ^(.*)$ /#!/$1 [R=301,NE,L]
 </IfModule>
 
