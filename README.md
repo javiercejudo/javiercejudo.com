@@ -16,6 +16,8 @@ JavaScript.
 ### JavaScript:
 
 - [AngularJS](http://angularjs.org/): superheroic JavaScript MVW framework.
+- [AngularFire](http://angularfire.com/): A real-time backend for AngularJS
+from Firebase.
 - [jQuery](http://jquery.com/): fast, small, and feature-rich JavaScript
 library.
 - [Modernizr](http://modernizr.com/): the feature detection library for
@@ -36,3 +38,4 @@ mobile-first front-end framework.
 
 - [PHP](http://php.net/): widely-used general-purpose scripting language that
 is especially suited for Web development.
+- [Firebase](https://www.firebase.com/): Scalable real-time backend.
