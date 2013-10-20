@@ -301,7 +301,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-docular');
 
   // Default task
-  grunt.registerTask('default', [
+  grunt.registerTask('local', [
     'jshint:all',
     'clean',
     'curl',
@@ -315,7 +315,7 @@ module.exports = function(grunt) {
 
   // Built assets for production
   grunt.registerTask('build', [
-    'default',
+    'local',
     'uglify:dist',
     'cssmin:combine',
     'hash',
@@ -324,7 +324,7 @@ module.exports = function(grunt) {
   ]);
 
   // Built assets for production and runs tests
-  grunt.registerTask('test', [
+  grunt.registerTask('default', [
     'build',
     'karma:dist',
     'karma:e2eLive'
