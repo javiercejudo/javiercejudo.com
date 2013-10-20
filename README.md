@@ -1,4 +1,4 @@
-# JavierCejudo.com
+# JavierCejudo.com [![Build Status](https://api.travis-ci.org/javiercejudo/javiercejudo.com.png?branch=master)](https://travis-ci.org/javiercejudo/javiercejudo.com)
 
 My personal website.
 
