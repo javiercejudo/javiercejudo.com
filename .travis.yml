@@ -2,9 +2,9 @@ language: node_js
 node_js:
   - 0.10
 
-#before_script:
-#  - npm install -g grunt-cli
-#  - npm install -g bower
+before_script:
+  - gem update --system
+  - gem install compass
 
 script:
   - bower install
