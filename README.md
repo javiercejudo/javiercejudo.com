@@ -15,6 +15,8 @@ My personal website.
 - [Grunt](http://gruntjs.com/): the JavaScript task tunner.
 - [Karma](http://karma-runner.github.io/): spectacular test runner for
 JavaScript.
+- [Travis CI](https://travis-ci.org/): Free hosted continuous integration
+platform for the open source community.
 
 ### JavaScript:
 
