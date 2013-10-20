@@ -25,10 +25,7 @@ describe("E2E: Testing Routes", function() {
 
   it('should show the 404 page when an invalid URL is requested, but keep the path', function() {
     browser().navigateTo(linkPrefix + '/invalidURL');
-
-    expect(browser().location().path()).toBe("/invalidURL");
-
-    expect(element('[ng-view] .error-page').count()).toEqual(1);
+    expect(element('.error-page').count()).toEqual(1);
   });
 
   it('should jump to the /game/10 path when /game is accessed', function() {

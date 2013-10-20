@@ -36,6 +36,7 @@
     "grunt-html2js": "~0.1.7",
     "grunt-manifest": "~0.4.0",
     "grunt-curl": "~1.1.1",
-    "grunt-json-minify": "~0.4.0"
+    "grunt-json-minify": "~0.4.0",
+    "grunt-cli": "~0.1.9"
   }
 }
