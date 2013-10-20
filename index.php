@@ -6,7 +6,7 @@ $assetsMapFile = '';
 $assetsMap     = '';
 
 if (ENV === 'live') {
-    $assetsMapFile = file_get_contents('assets/assets.map.json');
+    $assetsMapFile = file_get_contents('assets.map.json');
     $assetsMap     = json_decode($assetsMapFile, true);
 }
 
@@ -42,7 +42,7 @@ $alma = implode(' ', $almaArray);
     <link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link href="/css/stylesheets/jcApp.css" rel="stylesheet">
 <?php else : ?>
-    <link href="/assets/<?php echo $assetsMap['app.css'] ?>" rel="stylesheet">
+    <link href="/<?php echo $assetsMap['app.css'] ?>" rel="stylesheet">
 <?php endif ?>
 
     <!--
@@ -56,7 +56,7 @@ $alma = implode(' ', $almaArray);
 <?php if (ENV === 'dev') : ?>
     <script src="/bower_components/modernizr/modernizr.custom.js"></script>
 <?php else : ?>
-    <script src="/assets/<?php echo $assetsMap['modernizr.js'] ?>"></script>
+    <script src="/<?php echo $assetsMap['modernizr.js'] ?>"></script>
 <?php endif ?>
   </head>
 
@@ -97,7 +97,7 @@ $alma = implode(' ', $almaArray);
     <script src="/js/controllers/SecretaryProblemCtrl.js"></script>
 <?php else : ?>
     <script src='/vendor/firebase/firebase.js'></script>
-    <script src="/assets/<?php echo $assetsMap['app.js'] ?>"></script>
+    <script src="/<?php echo $assetsMap['app.js'] ?>"></script>
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
       function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;

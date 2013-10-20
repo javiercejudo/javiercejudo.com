@@ -147,7 +147,8 @@ module.exports = function(grunt) {
 
     hash: {
       options: {
-        mapping: 'assets/assets.map.json'
+        srcBasePath: 'assets/',
+        mapping: 'assets.map.json'
       },
       assets: 'assets/*.{js,css}'
     },
