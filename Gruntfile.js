@@ -326,8 +326,8 @@ module.exports = function(grunt) {
   // Built assets for production and runs tests
   grunt.registerTask('default', [
     'build',
-    'karma:dist',
-    'karma:e2eLive'
+    'karma:dev',
+    'karma:e2eDev'
   ]);
 };
 
