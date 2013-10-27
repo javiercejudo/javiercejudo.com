@@ -111,6 +111,17 @@ module.exports = function(grunt) {
       }
     },
 
+//    less: {
+//      dist: {
+//        options: {
+//          paths: ["css/less"]
+//        },
+//        files: {
+//          "css/stylesheets/jcApp.css": "css/sass/**/*.less"
+//        }
+//      }
+//    },
+
     compass: {
       dist: {
         options: {
@@ -289,6 +300,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-json-minify');
   grunt.loadNpmTasks('grunt-modernizr');
+//  grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-csslint');
   grunt.loadNpmTasks('grunt-html2js');
