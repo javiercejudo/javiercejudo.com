@@ -5,7 +5,4 @@ node_js:
 before_script:
   - gem update --system
   - gem install compass
-
-script:
   - bower install
-  - grunt

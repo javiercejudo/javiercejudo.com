@@ -1,6 +1,9 @@
 {
   "name": "javiercejudo.com",
   "version": "1.0.0",
+  "scripts": {
+    "test": "grunt"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/javiercejudo/javiercejudo.com.git"
@@ -37,9 +40,7 @@
     "grunt-manifest": "~0.4.0",
     "grunt-curl": "~1.1.1",
     "grunt-json-minify": "~0.4.0",
-    "grunt-cli": "~0.1.9"
-  },
-  "scripts": {
-    "test": "./node_modules/.bin/karma start --single-run --browsers PhantomJS"
+    "grunt-cli": "~0.1.9",
+    "grunt-contrib-less": "~0.8.1"
   }
 }
