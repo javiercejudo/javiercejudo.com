@@ -1,7 +1,29 @@
 module.exports = function(grunt) {
+
+  // Load plugins used by this task gruntfile
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-curl');
+  grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-json-minify');
+  grunt.loadNpmTasks('grunt-contrib-less');
+  grunt.loadNpmTasks('grunt-contrib-compass');
+  grunt.loadNpmTasks('grunt-contrib-csslint');
+  grunt.loadNpmTasks('grunt-html2js');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-modernizr');
+  grunt.loadNpmTasks('grunt-hash');
+  grunt.loadNpmTasks('grunt-contrib-imagemin');
+  grunt.loadNpmTasks('grunt-manifest');
+  grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-docular');
+
   var fontsPath = 'fonts';
   var jsPath = 'js';
   var sassPath = 'css/sass';
+  var lessPath = 'css/less';
   var cssPath = 'css/stylesheets';
   var bowerPath = 'bower_components';
   var assetsPath = 'assets';
@@ -63,16 +85,6 @@ module.exports = function(grunt) {
       }
     },
 
-    modernizr: {
-      "devFile" : bowerPath + '/modernizr/modernizr.js',
-      "outputFile" : bowerPath + '/modernizr/modernizr.custom.js',
-      "files": [
-        jsPath + '/**/*.js',
-        sassPath + '/**/*.scss'
-      ],
-      "uglify" : false
-    },
-
     html2js: {
       options: {
         base: '.'
@@ -111,16 +123,16 @@ module.exports = function(grunt) {
       }
     },
 
-//    less: {
-//      dist: {
-//        options: {
-//          paths: ["css/less"]
-//        },
-//        files: {
-//          "css/stylesheets/jcApp.css": "css/sass/**/*.less"
-//        }
-//      }
-//    },
+    less: {
+      dist: {
+        options: {
+          dumpLineNumbers: "comments"
+        },
+        files: {
+          "css/stylesheets/jcApp.css": "css/less/jcApp.less"
+        }
+      }
+    },
 
     compass: {
       dist: {
@@ -154,6 +166,16 @@ module.exports = function(grunt) {
           ]
         }
       }
+    },
+
+    modernizr: {
+      "devFile" : bowerPath + '/modernizr/modernizr.js',
+      "outputFile" : bowerPath + '/modernizr/modernizr.custom.js',
+      "files": [
+        jsPath + '/**/*.js',
+        cssPath + '/**/*.css'
+      ],
+      "uglify" : false
     },
 
     hash: {
@@ -219,6 +241,15 @@ module.exports = function(grunt) {
         ],
         tasks: [
           'compass:dist',
+          'csslint:strict'
+        ]
+      },
+      less: {
+        files: [
+          lessPath + '/**/*.less'
+        ],
+        tasks: [
+          'less:dist',
           'csslint:strict'
         ]
       },
@@ -293,26 +324,6 @@ module.exports = function(grunt) {
     }
   });
 
-  // Load plugins used by this task gruntfile
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-curl');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-json-minify');
-  grunt.loadNpmTasks('grunt-modernizr');
-//  grunt.loadNpmTasks('grunt-contrib-less');
-  grunt.loadNpmTasks('grunt-contrib-compass');
-  grunt.loadNpmTasks('grunt-contrib-csslint');
-  grunt.loadNpmTasks('grunt-html2js');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-hash');
-  grunt.loadNpmTasks('grunt-contrib-imagemin');
-  grunt.loadNpmTasks('grunt-manifest');
-  grunt.loadNpmTasks('grunt-karma');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-docular');
-
   // Default task
   grunt.registerTask('local', [
     'jshint:all',
@@ -320,8 +331,7 @@ module.exports = function(grunt) {
     'curl',
     'copy',
     'json-minify:dist',
-    'modernizr',
-    'compass:dist',
+    'less:dist',
     'csslint:strict',
     'html2js:main'
   ]);
@@ -331,6 +341,7 @@ module.exports = function(grunt) {
     'local',
     'uglify:dist',
     'cssmin:combine',
+    'modernizr',
     'hash',
     'imagemin:dist',
     'manifest:generate'
