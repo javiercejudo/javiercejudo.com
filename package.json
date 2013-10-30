@@ -1,6 +1,6 @@
 {
   "name": "javiercejudo.com",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "scripts": {
     "test": "grunt"
   },
@@ -38,7 +38,7 @@
     "karma-ng-scenario": "~0.1.0",
     "grunt-html2js": "~0.1.7",
     "grunt-manifest": "~0.4.0",
-    "grunt-curl": "~1.1.1",
+    "grunt-curl": "~1.2.0",
     "grunt-json-minify": "~0.4.0",
     "grunt-cli": "~0.1.9",
     "grunt-contrib-less": "~0.8.1"
