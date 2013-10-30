@@ -10,9 +10,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-csslint');
   grunt.loadNpmTasks('grunt-html2js');
+  grunt.loadNpmTasks('grunt-modernizr');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-modernizr');
   grunt.loadNpmTasks('grunt-hash');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-manifest');
@@ -97,6 +97,16 @@ module.exports = function(grunt) {
       }
     },
 
+    modernizr: {
+      "devFile" : bowerPath + '/modernizr/modernizr.js',
+      "outputFile" : bowerPath + '/modernizr/modernizr.custom.js',
+      "files": [
+        jsPath + '/**/*.js',
+        cssPath + '/**/*.css'
+      ],
+      "uglify" : false
+    },
+
     uglify: {
       options: {
         mangle: true
@@ -166,16 +176,6 @@ module.exports = function(grunt) {
           ]
         }
       }
-    },
-
-    modernizr: {
-      "devFile" : bowerPath + '/modernizr/modernizr.js',
-      "outputFile" : bowerPath + '/modernizr/modernizr.custom.js',
-      "files": [
-        jsPath + '/**/*.js',
-        cssPath + '/**/*.css'
-      ],
-      "uglify" : false
     },
 
     hash: {
@@ -339,9 +339,9 @@ module.exports = function(grunt) {
   // Built assets for production
   grunt.registerTask('build', [
     'local',
+    'modernizr',
     'uglify:dist',
     'cssmin:combine',
-    'modernizr',
     'hash',
     'imagemin:dist',
     'manifest:generate'
