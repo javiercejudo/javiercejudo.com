@@ -1,6 +1,7 @@
 .*
 !.gitignore
 !.htaccess.template
+!.htaccess
 !.travis.yml
 !.jshintrc
 #config.php
