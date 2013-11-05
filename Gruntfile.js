@@ -104,7 +104,10 @@ module.exports = function(grunt) {
 
     html2js: {
       options: {
-        base: '.'
+        base: '.',
+        rename: function (templateName) {
+          return templateName.replace('tmp/', '');
+        }
       },
       main: {
         src: [minifiedPartialsPath + '/**/*.html'],
