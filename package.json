@@ -41,6 +41,7 @@
     "grunt-curl": "~1.2.0",
     "grunt-json-minify": "~0.4.0",
     "grunt-cli": "~0.1.9",
-    "grunt-contrib-less": "~0.8.1"
+    "grunt-contrib-less": "~0.8.1",
+    "grunt-contrib-htmlmin": "~0.1.3"
   }
 }

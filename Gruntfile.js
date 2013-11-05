@@ -9,6 +9,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-csslint');
+  grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-html2js');
   grunt.loadNpmTasks('grunt-modernizr');
   grunt.loadNpmTasks('grunt-contrib-uglify');
@@ -28,6 +29,7 @@ module.exports = function(grunt) {
   var bowerPath = 'bower_components';
   var assetsPath = 'assets';
   var partialsPath = 'partials';
+  var minifiedPartialsPath = 'tmp/partials';
   var dataPath = 'data';
   var vendorPath = 'vendor';
 
@@ -85,14 +87,27 @@ module.exports = function(grunt) {
       }
     },
 
+    htmlmin: {
+      dist: {
+        options: {
+          removeComments: true,
+          collapseWhitespace: true
+        },
+        files: [{
+          expand: true,
+          dot: false,
+          dest: 'tmp',
+          src: ['partials/**/*.html']
+        }]
+      }
+    },
+
     html2js: {
       options: {
         base: '.'
       },
       main: {
-        src: [
-          partialsPath + '/**/*.html'
-        ],
+        src: [minifiedPartialsPath + '/**/*.html'],
         dest: jsPath + '/templates.js'
       }
     },
@@ -269,6 +284,7 @@ module.exports = function(grunt) {
           partialsPath + '/**/*.html'
         ],
         tasks: [
+          'htmlmin:dist',
           'html2js:main'
         ]
       }
@@ -333,6 +349,7 @@ module.exports = function(grunt) {
     'json-minify:dist',
     'less:dist',
     'csslint:strict',
+    'htmlmin:dist',
     'html2js:main'
   ]);
 
