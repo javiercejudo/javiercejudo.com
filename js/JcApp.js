@@ -34,20 +34,22 @@
     .config([
       '$routeProvider', '$locationProvider',
       function ($routeProvider, $locationProvider) {
+        var partialsPath = 'partials';
+
         $routeProvider
 
           .when('/', {
-              templateUrl: 'partials/home.html',
+              templateUrl: partialsPath + '/home.html',
               controller: 'HomeCtrl'
           })
 
           .when('/cv/:language', {
-              templateUrl: 'partials/cv.html',
+              templateUrl: partialsPath + '/cv.html',
               controller: 'CvCtrl'
           })
 
           .when('/game/:n', {
-              templateUrl: 'partials/secretary-problem-standalone.html',
+              templateUrl: partialsPath + '/secretary-problem-standalone.html',
               controller: 'SecretaryProblemCtrl'
           })
 
@@ -68,7 +70,7 @@
           })
 
           .otherwise({
-              templateUrl: 'partials/404.html'
+              templateUrl: partialsPath + '/404.html'
           });
 
         $locationProvider.html5Mode(false).hashPrefix('!');
