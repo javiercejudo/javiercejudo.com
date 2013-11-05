@@ -58,8 +58,8 @@ $alma = implode(' ', $almaArray);
 <?php endif ?>
   </head>
 
-  <body data-ng-cloak>
-    <div class="page" itemscope itemtype="http://schema.org/Person">
+  <body>
+    <div class="page ng-cloak" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Javier Cejudo">
       <meta itemprop="jobTitle" content="Web Developer">
 
