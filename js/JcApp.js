@@ -25,6 +25,7 @@
   angular.module(
     'JcApp',
     [
+      'ngRoute',
       'ngSanitize',
       'firebase',
       'templates-main',
@@ -34,7 +35,7 @@
     .config([
       '$routeProvider', '$locationProvider',
       function ($routeProvider, $locationProvider) {
-        var partialsPath = 'partials';
+        var partialsPath = '/partials';
 
         $routeProvider
 

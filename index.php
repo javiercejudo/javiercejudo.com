@@ -29,7 +29,7 @@ $alma = implode(' ', $almaArray);
 <!--[if gt IE 8]><!--> <html <?php echo $alma ?> class="no-js"> <!--<![endif]-->
   <head>
     <meta charset="utf-8">
-    <title data-ng-bind-template="{{pageTitle}} | Javier Cejudo · Web Developer">Loading…</title>
+    <title data-ng-bind-template="{{pageTitle}} | Javier Cejudo · Web Developer">Javier Cejudo · Web Developer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
           content="I'm a young software engineer wishing to continue my career as a web
@@ -44,12 +44,15 @@ $alma = implode(' ', $almaArray);
 <?php else : ?>
     <link href="/<?php echo $assetsMap['app.css'] ?>" rel="stylesheet">
 <?php endif ?>
+    <noscript>
+      <style>.ng-cloak { display: block !important; }</style>
+    </noscript>
 
-<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/ico/apple-touch-icon-144-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/ico/apple-touch-icon-114-precomposed.png">
-<link rel="apple-touch-icon-precomposed" sizes="72x72"   href="/ico/apple-touch-icon-72-precomposed.png">
-<link rel="apple-touch-icon-precomposed"                 href="/ico/apple-touch-icon-57-precomposed.png">
-<link rel="shortcut icon"                                href="/ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"   href="/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed"                 href="/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon"                                href="/ico/favicon.png">
 
 <?php if (ENV === 'dev') : ?>
     <script src="/bower_components/modernizr/modernizr.custom.js"></script>
@@ -65,21 +68,21 @@ $alma = implode(' ', $almaArray);
 
       <?php include 'partials/header.html' ?>
 
-      <section data-ng-view>
-        <div data-ng-include="'partials/loading.html'"></div>
-        <noscript>
+      <noscript>
         <div class="alert alert-danger">
           Please enable JavaScript to navigate through the site. Thanks!
         </div>
         <?php include 'partials/home.html' ?>
-        </noscript>
-      </section>
+      </noscript>
+
+      <section data-ng-view></section>
 
       <?php include 'partials/footer.html' ?>
     </div> <!-- /page -->
 
 <?php if (ENV === 'dev') : ?>
     <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
     <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src='/vendor/firebase/firebase.js'></script>
     <script src="/bower_components/angular-fire/angularFire.js"></script>
