@@ -348,7 +348,7 @@ module.exports = function(grunt) {
   grunt.registerTask('local', [
     'jshint:all',
     'clean',
-    //'curl',
+    'curl',
     'copy',
     'json-minify:dist',
     'less:dist',
