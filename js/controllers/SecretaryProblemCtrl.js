@@ -6,13 +6,13 @@
   angular.module('SecretaryProblem', ['LocalStorageModule'])
 
     .controller(
-      'SecretaryProblemCtrl',
-      ['$scope', '$routeParams', '$location', '$filter', '$log', '$timeout', 'localStorageService',
+      'SecretaryProblemCtrl', [
+        '$scope', '$routeParams', '$location', '$filter', '$log', '$timeout', 'localStorageService',
         function ($scope, $routeParams, $location, $filter, $log, $timeout, localStorageService) {
           $scope.game = {
             info: {
               name: 'Secretary Problem',
-              version: '0.0.1',
+              version: '1.0.6',
               author: 'Javier Cejudo'
             },
             numDigits: {
