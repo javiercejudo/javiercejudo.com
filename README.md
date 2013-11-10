@@ -33,9 +33,9 @@ mobile-first front-end framework.
 framework for testing JavaScript code.
 
 ### CSS:
-
-- [Sass](http://sass-lang.com/): Syntactically Awesome Stylesheets.
-- [Compass](http://compass-style.org/): open-source CSS authoring framework.
+- [LESS](http://lesscss.org/): the dynamic stylesheet language.
+- [Preboot](http://getpreboot.com/): a collection of LESS mixins and
+variables for writing better CSS.
 - [Bootstrap](http://getbootstrap.com/): sleek, intuitive, and powerful
 mobile-first front-end framework.
 
