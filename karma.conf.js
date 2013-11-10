@@ -1,4 +1,11 @@
 module.exports = function(karma) {
+  'use strict';
+
+  var bowerComponentsPath = 'bower_components';
+  var vendorPath = 'vendor';
+  var testsPath = 'tests';
+  var jsPath = 'js';
+
   karma.set({
     // base path, that will be used to resolve files and exclude
     basePath: '.',
@@ -7,16 +14,17 @@ module.exports = function(karma) {
 
     // list of files / patterns to load in the browser
     files: [
-      'bower_components/angular/angular.js',
-      'bower_components/angular-mocks/angular-mocks.js',
-      'bower_components/angular-sanitize/angular-sanitize.js',
-      'vendor/firebase/firebase.js',
-      'bower_components/angular-fire/angularFire.js',
-      'bower_components/angular-localstorage/angular-local-storage.js',
-      'js/JcApp.js',
-      'js/AppFilters.js',
-      'js/**/*.js',
-      'tests/unit/**/*Spec.js'
+      bowerComponentsPath + '/angular/angular.js',
+      bowerComponentsPath + '/angular-route/angular-route.js',
+      bowerComponentsPath + '/angular-mocks/angular-mocks.js',
+      bowerComponentsPath + '/angular-sanitize/angular-sanitize.js',
+      vendorPath +'/firebase/firebase.js',
+      bowerComponentsPath + '/angular-fire/angularFire.js',
+      bowerComponentsPath + '/angular-localstorage/angular-local-storage.js',
+      jsPath + '/JcApp.js',
+      jsPath + '/AppFilters.js',
+      jsPath + '/**/*.js',
+      testsPath +'/unit/**/*Spec.js'
     ],
 
     // list of files to exclude
@@ -65,7 +73,7 @@ module.exports = function(karma) {
     // - IE (only Windows)
     // CLI --browsers Chrome,Firefox,Safari
     browsers: [
-      'PhantomJS',
+      'PhantomJS'
       //'Chrome',
       //'Firefox'
     ],
@@ -78,9 +86,9 @@ module.exports = function(karma) {
     // CLI --single-run --no-single-run
     singleRun: false,
 
-    // report which specs are slower than 500ms
+    // report which specs are slower than [ms]
     // CLI --report-slower-than 500
-    reportSlowerThan: 500,
+    reportSlowerThan: 60000,
 
     // compile coffee scripts
     preprocessors: {

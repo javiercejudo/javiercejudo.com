@@ -106,7 +106,7 @@ module.exports = function(grunt) {
       options: {
         base: '.',
         rename: function (templateName) {
-          return templateName.replace('tmp/', '');
+          return '/' + templateName.replace('tmp/', '');
         }
       },
       main: {
@@ -136,6 +136,7 @@ module.exports = function(grunt) {
         files: {
           'assets/app.js': [
             bowerPath + '/angular/angular.js',
+            bowerPath + '/angular-route/angular-route.js',
             bowerPath + '/angular-sanitize/angular-sanitize.js',
             bowerPath + '/angular-fire/angularFire.js',
             bowerPath + '/angular-localstorage/angular-local-storage.js',
