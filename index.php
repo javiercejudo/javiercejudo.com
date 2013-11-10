@@ -42,7 +42,7 @@ $alma = implode(' ', $almaArray);
     <link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link href="/css/stylesheets/jcApp.css" rel="stylesheet">
 <?php else : ?>
-    <link href="/<?php echo $assetsMap['app.css'] ?>" rel="stylesheet">
+    <link href="/<?php echo $assetsMap['assets/app.css'] ?>" rel="stylesheet">
 <?php endif ?>
     <noscript>
       <style>.ng-cloak { display: block !important; }</style>
@@ -57,7 +57,7 @@ $alma = implode(' ', $almaArray);
 <?php if (ENV === 'dev') : ?>
     <script src="/bower_components/modernizr/modernizr.custom.js"></script>
 <?php else : ?>
-    <script src="/<?php echo $assetsMap['modernizr.js'] ?>"></script>
+    <script src="/<?php echo $assetsMap['assets/modernizr.js'] ?>"></script>
 <?php endif ?>
   </head>
 
@@ -84,6 +84,7 @@ $alma = implode(' ', $almaArray);
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/angular-route/angular-route.js"></script>
     <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="/bower_components/angular-touch/angular-touch.js"></script>
     <script src='/vendor/firebase/firebase.js'></script>
     <script src="/bower_components/angular-fire/angularFire.js"></script>
     <script src="/bower_components/angular-localstorage/angular-local-storage.js"></script>
@@ -97,8 +98,8 @@ $alma = implode(' ', $almaArray);
     <script src="/js/controllers/CvCtrl.js"></script>
     <script src="/js/controllers/SecretaryProblemCtrl.js"></script>
 <?php else : ?>
-    <script src='/vendor/firebase/firebase.js'></script>
-    <script src="/<?php echo $assetsMap['app.js'] ?>"></script>
+    <script src="/<?php echo $assetsMap['vendor/firebase/firebase.js'] ?>"></script>
+    <script src="/<?php echo $assetsMap['assets/app.js'] ?>"></script>
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
       function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;

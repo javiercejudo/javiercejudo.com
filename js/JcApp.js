@@ -27,6 +27,7 @@
     [
       'ngRoute',
       'ngSanitize',
+      'ngTouch',
       'firebase',
       'templates-main',
       'SecretaryProblem'

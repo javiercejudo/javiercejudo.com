@@ -138,6 +138,7 @@ module.exports = function(grunt) {
             bowerPath + '/angular/angular.js',
             bowerPath + '/angular-route/angular-route.js',
             bowerPath + '/angular-sanitize/angular-sanitize.js',
+            bowerPath + '/angular-touch/angular-touch.js',
             bowerPath + '/angular-fire/angularFire.js',
             bowerPath + '/angular-localstorage/angular-local-storage.js',
             jsPath + '/JcApp.js',
@@ -199,10 +200,13 @@ module.exports = function(grunt) {
 
     hash: {
       options: {
-        srcBasePath: 'assets/',
+        //srcBasePath: assetsPath + '/',
         mapping: 'assets.map.json'
       },
-      assets: 'assets/*.{js,css}'
+      assets: [
+        vendorPath + '/firebase/firebase.js',
+        assetsPath + '/*.{js,css}'
+      ]
     },
 
     imagemin: {
