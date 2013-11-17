@@ -67,7 +67,7 @@ $alma = implode(' ', $almaArray);
       <meta itemprop="name" content="Javier Cejudo">
       <meta itemprop="jobTitle" content="Web Developer">
 
-      <header class="masthead" ng-include="'/partials/header.html'"></header>
+      <header class="masthead" data-ng-include="'/partials/header.html'"></header>
 
       <noscript>
         <header class="masthead row"><?php include 'partials/header.html' ?></header>
@@ -84,7 +84,7 @@ $alma = implode(' ', $almaArray);
 
       <section data-ng-view></section>
 
-      <footer class="footer" ng-include="'/partials/footer.html'"></footer>
+      <footer class="footer" data-ng-include="'/partials/footer.html'"></footer>
     </div> <!-- /page -->
 
     <script>var ENV = '<?php echo ENV ?>';</script>
