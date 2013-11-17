@@ -1,6 +1,6 @@
 {
   "name": "javiercejudo.com",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -8,20 +8,20 @@
     "tests"
   ],
   "devDependencies": {
-    "angular": "~1.2.0",
-    "angular-mocks": "~1.2.0",
-    "angular-scenario": "~1.2.0",
-    "angular-route": "~1.2.0",
-    "angular-sanitize": "~1.2.0",
-    "angular-touch": "~1.2.0",
+    "angular": "~1.2.1",
+    "angular-mocks": "~1.2.1",
+    "angular-scenario": "~1.2.1",
+    "angular-route": "~1.2.1",
+    "angular-sanitize": "~1.2.1",
+    "angular-touch": "~1.2.1",
+    "angular-fire": "~0.3.1",
+    "angular-localstorage": "*",
     "jquery": "~1.10.2",
     "modernizr": "~2.6.2",
-    "angular-localstorage": "latest",
     "bootstrap": "~3.0.2",
-    "angular-fire": "~0.3.1",
     "preboot": "*"
   },
   "resolutions": {
-    "angular": "~1.2.0"
+    "angular": "~1.2.1"
   }
 }

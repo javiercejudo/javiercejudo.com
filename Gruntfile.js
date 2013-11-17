@@ -246,7 +246,6 @@ module.exports = function(grunt) {
         src: [
           // partialsPath + '/**/*.html',
           assetsPath + '/**/*.{css,js}',
-          vendorPath + '/**/*.js',
           fontsPath + '/**/*',
           dataPath + '/min/**/*'
         ],

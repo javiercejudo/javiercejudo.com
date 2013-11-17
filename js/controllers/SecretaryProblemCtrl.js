@@ -12,7 +12,7 @@
           $scope.game = {
             info: {
               name: 'Secretary Problem',
-              version: '1.0.7',
+              version: '1.0.8',
               author: 'Javier Cejudo'
             },
             numDigits: {
@@ -315,42 +315,43 @@
             return Math.floor(Math.random() * (max - min + 1)) + min;
           };
 
+          $scope.findBestStrategy = function (n) {
+            var strategyCandidate = Math.floor(n / Math.E),
+              sum = 0,
+              i;
+
+            for(i = strategyCandidate + 2; i <= n; i += 1) {
+              sum += 1 / (i - 1);
+            }
+
+            return (sum > 1) ? strategyCandidate + 1 : strategyCandidate;
+          };
+
           $scope.automaticGame = function (n, numberOfGames) {
             var game = $scope.game;
-            var strategyCandidate;
             var strategy;
-            var sum = 0;
-            var sumIndex;
             var itemIndex;
             var gameIndex;
             var currentValue;
             var maxValue;
             var wonGamesCount = 0;
 
-            numberOfGames = numberOfGames || 1;
-            game.n = n || game.n;
+            game.n = parseInt(n, 10) || game.n;
+            numberOfGames = parseInt(numberOfGames, 10) || 1;
 
-            if (isNaN(parseInt(game.n, 10))) {
+            if (isNaN(game.n)) {
               $log.warn('The parameter "n" must be an integer number');
               return null;
             }
 
-            if (isNaN(parseInt(numberOfGames, 10))) {
+            if (isNaN(numberOfGames)) {
               $log.warn('The parameter "numberOfGames" must be an integer number');
               return null;
             }
 
             $routeParams.n = game.n;
 
-            strategyCandidate = Math.floor(game.n / Math.E);
-
-            $scope.$digest();
-
-            for(sumIndex = strategyCandidate + 2; sumIndex <= game.n; sumIndex += 1) {
-              sum += 1 / (sumIndex - 1);
-            }
-
-            strategy = sum > 1 ? strategyCandidate + 1 : strategyCandidate;
+            strategy = $scope.findBestStrategy(game.n);
 
             for(gameIndex = 0; gameIndex < numberOfGames; gameIndex += 1) {
               if ((gameIndex + 1) % 10 === 0) {

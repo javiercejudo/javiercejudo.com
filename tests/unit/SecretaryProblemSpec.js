@@ -18,10 +18,82 @@
     }));
 
     describe('automaticGame', function () {
+      it('should choose the optimal strategy', function () {
+        var computedR,
+          optimalStrategies = {
+            1       : 0,
+            2       : 0,
+            3       : 1,
+            4       : 1,
+            5       : 2,
+            6       : 2,
+            7       : 2,
+            8       : 3,
+            9       : 3,
+            10      : 3,
+            11      : 4,
+            12      : 4,
+            13      : 5,
+            14      : 5,
+            15      : 5,
+            16      : 6,
+            17      : 6,
+            18      : 6,
+            19      : 7,
+            20      : 7,
+            271     : 100,
+            543     : 200,
+            815     : 300,
+            1087    : 400,
+            1359    : 500,
+            1631    : 600,
+            1902    : 700,
+            2174    : 800,
+            2446    : 900,
+            2718    : 1000,
+            5436    : 2000,
+            8154    : 3000,
+            10873   : 4000,
+            13591   : 5000,
+            16309   : 6000,
+            19028   : 7000,
+            21746   : 8000,
+            24464   : 9000,
+            27182   : 10000,
+            54365   : 20000,
+            81548   : 30000,
+            108731  : 40000,
+            135914  : 50000,
+            163097  : 60000,
+            190279  : 70000,
+            217462  : 80000,
+            244645  : 90000,
+            271828  : 100000,
+            543656  : 200000,
+            815484  : 300000,
+            1087312 : 400000,
+            1359141 : 500000,
+            1630969 : 600000,
+            1902797 : 700000,
+            2174625 : 800000,
+            2446453 : 900000,
+            2718281 : 1000000,
+            5436563 : 2000000
+          };
+
+        angular.forEach(optimalStrategies, function (r, n) {
+          computedR = scope.findBestStrategy(n);
+
+          expect(computedR).toBe(r);
+        });
+      });
+
       it('should win and lose at least a game with n unrealistically big', function () {
+        spyOn(scope, 'findBestStrategy').andReturn(2759);
+
         var
           numberOfItems = 7500,
-          numberOfGames = 12,
+          numberOfGames = 15,
           successRate = scope.automaticGame(numberOfItems, numberOfGames);
 
         expect(successRate).toBeGreaterThan(0);
@@ -29,6 +101,8 @@
       });
 
       it('should achieve a ~1/e success rate with n big', function () {
+        spyOn(scope, 'findBestStrategy').andReturn(94);
+
         var
           numberOfItems = 256,
           numberOfGames = 1000, // max: 22500
@@ -41,6 +115,8 @@
       });
 
       it('should achieve a ~1/2 success rate with n=3', function () {
+        spyOn(scope, 'findBestStrategy').andReturn(1);
+
         var
           numberOfItems = 3,
           numberOfGames = 1000, // max: 500000
