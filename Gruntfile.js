@@ -7,7 +7,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-json-minify');
   grunt.loadNpmTasks('grunt-contrib-less');
-  grunt.loadNpmTasks('grunt-contrib-compass');
   grunt.loadNpmTasks('grunt-contrib-csslint');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
   grunt.loadNpmTasks('grunt-html2js');
@@ -23,7 +22,6 @@ module.exports = function(grunt) {
 
   var fontsPath = 'fonts';
   var jsPath = 'js';
-  var sassPath = 'css/sass';
   var lessPath = 'css/less';
   var cssPath = 'css/stylesheets';
   var bowerPath = 'bower_components';
@@ -116,6 +114,13 @@ module.exports = function(grunt) {
     },
 
     modernizr: {
+      extra : {
+        shiv : false,
+        printshiv : false,
+        load : false,
+        mq : false,
+        cssclasses : true
+      },
       "devFile" : bowerPath + '/modernizr/modernizr.js',
       "outputFile" : bowerPath + '/modernizr/modernizr.custom.js',
       "files": [
@@ -135,10 +140,12 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'assets/app.js': [
+            bowerPath + '/modernizr/modernizr.custom.js',
             bowerPath + '/angular/angular.js',
             bowerPath + '/angular-route/angular-route.js',
             bowerPath + '/angular-sanitize/angular-sanitize.js',
             bowerPath + '/angular-touch/angular-touch.js',
+            bowerPath + '/angular-animate/angular-animate.js',
             bowerPath + '/angular-fire/angularFire.js',
             bowerPath + '/angular-localstorage/angular-local-storage.js',
             jsPath + '/JcApp.js',
@@ -146,8 +153,8 @@ module.exports = function(grunt) {
             jsPath + '/AppFilters.js',
             jsPath + '/**/*.js'
           ],
-          'assets/modernizr.js': [
-            bowerPath + '/modernizr/modernizr.custom.js'
+          'assets/html5shiv.js': [
+            bowerPath + '/html5shiv/dist/html5shiv.js'
           ]
         }
       }
@@ -160,15 +167,6 @@ module.exports = function(grunt) {
         },
         files: {
           "css/stylesheets/jcApp.css": "css/less/jcApp.less"
-        }
-      }
-    },
-
-    compass: {
-      dist: {
-        options: {
-          sassDir: 'css/sass',
-          cssDir: 'css/stylesheets'
         }
       }
     },
@@ -234,8 +232,8 @@ module.exports = function(grunt) {
           // fallback: ['/ /offline.html'],
           exclude: [
             assetsPath + '/app.css',
-            assetsPath + '/modernizr.js',
-            assetsPath + '/app.js'
+            assetsPath + '/app.js',
+            assetsPath + '/html5shiv.js'
           ],
           preferOnline: false,
           verbose: false,
@@ -247,24 +245,15 @@ module.exports = function(grunt) {
           // partialsPath + '/**/*.html',
           assetsPath + '/**/*.{css,js}',
           fontsPath + '/**/*',
-          dataPath + '/min/**/*'
+          dataPath + '/min/**/*.json'
         ],
-        dest: 'cache.manifest'
+        dest: 'manifest.appcache'
       }
     },
 
     watch: {
       options: {
         nospawn: true
-      },
-      sass: {
-        files: [
-          sassPath + '/**/*.scss'
-        ],
-        tasks: [
-          'compass:dist',
-          'csslint:strict'
-        ]
       },
       less: {
         files: [

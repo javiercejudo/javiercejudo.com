@@ -1,4 +1,6 @@
-/*global angular:true, browser:true */
+/*global angular:true, browser:true, ENV:true */
+
+var ENV = ENV || 'live';
 
 /**
  * @doc overview
@@ -9,9 +11,26 @@
  *
  * My personal website.
  */
-
 (function (angular) {
   'use strict';
+
+  var
+    dependencies = [
+      // angular
+      'ngRoute',
+      'ngSanitize',
+      'ngTouch',
+
+      // vendor
+      'firebase',
+
+      // local
+      'SecretaryProblem'
+    ];
+
+  if (ENV === 'live') {
+    dependencies.push('templates-main');
+  }
 
   /**
    * @doc module
@@ -22,24 +41,14 @@
    *
    * Lists the dependencies for the app and defines the routing.
    */
-  angular.module(
-    'JcApp',
-    [
-      'ngRoute',
-      'ngSanitize',
-      'ngTouch',
-      'firebase',
-      'templates-main',
-      'SecretaryProblem'
-    ]
-  )
+  angular.module('JcApp',  dependencies)
+
     .config([
       '$routeProvider', '$locationProvider',
       function ($routeProvider, $locationProvider) {
         var partialsPath = '/partials';
 
         $routeProvider
-
           .when('/', {
               templateUrl: partialsPath + '/home.html',
               controller: 'HomeCtrl'
@@ -94,4 +103,3 @@
       }, false);
     }]);
 }(angular));
-

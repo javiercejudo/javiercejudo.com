@@ -545,7 +545,7 @@ AddCharset utf-8 .atom .css .js .json .rss .vtt .xml
 <IfModule mod_rewrite.c>
   RewriteCond %{REQUEST_URI} !^/$
   RewriteCond %{REQUEST_URI} !^/.*\.map
-  RewriteCond %{REQUEST_URI} !^/cache.manifest
+  RewriteCond %{REQUEST_URI} !^/manifest.appcache
   RewriteCond %{REQUEST_URI} !^/assets/.*
   RewriteCond %{REQUEST_URI} !^/bower_components/.*
   RewriteCond %{REQUEST_URI} !^/css/.*
@@ -557,6 +557,7 @@ AddCharset utf-8 .atom .css .js .json .rss .vtt .xml
   RewriteCond %{REQUEST_URI} !^/js/.*
   RewriteCond %{REQUEST_URI} !^/partials/.*
   RewriteCond %{REQUEST_URI} !^/vendor/.*
+  RewriteCond %{REQUEST_URI} !^/wraith/shots/.*
   RewriteRule ^(.*)$ /#!/$1 [R=301,NE,L]
 </IfModule>
 

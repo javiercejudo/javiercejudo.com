@@ -5,18 +5,16 @@ require 'config.php';
 $assetsMapFile = '';
 $assetsMap     = '';
 
-if (ENV === 'live') {
-    $assetsMapFile = file_get_contents('assets.map.json');
-    $assetsMap     = json_decode($assetsMapFile, true);
-}
-
 $almaArray = array(
     'angular' => 'data-ng-app="JcApp" data-ng-controller="AppCtrl"',
     'lang'    => 'lang="en"'
 );
 
-if ($_SERVER['REQUEST_URI'] === '/' && ENV === 'live') {
-    $almaArray['manifest'] = 'manifest="cache.manifest"';
+if (ENV === 'live') {
+    $almaArray['manifest'] = 'manifest="manifest.appcache"';
+
+    $assetsMapFile = file_get_contents('assets.map.json');
+    $assetsMap     = json_decode($assetsMapFile, true);
 }
 
 $alma = implode(' ', $almaArray);
@@ -33,9 +31,9 @@ $alma = implode(' ', $almaArray);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
           content="I'm a young software engineer wishing to continue my career as a web
-                   developer where skills in database systems, data processing and
-                   mathematical training can be used, with special interest in frontend
-                   development and management systems (e.g. e-commerce, finance).">
+                   developer with special interest in frontend development and management
+                   systems (e.g. e-commerce, finance) to apply my skills in databases,
+                   data processing and mathematical training.">
     <meta name="author" content="Javier Cejudo">
 
 <?php if (ENV === 'dev') : ?>
@@ -44,6 +42,7 @@ $alma = implode(' ', $almaArray);
 <?php else : ?>
     <link href="/<?php echo $assetsMap['assets/app.css'] ?>" rel="stylesheet">
 <?php endif ?>
+
     <noscript>
       <style>.ng-cloak { display: block !important; }</style>
     </noscript>
@@ -54,11 +53,13 @@ $alma = implode(' ', $almaArray);
     <link rel="apple-touch-icon-precomposed"                 href="/ico/apple-touch-icon-57-precomposed.png">
     <link rel="shortcut icon"                                href="/ico/favicon.png">
 
+    <!--[if lt IE 9]>
 <?php if (ENV === 'dev') : ?>
-    <script src="/bower_components/modernizr/modernizr.custom.js"></script>
+      <script src="/bower_components/html5shiv/dist/html5shiv.js"></script>
 <?php else : ?>
-    <script src="/<?php echo $assetsMap['assets/modernizr.js'] ?>"></script>
+      <script src="/<?php echo $assetsMap['assets/html5shiv.js'] ?>"></script>
 <?php endif ?>
+    <![endif]-->
   </head>
 
   <body>
@@ -66,29 +67,38 @@ $alma = implode(' ', $almaArray);
       <meta itemprop="name" content="Javier Cejudo">
       <meta itemprop="jobTitle" content="Web Developer">
 
-      <?php include 'partials/header.html' ?>
+      <header class="masthead" ng-include="'/partials/header.html'"></header>
 
       <noscript>
+        <header class="masthead row"><?php include 'partials/header.html' ?></header>
+
         <div class="alert alert-danger">
-          Please enable JavaScript to navigate through the site. Thanks!
+          For full functionality of this site it is necessary to enable JavaScript.
+          Here are the <a href="http://www.enable-javascript.com/" target="_blank">
+          instructions how to enable JavaScript in your web browser</a>.
         </div>
         <?php include 'partials/home.html' ?>
+
+        <footer class="footer row" ><?php include 'partials/footer.html' ?></footer>
       </noscript>
 
       <section data-ng-view></section>
 
-      <?php include 'partials/footer.html' ?>
+      <footer class="footer" ng-include="'/partials/footer.html'"></footer>
     </div> <!-- /page -->
 
+    <script>var ENV = '<?php echo ENV ?>';</script>
+
 <?php if (ENV === 'dev') : ?>
+    <script src='/vendor/firebase/firebase.js'></script>
+    <script src="/bower_components/modernizr/modernizr.js"></script>
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/angular-route/angular-route.js"></script>
     <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="/bower_components/angular-touch/angular-touch.js"></script>
-    <script src='/vendor/firebase/firebase.js'></script>
+    <script src="/bower_components/angular-animate/angular-animate.js"></script>
     <script src="/bower_components/angular-fire/angularFire.js"></script>
     <script src="/bower_components/angular-localstorage/angular-local-storage.js"></script>
-    <script src="/js/templates.js"></script>
 
     <script src="/js/JcApp.js"></script>
     <script src="/js/AppDirectives.js"></script>

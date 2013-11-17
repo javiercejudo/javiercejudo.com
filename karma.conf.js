@@ -15,11 +15,13 @@ module.exports = function(karma) {
     // list of files / patterns to load in the browser
     files: [
       vendorPath +'/firebase/firebase.js',
+      bowerComponentsPath + '/modernizr/modernizr.js',
       bowerComponentsPath + '/angular/angular.js',
       bowerComponentsPath + '/angular-route/angular-route.js',
       bowerComponentsPath + '/angular-mocks/angular-mocks.js',
       bowerComponentsPath + '/angular-sanitize/angular-sanitize.js',
       bowerComponentsPath + '/angular-touch/angular-touch.js',
+      bowerComponentsPath + '/angular-animate/angular-animate.js',
       bowerComponentsPath + '/angular-fire/angularFire.js',
       bowerComponentsPath + '/angular-localstorage/angular-local-storage.js',
       jsPath + '/JcApp.js',

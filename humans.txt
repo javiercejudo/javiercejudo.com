@@ -1,0 +1,13 @@
+# humanstxt.org/
+# The humans responsible & technology colophon
+
+# TEAM
+
+    Javier Cejudo -- Web developer -- @javiercejudo
+
+# TECHNOLOGY COLOPHON
+
+    NPM, Bower, Grunt, Karma, Travis CI,
+    AngularJS, AngularFire, Firebase,
+    jQuery, Modernizr, Bootstrap, Jasmine,
+    LESS, Preboot, PHP, html5shiv

@@ -12,7 +12,7 @@
           $scope.game = {
             info: {
               name: 'Secretary Problem',
-              version: '1.0.8',
+              version: '1.1.0',
               author: 'Javier Cejudo'
             },
             numDigits: {
