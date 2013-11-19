@@ -42,4 +42,6 @@ is especially suited for Web development.
 JavaScript.
 - [Jasmine](http://pivotal.github.io/jasmine/): behavior-driven development
 framework for testing JavaScript code.
+- [Travis CI](https://travis-ci.org/): free hosted continuous integration
+platform for the open source community.
 - [Wraith](https://github.com/BBC-News/wraith): Front-end regression testing tool.
