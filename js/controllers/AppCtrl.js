@@ -22,7 +22,8 @@
         $scope.$on('$routeChangeSuccess', function() {
           $scope.path = $location.path();
 
-          if ($window.hasOwnProperty('ga')) {
+          // workaround for IE < 9
+          if (Object.prototype.hasOwnProperty.call($window, 'ga')) {
             $window.ga('send', 'pageview', $location.path());
           }
         });

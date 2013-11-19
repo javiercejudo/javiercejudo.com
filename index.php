@@ -6,7 +6,7 @@ $assetsMapFile = '';
 $assetsMap     = '';
 
 $almaArray = array(
-    'angular' => 'data-ng-app="JcApp" data-ng-controller="AppCtrl"',
+    'angular' => 'xmlns:ng="http://angularjs.org" id="ng-app" data-ng-app="JcApp" data-ng-controller="AppCtrl"',
     'lang'    => 'lang="en"'
 );
 
@@ -28,6 +28,7 @@ $alma = implode(' ', $almaArray);
   <head>
     <meta charset="utf-8">
     <title data-ng-bind-template="{{pageTitle}} | Javier Cejudo · Web Developer">Javier Cejudo · Web Developer</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
           content="I'm a young software engineer wishing to continue my career as a web
@@ -92,6 +93,7 @@ $alma = implode(' ', $almaArray);
 <?php if (ENV === 'dev') : ?>
     <script src='/vendor/firebase/firebase.js'></script>
     <script src="/bower_components/modernizr/modernizr.js"></script>
+    <script src="/bower_components/jquery/jquery.js"></script>
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/angular-route/angular-route.js"></script>
     <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>

@@ -88,18 +88,26 @@ var ENV = ENV || 'live';
     }])
 
     .run(['$window', '$rootScope', function($window, $rootScope) {
-      $rootScope.online = navigator.onLine;
+      $rootScope.online = $window.navigator.onLine;
 
-      $window.addEventListener("offline", function () {
-        $rootScope.$apply(function() {
-          $rootScope.online = false;
-        });
-      }, false);
+      var
+        onlineHandler = function () {
+          $rootScope.$apply(function() {
+            $rootScope.online = false;
+          });
+        },
+        offlineHandler = function () {
+          $rootScope.$apply(function() {
+            $rootScope.online = false;
+          });
+        };
 
-      $window.addEventListener("online", function () {
-        $rootScope.$apply(function() {
-          $rootScope.online = true;
-        });
-      }, false);
+      if ($window.addEventListener) {
+        $window.addEventListener("offline", onlineHandler, false);
+        $window.addEventListener("online", offlineHandler, false);
+      } else {
+        $window.attachEvent("offline", offlineHandler);
+        $window.attachEvent("online", onlineHandler);
+      }
     }]);
 }(angular));

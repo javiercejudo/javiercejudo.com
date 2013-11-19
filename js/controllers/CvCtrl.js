@@ -1,6 +1,6 @@
-/*global angular:true, Firebase:true, browser:true */
+/*global angular:true, Firebase:true, browser:true, jQuery:true */
 
-(function (angular) {
+(function (angular, $) {
   'use strict';
 
   angular.module('JcApp').controller(
@@ -31,25 +31,24 @@
 
         $scope.initCv = function () {
           var cv = $scope.cv;
-          var firebase = $scope.firebase;
-          var firebasePromise;
+//          var firebase = $scope.firebase;
+//          var firebasePromise;
 
           cv.loading = true;
 
-          if (!$rootScope.online) {
+          if (!$rootScope.online || true) {
             $scope.setCvDataFromBackup();
-            return;
           }
 
-          firebase.ref = new Firebase('https://c3jud0.firebaseio.com/cv');
-          firebasePromise = angularFire(firebase.ref, $scope, 'cv.data');
-
-          firebasePromise.then(function () {
-            cv.loading = false;
-            $scope.setLanguage();
-          }, function () {
-            $scope.setCvDataFromBackup();
-          });
+//          firebase.ref = new Firebase('https://c3jud0.firebaseio.com/cv');
+//          firebasePromise = angularFire(firebase.ref, $scope, 'cv.data');
+//
+//          firebasePromise.then(function () {
+//            cv.loading = false;
+//            $scope.setLanguage();
+//          }, function () {
+//            $scope.setCvDataFromBackup();
+//          });
         };
 
 //        $scope.setCvData = function () {
@@ -94,7 +93,8 @@
 
           cv.language = params.language;
 
-          if (params.language && languages.indexOf(params.language) !== -1) {
+          // uses jQuery's inArray instead of indexOf dure to IE < 9 issues
+          if (params.language && $.inArray(params.language, languages) !== -1) {
             $rootScope.pageTitle = 'CV: ' + $filter('jcCapitalise')(params.language);
             $scope.cvLocal = cv.data[params.language];
             return;
@@ -106,5 +106,4 @@
       }]
   );
 
-}(angular));
-
+}(angular, jQuery));
