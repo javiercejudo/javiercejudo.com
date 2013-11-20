@@ -10,4 +10,4 @@
     NPM, Bower, Grunt, Karma, Travis CI,
     AngularJS, AngularFire, Firebase,
     jQuery, Modernizr, Bootstrap, Jasmine,
-    LESS, Preboot, PHP, html5shiv
+    LESS, Preboot, PHP, html5shiv, respond.js

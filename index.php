@@ -57,8 +57,9 @@ $alma = implode(' ', $almaArray);
     <!--[if lt IE 9]>
 <?php if (ENV === 'dev') : ?>
       <script src="/bower_components/html5shiv/dist/html5shiv.js"></script>
+      <script src="/bower_components/respond/respond.src.js"></script>
 <?php else : ?>
-      <script src="/<?php echo $assetsMap['assets/html5shiv.js'] ?>"></script>
+      <script src="/<?php echo $assetsMap['assets/top.js'] ?>"></script>
 <?php endif ?>
     <![endif]-->
   </head>

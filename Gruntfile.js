@@ -20,6 +20,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-docular');
 
+  var tmpPath = 'tmp';
   var fontsPath = 'fonts';
   var jsPath = 'js';
   var lessPath = 'css/less';
@@ -27,7 +28,7 @@ module.exports = function(grunt) {
   var bowerPath = 'bower_components';
   var assetsPath = 'assets';
   var partialsPath = 'partials';
-  var minifiedPartialsPath = 'tmp/partials';
+  var minifiedPartialsPath = tmpPath + '/partials';
   var dataPath = 'data';
   var vendorPath = 'vendor';
 
@@ -48,9 +49,11 @@ module.exports = function(grunt) {
     },
 
     clean: [
-      assetsPath + '/**/*',
-      cssPath + '/**/*.css',
-      fontsPath + '/**/*'
+      'assets.map.json',
+      assetsPath,
+      fontsPath,
+      minifiedPartialsPath,
+      cssPath + '/**/*.css'
     ],
 
     curl: {
@@ -154,8 +157,9 @@ module.exports = function(grunt) {
             jsPath + '/AppFilters.js',
             jsPath + '/**/*.js'
           ],
-          'assets/html5shiv.js': [
-            bowerPath + '/html5shiv/dist/html5shiv.js'
+          'assets/top.js': [
+            bowerPath + '/html5shiv/dist/html5shiv.js',
+            bowerPath + '/respond/respond.src.js'
           ]
         }
       }
@@ -234,7 +238,7 @@ module.exports = function(grunt) {
           exclude: [
             assetsPath + '/app.css',
             assetsPath + '/app.js',
-            assetsPath + '/html5shiv.js'
+            assetsPath + '/top.js'
           ],
           preferOnline: false,
           verbose: false,

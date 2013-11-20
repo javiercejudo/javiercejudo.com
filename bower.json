@@ -21,7 +21,8 @@
     "modernizr": "~2.6.2",
     "bootstrap": "~3.0.2",
     "preboot": "*",
-    "html5shiv": "~3.7.0"
+    "html5shiv": "~3.7.0",
+    "respond": "~1.3.0"
   },
   "resolutions": {
     "angular": "~1.2.1"
