@@ -41,7 +41,7 @@ $alma = implode(' ', $almaArray);
     <link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
     <link href="/css/stylesheets/jcApp.css" rel="stylesheet">
 <?php else : ?>
-    <link href="/<?php echo $assetsMap['assets/app.css'] ?>" rel="stylesheet">
+    <link href="/assets/<?php echo $assetsMap['app.css'] ?>" rel="stylesheet">
 <?php endif ?>
 
     <noscript>
@@ -59,7 +59,7 @@ $alma = implode(' ', $almaArray);
       <script src="/bower_components/html5shiv/dist/html5shiv.js"></script>
       <script src="/bower_components/respond/respond.src.js"></script>
 <?php else : ?>
-      <script src="/<?php echo $assetsMap['assets/top.js'] ?>"></script>
+      <script src="/assets/<?php echo $assetsMap['top.js'] ?>"></script>
 <?php endif ?>
     <![endif]-->
   </head>
@@ -111,8 +111,8 @@ $alma = implode(' ', $almaArray);
     <script src="/js/controllers/CvCtrl.js"></script>
     <script src="/js/controllers/SecretaryProblemCtrl.js"></script>
 <?php else : ?>
-    <script src="/<?php echo $assetsMap['vendor/firebase/firebase.js'] ?>"></script>
-    <script src="/<?php echo $assetsMap['assets/app.js'] ?>"></script>
+    <script src="/assets/<?php echo $assetsMap['firebase.js'] ?>"></script>
+    <script src="/assets/<?php echo $assetsMap['app.js'] ?>"></script>
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
       function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;

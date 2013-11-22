@@ -89,11 +89,11 @@ module.exports = function(grunt) {
     },
 
     htmlmin: {
+      options: {
+        removeComments: true,
+        collapseWhitespace: true
+      },
       dist: {
-        options: {
-          removeComments: true,
-          collapseWhitespace: true
-        },
         files: [{
           expand: true,
           dot: false,
@@ -203,8 +203,9 @@ module.exports = function(grunt) {
 
     hash: {
       options: {
-        //srcBasePath: assetsPath + '/',
-        mapping: 'assets.map.json'
+        mapping: 'assets.map.json',
+        hashLength: 8,
+        flatten: true
       },
       assets: [
         vendorPath + '/firebase/firebase.js',

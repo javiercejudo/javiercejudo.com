@@ -1,6 +1,6 @@
 {
-  "vendor/firebase/firebase.js": "assets/firebase.10ffff1d.js",
-  "assets/app.css": "assets/app.a5431bb0.css",
-  "assets/app.js": "assets/app.b1632607.js",
-  "assets/top.js": "assets/top.86accbe6.js"
+  "firebase.js": "firebase.9eb8d53a.js",
+  "app.css": "app.a5431bb0.css",
+  "app.js": "app.d694fdd4.js",
+  "top.js": "top.86accbe6.js"
 }
