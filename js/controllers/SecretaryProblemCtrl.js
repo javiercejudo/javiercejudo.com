@@ -37,8 +37,7 @@
             lastItemShown: null,
             itemSelected: null,
             won: null,
-            record: {},
-            automaticGame: false
+            record: {}
           };
 
           $scope.$watch('game.numItemsShown', function (numItemsShown) {

@@ -114,6 +114,20 @@
         expect(rateDifference).toBeLessThan(acceptedMargin);
       });
 
+      it('should achieve ~20% success rate with n=5 if selecting the first box', function () {
+        spyOn(scope, 'findBestStrategy').andReturn(0);
+
+        var
+          numberOfItems = 5,
+          numberOfGames = 1000,
+          expectedRate = 1 / numberOfItems,
+          acceptedMargin = 0.05,
+          successRate = scope.automaticGame(numberOfItems, numberOfGames),
+          rateDifference = Math.abs(successRate - expectedRate);
+
+        expect(rateDifference).toBeLessThan(acceptedMargin);
+      });
+
       it('should achieve a ~1/2 success rate with n=3', function () {
         spyOn(scope, 'findBestStrategy').andReturn(1);
 
