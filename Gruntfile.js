@@ -31,21 +31,21 @@ module.exports = function(grunt) {
   var minifiedPartialsPath = tmpPath + '/partials';
   var dataPath = 'data';
   var vendorPath = 'vendor';
+  var testsPath = 'tests';
 
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
     jshint: {
+      options: {
+        jshintrc: true
+      },
       all: [
         'Gruntfile.js',
-        jsPath + '/**/*.js'
-      ],
-      options: {
-        "globals": {
-          "jQuery": true
-        }
-      }
+        jsPath + '/**/*.js',
+        testsPath + '/**/*.js'
+      ]
     },
 
     clean: [
@@ -107,7 +107,7 @@ module.exports = function(grunt) {
       options: {
         base: '.',
         rename: function (templateName) {
-          return '/' + templateName.replace('tmp/', '');
+          return templateName.replace('tmp/', '');
         }
       },
       main: {
@@ -177,10 +177,10 @@ module.exports = function(grunt) {
     },
 
     csslint: {
+      options: {
+        csslintrc: ".csslintrc"
+      },
       strict: {
-        options: {
-          import: 2
-        },
         src: [
           cssPath + '**/*.css'
         ]
@@ -244,7 +244,7 @@ module.exports = function(grunt) {
           preferOnline: false,
           verbose: false,
           timestamp: true,
-          hash: true,
+          hash: true, // does not seem to work
           master: ['index.php']
         },
         src: [

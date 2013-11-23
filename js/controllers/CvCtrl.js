@@ -64,9 +64,13 @@
 //        };
 
         $scope.setCvDataFromBackup = function () {
-          var cv = $scope.cv;
+          var
+            cv = $scope.cv,
+            requestOptions = {
+              cache: true
+            };
 
-          $http.get($scope.firebaseBackupUrl, {cache: true})
+          $http.get($scope.firebaseBackupUrl, requestOptions)
             .success(function (response) {
               $scope.successCallback(response.cv);
             })

@@ -1,11 +1,19 @@
 body {
   padding: 20px 15px 40px;
-  overflow-y: scroll;
   background-color: whitesmoke;
+
+  overflow-y: scroll;
+  .lt-ie8 & {
+    overflow-y: auto;
+  }
 }
 
 .ng-cloak {
   display: none;
+
+  .lt-ie8 &, .no-js & {
+    display: block !important;
+  }
 }
 
 .nav-pills {

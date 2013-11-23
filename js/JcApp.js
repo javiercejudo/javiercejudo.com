@@ -28,7 +28,7 @@ var ENV = ENV || 'live';
       'SecretaryProblem'
     ];
 
-  if (ENV === 'live') {
+  if (ENV !== 'dev') {
     dependencies.push('templates-main');
   }
 
@@ -46,24 +46,30 @@ var ENV = ENV || 'live';
     .config([
       '$routeProvider', '$locationProvider',
       function ($routeProvider, $locationProvider) {
-        var partialsPath = '/partials';
+
+        var getTemplatePath = function (templateName) {
+          return 'partials' + '/' + templateName + '.html';
+        };
 
         $routeProvider
+
+          // proper routes
           .when('/', {
-              templateUrl: partialsPath + '/home.html',
+              templateUrl: getTemplatePath('home'),
               controller: 'HomeCtrl'
           })
 
           .when('/cv/:language', {
-              templateUrl: partialsPath + '/cv.html',
+              templateUrl: getTemplatePath('cv'),
               controller: 'CvCtrl'
           })
 
           .when('/game/:n', {
-              templateUrl: partialsPath + '/secretary-problem-standalone.html',
+              templateUrl: getTemplatePath('secretary-problem-standalone'),
               controller: 'SecretaryProblemCtrl'
           })
 
+          // redirections
           .when('/game', {
               redirectTo: '/game/10'
           })
@@ -80,8 +86,9 @@ var ENV = ENV || 'live';
               redirectTo: '/cv/english'
           })
 
+          // error page
           .otherwise({
-              templateUrl: partialsPath + '/404.html'
+              templateUrl: getTemplatePath('404')
           });
 
         $locationProvider.html5Mode(false).hashPrefix('!');
@@ -90,17 +97,19 @@ var ENV = ENV || 'live';
     .run(['$window', '$rootScope', function($window, $rootScope) {
       $rootScope.online = $window.navigator.onLine;
 
-      var
-        onlineHandler = function () {
-          $rootScope.$apply(function() {
-            $rootScope.online = false;
-          });
-        },
-        offlineHandler = function () {
-          $rootScope.$apply(function() {
-            $rootScope.online = false;
-          });
-        };
+      var onlineHandler, offlineHandler;
+
+      onlineHandler = function () {
+        $rootScope.$apply(function() {
+          $rootScope.online = false;
+        });
+      };
+
+      offlineHandler = function () {
+        $rootScope.$apply(function() {
+          $rootScope.online = false;
+        });
+      };
 
       if ($window.addEventListener) {
         $window.addEventListener("offline", onlineHandler, false);

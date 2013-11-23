@@ -6,7 +6,7 @@ $assetsMapFile = '';
 $assetsMap     = '';
 
 $almaArray = array(
-    'angular' => 'xmlns:ng="http://angularjs.org" id="ng-app" data-ng-app="JcApp" data-ng-controller="AppCtrl"',
+    'angular' => 'data-ng-app="JcApp" data-ng-controller="AppCtrl"',
     'lang'    => 'lang="en"'
 );
 
@@ -27,8 +27,8 @@ $alma = implode(' ', $almaArray);
 <!--[if gt IE 8]><!--> <html <?php echo $alma ?> class="no-js"> <!--<![endif]-->
   <head>
     <meta charset="utf-8">
-    <title data-ng-bind-template="{{pageTitle}} | Javier Cejudo · Web Developer">Javier Cejudo · Web Developer</title>
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <title data-ng-bind-template="{{pageTitle}} | Javier Cejudo · Web Developer">Javier Cejudo · Web Developer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
           content="I'm a young software engineer wishing to continue my career as a web
@@ -38,28 +38,24 @@ $alma = implode(' ', $almaArray);
     <meta name="author" content="Javier Cejudo">
 
 <?php if (ENV === 'dev') : ?>
-    <link href="/bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-    <link href="/css/stylesheets/jcApp.css" rel="stylesheet">
+    <link href="bower_components/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="css/stylesheets/jcApp.css" rel="stylesheet">
 <?php else : ?>
-    <link href="/assets/<?php echo $assetsMap['app.css'] ?>" rel="stylesheet">
+    <link href="assets/<?php echo $assetsMap['app.css'] ?>" rel="stylesheet">
 <?php endif ?>
 
-    <noscript>
-      <style>.ng-cloak { display: block !important; }</style>
-    </noscript>
-
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72"   href="/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed"                 href="/ico/apple-touch-icon-57-precomposed.png">
-    <link rel="shortcut icon"                                href="/ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"   href="ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed"                 href="ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon"                                href="ico/favicon.png">
 
     <!--[if lt IE 9]>
 <?php if (ENV === 'dev') : ?>
-      <script src="/bower_components/html5shiv/dist/html5shiv.js"></script>
-      <script src="/bower_components/respond/respond.src.js"></script>
+      <script src="bower_components/html5shiv/dist/html5shiv.js"></script>
+      <script src="bower_components/respond/respond.src.js"></script>
 <?php else : ?>
-      <script src="/assets/<?php echo $assetsMap['top.js'] ?>"></script>
+      <script src="assets/<?php echo $assetsMap['top.js'] ?>"></script>
 <?php endif ?>
     <![endif]-->
   </head>
@@ -69,50 +65,67 @@ $alma = implode(' ', $almaArray);
       <meta itemprop="name" content="Javier Cejudo">
       <meta itemprop="jobTitle" content="Web Developer">
 
-      <header class="masthead" data-ng-include="'/partials/header.html'"></header>
+      <!--[if lt IE 8]>
+        <div class="alert alert-danger">
+            Your browser is currently not supported. Please
+            <a href="http://whatbrowser.org/">update your browser</a>.
+        </div>
+
+        <?php include 'partials/home.html' ?>
+        <footer class="footer" ><?php include 'partials/footer.html' ?></footer>
+      <![endif]-->
+
+      <!--[if gt IE 7]><!-->
+      <!--[if IE 8]>
+      <div class="alert alert-danger">
+        For full functionality of this site you need to
+        <a href="http://whatbrowser.org/">update your browser</a>.
+      </div>
+      <![endif]-->
 
       <noscript>
-        <header class="masthead row"><?php include 'partials/header.html' ?></header>
-
         <div class="alert alert-danger">
           For full functionality of this site it is necessary to enable JavaScript.
-          Here are the <a href="http://www.enable-javascript.com/" target="_blank">
+          Here are the <a href="http://www.enable-javascript.com/">
           instructions how to enable JavaScript in your web browser</a>.
         </div>
-        <?php include 'partials/home.html' ?>
 
-        <footer class="footer row" ><?php include 'partials/footer.html' ?></footer>
+        <header class="masthead"><?php include 'partials/header.html' ?></header>
+        <?php include 'partials/home.html' ?>
+        <footer class="footer" ><?php include 'partials/footer.html' ?></footer>
       </noscript>
 
+      <header class="masthead" data-ng-include="'partials/header.html'"></header>
       <section data-ng-view></section>
+      <footer class="footer" data-ng-include="'partials/footer.html'"></footer>
+      <!--<![endif]-->
 
-      <footer class="footer" data-ng-include="'/partials/footer.html'"></footer>
-    </div> <!-- /page -->
+      </div> <!-- /page -->
 
     <script>var ENV = '<?php echo ENV ?>';</script>
 
 <?php if (ENV === 'dev') : ?>
-    <script src='/vendor/firebase/firebase.js'></script>
-    <script src="/bower_components/modernizr/modernizr.js"></script>
-    <script src="/bower_components/jquery/jquery.js"></script>
-    <script src="/bower_components/angular/angular.js"></script>
-    <script src="/bower_components/angular-route/angular-route.js"></script>
-    <script src="/bower_components/angular-sanitize/angular-sanitize.js"></script>
-    <script src="/bower_components/angular-touch/angular-touch.js"></script>
-    <script src="/bower_components/angular-animate/angular-animate.js"></script>
-    <script src="/bower_components/angular-fire/angularFire.js"></script>
-    <script src="/bower_components/angular-localstorage/angular-local-storage.js"></script>
+    <script src='vendor/firebase/firebase.js'></script>
+    <script src="bower_components/modernizr/modernizr.js"></script>
+    <script src="bower_components/jquery/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-fire/angularFire.js"></script>
+    <script src="bower_components/angular-localstorage/angular-local-storage.js"></script>
 
-    <script src="/js/JcApp.js"></script>
-    <script src="/js/AppDirectives.js"></script>
-    <script src="/js/AppFilters.js"></script>
-    <script src="/js/controllers/AppCtrl.js"></script>
-    <script src="/js/controllers/HomeCtrl.js"></script>
-    <script src="/js/controllers/CvCtrl.js"></script>
-    <script src="/js/controllers/SecretaryProblemCtrl.js"></script>
+    <script src="js/JcApp.js"></script>
+    <script src="js/AppDirectives.js"></script>
+    <script src="js/AppFilters.js"></script>
+    <script src="js/controllers/AppCtrl.js"></script>
+    <script src="js/controllers/HomeCtrl.js"></script>
+    <script src="js/controllers/CvCtrl.js"></script>
+    <script src="js/controllers/SecretaryProblemCtrl.js"></script>
 <?php else : ?>
-    <script src="/assets/<?php echo $assetsMap['firebase.js'] ?>"></script>
-    <script src="/assets/<?php echo $assetsMap['app.js'] ?>"></script>
+    <script src="assets/<?php echo $assetsMap['firebase.js'] ?>"></script>
+    <script src="assets/<?php echo $assetsMap['app.js'] ?>"></script>
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
       function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;

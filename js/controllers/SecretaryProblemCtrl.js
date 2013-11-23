@@ -3,12 +3,14 @@
 (function (angular) {
   'use strict';
 
+  var spUiChangeEvent = 'spUiChangeEvent';
+
   angular.module('SecretaryProblem', ['LocalStorageModule'])
 
     .controller(
       'SecretaryProblemCtrl', [
-        '$scope', '$routeParams', '$location', '$filter', '$log', '$timeout', 'localStorageService',
-        function ($scope, $routeParams, $location, $filter, $log, $timeout, localStorageService) {
+        '$rootScope', '$scope', '$routeParams', '$location', '$filter', '$log', '$timeout', 'localStorageService',
+        function ($rootScope, $scope, $routeParams, $location, $filter, $log, $timeout, localStorageService) {
           $scope.game = {
             info: {
               name: 'Secretary Problem',
@@ -156,6 +158,8 @@
             }
 
             items[index] = value;
+
+            $rootScope.$broadcast(spUiChangeEvent);
 
             game.lastItemShown = index;
             game.numItemsShown += 1;
