@@ -48,13 +48,18 @@ module.exports = function(grunt) {
       ]
     },
 
-    clean: [
-      'assets.map.json',
-      assetsPath,
-      fontsPath,
-      minifiedPartialsPath,
-      cssPath + '/**/*.css'
-    ],
+    clean: {
+      pre: [
+        'assets.map.json',
+        assetsPath,
+        fontsPath,
+        minifiedPartialsPath,
+        cssPath + '/**/*.css'
+      ],
+      post: [
+        minifiedPartialsPath
+      ]
+    },
 
     curl: {
       'data/c3jud0-export.json': 'https://c3jud0.firebaseio.com/.json?print=pretty',
@@ -345,14 +350,15 @@ module.exports = function(grunt) {
   // Default task
   grunt.registerTask('local', [
     'jshint:all',
-    'clean',
+    'clean:pre',
     'curl',
     'copy',
     'json-minify:dist',
     'less:dist',
     'csslint:strict',
     'htmlmin:dist',
-    'html2js:main'
+    'html2js:main',
+    'clean:post'
   ]);
 
   // Built assets for production
@@ -366,13 +372,26 @@ module.exports = function(grunt) {
     'manifest:generate'
   ]);
 
-  // Built assets for production and runs tests
+  // Builds assets for production and runs e2e tests
   grunt.registerTask('e2e', [
     'build',
+    'karma:dev'
+  ]);
+
+  // Runs all tests
+  grunt.registerTask('test-only', [
+    'karma:dev',
     'karma:e2eDev'
   ]);
 
-  // Built assets for production and runs tests
+  // Builds assets for production and runs all tests
+  grunt.registerTask('test', [
+    'build',
+    'karma:dev',
+    'karma:e2eDev'
+  ]);
+
+  // Builds assets for production and runs unit tests
   grunt.registerTask('default', [
     'build',
     'karma:dev'
