@@ -19,7 +19,8 @@
 
     describe('automaticGame', function () {
       it('should choose the optimal strategy', function () {
-        var computedR,
+        var
+          computedR,
           optimalStrategies = {
             1       : 0,
             2       : 0,

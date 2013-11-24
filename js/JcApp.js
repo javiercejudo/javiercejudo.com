@@ -1,6 +1,4 @@
-/*global angular:true, browser:true, ENV:true */
-
-var ENV = ENV || 'live';
+/*global angular:true, browser:true, ENV:true, JS_TEMPLATES_IN_DEV:true */
 
 /**
  * @doc overview
@@ -22,13 +20,14 @@ var ENV = ENV || 'live';
       'ngTouch',
 
       // vendor
+      'ngStorage',
       'firebase',
 
       // local
       'SecretaryProblem'
     ];
 
-  if (ENV !== 'dev') {
+  if (ENV !== 'dev' || JS_TEMPLATES_IN_DEV) {
     dependencies.push('templates-main');
   }
 
@@ -70,10 +69,6 @@ var ENV = ENV || 'live';
           })
 
           // redirections
-          .when('/game', {
-              redirectTo: '/game/10'
-          })
-
           .when('/en', {
               redirectTo: '/'
           })
@@ -84,6 +79,14 @@ var ENV = ENV || 'live';
 
           .when('/cv', {
               redirectTo: '/cv/english'
+          })
+
+          .when('/game', {
+            redirectTo: '/game/10'
+          })
+
+          .when('/secretary-problem', {
+              redirectTo: '/game'
           })
 
           // error page

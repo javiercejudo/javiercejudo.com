@@ -114,8 +114,11 @@ $alma = implode(' ', $almaArray);
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-fire/angularFire.js"></script>
-    <script src="bower_components/angular-localstorage/angular-local-storage.js"></script>
+    <script src="bower_components/ngstorage/ngStorage.js"></script>
 
+    <script src="js/templates.js"></script>
+
+    <script src="js/config.js"></script>
     <script src="js/JcApp.js"></script>
     <script src="js/AppDirectives.js"></script>
     <script src="js/AppFilters.js"></script>
