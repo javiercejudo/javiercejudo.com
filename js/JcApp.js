@@ -1,6 +1,4 @@
-/*global angular:true, browser:true, ENV:true */
-
-var ENV = ENV || 'live';
+/*global angular:true, browser:true, ENV:true, JS_TEMPLATES_IN_DEV:true */
 
 /**
  * @doc overview
@@ -22,13 +20,14 @@ var ENV = ENV || 'live';
       'ngTouch',
 
       // vendor
+      'ngStorage',
       'firebase',
 
       // local
       'SecretaryProblem'
     ];
 
-  if (ENV !== 'dev') {
+  if (ENV !== 'dev' || JS_TEMPLATES_IN_DEV) {
     dependencies.push('templates-main');
   }
 

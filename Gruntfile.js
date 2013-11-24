@@ -156,7 +156,8 @@ module.exports = function(grunt) {
             bowerPath + '/angular-touch/angular-touch.js',
             bowerPath + '/angular-animate/angular-animate.js',
             bowerPath + '/angular-fire/angularFire.js',
-            bowerPath + '/angular-localstorage/angular-local-storage.js',
+            bowerPath + '/ngstorage/ngStorage.js',
+            jsPath + '/config.js',
             jsPath + '/JcApp.js',
             jsPath + '/AppDirectives.js',
             jsPath + '/AppFilters.js',
@@ -281,9 +282,7 @@ module.exports = function(grunt) {
           jsPath + '/**/*.js'
         ],
         tasks: [
-          'jshint:all',
-          'modernizr',
-          'uglify:dist'
+          'jshint:all'
         ]
       },
       partials: {

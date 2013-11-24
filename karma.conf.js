@@ -26,7 +26,8 @@ module.exports = function(karma) {
       bowerComponentsPath + '/angular-touch/angular-touch.js',
       bowerComponentsPath + '/angular-animate/angular-animate.js',
       bowerComponentsPath + '/angular-fire/angularFire.js',
-      bowerComponentsPath + '/angular-localstorage/angular-local-storage.js',
+      bowerComponentsPath + '/ngstorage/ngStorage.js',
+      jsPath + '/config.js',
       jsPath + '/JcApp.js',
       jsPath + '/AppFilters.js',
       jsPath + '/**/*.js',
@@ -34,9 +35,7 @@ module.exports = function(karma) {
     ],
 
     // list of files to exclude
-    exclude: [
-      'tests/unit/testSpec.js'
-    ],
+    exclude: [],
 
     // use dolts reporter, as travis terminal does not support escaping sequences
     // possible values: 'dots', 'progress', 'junit', 'teamcity'
