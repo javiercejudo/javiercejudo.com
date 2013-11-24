@@ -1,6 +1,6 @@
 {
   "name": "javiercejudo.com",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "ignore": [
     "**/.*",
     "node_modules",
@@ -18,7 +18,7 @@
     "angular-fire": "~0.3.1",
     "ngstorage": "~0.3.0",
     "jquery": "~1.10.2",
-    "modernizr": "~2.6.2",
+    "modernizr": "~2.7.0",
     "bootstrap": "~3.0.2",
     "preboot": "*",
     "html5shiv": "~3.7.0",

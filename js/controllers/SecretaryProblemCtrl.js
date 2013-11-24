@@ -3,8 +3,6 @@
 (function (angular) {
   'use strict';
 
-  var spUiChangeEvent = 'spUiChangeEvent';
-
   angular.module('SecretaryProblem', ['ngStorage'])
 
     .controller(
@@ -14,7 +12,7 @@
           $scope.game = {
             info: {
               name: 'Secretary Problem',
-              version: '1.1.0',
+              version: '1.1.1',
               author: 'Javier Cejudo'
             },
             numDigits: {
@@ -158,8 +156,6 @@
             }
 
             items[index] = value;
-
-            $rootScope.$broadcast(spUiChangeEvent);
 
             game.lastItemShown = index;
             game.numItemsShown += 1;
