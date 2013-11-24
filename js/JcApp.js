@@ -70,10 +70,6 @@ var ENV = ENV || 'live';
           })
 
           // redirections
-          .when('/game', {
-              redirectTo: '/game/10'
-          })
-
           .when('/en', {
               redirectTo: '/'
           })
@@ -84,6 +80,14 @@ var ENV = ENV || 'live';
 
           .when('/cv', {
               redirectTo: '/cv/english'
+          })
+
+          .when('/game', {
+            redirectTo: '/game/10'
+          })
+
+          .when('/secretary-problem', {
+              redirectTo: '/game'
           })
 
           // error page
