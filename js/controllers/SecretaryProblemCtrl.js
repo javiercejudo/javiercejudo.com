@@ -39,12 +39,6 @@
             $storage: $localStorage
           };
 
-          $scope.$watch('game.numItemsShown', function (numItemsShown) {
-            if (numItemsShown === $scope.game.n) {
-              $scope.endGame();
-            }
-          });
-
           $scope.initSecretaryProblem = function () {
             var game = $scope.game;
 
@@ -159,6 +153,10 @@
 
             game.lastItemShown = index;
             game.numItemsShown += 1;
+
+            if (game.numItemsShown === game.n) {
+              $scope.endGame();
+            }
 
             if (game.numItemsShown > 1) {
               return;
@@ -383,8 +381,6 @@
                 wonGamesCount += 1;
               }
             }
-
-            $log.log('Success rate:', wonGamesCount / numberOfGames);
 
             return wonGamesCount / numberOfGames;
           };
