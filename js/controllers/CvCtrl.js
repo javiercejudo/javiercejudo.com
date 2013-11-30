@@ -5,8 +5,8 @@
 
   angular.module('JcApp').controller(
     'CvCtrl',
-    ['$rootScope', '$scope', '$routeParams', '$location', '$http', '$filter', '$timeout', 'angularFire', '$sessionStorage',
-      function ($rootScope, $scope, $routeParams, $location, $http, $filter, $timeout, angularFire, $sessionStorage) {
+    ['$rootScope', '$scope', '$routeParams', '$location', '$http', '$filter', '$timeout', 'angularFire', '$localStorage',
+      function ($rootScope, $scope, $routeParams, $location, $http, $filter, $timeout, angularFire, $localStorage) {
         $scope.cv = {
           loading: true,
           error: false,
@@ -14,6 +14,8 @@
           languages: [],
           data: null
         };
+
+        $scope.storage = $localStorage;
 
         $scope.firebase = {
           ref: null
@@ -93,11 +95,11 @@
         };
 
         $scope.retrieveFromLocalStorage = function () {
-          return $sessionStorage['cv-data'];
+          return $scope.storage['cv-data'];
         };
 
         $scope.saveToLocalStorage = function () {
-          $sessionStorage['cv-data'] = $scope.cv.data;
+          $scope.storage['cv-data'] = $scope.cv.data;
         };
         
         $scope.setAvailableLanguages = function () {
