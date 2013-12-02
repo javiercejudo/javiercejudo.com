@@ -1,7 +1,7 @@
 # JavierCejudo.com
 
-[<img src="https://api.travis-ci.org/javiercejudo/javiercejudo.com.png?branch=master" alt="Build Status" width="77" height="19"/>](https://travis-ci.org/javiercejudo/javiercejudo.com)
-[<img src="https://david-dm.org/javiercejudo/javiercejudo.com/dev-status.png" alt="devDependency Status" width="140" height="18"/>](https://david-dm.org/javiercejudo/javiercejudo.com#info=devDependencies)
+[![Build Status](https://api.travis-ci.org/javiercejudo/javiercejudo.com.png?branch=master)](https://travis-ci.org/javiercejudo/javiercejudo.com)
+[![devDependency Status](https://david-dm.org/javiercejudo/javiercejudo.com/dev-status.png)](https://david-dm.org/javiercejudo/javiercejudo.com#info=devDependencies)
 
 My personal website.
 
