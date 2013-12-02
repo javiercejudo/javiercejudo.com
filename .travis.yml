@@ -11,4 +11,5 @@ deploy:
   on:
     repo: javiercejudo/javiercejudo.com
 after_deploy:
+  - chmod a+x after_deploy.sh
   - ./after_deploy.sh
