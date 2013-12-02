@@ -1,10 +1,11 @@
 language: node_js
 node_js:
-  - 0.1
+  - 0.10
 before_script:
   - bower install
 deploy:
   provider: heroku
+  buildpack: https://github.com/heroku/heroku-buildpack-php
   api_key:
     secure: bNRd9ba3QLhBfSbxMBb1chOZ0EogBbiGTjDP+R44BdwXkZSlu/2w5Jg4w/VGzG82IfZLYHDjCFCMJflQQlmCSE0/IStq3P+y/yu/4DIVY5GNLfTE6EUxF66YMsv0HorG8OMg6KR/e2USbCI1bZpT/SwJ0XOYD1LCCkvreJr8U+A=
   app: javiercejudo
