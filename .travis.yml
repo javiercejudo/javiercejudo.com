@@ -1,8 +1,14 @@
 language: node_js
 node_js:
-  - 0.10
-
+  - 0.1
 before_script:
   - bower install
-# - gem update --system
-# - gem install compass
+deploy:
+  provider: heroku
+  api_key:
+    secure: bNRd9ba3QLhBfSbxMBb1chOZ0EogBbiGTjDP+R44BdwXkZSlu/2w5Jg4w/VGzG82IfZLYHDjCFCMJflQQlmCSE0/IStq3P+y/yu/4DIVY5GNLfTE6EUxF66YMsv0HorG8OMg6KR/e2USbCI1bZpT/SwJ0XOYD1LCCkvreJr8U+A=
+  app: javiercejudo
+  on:
+    repo: javiercejudo/javiercejudo.com
+after_deploy:
+  - ./after_deploy.sh
