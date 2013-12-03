@@ -13,5 +13,5 @@ deploy:
    on:
      repo: javiercejudo/javiercejudo.com
    after_deploy:
-     - "cp www/config.template.php www/config.php"
-     - "cp www/.htaccess.template www/.htaccess"
+     - "cp config.template.php config.php"
+     - "cp .htaccess.template .htaccess"
