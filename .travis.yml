@@ -12,7 +12,7 @@ deploy:
    on:
      repo: javiercejudo/javiercejudo.com
    run:
-     - "ls -la"
+     - "ls -la www/"
      - "cp www/config.template.php www/config.php"
      - "cp www/.htaccess.template www/.htaccess"
-     - "ls -la"
+     - "ls -la www/"
