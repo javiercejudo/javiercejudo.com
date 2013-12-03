@@ -11,8 +11,6 @@ deploy:
    app: javiercejudo
    on:
      repo: javiercejudo/javiercejudo.com
-after_deploy:
-   - ls -la
-   - chmod a+x after_deploy.sh
-   - ./after_deploy.sh
-   - ls -la
+   run:
+     - chmod a+x after_deploy.sh
+     - ./after_deploy.sh
