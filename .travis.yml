@@ -5,7 +5,7 @@ before_script:
   - bower install
 deploy:
    provider: heroku
-   buildpack_url: https://github.com/heroku/heroku-buildpack-php
+#   buildpack_url: https://github.com/heroku/heroku-buildpack-php
    api_key:
      secure: bNRd9ba3QLhBfSbxMBb1chOZ0EogBbiGTjDP+R44BdwXkZSlu/2w5Jg4w/VGzG82IfZLYHDjCFCMJflQQlmCSE0/IStq3P+y/yu/4DIVY5GNLfTE6EUxF66YMsv0HorG8OMg6KR/e2USbCI1bZpT/SwJ0XOYD1LCCkvreJr8U+A=
    app: javiercejudo
