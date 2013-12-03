@@ -13,5 +13,6 @@ deploy:
    on:
      repo: javiercejudo/javiercejudo.com
    after_deploy:
+     - "ls -la"
      - "cp config.template.php config.php"
      - "cp .htaccess.template .htaccess"
