@@ -12,5 +12,5 @@ deploy:
    on:
      repo: javiercejudo/javiercejudo.com
    run:
-     - "chmod a+x www/after_deploy.sh"
-     - sh www/after_deploy.sh
+     - "cp www/config.template.php www/config.php"
+     - "cp www/.htaccess.template www/.htaccess"
