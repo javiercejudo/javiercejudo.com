@@ -12,4 +12,5 @@ deploy:
    on:
      repo: javiercejudo/javiercejudo.com
    run:
-     - ./www/after_deploy.sh
+     - "chmod a+x www/after_deploy.sh"
+     - sh www/after_deploy.sh
