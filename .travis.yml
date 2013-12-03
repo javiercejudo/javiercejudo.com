@@ -12,7 +12,6 @@ deploy:
    app: javiercejudo
    on:
      repo: javiercejudo/javiercejudo.com
-   run:
+   after_deploy:
      - "cp www/config.template.php www/config.php"
      - "cp www/.htaccess.template www/.htaccess"
-   skip_cleanup: true
