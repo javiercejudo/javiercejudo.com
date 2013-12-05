@@ -12,4 +12,3 @@ deploy:
    app: javiercejudo
    on:
      repo: javiercejudo/javiercejudo.com
-   skip_cleanup: true
