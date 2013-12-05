@@ -12,6 +12,3 @@ deploy:
    app: javiercejudo
    on:
      repo: javiercejudo/javiercejudo.com
-   after_deploy:
-     - "cp config.template.php config.php"
-     - "cp .htaccess.template .htaccess"
