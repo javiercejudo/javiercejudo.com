@@ -1,6 +1,7 @@
 <?php
 
-define('ENV', getenv('ENV'));
+$appenv = getenv('ENV')?: 'dev';
+define('ENV', $appenv);
 
 $assetsMapFile = '';
 $assetsMap     = '';
