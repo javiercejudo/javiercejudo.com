@@ -15,7 +15,7 @@ module.exports = function(karma) {
     // list of files / patterns to load in the browser
     files: [
       bowerComponentsPath +'/html5shiv/dist/html5shiv.js',
-      bowerComponentsPath +'/respond/respond.src.js',
+      bowerComponentsPath +'/respond/dest/respond.src.js',
       vendorPath +'/firebase/firebase.js',
       bowerComponentsPath + '/modernizr/modernizr.js',
       bowerComponentsPath + '/jquery/jquery.js',

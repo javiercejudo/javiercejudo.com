@@ -165,7 +165,7 @@ module.exports = function(grunt) {
           ],
           'assets/top.js': [
             bowerPath + '/html5shiv/dist/html5shiv.js',
-            bowerPath + '/respond/respond.src.js'
+            bowerPath + '/respond/dest/respond.src.js'
           ]
         }
       }

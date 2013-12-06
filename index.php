@@ -1,6 +1,6 @@
 <?php
 
-$appenv = (getenv('ENV') !== false) ? getenv('ENV') : 'dev';
+$appenv = (getenv('ENV') !== false) ? getenv('ENV') : 'live';
 define('ENV', $appenv);
 
 $assetsMapFile = '';
@@ -54,7 +54,7 @@ $alma = implode(' ', $almaArray);
     <!--[if lt IE 9]>
 <?php if (ENV === 'dev') : ?>
       <script src="bower_components/html5shiv/dist/html5shiv.js"></script>
-      <script src="bower_components/respond/respond.src.js"></script>
+      <script src="bower_components/respond/dest/respond.src.js"></script>
 <?php else : ?>
       <script src="assets/<?php echo $assetsMap['top.js'] ?>"></script>
 <?php endif ?>
