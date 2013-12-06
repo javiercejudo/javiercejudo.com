@@ -1,6 +1,6 @@
 .*
 !.gitignore
-!.htaccess.template
+!.htaccess
 !.travis.yml
 !.jshintrc
 !.csslintrc
