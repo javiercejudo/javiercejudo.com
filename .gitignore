@@ -9,10 +9,6 @@ templates.js
 data/c3jud0-export.json
 *~
 
-assets/app.css
-assets/app.js
-assets/top.js
-
 css/stylesheets
 bower_components
 node_modules

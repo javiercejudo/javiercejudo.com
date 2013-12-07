@@ -14,6 +14,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-hash');
+  grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-manifest');
   grunt.loadNpmTasks('grunt-karma');
@@ -58,6 +59,11 @@ module.exports = function(grunt) {
       ],
       post: [
         minifiedPartialsPath
+      ],
+      assets: [
+        assetsPath + '/app.css',
+        assetsPath + '/app.js',
+        assetsPath + '/top.js'
       ]
     },
 
@@ -219,6 +225,18 @@ module.exports = function(grunt) {
       ]
     },
 
+    compress: {
+      main: {
+        options: {
+          mode: 'gzip'
+        },
+        expand: true,
+        cwd: 'assets/',
+        src: ['**/*'],
+        dest: 'assets/'
+      }
+    },
+
     imagemin: {
       dist: {
         options: {
@@ -242,11 +260,6 @@ module.exports = function(grunt) {
           // cache: ['js/app.js', 'css/style.css'],
           // network: ['http://*', 'https://*'],
           // fallback: ['/ /offline.html'],
-          exclude: [
-            assetsPath + '/app.css',
-            assetsPath + '/app.js',
-            assetsPath + '/top.js'
-          ],
           preferOnline: false,
           verbose: false,
           timestamp: true,
@@ -255,7 +268,7 @@ module.exports = function(grunt) {
         },
         src: [
           // partialsPath + '/**/*.html',
-          assetsPath + '/**/*.{css,js}',
+          assetsPath + '/**/*.{css,js,gz}',
           fontsPath + '/**/*',
           dataPath + '/min/**/*.json'
         ],
@@ -367,6 +380,8 @@ module.exports = function(grunt) {
     'uglify:dist',
     'cssmin:combine',
     'hash',
+    'clean:assets',
+    'compress:main',
     'imagemin:dist',
     'manifest:generate'
   ]);
