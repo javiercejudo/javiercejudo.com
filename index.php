@@ -108,7 +108,6 @@ $alma = implode(' ', $almaArray);
 <?php if (ENV === 'dev') : ?>
     <script src='vendor/firebase/firebase.js'></script>
     <script src="bower_components/modernizr/modernizr.js"></script>
-    <script src="bower_components/jquery/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>

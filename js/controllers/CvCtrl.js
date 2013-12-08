@@ -1,6 +1,6 @@
-/*global angular:true, Firebase:true, browser:true, jQuery:true */
+/*global angular:true, Firebase:true, browser:true */
 
-(function (angular, $) {
+(function (angular) {
   'use strict';
 
   angular.module('JcApp').controller(
@@ -103,19 +103,26 @@
         };
         
         $scope.setAvailableLanguages = function () {
-          var cv = $scope.cv;
+          var
+            cv = $scope.cv,
+            languages = [];
 
-          cv.languages = Object.keys(cv.data);
+          angular.forEach(cv.data, function (language, key) {
+            languages.push({
+              url: key,
+              pos: language.pos
+            });
+          });
+
+          cv.languages = $filter('orderBy')(languages, 'pos');
         };
 
         $scope.setLanguage = function () {
           var
             cv = $scope.cv,
-            params = cv.params,
-            languages = cv.languages;
+            params = cv.params;
 
-          // uses jQuery's inArray instead of indexOf dure to IE < 9 issues
-          if (params.language && $.inArray(params.language, languages) !== -1) {
+          if (params.language && Object.prototype.hasOwnProperty.call(cv.data, params.language)) {
             $rootScope.pageTitle = 'CV: ' + $filter('jcCapitalise')(params.language);
             $scope.cvLocal = cv.data[params.language];
             return;
@@ -141,4 +148,4 @@
       }]
   );
 
-}(angular, jQuery));
+}(angular));

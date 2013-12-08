@@ -155,7 +155,6 @@ module.exports = function(grunt) {
         files: {
           'assets/app.js': [
             bowerPath + '/modernizr/modernizr.custom.js',
-            bowerPath + '/jquery/jquery.js',
             bowerPath + '/angular/angular.js',
             bowerPath + '/angular-route/angular-route.js',
             bowerPath + '/angular-sanitize/angular-sanitize.js',

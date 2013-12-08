@@ -2,4 +2,4 @@
 
 var
   ENV = ENV || 'live',
-  JS_TEMPLATES_IN_DEV = true;
+  JS_TEMPLATES_IN_DEV = false;
