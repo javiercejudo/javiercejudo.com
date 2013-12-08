@@ -1,7 +1,8 @@
 <?php
 
-$appenv = (getenv('ENV') !== false) ? getenv('ENV') : 'live';
-define('ENV', $appenv);
+header('Content-Type: text/html; charset=utf-8');
+
+define('ENV', (getenv('ENV') !== false) ? getenv('ENV') : 'live');
 
 $assetsMapFile = '';
 $assetsMap     = '';
@@ -27,7 +28,6 @@ $alma = implode(' ', $almaArray);
 <!--[if IE 8]>         <html <?php echo $alma ?> class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html <?php echo $alma ?> class="no-js"> <!--<![endif]-->
   <head>
-    <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <title data-ng-bind-template="{{pageTitle}} | Javier Cejudo · Web Developer">Javier Cejudo · Web Developer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">

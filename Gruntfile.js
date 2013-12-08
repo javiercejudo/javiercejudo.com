@@ -381,7 +381,7 @@ module.exports = function(grunt) {
     'cssmin:combine',
     'hash',
     'clean:assets',
-    'compress:main',
+    //'compress:main',
     'imagemin:dist',
     'manifest:generate'
   ]);
