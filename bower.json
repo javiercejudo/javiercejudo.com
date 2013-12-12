@@ -15,7 +15,7 @@
     "angular-sanitize": "~1.2.4",
     "angular-touch": "~1.2.4",
     "angular-animate": "~1.2.4",
-    "angularfire": "~0.3.0",
+    "angularfire": "~0.3.2",
     "ngstorage": "~0.3.0",
     "jquery": "~1.10.2",
     "modernizr": "~2.7.1",
