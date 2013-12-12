@@ -160,7 +160,7 @@ module.exports = function(grunt) {
             bowerPath + '/angular-sanitize/angular-sanitize.js',
             bowerPath + '/angular-touch/angular-touch.js',
             bowerPath + '/angular-animate/angular-animate.js',
-            bowerPath + '/angular-fire/angularFire.js',
+            bowerPath + '/angularfire/angularfire.js',
             bowerPath + '/ngstorage/ngStorage.js',
             jsPath + '/config.js',
             jsPath + '/JcApp.js',

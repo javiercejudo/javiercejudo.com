@@ -113,7 +113,7 @@ $alma = implode(' ', $almaArray);
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
-    <script src="bower_components/angular-fire/angularFire.js"></script>
+    <script src="bower_components/angularfire/angularfire.js"></script>
     <script src="bower_components/ngstorage/ngStorage.js"></script>
 
     <script src="js/templates.js"></script>

@@ -24,7 +24,7 @@ module.exports = function(karma) {
       bowerComponentsPath + '/angular-sanitize/angular-sanitize.js',
       bowerComponentsPath + '/angular-touch/angular-touch.js',
       bowerComponentsPath + '/angular-animate/angular-animate.js',
-      bowerComponentsPath + '/angular-fire/angularFire.js',
+      bowerComponentsPath + '/angularfire/angularfire.js',
       bowerComponentsPath + '/ngstorage/ngStorage.js',
       jsPath + '/config.js',
       jsPath + '/JcApp.js',
