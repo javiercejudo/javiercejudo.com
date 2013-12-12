@@ -39,7 +39,7 @@ is especially suited for Web development.
 - [NPM](https://npmjs.org/): the official package manager for
 [Node.js](http://nodejs.org/).
 - [Bower](http://bower.io/): a package manager for the web.
-- [Grunt](http://gruntjs.com/): the JavaScript task tunner.
+- [Grunt](http://gruntjs.com/): the JavaScript task runner.
 - [Travis CI](https://travis-ci.org/): free hosted continuous integration
 platform for the open source community.
 - [Heroku](https://www.heroku.com/): cloud computing designed and built for developers.
