@@ -42,7 +42,7 @@
           localStorageContent = $scope.retrieveFromLocalStorage();
 
           if (!localStorageContent) {
-            $scope.setCvDataFromBackup(600);
+            $scope.setCvData();
           } else {
             cv.data = localStorageContent;
             cv.loading = false;
@@ -52,7 +52,7 @@
             return;
           }
 
-          firebase.ref = new Firebase('https://c3jud0.firebaseio.com/cv');
+          firebase.ref = new Firebase($scope.firebaseUrl + '/cv');
           firebasePromise = angularFire(firebase.ref, $scope, 'cv.data');
 
           firebasePromise.then(function () {
@@ -62,6 +62,19 @@
             // no need to do anything else as data from either
             // local storage or back up is already loaded at this point
           });
+        };
+
+        $scope.setCvData = function () {
+          var cv = $scope.cv;
+
+          $http.get($scope.firebaseUrl + '/cv.json', {cache: true})
+            .success(function (response) {
+              cv.loading = false;
+              $scope.successCallback(response);
+            })
+            .error(function () {
+              $scope.setCvDataFromBackup(500);
+            });
         };
 
         $scope.setCvDataFromBackup = function (fakeDelay) {
@@ -130,20 +143,6 @@
 
           $location.path('/cv/english');
           $location.replace();
-        };
-
-        // not used at the moment
-        $scope.setCvData = function () {
-          var cv = $scope.cv;
-
-          $http.get($scope.firebaseUrl + '/cv.json', {cache: true})
-            .success(function (response) {
-              cv.loading = false;
-              $scope.successCallback(response);
-            })
-            .error(function () {
-              $scope.setCvDataFromBackup();
-            });
         };
       }]
   );
