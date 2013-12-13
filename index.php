@@ -116,7 +116,7 @@ $alma = implode(' ', $almaArray);
     <script src="bower_components/angularfire/angularfire.js"></script>
     <script src="bower_components/ngstorage/ngStorage.js"></script>
 
-    <script src="js/templates.js"></script>
+    <script src="partials/templates.js"></script>
 
     <script src="js/config.js"></script>
     <script src="js/JcApp.js"></script>

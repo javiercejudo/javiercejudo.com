@@ -39,12 +39,7 @@ module.exports = function(karma) {
     // use dolts reporter, as travis terminal does not support escaping sequences
     // possible values: 'dots', 'progress', 'junit', 'teamcity'
     // CLI --reporters progress
-    reporters: ['progress'],
-
-    junitReporter: {
-      // will be resolved to basePath (in the same way as files/exclude patterns)
-      outputFile: 'test-results.xml'
-    },
+    reporters: ['progress', 'coverage'],
 
     // web server port
     // CLI --port 9876
@@ -96,11 +91,17 @@ module.exports = function(karma) {
 
     // compile coffee scripts
     preprocessors: {
-      '**/*.coffee': 'coffee'
+      'js/**/*.js': ['coverage']
+    },
+
+    coverageReporter: {
+      type : 'html',
+      dir : 'coverage/'
     },
 
     plugins: [
       'karma-jasmine',
+      'karma-coverage',
       'karma-phantomjs-launcher',
       'karma-chrome-launcher',
       'karma-firefox-launcher'

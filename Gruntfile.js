@@ -123,7 +123,7 @@ module.exports = function(grunt) {
       },
       main: {
         src: [minifiedPartialsPath + '/**/*.html'],
-        dest: jsPath + '/templates.js'
+        dest: partialsPath + '/templates.js'
       }
     },
 
@@ -162,6 +162,7 @@ module.exports = function(grunt) {
             bowerPath + '/angular-animate/angular-animate.js',
             bowerPath + '/angularfire/angularfire.js',
             bowerPath + '/ngstorage/ngStorage.js',
+            partialsPath + '/templates.js',
             jsPath + '/config.js',
             jsPath + '/JcApp.js',
             jsPath + '/AppDirectives.js',
