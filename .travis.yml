@@ -4,6 +4,8 @@ node_js:
 before_script:
   - bower install
   - bower install
+script:
+  - make test-coveralls
 deploy:
    provider: heroku
    api_key:
