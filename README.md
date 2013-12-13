@@ -5,8 +5,20 @@
 
 My personal website.
 
-- Live: http://javiercejudo.com
-- Staging: http://javiercejudo.herokuapp.com
+<table>
+    <tr>
+        <th>Live</th>
+        <td>http://javiercejudo.com</td>
+    </tr>
+    <tr>
+        <th>Staging</th>
+        <td>http://javiercejudo.herokuapp.com</td>
+    </tr>
+    <tr>
+        <th>Dev</th>
+        <td>http://javiercejudo.dev</td>
+    </tr>
+</table>
 
 ## Tenchologies
 
