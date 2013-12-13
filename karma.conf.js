@@ -5,6 +5,7 @@ module.exports = function(karma) {
   var vendorPath = 'vendor';
   var testsPath = 'tests';
   var jsPath = 'js';
+  var partialsPath = 'partials';
 
   karma.set({
     // base path, that will be used to resolve files and exclude
@@ -26,6 +27,7 @@ module.exports = function(karma) {
       bowerComponentsPath + '/angular-animate/angular-animate.js',
       bowerComponentsPath + '/angularfire/angularfire.js',
       bowerComponentsPath + '/ngstorage/ngStorage.js',
+      partialsPath + '/templates.js',
       jsPath + '/config.js',
       jsPath + '/JcApp.js',
       jsPath + '/AppFilters.js',
@@ -95,7 +97,7 @@ module.exports = function(karma) {
     },
 
     coverageReporter: {
-      type : 'html',
+      type : 'lcov',
       dir : 'coverage/'
     },
 
