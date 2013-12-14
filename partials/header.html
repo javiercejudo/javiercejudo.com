@@ -7,6 +7,12 @@
           <span class="icon-text">Home</span>
         </a>
       </li>
+      <li data-ng-class="{active: path.indexOf('/cv/') != -1}">
+        <a data-ng-href="{{ prefixLink }}/cv">
+          <span class="glyphicon glyphicon-book"></span>
+          <span class="icon-text">CV</span>
+        </a>
+      </li>
       <li data-ng-class="{active: path.indexOf('/game/') != -1}">
         <a data-ng-href="{{ prefixLink }}/game">
           <span class="glyphicon glyphicon-briefcase"></span>
