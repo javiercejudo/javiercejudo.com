@@ -1,3 +1,5 @@
+@standardMargiBottom: 25px;
+
 .main-message {
   text-align: center;
 
@@ -5,20 +7,42 @@
     font-size: 72px;
     line-height: 1;
     margin-top: 10px;
+    margin-bottom: @standardMargiBottom;
   }
 
   .tags {
     color: #ccc;
   }
 
-  .btn {
-    margin-bottom: 10px;
+  .contact {
+    margin-bottom: @standardMargiBottom / 2;
+
+    .contact-col {
+      padding: 0;
+      margin-bottom: @standardMargiBottom / 2;
+    }
+  }
+
+  .lead {
+    margin-bottom: @standardMargiBottom * 1.5;
+  }
+
+  .cv-btn {
+    margin-bottom: @standardMargiBottom / 2;
+
+    .btn {
+      margin-bottom: @standardMargiBottom / 2;
+    }
   }
 }
 
 .latest-projects {
-  .title {
-    margin-top: 20px;
+  .project-column-title {
+    margin-bottom: @standardMargiBottom * 1.5;
+  }
+
+  .project {
+    margin-bottom: @standardMargiBottom * 1.5;
   }
 }
 
