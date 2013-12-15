@@ -1,5 +1,5 @@
 {
   "important": false,
-  "adjoining-classes": true,
-  "overqualified-elements": true
+  "adjoining-classes": false,
+  "overqualified-elements": false
 }

@@ -183,6 +183,7 @@ module.exports = function(grunt) {
           dumpLineNumbers: "comments"
         },
         files: {
+          "css/stylesheets/custom-bootstrap.css": "css/less/custom-bootstrap.less",
           "css/stylesheets/jcApp.css": "css/less/jcApp.less"
         }
       }
@@ -194,7 +195,8 @@ module.exports = function(grunt) {
       },
       strict: {
         src: [
-          cssPath + '**/*.css'
+          cssPath + '/**/*.css',
+          '!' + cssPath + '/custom-bootstrap.css'
         ]
       }
     },
@@ -206,7 +208,7 @@ module.exports = function(grunt) {
         },
         files: {
           'assets/app.css': [
-            bowerPath + '/bootstrap/dist/css/bootstrap.css',
+//            bowerPath + '/bootstrap/dist/css/bootstrap.css',
             cssPath + '/**/*.css'
           ]
         }

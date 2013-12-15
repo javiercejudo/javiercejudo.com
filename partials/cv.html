@@ -4,7 +4,7 @@
 
 <div class="cv row" data-ng-init="initCv()" data-ng-show="!cv.loading && !cv.error">
   <div class="col-sm-12 col-lg-12">
-    <ul class="nav nav-pills lang-selector">
+    <ul class="nav nav-pills nav-pills-secondary lang-selector">
       <li ng-repeat="language in cv.languages" data-ng-class="{active: cv.params.language == language.url}">
         <a data-ng-href="{{ prefixLink }}/cv/{{ language.url }}" data-ng-bind-html="cv.data[language.url].tag"></a>
       </li>
