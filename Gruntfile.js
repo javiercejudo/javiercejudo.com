@@ -208,7 +208,6 @@ module.exports = function(grunt) {
         },
         files: {
           'assets/app.css': [
-//            bowerPath + '/bootstrap/dist/css/bootstrap.css',
             cssPath + '/**/*.css'
           ]
         }
