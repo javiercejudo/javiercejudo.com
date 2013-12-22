@@ -5,14 +5,15 @@
 
   angular.module('JcApp').controller(
     'CvCtrl',
-    ['$rootScope', '$scope', '$routeParams', '$location', '$http', '$filter', '$timeout', 'angularFire', '$localStorage',
-      function ($rootScope, $scope, $routeParams, $location, $http, $filter, $timeout, angularFire, $localStorage) {
+    ['$rootScope', '$scope', '$routeParams', '$location', '$http', '$filter', '$timeout', '$firebase', '$localStorage',
+      function ($rootScope, $scope, $routeParams, $location, $http, $filter, $timeout, $firebase, $localStorage) {
         $scope.cv = {
-          loading: true,
-          error: false,
+          loading: null,
+          error: null,
           params: $routeParams,
           languages: [],
-          data: null
+          data: null,
+          dataRemote: null
         };
 
         $scope.storage = $localStorage;
@@ -30,13 +31,12 @@
           $scope.setAvailableLanguages();
           $scope.setLanguage();
           $scope.saveToLocalStorage();
-        });
+        }, true);
 
         $scope.initCv = function () {
           var
             cv = $scope.cv,
             firebase = $scope.firebase,
-            firebasePromise,
             localStorageContent;
 
           localStorageContent = $scope.retrieveFromLocalStorage();
@@ -53,19 +53,26 @@
           }
 
           firebase.ref = new Firebase($scope.firebaseUrl + '/cv');
-          firebasePromise = angularFire(firebase.ref, $scope, 'cv.data');
+          cv.dataRemote = $firebase(firebase.ref);
 
-          firebasePromise.then(function () {
-            cv.loading = false;
-          }, function () {
-            cv.loading = false;
-            // no need to do anything else as data from either
-            // local storage or back up is already loaded at this point
+          cv.dataRemote.$on("loaded", function() {
+            $timeout(function () {
+              cv.loading = false;
+              cv.data = cv.dataRemote;
+            });
+          });
+
+          cv.dataRemote.$on("change", function() {
+            $timeout(function () {
+              cv.data = cv.dataRemote;
+            });
           });
         };
 
         $scope.setCvData = function () {
           var cv = $scope.cv;
+
+          cv.loading = true;
 
           $http.get($scope.firebaseUrl + '/cv.json', {cache: true})
             .success(function (response) {
@@ -121,10 +128,12 @@
             languages = [];
 
           angular.forEach(cv.data, function (language, key) {
-            languages.push({
-              url: key,
-              pos: language.pos
-            });
+            if (key.substr(0, 1) !== '$') {
+              languages.push({
+                url: key,
+                pos: language.pos
+              });
+            }
           });
 
           cv.languages = $filter('orderBy')(languages, 'pos');
@@ -135,14 +144,13 @@
             cv = $scope.cv,
             params = cv.params;
 
-          if (params.language && Object.prototype.hasOwnProperty.call(cv.data, params.language)) {
-            $rootScope.pageTitle = 'CV: ' + $filter('jcCapitalise')(params.language);
-            $scope.cvLocal = cv.data[params.language];
-            return;
-          }
+          $rootScope.pageTitle = 'CV: ' + $filter('jcCapitalise')(params.language);
+          $scope.cvLocal = cv.data[params.language];
 
-          $location.path('/cv/english');
-          $location.replace();
+          if (!$scope.cvLocal) {
+            $location.path('/cv/english');
+            $location.replace();
+          }
         };
       }]
   );
