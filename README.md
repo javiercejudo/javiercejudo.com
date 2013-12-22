@@ -14,7 +14,7 @@ My personal website.
     </tr>
     <tr>
         <th>Staging</th>
-        <td>http://javiercejudo.herokuapp.com</td>
+        <td>http://staging.javiercejudo.com</td>
     </tr>
     <tr>
         <th>Dev</th>
