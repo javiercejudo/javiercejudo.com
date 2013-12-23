@@ -19,75 +19,15 @@
     }));
 
     describe('automaticGame', function () {
-      it('should choose the optimal strategy', function () {
+      it('requires numberOfGames to not be a negative integer', function () {
+        spyOn(scope, 'findBestStrategy').andReturn(0);
+
         var
-          computedR,
-          optimalStrategies = {
-            1       : 0,
-            2       : 0,
-            3       : 1,
-            4       : 1,
-            5       : 2,
-            6       : 2,
-            7       : 2,
-            8       : 3,
-            9       : 3,
-            10      : 3,
-            11      : 4,
-            12      : 4,
-            13      : 5,
-            14      : 5,
-            15      : 5,
-            16      : 6,
-            17      : 6,
-            18      : 6,
-            19      : 7,
-            20      : 7,
-            271     : 100,
-            543     : 200,
-            815     : 300,
-            1087    : 400,
-            1359    : 500,
-            1631    : 600,
-            1902    : 700,
-            2174    : 800,
-            2446    : 900,
-            2718    : 1000,
-            5436    : 2000,
-            8154    : 3000,
-            10873   : 4000,
-            13591   : 5000,
-            16309   : 6000,
-            19028   : 7000,
-            21746   : 8000,
-            24464   : 9000,
-            27182   : 10000,
-            54365   : 20000,
-            81548   : 30000,
-            108731  : 40000,
-            135914  : 50000,
-            163097  : 60000,
-            190279  : 70000,
-            217462  : 80000,
-            244645  : 90000,
-            271828  : 100000,
-            543656  : 200000,
-            815484  : 300000,
-            1087312 : 400000,
-            1359141 : 500000,
-            1630969 : 600000,
-            1902797 : 700000,
-            2174625 : 800000,
-            2446453 : 900000,
-            2718281 : 1000000,
-            5436563 : 2000000
-          };
+          numberOfItems = 2,
+          numberOfGames = -1,
+          successRate = scope.automaticGame(numberOfItems, numberOfGames);
 
-        angular.forEach(optimalStrategies, function (r, n) {
-          computedR = scope.findBestStrategy(n);
-
-          expect(computedR).toBe(r);
-        });
+        expect(successRate).toBe(null);
       });
 
       it('should win and lose at least a game with n unrealistically big', function () {
@@ -158,6 +98,89 @@
     });
 
     describe('game logic', function () {
+      describe('resetRecord', function () {
+        it('resets the record', function () {
+          scope.game.record = {a: 'b'};
+
+          scope.resetRecord();
+
+          expect(scope.game.record.hasOwnProperty('a')).toBe(false);
+        });
+      });
+
+      describe('findBestStrategy', function () {
+        it('should choose the optimal strategy', function () {
+          var
+            computedR,
+            optimalStrategies = {
+              1       : 0,
+              2       : 0,
+              3       : 1,
+              4       : 1,
+              5       : 2,
+              6       : 2,
+              7       : 2,
+              8       : 3,
+              9       : 3,
+              10      : 3,
+              11      : 4,
+              12      : 4,
+              13      : 5,
+              14      : 5,
+              15      : 5,
+              16      : 6,
+              17      : 6,
+              18      : 6,
+              19      : 7,
+              20      : 7,
+              271     : 100,
+              543     : 200,
+              815     : 300,
+              1087    : 400,
+              1359    : 500,
+              1631    : 600,
+              1902    : 700,
+              2174    : 800,
+              2446    : 900,
+              2718    : 1000,
+              5436    : 2000,
+              8154    : 3000,
+              10873   : 4000,
+              13591   : 5000,
+              16309   : 6000,
+              19028   : 7000,
+              21746   : 8000,
+              24464   : 9000,
+              27182   : 10000,
+              54365   : 20000,
+              81548   : 30000,
+              108731  : 40000,
+              135914  : 50000,
+              163097  : 60000,
+              190279  : 70000,
+              217462  : 80000,
+              244645  : 90000,
+              271828  : 100000,
+              543656  : 200000,
+              815484  : 300000,
+              1087312 : 400000,
+              1359141 : 500000,
+              1630969 : 600000,
+              1902797 : 700000,
+              2174625 : 800000,
+              2446453 : 900000,
+              2718281 : 1000000,
+              5436563 : 2000000
+            };
+
+          angular.forEach(optimalStrategies, function (r, n) {
+            computedR = scope.findBestStrategy(n);
+
+            expect(computedR).toBe(r);
+          });
+        });
+      });
+
       describe('processN', function () {
         it('requires routeParams to have an n param', function () {
           delete routeParamsStub.n;
@@ -205,6 +228,35 @@
           var n = scope.processN();
 
           expect(n).toBe(15);
+        });
+      });
+
+      describe('generateItemValue', function () {
+        beforeEach(function () {
+          scope.initSecretaryProblem();
+        });
+
+        it('generates value for not shown items', function () {
+          expect(scope.game.items[0]).toBe(-1);
+          scope.generateItemValue(0);
+          expect(scope.game.items[0]).not.toBe(-1);
+        });
+
+        it('re-initiates game if it was finished', function () {
+          spyOn(scope, 'initSecretaryProblem').andCallThrough();
+          scope.generateItemValue(0);
+          scope.game.itemSelected = 0;
+          scope.generateItemValue(0);
+
+          expect(scope.initSecretaryProblem).toHaveBeenCalled();
+        });
+
+        it('selects the item if it was the current option', function () {
+          spyOn(scope, 'selectItem').andCallThrough();
+          scope.generateItemValue(1);
+          scope.generateItemValue(1);
+
+          expect(scope.selectItem).toHaveBeenCalledWith(1);
         });
       });
     });

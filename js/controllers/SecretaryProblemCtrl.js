@@ -127,6 +127,7 @@
               } else if (!$scope.isRejected(index)) {
                 $scope.selectItem(index);
               }
+
               return;
             }
 
@@ -232,25 +233,23 @@
           $scope.isMax = function (index) {
             var game = $scope.game;
 
-            if (game.itemSelected === -1) {
-              return false;
-            }
-
             return (game.items[index] >= $scope.getMax());
           };
 
           $scope.getCurrentValue = function () {
-            var game = $scope.game;
+            var
+              game = $scope.game,
+              currentValue = -1;
 
             if (game.itemSelected !== -1) {
-              return game.items[game.itemSelected];
+              currentValue = game.items[game.itemSelected];
             }
 
             if (game.lastItemShown !== -1) {
-              return game.items[game.lastItemShown];
+              currentValue = game.items[game.lastItemShown];
             }
 
-            return -1;
+            return currentValue;
           };
 
           $scope.getMax = function () {
@@ -339,12 +338,7 @@
             game.n = parseInt(n, 10) || game.n;
             numberOfGames = parseInt(numberOfGames, 10) || 1;
 
-            if (isNaN(game.n)) {
-              $log.warn('The parameter "n" must be an integer number');
-              return null;
-            }
-
-            if (isNaN(numberOfGames)) {
+            if (numberOfGames < 1) {
               $log.warn('The parameter "numberOfGames" must be an integer number');
               return null;
             }
