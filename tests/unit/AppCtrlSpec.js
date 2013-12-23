@@ -24,7 +24,7 @@
       });
     });
 
-    describe('instantiation', function () {
+    describe('$routeChangeSuccess', function () {
       beforeEach(function () {
         scope.$emit('$routeChangeSuccess');
       });
