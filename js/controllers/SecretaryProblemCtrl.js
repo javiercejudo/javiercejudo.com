@@ -233,6 +233,10 @@
           $scope.isMax = function (index) {
             var game = $scope.game;
 
+            if (game.itemSelected === -1) {
+              return false;
+            }
+
             return (game.items[index] >= $scope.getMax());
           };
 
