@@ -32,7 +32,8 @@ module.exports = function(karma) {
       jsPath + '/JcApp.js',
       jsPath + '/AppFilters.js',
       jsPath + '/**/*.js',
-      testsPath +'/unit/**/*Spec.js'
+//      testsPath +'/unit/**/*Spec.js'
+      testsPath +'/unit/**/SecretaryProblemSpec.js'
     ],
 
     // list of files to exclude

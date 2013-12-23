@@ -83,7 +83,7 @@
             var candidateN;
 
             if (!$routeParams.hasOwnProperty('n')) {
-              return;
+              return false;
             }
 
             candidateN = parseInt($routeParams.n, 10);
@@ -91,7 +91,7 @@
             if (isNaN(candidateN)) {
               $location.path('/game');
               $location.replace();
-              return;
+              return false;
             }
 
             if (candidateN < 2) {
@@ -102,11 +102,14 @@
 
             if (candidateN.toString() === $routeParams.n) {
               game.n = candidateN;
-              return;
+
+              return candidateN;
             }
 
             $location.path('/game/' + candidateN);
             $location.replace();
+
+            return candidateN;
           };
 
           $scope.generateItemValue = function (index) {

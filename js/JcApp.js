@@ -114,12 +114,13 @@
         });
       };
 
-      if ($window.addEventListener) {
-        $window.addEventListener("offline", onlineHandler, false);
-        $window.addEventListener("online", offlineHandler, false);
-      } else {
+      if (!$window.addEventListener) {
         $window.attachEvent("offline", offlineHandler);
         $window.attachEvent("online", onlineHandler);
+        return;
       }
+
+      $window.addEventListener("offline", offlineHandler, false);
+      $window.addEventListener("online", onlineHandler, false);
     }]);
 }(angular));

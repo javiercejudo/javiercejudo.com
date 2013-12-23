@@ -2,18 +2,19 @@
   'use strict';
 
   describe("Secretary Problem suite", function() {
-    var scope, controller;
+    var scope, controller, routeParamsStub;
 
     beforeEach(module('SecretaryProblem'));
 
     beforeEach(inject(function($controller, $rootScope) {
       scope = $rootScope.$new();
       controller = $controller;
+      routeParamsStub = {};
 
       // instantiate the controller
       controller('SecretaryProblemCtrl', {
         $scope: scope,
-        $routeParams: {}
+        $routeParams: routeParamsStub
       });
     }));
 
@@ -141,6 +142,70 @@
           rateDifference = Math.abs(successRate - expectedRate);
 
         expect(rateDifference).toBeLessThan(acceptedMargin);
+      });
+    });
+
+    describe('initialisation', function () {
+      beforeEach(function () {
+        spyOn(scope, 'processN').andCallThrough();
+        scope.initSecretaryProblem();
+        scope.initSecretaryProblem();
+      });
+
+      it('never initialises if the game just started', function () {
+        expect(scope.processN.callCount).toBe(1);
+      });
+    });
+
+    describe('game logic', function () {
+      describe('processN', function () {
+        it('requires routeParams to have an n param', function () {
+          delete routeParamsStub.n;
+
+          var n = scope.processN();
+
+          expect(n).toBe(false);
+        });
+
+        it('requires n to be a number', function () {
+          routeParamsStub.n = 'string';
+
+          var n = scope.processN();
+
+          expect(n).toBe(false);
+        });
+
+        it('converts to 2 any n lower than that', function () {
+          routeParamsStub.n = '1';
+
+          var n = scope.processN();
+
+          expect(n).toBe(2);
+        });
+
+        it('converts to 256 any n higher than that', function () {
+          routeParamsStub.n = '257';
+
+          var n = scope.processN();
+
+          expect(n).toBe(256);
+        });
+
+        it('coverts n to int', function () {
+          routeParamsStub.n = '5string';
+
+          var n = scope.processN();
+
+          expect(n).toBe(5);
+        });
+
+        it('even processes normal values correctly!', function () {
+          routeParamsStub.n = '15';
+
+          var n = scope.processN();
+
+          expect(n).toBe(15);
+        });
       });
     });
   });
