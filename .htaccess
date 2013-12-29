@@ -555,6 +555,7 @@ AddCharset utf-8 .atom .css .js .json .rss .vtt .xml
   RewriteCond %{REQUEST_URI} !^/fonts/.*
   RewriteCond %{REQUEST_URI} !^/ico/.*
   RewriteCond %{REQUEST_URI} !^/img/.*
+  RewriteCond %{REQUEST_URI} !^/javiercejudo.com/.*
   RewriteCond %{REQUEST_URI} !^/js/.*
   RewriteCond %{REQUEST_URI} !^/partials/.*
   RewriteCond %{REQUEST_URI} !^/vendor/.*

@@ -24,8 +24,8 @@ module.exports = function(grunt) {
   var tmpPath = 'tmp';
   var fontsPath = 'fonts';
   var jsPath = 'js';
-  var lessPath = 'css/less';
-  var cssPath = 'css/stylesheets';
+  var cssPath = 'css';
+  var lessPath = cssPath + '/less';
   var bowerPath = 'bower_components';
   var assetsPath = 'assets';
   var partialsPath = 'partials';
@@ -183,8 +183,8 @@ module.exports = function(grunt) {
           dumpLineNumbers: "comments"
         },
         files: {
-          "css/stylesheets/custom-bootstrap.css": "css/less/custom-bootstrap.less",
-          "css/stylesheets/jcApp.css": "css/less/jcApp.less"
+          "css/custom-bootstrap.css": "css/less/custom-bootstrap.less",
+          "css/jcApp.css": "css/less/jcApp.less"
         }
       }
     },

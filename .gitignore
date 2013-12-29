@@ -13,10 +13,12 @@ data/c3jud0-export.json
 
 bower_components
 coverage
-css/stylesheets
 node_modules
 wraith/*
 tmp
+
+css/custom-bootstrap.css
+css/jcApp.css
 
 !wraith/configs/
 wraith/configs/test_config.yaml

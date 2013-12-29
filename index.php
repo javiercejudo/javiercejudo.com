@@ -39,8 +39,8 @@ $alma = implode(' ', $almaArray);
     <meta name="author" content="Javier Cejudo">
 
 <?php if (ENV === 'dev') : ?>
-    <link href="css/stylesheets/custom-bootstrap.css" rel="stylesheet">
-    <link href="css/stylesheets/jcApp.css" rel="stylesheet">
+    <link href="css/custom-bootstrap.css" rel="stylesheet">
+    <link href="css/jcApp.css" rel="stylesheet">
 <?php else : ?>
     <link href="assets/<?php echo $assetsMap['app.css'] ?>" rel="stylesheet">
 <?php endif ?>
