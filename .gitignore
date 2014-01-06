@@ -16,9 +16,9 @@ coverage
 css
 !css/less
 node_modules
-wraith/*
 tmp
 
+wraith/*
 !wraith/configs/
 wraith/configs/test_config.yaml
 
