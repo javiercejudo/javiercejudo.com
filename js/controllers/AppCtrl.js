@@ -26,6 +26,9 @@
           if (Object.prototype.hasOwnProperty.call($window, 'ga')) {
             $window.ga('send', 'pageview', $location.path());
           }
+
+          // scroll to top
+          $window.scrollTo(0, 0);
         });
       }
     ]
