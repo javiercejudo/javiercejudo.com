@@ -1,0 +1,7 @@
+imports:
+    - javascript
+
+filter:
+    excluded_paths: &excluded_paths
+      - assets/*
+      - vendor/*
