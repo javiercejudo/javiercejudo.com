@@ -1,6 +1,7 @@
 # JavierCejudo.com
 
 [![Build Status](https://api.travis-ci.org/javiercejudo/javiercejudo.com.png?branch=master)](https://travis-ci.org/javiercejudo/javiercejudo.com)
+[![Code Climate](https://codeclimate.com/github/javiercejudo/javiercejudo.com.png)](https://codeclimate.com/github/javiercejudo/javiercejudo.com)
 [![Coverage Status](https://coveralls.io/repos/javiercejudo/javiercejudo.com/badge.png?branch=master)](https://coveralls.io/r/javiercejudo/javiercejudo.com?branch=master)
 [![Dependency Status](https://gemnasium.com/javiercejudo/javiercejudo.com.png)](https://gemnasium.com/javiercejudo/javiercejudo.com)
 [![devDependency Status](https://david-dm.org/javiercejudo/javiercejudo.com/dev-status.png)](https://david-dm.org/javiercejudo/javiercejudo.com#info=devDependencies)
