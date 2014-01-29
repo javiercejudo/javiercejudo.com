@@ -5,8 +5,8 @@
 
   angular.module('JcApp').controller(
     'AppCtrl',
-    ['$scope', '$window', '$location',
-      function ($scope, $window, $location) {
+    ['$scope', '$window', '$location', '$timeout',
+      function ($scope, $window, $location, $timeout) {
 
         // leave empty if using html5mode; otherwise it should be #[hashPrefix]
         $scope.prefixLink = '#!';
@@ -28,7 +28,9 @@
           }
 
           // scroll to top
-          $window.scrollTo(0, 0);
+          $timeout(function () {
+            $window.scrollTo(0, 0);
+          });
         });
       }
     ]
