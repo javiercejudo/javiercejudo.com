@@ -16,7 +16,7 @@
             },
             numDigits: {
               min: 3,
-              max: 9
+              max: 8
             },
             numDigitsThis: {
               min: null,
