@@ -128,20 +128,23 @@ module.exports = function(grunt) {
     },
 
     modernizr: {
-      extra : {
-        shiv : false,
-        printshiv : false,
-        load : false,
-        mq : false,
-        cssclasses : true
-      },
-      "devFile" : bowerPath + '/modernizr/modernizr.js',
-      "outputFile" : bowerPath + '/modernizr/modernizr.custom.js',
-      "files": [
-        jsPath + '/**/*.js',
-        cssPath + '/**/*.css'
-      ],
-      "uglify" : false
+      dist: {
+        extra : {
+          shiv : false,
+          printshiv : false,
+          load : false,
+          mq : false,
+          cssclasses : true
+        },
+        "devFile" : bowerPath + '/modernizr/modernizr.js',
+        "outputFile" : bowerPath + '/modernizr/modernizr.custom.js',
+        "parseFiles": true,
+        "files": [
+          [jsPath + '/**/*.js'],
+          [cssPath + '/**/*.css']
+        ],
+        "uglify" : false
+      }
     },
 
     uglify: {
@@ -378,7 +381,7 @@ module.exports = function(grunt) {
   // Built assets for production
   grunt.registerTask('build', [
     'local',
-    'modernizr',
+    'modernizr:dist',
     'uglify:dist',
     'cssmin:combine',
     'hash',
