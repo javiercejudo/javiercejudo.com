@@ -15,6 +15,7 @@
   var
     dependencies = [
       // angular
+      'ngAnimate',
       'ngRoute',
       'ngSanitize',
       'ngTouch',

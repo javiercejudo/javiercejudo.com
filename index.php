@@ -97,7 +97,7 @@ $alma = implode(' ', $almaArray);
       </noscript>
 
       <header class="masthead" data-ng-include="'partials/header.html'"></header>
-      <section data-ng-view></section>
+      <section data-ng-view class="my-slide-animation"></section>
       <footer class="footer" data-ng-include="'partials/footer.html'"></footer>
       <!--<![endif]-->
 
@@ -108,20 +108,25 @@ $alma = implode(' ', $almaArray);
 <?php if (ENV === 'dev') : ?>
     <script src='vendor/firebase/firebase.js'></script>
     <script src="bower_components/modernizr/modernizr.js"></script>
+
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
+
     <script src="bower_components/angularfire/angularfire.js"></script>
     <script src="bower_components/ngstorage/ngStorage.js"></script>
 
     <script src="partials/templates.js"></script>
 
     <script src="js/config.js"></script>
+
     <script src="js/JcApp.js"></script>
+
     <script src="js/AppDirectives.js"></script>
     <script src="js/AppFilters.js"></script>
+
     <script src="js/controllers/AppCtrl.js"></script>
     <script src="js/controllers/HomeCtrl.js"></script>
     <script src="js/controllers/CvCtrl.js"></script>
