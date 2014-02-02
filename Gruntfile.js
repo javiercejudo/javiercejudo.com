@@ -157,7 +157,7 @@ module.exports = function(grunt) {
       dist: {
         files: {
           'assets/app.js': [
-            bowerPath + '/modernizr/modernizr.custom.js',
+            //bowerPath + '/modernizr/modernizr.custom.js',
             bowerPath + '/angular/angular.js',
             bowerPath + '/angular-route/angular-route.js',
             bowerPath + '/angular-sanitize/angular-sanitize.js',
@@ -381,7 +381,7 @@ module.exports = function(grunt) {
   // Built assets for production
   grunt.registerTask('build', [
     'local',
-    'modernizr:dist',
+    //'modernizr:dist',
     'uglify:dist',
     'cssmin:combine',
     'hash',
