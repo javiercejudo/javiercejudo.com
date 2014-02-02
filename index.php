@@ -97,7 +97,7 @@ $alma = implode(' ', $almaArray);
       </noscript>
 
       <header class="masthead" data-ng-include="'partials/header.html'"></header>
-      <section data-ng-view class="my-slide-animation"></section>
+      <section data-ng-view class="jc-view-animation"></section>
       <footer class="footer" data-ng-include="'partials/footer.html'"></footer>
       <!--<![endif]-->
 

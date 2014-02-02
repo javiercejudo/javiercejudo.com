@@ -121,7 +121,7 @@
         $scope.saveToLocalStorage = function () {
           $scope.storage['cv-data'] = $scope.cv.data;
         };
-        
+
         $scope.setAvailableLanguages = function () {
           var
             cv = $scope.cv,
