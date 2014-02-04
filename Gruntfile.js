@@ -57,7 +57,7 @@ module.exports = function(grunt) {
         minifiedPartialsPath,
         cssPath + '/**/*.css'
       ],
-      post: [
+      partials: [
         minifiedPartialsPath
       ],
       assets: [
@@ -375,7 +375,7 @@ module.exports = function(grunt) {
     'csslint:strict',
     'htmlmin:dist',
     'html2js:main',
-    'clean:post'
+    'clean:partials'
   ]);
 
   // Built assets for production

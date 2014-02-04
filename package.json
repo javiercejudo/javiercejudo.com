@@ -25,6 +25,7 @@
     "gulp": "~3.5.1",
     "gulp-clean": "~0.2.4",
     "gulp-concat": "~2.1.7",
+    "gulp-download": "0.0.1",
     "gulp-imagemin": "~0.1.4",
     "gulp-jshint": "~1.3.4",
     "gulp-less": "~1.2.1",
