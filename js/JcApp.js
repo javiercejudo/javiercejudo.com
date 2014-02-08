@@ -99,7 +99,8 @@
     }])
 
     .run(['$window', '$rootScope', function($window, $rootScope) {
-      $rootScope.online = $window.navigator.onLine;
+      $rootScope.version = angular.version;
+      $rootScope.online  = $window.navigator.onLine;
 
       var onlineHandler, offlineHandler;
 

@@ -8,23 +8,23 @@
     "tests"
   ],
   "devDependencies": {
-    "angular": "1.2.10",
-    "angular-mocks": "1.2.10",
-    "angular-scenario": "1.2.10",
-    "angular-route": "1.2.10",
-    "angular-sanitize": "1.2.10",
-    "angular-touch": "1.2.10",
-    "angular-animate": "1.2.10",
-    "angularfire": "~0.5.0",
+    "angular": "1.2.12",
+    "angular-mocks": "1.2.12",
+    "angular-scenario": "1.2.12",
+    "angular-route": "1.2.12",
+    "angular-sanitize": "1.2.12",
+    "angular-touch": "1.2.12",
+    "angular-animate": "1.2.12",
+    "angularfire": "~0.6.0",
     "ngstorage": "~0.3.0",
-    "jquery": "~2.0.3",
+    "jquery": "~2.1.0",
     "modernizr": "~2.7.1",
-    "bootstrap": "~3.0.3",
+    "bootstrap": "~3.1.0",
     "preboot": "*",
     "html5shiv": "~3.7.0",
-    "respond": "~1.4.1"
+    "respond": "~1.4.2"
   },
   "resolutions": {
-    "angular": "1.2.10"
+    "angular": "1.2.12"
   }
 }
