@@ -1,12 +1,15 @@
 var
   gulp = require('gulp'),
   gutil = require('gulp-util'),
+  buster = require('gulp-buster'),
   clean = require('gulp-clean'),
   concat = require('gulp-concat'),
   download = require('gulp-download'),
   imagemin = require('gulp-imagemin'),
   jshint = require('gulp-jshint'),
+  karma = require('gulp-karma'),
   less = require('gulp-less'),
+  manifest = require('gulp-manifest'),
   minifycss = require('gulp-minify-css'),
   notify = require('gulp-notify'),
   rename = require('gulp-rename'),
@@ -58,6 +61,11 @@ gulp.task('clean-partials', function() {
 
   return gulp.src(pathsToClean, {read: false})
     .pipe(clean());
+});
+
+gulp.task('copy-fonts', function() {
+  return gulp.src(paths.bower + '/bootstrap/dist/fonts/**')
+    .pipe(gulp.dest(paths.fonts + '/'));
 });
 
 gulp.task('clean-assets', function() {
@@ -119,10 +127,13 @@ gulp.task('js-top', function() {
     .pipe(gulp.dest('assets'));
 });
 
-gulp.task('download', ['download-firebase', 'download-data']);
-
-gulp.task('scripts', ['clean-pre'], function () {
+gulp.task('scripts', ['clean-pre', 'download-firebase'], function () {
   gulp.start('js-app', 'js-top');
 });
 
-gulp.task('default', ['jshint', 'download', 'scripts']);
+gulp.task('default', [
+  'jshint',
+  'download-data',
+  'copy-fonts',
+  'scripts'
+]);

@@ -5,7 +5,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-curl');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-json-minify');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-csslint');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
@@ -18,6 +17,7 @@ module.exports = function(grunt) {
   //grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-manifest');
   grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-karma-coveralls');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-docular');
 
@@ -68,7 +68,7 @@ module.exports = function(grunt) {
     },
 
     curl: {
-      'data/c3jud0-export.json': 'https://c3jud0.firebaseio.com/.json?print=pretty',
+      'data/min/c3jud0-export.json': 'https://c3jud0.firebaseio.com/.json',
       'vendor/firebase/firebase.js': 'https://cdn.firebase.com/v0/firebase.js'
     },
 
@@ -77,25 +77,10 @@ module.exports = function(grunt) {
         files: [{
           expand: true,
           cwd: bowerPath + '/bootstrap/dist/fonts/',
-          src: ['**'],
+          src: ['**/*'],
           dest: fontsPath + '/',
           filter: 'isFile'
         }]
-      },
-      data: {
-        files: [{
-          expand: true,
-          cwd: dataPath + '',
-          src: ['*'],
-          dest: dataPath + '/min/',
-          filter: 'isFile'
-        }]
-      }
-    },
-
-    'json-minify': {
-      dist: {
-        files: dataPath + '/min/c3jud0-export.json'
       }
     },
 
@@ -337,6 +322,13 @@ module.exports = function(grunt) {
       }
     },
 
+    coveralls: {
+      options: {
+        debug: true,
+        coverage_dir: 'coverage/'
+      }
+    },
+
     docular: {
       groups: [
         {
@@ -369,8 +361,7 @@ module.exports = function(grunt) {
     'jshint:all',
     'clean:pre',
     'curl',
-    'copy',
-    'json-minify:dist',
+    'copy:fonts',
     'less:dist',
     'csslint:strict',
     'htmlmin:dist',

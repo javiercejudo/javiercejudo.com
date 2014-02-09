@@ -51,7 +51,6 @@
     "grunt-docular": "~0.1.2",
     "grunt-hash": "~0.5.0",
     "grunt-html2js": "~0.2.2",
-    "grunt-json-minify": "~0.4.0",
     "grunt-karma": "~0.6.2",
     "grunt-manifest": "~0.4.0",
     "grunt-modernizr": "~0.5.0",
@@ -66,7 +65,11 @@
     "karma-phantomjs-launcher": "~0.1.0",
     "karma-requirejs": "~0.2.0",
     "karma-script-launcher": "~0.1.0",
-    "karma-coverage": "~0.1.4"
+    "karma-coverage": "~0.1.4",
+    "gulp-buster": "~0.2.1",
+    "gulp-manifest": "0.0.2",
+    "gulp-karma": "0.0.2",
+    "grunt-karma-coveralls": "~2.3.0"
   },
   "dependencies": {}
 }
