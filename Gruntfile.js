@@ -8,7 +8,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-manifest');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-karma-coveralls');
-  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-docular');
 
   var tmpPath = 'tmp';
@@ -106,40 +105,6 @@ module.exports = function(grunt) {
           dataPath + '/min/**/*.json'
         ],
         dest: 'manifest.appcache'
-      }
-    },
-
-    watch: {
-      options: {
-        nospawn: true,
-        livereload: true
-      },
-      less: {
-        files: [
-          lessPath + '/**/*.less'
-        ],
-        tasks: [
-          'less:dist',
-          'csslint:strict'
-        ]
-      },
-      js: {
-        files: [
-          'Gruntfile.js',
-          jsPath + '/**/*.js'
-        ],
-        tasks: [
-          'jshint:all'
-        ]
-      },
-      partials: {
-        files: [
-          partialsPath + '/**/*.html'
-        ],
-        tasks: [
-          'htmlmin:dist',
-          'html2js:main'
-        ]
       }
     },
 
