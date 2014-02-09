@@ -18,6 +18,11 @@ css/*
 !css/less/
 node_modules
 tmp
+vendor
+
+#assets/app.js
+#assets/top.js
+#assets/app.css
 
 wraith/*
 !wraith/configs/

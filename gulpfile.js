@@ -1,8 +1,8 @@
 var
   gulp = require('gulp'),
   gutil = require('gulp-util'),
-  buster = require('gulp-buster'),
   clean = require('gulp-clean'),
+  csslint = require('gulp-csslint'),
   cssmin = require('gulp-cssmin'),
   concat = require('gulp-concat'),
   download = require('gulp-download'),
@@ -12,11 +12,13 @@ var
   karma = require('gulp-karma'),
   less = require('gulp-less'),
   manifest = require('gulp-manifest'),
-  minifycss = require('gulp-minify-css'),
   ngHtml2Js = require("gulp-ng-html2js"),
   notify = require('gulp-notify'),
   rename = require('gulp-rename'),
+  rev = require('gulp-rev'),
   uglify = require('gulp-uglify');
+
+require('gulp-grunt')(gulp);
 
 var paths = {
   assets: 'assets',
@@ -44,7 +46,7 @@ gulp.task('jshint', function() {
     .pipe(jshint.reporter('default'));
 });
 
-gulp.task('clean-pre', function() {
+gulp.task('clean-pre', function(cb) {
   var pathsToClean = [
     'assets.map.json',
     paths.assets,
@@ -53,8 +55,10 @@ gulp.task('clean-pre', function() {
     paths.css + '/**/*.css'
   ];
 
-  return gulp.src(pathsToClean, {read: false})
+  gulp.src(pathsToClean, {read: false})
     .pipe(clean());
+
+  cb();
 });
 
 gulp.task('clean-partials', function() {
@@ -66,26 +70,32 @@ gulp.task('clean-partials', function() {
     .pipe(clean());
 });
 
-gulp.task('copy-fonts', function() {
-  return gulp.src(paths.bower + '/bootstrap/dist/fonts/**')
+gulp.task('copy-fonts', function(cb) {
+  gulp.src(paths.bower + '/bootstrap/dist/fonts/**')
     .pipe(gulp.dest(paths.fonts + '/'));
+
+  cb();
 });
 
-gulp.task('clean-assets', function() {
+gulp.task('clean-assets', function(cb) {
   var pathsToClean = [
     paths.assets + '/app.css',
     paths.assets + '/app.js',
     paths.assets + '/top.js'
   ];
 
-  return gulp.src(pathsToClean, {read: false})
+  gulp.src(pathsToClean, {read: false})
     .pipe(clean());
+
+  cb();
 });
 
 gulp.task('download-firebase', function() {
   return download('https://cdn.firebase.com/v0/firebase.js')
     .pipe(rename('firebase.js'))
-    .pipe(gulp.dest(paths.vendor + '/firebase'));
+    .pipe(gulp.dest(paths.vendor + '/firebase'))
+    .pipe(rev())
+    .pipe(gulp.dest(paths.assets));
 });
 
 gulp.task('download-data', function() {
@@ -94,7 +104,7 @@ gulp.task('download-data', function() {
     .pipe(gulp.dest(paths.data));
 });
 
-gulp.task('js-app', function() {
+gulp.task('js-app', function(cb) {
   var appJsScripts = [
     //paths.bower + '/modernizr/modernizr.custom.js',
     paths.bower + '/angular/angular.js',
@@ -112,26 +122,34 @@ gulp.task('js-app', function() {
     paths.js + '/**/*.js'
   ];
 
-  return gulp.src(appJsScripts)
+  gulp.src(appJsScripts)
     .pipe(concat("app.js"))
     .pipe(uglify())
+    .pipe(gulp.dest('assets'))
+    .pipe(rev())
     .pipe(gulp.dest('assets'));
+
+  cb();
 });
 
-gulp.task('js-top', function() {
+gulp.task('js-top', function(cb) {
   var topJsScripts = [
     paths.bower + '/html5shiv/dist/html5shiv.js',
     paths.bower + '/respond/dest/respond.src.js'
   ];
 
-  return gulp.src(topJsScripts)
+  gulp.src(topJsScripts)
     .pipe(concat("top.js"))
     .pipe(uglify())
+    .pipe(gulp.dest('assets'))
+    .pipe(rev())
     .pipe(gulp.dest('assets'));
+
+  cb();
 });
 
-gulp.task('styles', function() {
-  var cssFiles, lessOptions;
+gulp.task('less', function() {
+  var cssFiles, lessOptions, cssminOptions;
 
   cssFiles = [
     paths.css + "/less/custom-bootstrap.less",
@@ -143,12 +161,28 @@ gulp.task('styles', function() {
     dumpLineNumbers: "comments"
   };
 
+  cssminOptions = {
+    keepSpecialComments: 0
+  };
+
   return gulp.src(cssFiles)
     .pipe(less(lessOptions))
     .pipe(gulp.dest(paths.css))
     .pipe(concat('app.css'))
-    .pipe(cssmin())
-    .pipe(gulp.dest(paths.assets));
+    .pipe(cssmin(cssminOptions))
+    .pipe(gulp.dest(paths.assets))
+    .pipe(rev())
+    .pipe(gulp.dest('assets'));
+});
+
+gulp.task('csslint', function() {
+  var cssLintableFiles = [
+    paths.css + "/jcApp.css"
+  ];
+
+  return gulp.src(cssLintableFiles)
+    .pipe(csslint('.csslintrc'))
+    .pipe(csslint.reporter());
 });
 
 gulp.task('partials', function() {
@@ -172,13 +206,12 @@ gulp.task('partials', function() {
     .pipe(gulp.dest(paths.partials));
 });
 
-gulp.task('scripts', ['clean-pre', 'download-firebase', 'partials'], function () {
+gulp.task('styles', ['copy-fonts', 'less'], function () {
+  gulp.start('csslint');
+});
+
+gulp.task('scripts', ['download-firebase', 'partials'], function () {
   gulp.start('js-app', 'js-top');
 });
 
-gulp.task('default', [
-  'jshint',
-  'download-data',
-  'copy-fonts',
-  'scripts'
-]);
+gulp.task('default', ['copy-fonts', 'styles', 'scripts']);
