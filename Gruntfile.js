@@ -171,8 +171,8 @@ module.exports = function(grunt) {
           dumpLineNumbers: "comments"
         },
         files: {
-          "css/custom-bootstrap.css": "css/less/custom-bootstrap.less",
-          "css/jcApp.css": "css/less/jcApp.less"
+          "css/custom-bootstrap.css": cssPath + "/less/custom-bootstrap.less",
+          "css/jcApp.css": cssPath + "/less/jcApp.less"
         }
       }
     },

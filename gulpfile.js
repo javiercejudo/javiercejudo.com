@@ -3,14 +3,17 @@ var
   gutil = require('gulp-util'),
   buster = require('gulp-buster'),
   clean = require('gulp-clean'),
+  cssmin = require('gulp-cssmin'),
   concat = require('gulp-concat'),
   download = require('gulp-download'),
+  htmlmin = require('gulp-htmlmin'),
   imagemin = require('gulp-imagemin'),
   jshint = require('gulp-jshint'),
   karma = require('gulp-karma'),
   less = require('gulp-less'),
   manifest = require('gulp-manifest'),
   minifycss = require('gulp-minify-css'),
+  ngHtml2Js = require("gulp-ng-html2js"),
   notify = require('gulp-notify'),
   rename = require('gulp-rename'),
   uglify = require('gulp-uglify');
@@ -127,7 +130,49 @@ gulp.task('js-top', function() {
     .pipe(gulp.dest('assets'));
 });
 
-gulp.task('scripts', ['clean-pre', 'download-firebase'], function () {
+gulp.task('styles', function() {
+  var cssFiles, lessOptions;
+
+  cssFiles = [
+    paths.css + "/less/custom-bootstrap.less",
+    paths.css + "/less/jcApp.less"
+  ];
+
+  lessOptions = {
+    //paths: cssFiles,
+    dumpLineNumbers: "comments"
+  };
+
+  return gulp.src(cssFiles)
+    .pipe(less(lessOptions))
+    .pipe(gulp.dest(paths.css))
+    .pipe(concat('app.css'))
+    .pipe(cssmin())
+    .pipe(gulp.dest(paths.assets));
+});
+
+gulp.task('partials', function() {
+  var hmltminOptions, ngHtml2JsOptions;
+
+  hmltminOptions = {
+    removeComments: true,
+    collapseWhitespace: true
+  };
+
+  ngHtml2JsOptions = {
+    moduleName: "templates-main",
+    prefix: 'partials/'
+  };
+
+  gulp.src(paths.partials + '/**/*.html')
+    .pipe(htmlmin(hmltminOptions))
+    .pipe(ngHtml2Js(ngHtml2JsOptions))
+    .pipe(concat("templates.js"))
+    .pipe(uglify())
+    .pipe(gulp.dest(paths.partials));
+});
+
+gulp.task('scripts', ['clean-pre', 'download-firebase', 'partials'], function () {
   gulp.start('js-app', 'js-top');
 });
 
