@@ -1,18 +1,8 @@
 module.exports = function(grunt) {
 
   // Load plugins used by this task gruntfile
-  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-curl');
-  grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-contrib-less');
-  grunt.loadNpmTasks('grunt-contrib-csslint');
-  grunt.loadNpmTasks('grunt-contrib-htmlmin');
-  grunt.loadNpmTasks('grunt-html2js');
   grunt.loadNpmTasks('grunt-modernizr');
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
-  grunt.loadNpmTasks('grunt-hash');
   //grunt.loadNpmTasks('grunt-contrib-compress');
   //grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-manifest');
@@ -38,78 +28,12 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-    jshint: {
-      options: {
-        jshintrc: true
-      },
-      all: [
-        'Gruntfile.js',
-        jsPath + '/**/*.js',
-        testsPath + '/**/*.js'
-      ]
-    },
-
     clean: {
-      pre: [
-        'assets.map.json',
-        assetsPath,
-        fontsPath,
-        minifiedPartialsPath,
-        cssPath + '/**/*.css'
-      ],
-      partials: [
-        minifiedPartialsPath
-      ],
       assets: [
         assetsPath + '/app.css',
         assetsPath + '/app.js',
         assetsPath + '/top.js'
       ]
-    },
-
-    curl: {
-      'data/min/c3jud0-export.json': 'https://c3jud0.firebaseio.com/.json',
-      'vendor/firebase/firebase.js': 'https://cdn.firebase.com/v0/firebase.js'
-    },
-
-    copy: {
-      fonts: {
-        files: [{
-          expand: true,
-          cwd: bowerPath + '/bootstrap/dist/fonts/',
-          src: ['**/*'],
-          dest: fontsPath + '/',
-          filter: 'isFile'
-        }]
-      }
-    },
-
-    htmlmin: {
-      options: {
-        removeComments: true,
-        collapseWhitespace: true
-      },
-      dist: {
-        files: [{
-          expand: true,
-          dot: false,
-          dest: 'tmp',
-          src: ['partials/**/*.html']
-        }]
-      }
-    },
-
-    html2js: {
-      options: {
-        base: '.',
-        rename: function (templateName) {
-          return templateName.replace('tmp/', '');
-        }
-      },
-      main: {
-        src: [minifiedPartialsPath + '/**/*.html'],
-        dest: partialsPath + '/templates.js'
-      }
     },
 
     modernizr: {
@@ -130,88 +54,6 @@ module.exports = function(grunt) {
         ],
         "uglify" : false
       }
-    },
-
-    uglify: {
-      options: {
-        mangle: true
-        // sourceMap: function(path) {
-        //   return path.replace(/^assets/, '.').replace(/.js$/, '.map');
-        // }
-      },
-      dist: {
-        files: {
-          'assets/app.js': [
-            //bowerPath + '/modernizr/modernizr.custom.js',
-            bowerPath + '/angular/angular.js',
-            bowerPath + '/angular-route/angular-route.js',
-            bowerPath + '/angular-sanitize/angular-sanitize.js',
-            bowerPath + '/angular-touch/angular-touch.js',
-            bowerPath + '/angular-animate/angular-animate.js',
-            bowerPath + '/angularfire/angularfire.js',
-            bowerPath + '/ngstorage/ngStorage.js',
-            partialsPath + '/templates.js',
-            jsPath + '/config.js',
-            jsPath + '/JcApp.js',
-            jsPath + '/AppDirectives.js',
-            jsPath + '/AppFilters.js',
-            jsPath + '/**/*.js'
-          ],
-          'assets/top.js': [
-            bowerPath + '/html5shiv/dist/html5shiv.js',
-            bowerPath + '/respond/dest/respond.src.js'
-          ]
-        }
-      }
-    },
-
-    less: {
-      dist: {
-        options: {
-          dumpLineNumbers: "comments"
-        },
-        files: {
-          "css/custom-bootstrap.css": cssPath + "/less/custom-bootstrap.less",
-          "css/jcApp.css": cssPath + "/less/jcApp.less"
-        }
-      }
-    },
-
-    csslint: {
-      options: {
-        csslintrc: ".csslintrc"
-      },
-      strict: {
-        src: [
-          cssPath + '/**/*.css',
-          '!' + cssPath + '/custom-bootstrap.css'
-        ]
-      }
-    },
-
-    cssmin: {
-      combine: {
-        options: {
-          keepSpecialComments: 0
-        },
-        files: {
-          'assets/app.css': [
-            cssPath + '/**/*.css'
-          ]
-        }
-      }
-    },
-
-    hash: {
-      options: {
-        mapping: 'assets.map.json',
-        hashLength: 8,
-        flatten: true
-      },
-      assets: [
-        vendorPath + '/firebase/firebase.js',
-        assetsPath + '/*.{js,css}'
-      ]
     },
 
     compress: {
@@ -256,8 +98,10 @@ module.exports = function(grunt) {
           master: ['index.php']
         },
         src: [
-          // partialsPath + '/**/*.html',
           assetsPath + '/**/*.{css,js,gz}',
+          '!' + assetsPath + '/app.js',
+          '!' + assetsPath + '/top.js',
+          '!' + assetsPath + '/app.css',
           fontsPath + '/**/*',
           dataPath + '/min/**/*.json'
         ],
@@ -356,55 +200,27 @@ module.exports = function(grunt) {
     }
   });
 
-  // Default task
-  grunt.registerTask('local', [
-    'jshint:all',
-    'clean:pre',
-    'curl',
-    'copy:fonts',
-    'less:dist',
-    'csslint:strict',
-    'htmlmin:dist',
-    'html2js:main',
-    'clean:partials'
-  ]);
-
-  // Built assets for production
-  grunt.registerTask('build', [
-    'local',
-    //'modernizr:dist',
-    'uglify:dist',
-    'cssmin:combine',
-    'hash',
-    'clean:assets',
-    //'compress:main',
-    //'imagemin:dist',
+  grunt.registerTask('complement', [
     'manifest:generate'
   ]);
 
-  // Builds assets for production and runs e2e tests
-  grunt.registerTask('e2e', [
-    'build',
+  grunt.registerTask('karma-unit', [
     'karma:dev'
   ]);
 
-  // Runs all tests
-  grunt.registerTask('test-only', [
-    'karma:dev',
+  grunt.registerTask('karma-e2e', [
     'karma:e2eDev'
   ]);
 
-  // Builds assets for production and runs all tests
-  grunt.registerTask('test', [
-    'build',
-    'karma:dev',
-    'karma:e2eDev'
+  grunt.registerTask('karma-all', [
+    'karma-unit',
+    'karma-e2e'
   ]);
 
-  // Builds assets for production and runs unit tests
   grunt.registerTask('default', [
-    'build',
-    'karma:dev'
+    'clean:assets',
+    'manifest:generate',
+    'karma-unit'
   ]);
 };
 
