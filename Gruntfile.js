@@ -1,7 +1,6 @@
 module.exports = function(grunt) {
 
   // Load plugins used by this task gruntfile
-  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-modernizr');
   //grunt.loadNpmTasks('grunt-contrib-compress');
   //grunt.loadNpmTasks('grunt-contrib-imagemin');
@@ -10,30 +9,16 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-karma-coveralls');
   grunt.loadNpmTasks('grunt-docular');
 
-  var tmpPath = 'tmp';
   var fontsPath = 'fonts';
   var jsPath = 'js';
   var cssPath = 'css';
-  var lessPath = cssPath + '/less';
   var bowerPath = 'bower_components';
   var assetsPath = 'assets';
-  var partialsPath = 'partials';
-  var minifiedPartialsPath = tmpPath + '/partials';
   var dataPath = 'data';
-  var vendorPath = 'vendor';
-  var testsPath = 'tests';
 
   // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
-
-    clean: {
-      assets: [
-        assetsPath + '/app.css',
-        assetsPath + '/app.js',
-        assetsPath + '/top.js'
-      ]
-    },
 
     modernizr: {
       dist: {
@@ -92,8 +77,8 @@ module.exports = function(grunt) {
           // fallback: ['/ /offline.html'],
           preferOnline: false,
           verbose: false,
-          timestamp: true,
-          hash: true, // does not seem to work
+          timestamp: false,
+          hash: false, // does not seem to work
           master: ['index.php']
         },
         src: [
@@ -183,7 +168,6 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('default', [
-    'clean:assets',
     'manifest:generate',
     'karma-unit'
   ]);

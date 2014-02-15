@@ -44,7 +44,6 @@
     "gulp-util": "~2.2.14",
     "grunt": "~0.4.2",
     "grunt-cli": "~0.1.10",
-    "grunt-contrib-clean": "~0.5.0",
     "grunt-contrib-compress": "~0.6.0",
     "grunt-contrib-imagemin": "~0.5.0",
     "grunt-docular": "~0.1.2",

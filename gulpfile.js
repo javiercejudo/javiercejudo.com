@@ -125,7 +125,6 @@ gulp.task('js-app', function(cb) {
   gulp.src(appJsScripts)
     .pipe(concat("app.js"))
     .pipe(uglify())
-    .pipe(gulp.dest('assets'))
     .pipe(rev())
     .pipe(gulp.dest('assets'));
 
@@ -141,7 +140,6 @@ gulp.task('js-top', function(cb) {
   gulp.src(topJsScripts)
     .pipe(concat("top.js"))
     .pipe(uglify())
-    .pipe(gulp.dest('assets'))
     .pipe(rev())
     .pipe(gulp.dest('assets'));
 
@@ -170,7 +168,6 @@ gulp.task('less', function() {
     .pipe(gulp.dest(paths.css))
     .pipe(concat('app.css'))
     .pipe(cssmin(cssminOptions))
-    .pipe(gulp.dest(paths.assets))
     .pipe(rev())
     .pipe(gulp.dest('assets'));
 });
@@ -206,7 +203,7 @@ gulp.task('partials', function() {
     .pipe(gulp.dest(paths.partials));
 });
 
-gulp.task('styles', ['copy-fonts', 'less'], function () {
+gulp.task('styles', ['less'], function () {
   gulp.start('csslint');
 });
 
