@@ -12,8 +12,8 @@ directory:
 
 # Add only 2 domains, key will act as a label
 domains:
-  test: "http://javiercejudo.dev"
-  live: "http://javiercejudo.com"
+  dev: "http://javiercejudo.dev"
+  staging: "http://staging.javiercejudo.com"
 
 #Type screen widths below, here are a couple of examples
 screen_widths:
