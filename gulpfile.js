@@ -16,6 +16,7 @@ var
   notify = require('gulp-notify'),
   rename = require('gulp-rename'),
   rev = require('gulp-rev'),
+  streamify = require('gulp-streamify'),
   uglify = require('gulp-uglify');
 
 require('gulp-grunt')(gulp);
@@ -201,6 +202,27 @@ gulp.task('partials', function() {
     .pipe(concat("templates.js"))
     .pipe(uglify())
     .pipe(gulp.dest(paths.partials));
+});
+
+gulp.task('manifest', function() {
+  var files, options;
+
+  files = [
+    paths.assets + '/**/*',
+    paths.fonts + '/**/*',
+    paths.data + '/min/**/*'
+  ];
+
+  options = {
+    network: ['http://*', 'https://*', '*'],
+    preferOnline: true,
+    timestamp: false,
+    hash: true
+  };
+
+  gulp.src(files)
+    .pipe(streamify(manifest(options)))
+    .pipe(gulp.dest('manifest.appcache'));
 });
 
 gulp.task('styles', ['less'], function () {

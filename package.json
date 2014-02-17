@@ -62,7 +62,8 @@
     "karma-requirejs": "~0.2.0",
     "karma-script-launcher": "~0.1.0",
     "karma-coverage": "~0.2.0",
-    "grunt-karma-coveralls": "~2.3.0"
+    "grunt-karma-coveralls": "~2.3.0",
+    "gulp-streamify": "0.0.3"
   },
   "dependencies": {}
 }
