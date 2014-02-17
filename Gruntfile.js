@@ -75,7 +75,7 @@ module.exports = function(grunt) {
           // cache: ['js/app.js', 'css/style.css'],
           // network: ['http://*', 'https://*'],
           // fallback: ['/ /offline.html'],
-          preferOnline: false,
+          preferOnline: true,
           verbose: false,
           timestamp: false,
           hash: false, // does not seem to work
