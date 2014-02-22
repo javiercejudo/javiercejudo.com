@@ -1,5 +1,6 @@
 CACHE MANIFEST
 
+
 CACHE:
 assets/app-7eae81b8.js
 assets/app-fa9963ce.css
@@ -11,8 +12,12 @@ fonts/glyphicons-halflings-regular.ttf
 fonts/glyphicons-halflings-regular.woff
 data/min/c3jud0-export.json
 
+
 NETWORK:
+http://*
+https://*
 *
+
 
 SETTINGS:
 prefer-online

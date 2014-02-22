@@ -203,6 +203,28 @@ gulp.task('partials', function() {
     .pipe(gulp.dest(paths.partials));
 });
 
+gulp.task('manifest', function() {
+  var files, options;
+
+  files = [
+    paths.assets + '/**/*',
+    paths.fonts + '/**/*',
+    paths.data + '/min/**/*'
+  ];
+
+  options = {
+    filename: 'manifest.appcache',
+    network: ['http://*', 'https://*', '*'],
+    preferOnline: true,
+    timestamp: false,
+    hash: false
+  };
+
+  gulp.src(files, {base: './'})
+    .pipe(manifest(options))
+    .pipe(gulp.dest(''));
+});
+
 gulp.task('styles', ['less'], function () {
   gulp.start('csslint');
 });
@@ -211,4 +233,6 @@ gulp.task('scripts', ['download-firebase', 'partials'], function () {
   gulp.start('js-app', 'js-top');
 });
 
-gulp.task('default', ['copy-fonts', 'styles', 'scripts']);
+gulp.task('default', ['copy-fonts', 'styles', 'scripts'], function () {
+  gulp.start('manifest');
+});

@@ -4,7 +4,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-modernizr');
   //grunt.loadNpmTasks('grunt-contrib-compress');
   //grunt.loadNpmTasks('grunt-contrib-imagemin');
-  grunt.loadNpmTasks('grunt-manifest');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-karma-coveralls');
   grunt.loadNpmTasks('grunt-docular');
@@ -68,31 +67,6 @@ module.exports = function(grunt) {
       }
     },
 
-    manifest: {
-      generate: {
-        options: {
-          basePath: '.',
-          // cache: ['js/app.js', 'css/style.css'],
-          // network: ['http://*', 'https://*'],
-          // fallback: ['/ /offline.html'],
-          preferOnline: true,
-          verbose: false,
-          timestamp: false,
-          hash: false, // does not seem to work
-          master: ['index.php']
-        },
-        src: [
-          assetsPath + '/**/*.{css,js,gz}',
-          '!' + assetsPath + '/app.js',
-          '!' + assetsPath + '/top.js',
-          '!' + assetsPath + '/app.css',
-          fontsPath + '/**/*',
-          dataPath + '/min/**/*.json'
-        ],
-        dest: 'manifest.appcache'
-      }
-    },
-
     karma: {
       options: {
         configFile: 'karma.conf.js',
@@ -150,10 +124,6 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('complement', [
-    'manifest:generate'
-  ]);
-
   grunt.registerTask('karma-unit', [
     'karma:dev'
   ]);
@@ -168,7 +138,6 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('default', [
-    'manifest:generate',
     'karma-unit'
   ]);
 };
