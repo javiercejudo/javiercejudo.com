@@ -170,7 +170,7 @@ gulp.task('less', function() {
     .pipe(gulp.dest('assets'));
 });
 
-gulp.task('csslint', function() {
+gulp.task('csslint', function(cb) {
   var cssLintableFiles = [
     paths.css + "/jcApp.css"
   ];
@@ -178,6 +178,8 @@ gulp.task('csslint', function() {
   return gulp.src(cssLintableFiles)
     .pipe(csslint('.csslintrc'))
     .pipe(csslint.reporter());
+
+  cb();
 });
 
 gulp.task('partials', function() {
