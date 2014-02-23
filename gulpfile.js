@@ -47,9 +47,9 @@ gulp.task('jshint', function() {
 gulp.task('clean-pre', function(cb) {
   var pathsToClean = [
     'assets.map.json',
-    paths.assets,
-    paths.fonts,
-    paths.minifiedPartials,
+    paths.assets + '/**/*',
+    paths.fonts + '/**/*',
+    paths.minifiedPartials + '/**/*',
     paths.css + '/**/*.css'
   ];
 
@@ -231,6 +231,10 @@ gulp.task('scripts', ['download-firebase', 'partials'], function () {
   gulp.start('js-app', 'js-top');
 });
 
-gulp.task('default', ['copy-fonts', 'styles', 'scripts'], function () {
+gulp.task('build', ['copy-fonts', 'styles', 'scripts'], function () {
   gulp.start('manifest');
+});
+
+gulp.task('default', ['clean-pre'], function () {
+  gulp.start('build');
 });
