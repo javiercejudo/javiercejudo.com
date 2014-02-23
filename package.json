@@ -63,6 +63,7 @@
     "gulp-rename": "~1.1.0",
     "gulp-rev": "~0.2.1",
     "gulp-uglify": "~0.2.0",
-    "gulp-util": "~2.2.14"
+    "gulp-util": "~2.2.14",
+    "run-sequence": "^0.3.6"
   }
 }

@@ -16,6 +16,7 @@ var
   notify = require('gulp-notify'),
   rename = require('gulp-rename'),
   rev = require('gulp-rev'),
+  runSequence = require('run-sequence'),
   uglify = require('gulp-uglify');
 
 var paths = {
@@ -44,7 +45,7 @@ gulp.task('jshint', function() {
     .pipe(jshint.reporter('default'));
 });
 
-gulp.task('clean-pre', function(cb) {
+gulp.task('clean-pre', function() {
   var pathsToClean = [
     'assets.map.json',
     paths.assets + '/**/*',
@@ -53,10 +54,8 @@ gulp.task('clean-pre', function(cb) {
     paths.css + '/**/*.css'
   ];
 
-  gulp.src(pathsToClean, {read: false})
+  return gulp.src(pathsToClean, {read: false})
     .pipe(clean());
-
-  cb();
 });
 
 gulp.task('clean-partials', function() {
@@ -68,24 +67,20 @@ gulp.task('clean-partials', function() {
     .pipe(clean());
 });
 
-gulp.task('copy-fonts', function(cb) {
-  gulp.src(paths.bower + '/bootstrap/dist/fonts/**')
+gulp.task('copy-fonts', function() {
+  return gulp.src(paths.bower + '/bootstrap/dist/fonts/**')
     .pipe(gulp.dest(paths.fonts + '/'));
-
-  cb();
 });
 
-gulp.task('clean-assets', function(cb) {
+gulp.task('clean-assets', function() {
   var pathsToClean = [
     paths.assets + '/app.css',
     paths.assets + '/app.js',
     paths.assets + '/top.js'
   ];
 
-  gulp.src(pathsToClean, {read: false})
+  return gulp.src(pathsToClean, {read: false})
     .pipe(clean());
-
-  cb();
 });
 
 gulp.task('download-firebase', function() {
@@ -102,7 +97,7 @@ gulp.task('download-data', function() {
     .pipe(gulp.dest(paths.data));
 });
 
-gulp.task('js-app', function(cb) {
+gulp.task('js-app', function() {
   var appJsScripts = [
     //paths.bower + '/modernizr/modernizr.custom.js',
     paths.bower + '/angular/angular.js',
@@ -120,28 +115,24 @@ gulp.task('js-app', function(cb) {
     paths.js + '/**/*.js'
   ];
 
-  gulp.src(appJsScripts)
+  return gulp.src(appJsScripts)
     .pipe(concat("app.js"))
     .pipe(uglify())
     .pipe(rev())
     .pipe(gulp.dest('assets'));
-
-  cb();
 });
 
-gulp.task('js-top', function(cb) {
+gulp.task('js-top', function() {
   var topJsScripts = [
     paths.bower + '/html5shiv/dist/html5shiv.js',
     paths.bower + '/respond/dest/respond.src.js'
   ];
 
-  gulp.src(topJsScripts)
+  return gulp.src(topJsScripts)
     .pipe(concat("top.js"))
     .pipe(uglify())
     .pipe(rev())
     .pipe(gulp.dest('assets'));
-
-  cb();
 });
 
 gulp.task('less', function() {
@@ -170,7 +161,7 @@ gulp.task('less', function() {
     .pipe(gulp.dest('assets'));
 });
 
-gulp.task('csslint', function(cb) {
+gulp.task('csslint', function() {
   var cssLintableFiles = [
     paths.css + "/jcApp.css"
   ];
@@ -178,8 +169,6 @@ gulp.task('csslint', function(cb) {
   return gulp.src(cssLintableFiles)
     .pipe(csslint('.csslintrc'))
     .pipe(csslint.reporter());
-
-  cb();
 });
 
 gulp.task('partials', function() {
@@ -195,7 +184,7 @@ gulp.task('partials', function() {
     prefix: 'partials/'
   };
 
-  gulp.src(paths.partials + '/**/*.html')
+  return gulp.src(paths.partials + '/**/*.html')
     .pipe(htmlmin(hmltminOptions))
     .pipe(ngHtml2Js(ngHtml2JsOptions))
     .pipe(concat("templates.js"))
@@ -220,23 +209,37 @@ gulp.task('manifest', function() {
     hash: false
   };
 
-  gulp.src(files, {base: './'})
+  return gulp.src(files, {base: './'})
     .pipe(manifest(options))
     .pipe(gulp.dest(''));
 });
 
-gulp.task('styles', ['less'], function () {
-  gulp.start('csslint');
+gulp.task('styles', function (cb) {
+  runSequence(
+    'less',
+    'csslint'
+  );
 });
 
-gulp.task('scripts', ['download-firebase', 'partials'], function () {
-  gulp.start('js-app', 'js-top');
+gulp.task('scripts', function () {
+  runSequence(
+    ['download-firebase', 'partials'],
+    ['js-app', 'js-top']
+  );
 });
 
-gulp.task('build', ['copy-fonts', 'styles', 'scripts'], function () {
-  gulp.start('manifest');
+gulp.task('build', function () {
+  runSequence(
+    ['copy-fonts', 'styles', 'scripts'],
+    'manifest'
+  );
 });
 
-gulp.task('default', ['clean-pre'], function () {
-  gulp.start('build');
+gulp.task('default', function () {
+  runSequence(
+    'clean-pre',
+    ['copy-fonts', 'download-firebase', 'partials'],
+    ['less', 'js-app', 'js-top'],
+    ['csslint', 'manifest']
+  );
 });
