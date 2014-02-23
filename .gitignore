@@ -1,7 +1,7 @@
 .*
-!.coveralls.yml.template
+!.coveralls.yml.dist
 !.csslintrc
-!.env.template
+!.env.dist
 !.gitignore
 !.htaccess
 !.jshintrc
