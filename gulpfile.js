@@ -18,8 +18,6 @@ var
   rev = require('gulp-rev'),
   uglify = require('gulp-uglify');
 
-require('gulp-grunt')(gulp);
-
 var paths = {
   assets: 'assets',
   bower: 'bower_components',
