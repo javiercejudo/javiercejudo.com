@@ -23,6 +23,9 @@ My personal website.
     </tr>
 </table>
 
+The staging version hosted on Heroku uses a custom buildpack:
+https://github.com/javiercejudo/heroku-buildpack-php
+
 ## Tenchologies
 
 ### JavaScript:
