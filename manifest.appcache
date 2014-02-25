@@ -2,10 +2,10 @@ CACHE MANIFEST
 
 
 CACHE:
-assets/app-7eae81b8.js
-assets/app-fa9963ce.css
-assets/firebase-8a2d58c3.js
-assets/top-013ca346.js
+build/app-69612aa4.js
+build/app-ae6650e9.css
+build/firebase-8a2d58c3.js
+build/top-013ca346.js
 fonts/glyphicons-halflings-regular.eot
 fonts/glyphicons-halflings-regular.svg
 fonts/glyphicons-halflings-regular.ttf
