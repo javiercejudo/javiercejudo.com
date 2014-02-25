@@ -17,6 +17,7 @@ build
 coverage
 css/*
 !css/less/
+data
 node_modules
 tmp
 vendor

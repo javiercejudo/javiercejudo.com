@@ -80,9 +80,9 @@ gulp.task('download-firebase', function() {
 });
 
 gulp.task('download-data', function() {
-  return download('https://c3jud0.firebaseio.com/.json?print=pretty')
+  return download('https://c3jud0.firebaseio.com/.json')
     .pipe(rename('c3jud0-export.json'))
-    .pipe(gulp.dest(paths.data));
+    .pipe(gulp.dest(paths.data + '/min'));
 });
 
 gulp.task('js-app', function() {
@@ -225,7 +225,7 @@ gulp.task('build', function () {
 
 gulp.task('default', function () {
   runSequence(
-    'clean-pre',
+    ['clean-pre', 'download-data'],
     ['copy-fonts', 'download-firebase', 'partials'],
     ['less', 'js-app', 'js-top'],
     ['csslint', 'manifest']
