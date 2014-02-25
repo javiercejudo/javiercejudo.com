@@ -18,6 +18,7 @@ coverage
 css/*
 !css/less/
 data
+fonts
 node_modules
 tmp
 vendor
