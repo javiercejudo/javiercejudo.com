@@ -17,7 +17,7 @@ module.exports = function(karma) {
     urlRoot: '/_karma_/',
 
     proxies: {
-      '/': 'http://javiercejudo.dev/#!/'
+      '/': 'http://www.javiercejudo.dev/#!/'
     },
 
     // use dolts reporter, as travis terminal does not support escaping sequences
