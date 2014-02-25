@@ -13,6 +13,7 @@ data/c3jud0-export.json
 *~
 
 bower_components
+build
 coverage
 css/*
 !css/less/

@@ -1,21 +1,15 @@
 module.exports = function(grunt) {
-
-  // Load plugins used by this task gruntfile
   grunt.loadNpmTasks('grunt-modernizr');
-  //grunt.loadNpmTasks('grunt-contrib-compress');
-  //grunt.loadNpmTasks('grunt-contrib-imagemin');
+  grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-karma-coveralls');
   grunt.loadNpmTasks('grunt-docular');
 
-  var fontsPath = 'fonts';
   var jsPath = 'js';
   var cssPath = 'css';
   var bowerPath = 'bower_components';
-  var assetsPath = 'assets';
-  var dataPath = 'data';
+  var imgPath = 'img';
 
-  // Project configuration.
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
@@ -39,18 +33,6 @@ module.exports = function(grunt) {
       }
     },
 
-    compress: {
-      main: {
-        options: {
-          mode: 'gzip'
-        },
-        expand: true,
-        cwd: 'assets/',
-        src: ['**/*'],
-        dest: 'assets/'
-      }
-    },
-
     imagemin: {
       dist: {
         options: {
@@ -59,9 +41,9 @@ module.exports = function(grunt) {
         files: [
           {
             expand: true,
-            cwd: 'img/',
+            cwd: imgPath + '/',
             src: ['**/*'],
-            dest: 'img/'
+            dest: imgPath + '/'
           }
         ]
       }
@@ -84,7 +66,7 @@ module.exports = function(grunt) {
         configFile: 'karma-e2e.conf.js',
         browsers: ['PhantomJS']
       },
-      e2eLive: {
+      e2eDist: {
         configFile: 'karma-e2e.conf.js',
         browsers: ['Chrome', 'Firefox']
       }
@@ -124,21 +106,18 @@ module.exports = function(grunt) {
     }
   });
 
-  grunt.registerTask('karma-unit', [
-    'karma:dev'
-  ]);
-
-  grunt.registerTask('karma-e2e', [
+  grunt.registerTask('karma-dev-all', [
+    'karma:dev',
     'karma:e2eDev'
   ]);
 
-  grunt.registerTask('karma-all', [
-    'karma-unit',
-    'karma-e2e'
+  grunt.registerTask('karma-dist-all', [
+    'karma:dist',
+    'karma:e2eDist'
   ]);
 
   grunt.registerTask('default', [
-    'karma-unit'
+    'karma:dev'
   ]);
 };
 
