@@ -11,7 +11,7 @@ My personal website.
 <table>
     <tr>
         <th>Live</th>
-        <td>http://javiercejudo.com</td>
+        <td>http://www.javiercejudo.com</td>
     </tr>
     <tr>
         <th>Staging</th>
@@ -19,7 +19,7 @@ My personal website.
     </tr>
     <tr>
         <th>Dev</th>
-        <td>http://javiercejudo.dev</td>
+        <td>http://www.javiercejudo.dev</td>
     </tr>
 </table>
 
