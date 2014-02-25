@@ -1,13 +1,13 @@
 var
   gulp = require('gulp'),
-  gutil = require('gulp-util'),
+//  gutil = require('gulp-util'),
   clean = require('gulp-clean'),
   csslint = require('gulp-csslint'),
   cssmin = require('gulp-cssmin'),
   concat = require('gulp-concat'),
   download = require('gulp-download'),
   htmlmin = require('gulp-htmlmin'),
-  imagemin = require('gulp-imagemin'),
+//  imagemin = require('gulp-imagemin'),
   jshint = require('gulp-jshint'),
   karma = require('gulp-karma'),
   less = require('gulp-less'),
@@ -20,7 +20,7 @@ var
   uglify = require('gulp-uglify');
 
 var paths = {
-  assets: 'assets',
+  build: 'build',
   bower: 'bower_components',
   css: 'css',
   data: 'data',
@@ -47,8 +47,7 @@ gulp.task('jshint', function() {
 
 gulp.task('clean-pre', function() {
   var pathsToClean = [
-    'assets.map.json',
-    paths.assets + '/**/*',
+    paths.build + '/**/*',
     paths.fonts + '/**/*',
     paths.minifiedPartials + '/**/*',
     paths.css + '/**/*.css'
@@ -72,23 +71,12 @@ gulp.task('copy-fonts', function() {
     .pipe(gulp.dest(paths.fonts + '/'));
 });
 
-gulp.task('clean-assets', function() {
-  var pathsToClean = [
-    paths.assets + '/app.css',
-    paths.assets + '/app.js',
-    paths.assets + '/top.js'
-  ];
-
-  return gulp.src(pathsToClean, {read: false})
-    .pipe(clean());
-});
-
 gulp.task('download-firebase', function() {
   return download('https://cdn.firebase.com/v0/firebase.js')
     .pipe(rename('firebase.js'))
     .pipe(gulp.dest(paths.vendor + '/firebase'))
     .pipe(rev())
-    .pipe(gulp.dest(paths.assets));
+    .pipe(gulp.dest(paths.build));
 });
 
 gulp.task('download-data', function() {
@@ -119,7 +107,7 @@ gulp.task('js-app', function() {
     .pipe(concat("app.js"))
     .pipe(uglify())
     .pipe(rev())
-    .pipe(gulp.dest('assets'));
+    .pipe(gulp.dest(paths.build));
 });
 
 gulp.task('js-top', function() {
@@ -132,7 +120,7 @@ gulp.task('js-top', function() {
     .pipe(concat("top.js"))
     .pipe(uglify())
     .pipe(rev())
-    .pipe(gulp.dest('assets'));
+    .pipe(gulp.dest(paths.build));
 });
 
 gulp.task('less', function() {
@@ -158,7 +146,7 @@ gulp.task('less', function() {
     .pipe(concat('app.css'))
     .pipe(cssmin(cssminOptions))
     .pipe(rev())
-    .pipe(gulp.dest('assets'));
+    .pipe(gulp.dest(paths.build));
 });
 
 gulp.task('csslint', function() {
@@ -196,7 +184,7 @@ gulp.task('manifest', function() {
   var files, options;
 
   files = [
-    paths.assets + '/**/*',
+    paths.build + '/**/*',
     paths.fonts + '/**/*',
     paths.data + '/min/**/*'
   ];

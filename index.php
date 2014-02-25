@@ -4,8 +4,8 @@ header('Content-Type: text/html; charset=utf-8');
 
 define('ENV', (getenv('ENV') !== false) ? getenv('ENV') : 'live');
 
-$assets = function ($name, $ext) {
-    return reset(glob("assets/" . $name . "-*." . $ext));
+$build = function ($name, $ext) {
+    return reset(glob("build/" . $name . "-*." . $ext));
 };
 
 $almaArray = array(
@@ -40,7 +40,7 @@ $alma = implode(' ', $almaArray);
     <link href="css/custom-bootstrap.css" rel="stylesheet">
     <link href="css/jcApp.css" rel="stylesheet">
 <?php else : ?>
-    <link href="<?php echo $assets("app", "css") ?>" rel="stylesheet">
+    <link href="<?php echo $build("app", "css") ?>" rel="stylesheet">
 <?php endif ?>
 
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
@@ -54,7 +54,7 @@ $alma = implode(' ', $almaArray);
       <script src="bower_components/html5shiv/dist/html5shiv.js"></script>
       <script src="bower_components/respond/dest/respond.src.js"></script>
 <?php else : ?>
-      <script src="<?php echo $assets("top", "js") ?>"></script>
+      <script src="<?php echo $build("top", "js") ?>"></script>
 <?php endif ?>
     <![endif]-->
   </head>
@@ -130,8 +130,8 @@ $alma = implode(' ', $almaArray);
     <script src="js/controllers/CvCtrl.js"></script>
     <script src="js/controllers/SecretaryProblemCtrl.js"></script>
 <?php else : ?>
-    <script src="<?php echo $assets("firebase", "js") ?>"></script>
-    <script src="<?php echo $assets("app", "js") ?>"></script>
+    <script src="<?php echo $build("firebase", "js") ?>"></script>
+    <script src="<?php echo $build("app", "js") ?>"></script>
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
       function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
