@@ -67,7 +67,7 @@ module.exports = function(karma) {
     sauceLabs: {
       username: process.env.SAUCE_USERNAME,
       accessKey: process.env.SAUCE_ACCESS_KEY,
-      startConnect: false,
+      startConnect: true,
       testName: 'Unit tests for javiercejudo.com'
     },
 
