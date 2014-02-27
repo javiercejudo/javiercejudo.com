@@ -17,8 +17,8 @@
     "url": "https://github.com/javiercejudo/javiercejudo.com.git"
   },
   "scripts": {
-    "test": "gulp && grunt",
-    "postinstall": "./node_modules/bower/bin/bower install && ./node_modules/gulp/bin/gulp.js"
+    "postinstall": "./node_modules/bower/bin/bower install && ./node_modules/gulp/bin/gulp.js",
+    "test": "grunt"
   },
   "devDependencies": {
     "coveralls": "~2.8.0",
