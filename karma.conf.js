@@ -122,10 +122,9 @@ module.exports = function(karma) {
     // - IE (only Windows)
     // CLI --browsers Chrome,Firefox,Safari
     browsers: [
-      //'PhantomJS',
-      'SL_Chrome'
-      //'SL_Firefox',
-      //'SL_IE_11'
+      'SL_Chrome',
+      'SL_Firefox',
+      'SL_IE_11'
     ],
 
     // If browser does not capture in given timeout [ms], kill it
