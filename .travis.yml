@@ -3,6 +3,7 @@ node_js:
 - 0.10
 before_script:
 - bower install
+- chmod a+x scripts/*
 - ./scripts/sauce_connect_setup.sh
 after_success:
 - grunt coveralls
