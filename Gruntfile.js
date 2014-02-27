@@ -58,7 +58,11 @@ module.exports = function(grunt) {
         browsers: ['PhantomJS']
       },
       dist: {
-        browsers: ['SL_Chrome', 'SL_Firefox', 'SL_IE_11']
+        browsers: [
+          //'SL_Chrome',
+          //'SL_Firefox',
+          'SL_IE_11'
+        ]
       },
       // e2e tests have their own config file
       // so we need to overwrite the general one
