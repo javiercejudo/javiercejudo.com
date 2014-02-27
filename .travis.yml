@@ -1,10 +1,15 @@
 language: node_js
 node_js:
-  - 0.10
+- 0.10
 before_script:
-  - bower install
+- bower install
+- ./scripts/sauce_connect_setup.sh
 after_success:
-  - grunt coveralls
+- grunt coveralls
+env:
+  global:
+  - secure: HeGI9z+Xpb0EI+I25N6+3aua4BHV/Us4Ok1wo2FYtCrRrM5K2KhRZCt8Jf+CJ5DTMfWLYQkgTpW2JWlU/lk0BIgRXDvhd70kF8bjnIRPiJUGjUNpItLCtJnsJS93T/8vWmLyCVMyj7ZzeRg3HuLA1it4li055AJY9gVhgEn8E6Y=
+  - secure: MGxQouIgIpE9PRzR6LleD/5Y82NoHm7s2Y+v6FguAz+lj1Xr/Q3V7jzv3eRGHURh76YBdUi68Ax4ITaibjcChj3IJTmTt5+/MJLJSmifEUItowtIU021fM8tmbT0BrztaCKJWkzycwV3B4Tg3MhO1VmwJi80EQHM2eZ8t9GW2pY=
 deploy:
   provider: heroku
   buildpack: https://github.com/javiercejudo/heroku-buildpack-php
@@ -16,3 +21,10 @@ deploy:
     staging: javiercejudo-staging
   on:
     repo: javiercejudo/javiercejudo.com
+notifications:
+  webhooks:
+    urls:
+    - https://webhooks.gitter.im/e/afebf4197a02d9ac890f
+    on_success: change
+    on_failure: always
+    on_start: false

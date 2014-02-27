@@ -64,6 +64,54 @@ module.exports = function(karma) {
     // CLI --auto-watch --no-auto-watch
     autoWatch: true,
 
+    sauceLabs: {
+      username: process.env.SAUCE_USERNAME,
+      accessKey: process.env.SAUCE_ACCESS_KEY,
+      startConnect: false,
+      testName: 'Unit tests for javiercejudo.com'
+    },
+
+    customLaunchers: {
+      'SL_Chrome': {
+        base: 'SauceLabs',
+        browserName: 'chrome'
+      },
+      'SL_Firefox': {
+        base: 'SauceLabs',
+        browserName: 'firefox',
+        platform: 'OS X 10.9'
+      },
+      'SL_Safari': {
+        base: 'SauceLabs',
+        browserName: 'safari',
+        platform: 'OS X 10.9'
+      },
+      'SL_IE_8': {
+        base: 'SauceLabs',
+        browserName: 'internet explorer',
+        platform: 'Windows 7',
+        version: '8'
+      },
+      'SL_IE_9': {
+        base: 'SauceLabs',
+        browserName: 'internet explorer',
+        platform: 'Windows 2008',
+        version: '9'
+      },
+      'SL_IE_10': {
+        base: 'SauceLabs',
+        browserName: 'internet explorer',
+        platform: 'Windows 2012',
+        version: '10'
+      },
+      'SL_IE_11': {
+        base: 'SauceLabs',
+        browserName: 'internet explorer',
+        platform: 'Windows 8.1',
+        version: '11'
+      }
+    },
+
     // Start these browsers, currently available:
     // - Chrome
     // - ChromeCanary
@@ -74,9 +122,10 @@ module.exports = function(karma) {
     // - IE (only Windows)
     // CLI --browsers Chrome,Firefox,Safari
     browsers: [
-      'PhantomJS'
-      //'Chrome',
-      //'Firefox'
+      //'PhantomJS',
+      'SL_Chrome'
+      //'SL_Firefox',
+      //'SL_IE_11'
     ],
 
     // If browser does not capture in given timeout [ms], kill it
@@ -85,7 +134,7 @@ module.exports = function(karma) {
 
     // Auto run tests on start (when browsers are captured) and exit
     // CLI --single-run --no-single-run
-    singleRun: false,
+    singleRun: true,
 
     // report which specs are slower than [ms]
     // CLI --report-slower-than 500
@@ -106,7 +155,8 @@ module.exports = function(karma) {
       'karma-coverage',
       'karma-phantomjs-launcher',
       'karma-chrome-launcher',
-      'karma-firefox-launcher'
+      'karma-firefox-launcher',
+      'karma-sauce-launcher'
     ]
   });
 };
