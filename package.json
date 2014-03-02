@@ -17,8 +17,8 @@
     "url": "https://github.com/javiercejudo/javiercejudo.com.git"
   },
   "scripts": {
-    "test": "gulp && grunt",
-    "postinstall": "./node_modules/bower/bin/bower install && ./node_modules/gulp/bin/gulp.js"
+    "postinstall": "./node_modules/bower/bin/bower install && ./node_modules/gulp/bin/gulp.js",
+    "test": "grunt"
   },
   "devDependencies": {
     "coveralls": "~2.8.0",
@@ -40,7 +40,8 @@
     "karma-requirejs": "~0.2.0",
     "karma-script-launcher": "~0.1.0",
     "karma-coverage": "~0.2.0",
-    "grunt-karma-coveralls": "~2.3.0"
+    "grunt-karma-coveralls": "~2.4.0",
+    "karma-sauce-launcher": "^0.1.8"
   },
   "dependencies": {
     "bower": "~1.2.7",
@@ -52,7 +53,7 @@
     "gulp-download": "0.0.1",
     "gulp-htmlmin": "~0.1.2",
     "gulp-imagemin": "~0.1.4",
-    "gulp-jshint": "~1.4.0",
+    "gulp-jshint": "~1.5.0",
     "gulp-karma": "0.0.2",
     "gulp-less": "~1.2.1",
     "gulp-manifest": "0.0.3",
