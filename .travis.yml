@@ -1,9 +1,9 @@
 language: node_js
 node_js:
 - 0.10
-before_script:
-- chmod a+x scripts/*
-- ./scripts/sauce_connect_setup.sh
+#before_script:
+#- chmod a+x scripts/*
+#- ./scripts/sauce_connect_setup.sh
 after_success:
 - grunt coveralls
 env:
