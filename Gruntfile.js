@@ -59,8 +59,8 @@ module.exports = function(grunt) {
       },
       dist: {
         browsers: [
-          //'SL_Chrome',
-          //'SL_Firefox',
+          'SL_Chrome',
+          'SL_Firefox',
           'SL_IE_11'
         ]
       },
@@ -121,7 +121,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('default', [
-    'karma:dist'
+    'karma:dev'
   ]);
 };
 
