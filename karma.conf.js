@@ -1,11 +1,19 @@
+/*global process */
+
 module.exports = function(karma) {
   'use strict';
 
-  var bowerComponentsPath = 'bower_components';
-  var vendorPath = 'vendor';
-  var testsPath = 'tests';
-  var jsPath = 'js';
-  var partialsPath = 'partials';
+  var
+    env = process.env,
+    paths;
+
+  paths = {
+    bowerComponents: 'bower_components',
+    vendor: 'vendor',
+    tests: 'tests',
+    js: 'js',
+    partials: 'partials'
+  };
 
   karma.set({
     // base path, that will be used to resolve files and exclude
@@ -15,24 +23,24 @@ module.exports = function(karma) {
 
     // list of files / patterns to load in the browser
     files: [
-      bowerComponentsPath +'/html5shiv/dist/html5shiv.js',
-      bowerComponentsPath +'/respond/dest/respond.src.js',
-      vendorPath +'/firebase/firebase.js',
-      bowerComponentsPath + '/modernizr/modernizr.js',
-      bowerComponentsPath + '/angular/angular.js',
-      bowerComponentsPath + '/angular-route/angular-route.js',
-      bowerComponentsPath + '/angular-mocks/angular-mocks.js',
-      bowerComponentsPath + '/angular-sanitize/angular-sanitize.js',
-      bowerComponentsPath + '/angular-touch/angular-touch.js',
-      bowerComponentsPath + '/angular-animate/angular-animate.js',
-      bowerComponentsPath + '/angularfire/angularfire.js',
-      bowerComponentsPath + '/ngstorage/ngStorage.js',
-      partialsPath + '/templates.js',
-      jsPath + '/config.js',
-      jsPath + '/JcApp.js',
-      jsPath + '/AppFilters.js',
-      jsPath + '/**/*.js',
-      testsPath +'/unit/**/*Spec.js'
+      paths.bowerComponents +'/html5shiv/dist/html5shiv.js',
+      paths.bowerComponents +'/respond/dest/respond.src.js',
+      paths.vendor +'/firebase/firebase.js',
+      paths.bowerComponents + '/modernizr/modernizr.js',
+      paths.bowerComponents + '/angular/angular.js',
+      paths.bowerComponents + '/angular-route/angular-route.js',
+      paths.bowerComponents + '/angular-mocks/angular-mocks.js',
+      paths.bowerComponents + '/angular-sanitize/angular-sanitize.js',
+      paths.bowerComponents + '/angular-touch/angular-touch.js',
+      paths.bowerComponents + '/angular-animate/angular-animate.js',
+      paths.bowerComponents + '/angularfire/angularfire.js',
+      paths.bowerComponents + '/ngstorage/ngStorage.js',
+      paths.partials + '/templates.js',
+      paths.js + '/config.js',
+      paths.js + '/JcApp.js',
+      paths.js + '/AppFilters.js',
+      paths.js + '/**/*.js',
+      paths.tests +'/unit/**/*Spec.js'
     ],
 
     // list of files to exclude
@@ -41,7 +49,7 @@ module.exports = function(karma) {
     // use dolts reporter, as travis terminal does not support escaping sequences
     // possible values: 'dots', 'progress', 'junit', 'teamcity'
     // CLI --reporters progress
-    reporters: ['progress', 'coverage'],
+    reporters: ['progress', 'coverage', 'saucelabs'],
 
     // web server port
     // CLI --port 9876
@@ -65,10 +73,10 @@ module.exports = function(karma) {
     autoWatch: true,
 
     sauceLabs: {
-      username: process.env.SAUCE_USERNAME,
-      accessKey: process.env.SAUCE_ACCESS_KEY,
+      username: env.SAUCE_USERNAME,
+      accessKey: env.SAUCE_ACCESS_KEY,
       startConnect: true,
-      testName: 'Unit tests for javiercejudo.com'
+      testName: 'Unit tests for www.javiercejudo.com'
     },
 
     customLaunchers: {
@@ -79,18 +87,13 @@ module.exports = function(karma) {
       'SL_Firefox': {
         base: 'SauceLabs',
         browserName: 'firefox',
-        platform: 'OS X 10.9'
+        version: '26'
       },
       'SL_Safari': {
         base: 'SauceLabs',
         browserName: 'safari',
-        platform: 'OS X 10.9'
-      },
-      'SL_IE_8': {
-        base: 'SauceLabs',
-        browserName: 'internet explorer',
-        platform: 'Windows 7',
-        version: '8'
+        platform: 'OS X 10.9',
+        version: '7'
       },
       'SL_IE_9': {
         base: 'SauceLabs',
@@ -129,7 +132,7 @@ module.exports = function(karma) {
 
     // If browser does not capture in given timeout [ms], kill it
     // CLI --capture-timeout 5000
-    captureTimeout: 60000,
+    captureTimeout: 5000,
 
     // Auto run tests on start (when browsers are captured) and exit
     // CLI --single-run --no-single-run
@@ -137,7 +140,7 @@ module.exports = function(karma) {
 
     // report which specs are slower than [ms]
     // CLI --report-slower-than 500
-    reportSlowerThan: 60000,
+    reportSlowerThan: 500,
 
     // compile coffee scripts
     preprocessors: {
