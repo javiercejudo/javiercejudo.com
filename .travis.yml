@@ -1,15 +1,14 @@
 language: node_js
 node_js:
 - 0.10
-#before_script:
-#- chmod a+x scripts/*
-#- ./scripts/sauce_connect_setup.sh
+before_script:
+- ./scripts/sauce_connect_setup.sh
 after_success:
 - grunt coveralls
 env:
   global:
-  - secure: HeGI9z+Xpb0EI+I25N6+3aua4BHV/Us4Ok1wo2FYtCrRrM5K2KhRZCt8Jf+CJ5DTMfWLYQkgTpW2JWlU/lk0BIgRXDvhd70kF8bjnIRPiJUGjUNpItLCtJnsJS93T/8vWmLyCVMyj7ZzeRg3HuLA1it4li055AJY9gVhgEn8E6Y=
-  - secure: MGxQouIgIpE9PRzR6LleD/5Y82NoHm7s2Y+v6FguAz+lj1Xr/Q3V7jzv3eRGHURh76YBdUi68Ax4ITaibjcChj3IJTmTt5+/MJLJSmifEUItowtIU021fM8tmbT0BrztaCKJWkzycwV3B4Tg3MhO1VmwJi80EQHM2eZ8t9GW2pY=
+  - secure: b6zKdte5ZzHWllFMsoc4EVYY4GuaIPLEB3oY6pRoA437i0uNLqWUHUJGEIa7ebHXYPJ81Ki/wBTLrQtJmE8KGpIGs8rgxkSWcnFxUcDFsHyo/+izB8Mmx/tFJFCTNsi3kFy5fWhwFvzZW8WgwPyaJsXML3721Z7H5IiWYqBXQiU=
+  - secure: WebanR/qDdMW1nyxsifW5T8Z5rfd/sfBg10PUUzzEgcTJ7fKiWz3y/Ijq3gdoBG2gGM5YSGEvJGhvrthDbosRJn8ye0z7w04i2I8uHhxdPCZs+ZJ0qgboREu+7SQcb+z3N4K/HLGM6Ql8ubgPvWNcGa+77cBCeG00mbZnpnA5Nc=
 deploy:
   provider: heroku
   buildpack: https://github.com/javiercejudo/heroku-buildpack-php
