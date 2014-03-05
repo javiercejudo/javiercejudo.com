@@ -122,7 +122,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('default', [
-    'karma:dist'
+    'karma:dev'
   ]);
 };
 
