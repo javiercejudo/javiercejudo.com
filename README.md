@@ -61,6 +61,7 @@
 - [Firebase](https://www.firebase.com/): scalable real-time backend.
 
 ### Building Process & Continuous Integration:
+- [Gulp](http://gulpjs.com/): the streaming build system.
 - [Grunt](http://gruntjs.com/): the JavaScript task runner.
 - [Travis CI](https://travis-ci.org/): free hosted continuous integration platform for the open source community.
 - [Heroku](https://www.heroku.com/): cloud computing designed and built for developers.
