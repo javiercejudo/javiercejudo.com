@@ -7,8 +7,8 @@ env:
   global:
   - secure: b6zKdte5ZzHWllFMsoc4EVYY4GuaIPLEB3oY6pRoA437i0uNLqWUHUJGEIa7ebHXYPJ81Ki/wBTLrQtJmE8KGpIGs8rgxkSWcnFxUcDFsHyo/+izB8Mmx/tFJFCTNsi3kFy5fWhwFvzZW8WgwPyaJsXML3721Z7H5IiWYqBXQiU=
   - secure: WebanR/qDdMW1nyxsifW5T8Z5rfd/sfBg10PUUzzEgcTJ7fKiWz3y/Ijq3gdoBG2gGM5YSGEvJGhvrthDbosRJn8ye0z7w04i2I8uHhxdPCZs+ZJ0qgboREu+7SQcb+z3N4K/HLGM6Ql8ubgPvWNcGa+77cBCeG00mbZnpnA5Nc=
-addons:
-  sauce_connect: true
+#addons:
+#  sauce_connect: true
 deploy:
   provider: heroku
   buildpack: https://github.com/javiercejudo/heroku-buildpack-php

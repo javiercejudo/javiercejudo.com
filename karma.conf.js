@@ -82,8 +82,7 @@ module.exports = function(karma) {
     customLaunchers: {
       'SL_Chrome': {
         base: 'SauceLabs',
-        browserName: 'chrome',
-        platform: 'OS X 10.9'
+        browserName: 'chrome'
       },
       'SL_Firefox': {
         base: 'SauceLabs',
@@ -128,6 +127,7 @@ module.exports = function(karma) {
     browsers: [
       'SL_Chrome',
       'SL_Firefox',
+      'SL_Safari',
       'SL_IE_11'
     ],
 
