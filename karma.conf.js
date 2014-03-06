@@ -76,13 +76,14 @@ module.exports = function(karma) {
       username: env.SAUCE_USERNAME,
       accessKey: env.SAUCE_ACCESS_KEY,
       startConnect: true,
-      testName: 'Unit tests for www.javiercejudo.com'
+      testName: 'javiercejudo.com: unit tests'
     },
 
     customLaunchers: {
       'SL_Chrome': {
         base: 'SauceLabs',
-        browserName: 'chrome'
+        browserName: 'chrome',
+        platform: 'OS X 10.9'
       },
       'SL_Firefox': {
         base: 'SauceLabs',
