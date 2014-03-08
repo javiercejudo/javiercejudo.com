@@ -31,16 +31,6 @@
     
     <hr>
     
-    <div class="education">
-      <h3 data-ng-bind-html="cvLocal.education.label"></h3>
-      <ul class="education-list">
-        <li data-ng-repeat="education in cvLocal.education.list"
-            data-ng-bind-html="education"></li>
-      </ul>
-    </div>
-    
-    <hr>
-    
     <div class="work-experience">
       <h3 data-ng-bind-html="cvLocal.work_experience.label"></h3>
       <ul class="job-list">
@@ -49,6 +39,16 @@
           <p class="job-dates" data-ng-bind-html="job.dates"></p>
           <p class="job-description" data-ng-bind-html="job.description"></p>
         </li>
+      </ul>
+    </div>
+
+    <hr>
+
+    <div class="education">
+      <h3 data-ng-bind-html="cvLocal.education.label"></h3>
+      <ul class="education-list">
+        <li data-ng-repeat="education in cvLocal.education.list"
+            data-ng-bind-html="education"></li>
       </ul>
     </div>
   </div>
