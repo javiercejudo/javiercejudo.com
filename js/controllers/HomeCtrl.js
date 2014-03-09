@@ -1,17 +1,16 @@
-/*global angular:true, browser:true */
+/*global angular */
 
 (function (angular) {
   'use strict';
 
   angular.module('JcApp').controller(
-    'HomeCtrl', 
+    'HomeCtrl',
     ['$scope',
       function ($scope) {
-
+        $scope.a = b;
       }
     ]
   );
 
-    
 }(angular));
 
