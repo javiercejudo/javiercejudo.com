@@ -79,6 +79,20 @@ gulp.task('download-firebase', function() {
     .pipe(gulp.dest(paths.build));
 });
 
+gulp.task('download-loggly-tracker', function() {
+  return download('https://raw.github.com/loggly/loggly-jslogger/master/src/loggly.tracker.js')
+    .pipe(rename('loggly-tracker.js'))
+    .pipe(gulp.dest(paths.vendor + '/loggly'))
+    .pipe(rev())
+    .pipe(gulp.dest(paths.build));
+});
+
+gulp.task('download-stacktrace', function() {
+  return download('https://raw.github.com/stacktracejs/stacktrace.js/master/stacktrace.js')
+    .pipe(rename('stacktrace.js'))
+    .pipe(gulp.dest(paths.vendor + '/stacktrace'));
+});
+
 gulp.task('download-data', function() {
   return download('https://c3jud0.firebaseio.com/.json')
     .pipe(rename('c3jud0-export.json'))
@@ -87,7 +101,8 @@ gulp.task('download-data', function() {
 
 gulp.task('js-app', function() {
   var appJsScripts = [
-    //paths.bower + '/modernizr/modernizr.custom.js',
+    //paths.vendor + '/modernizr/modernizr-custom.js',
+    paths.vendor + '/stacktrace/stacktrace.js',
     paths.bower + '/angular/angular.js',
     paths.bower + '/angular-route/angular-route.js',
     paths.bower + '/angular-sanitize/angular-sanitize.js',
@@ -98,8 +113,7 @@ gulp.task('js-app', function() {
     paths.partials + '/templates.js',
     paths.js + '/config.js',
     paths.js + '/JcApp.js',
-    paths.js + '/AppDirectives.js',
-    paths.js + '/AppFilters.js',
+    paths.js + '/*.js',
     paths.js + '/**/*.js'
   ];
 
@@ -211,7 +225,7 @@ gulp.task('styles', function (cb) {
 
 gulp.task('scripts', function () {
   runSequence(
-    ['download-firebase', 'partials'],
+    ['download-firebase', 'download-loggly-tracker', 'download-stacktrace', 'partials'],
     ['js-app', 'js-top']
   );
 });
@@ -226,7 +240,7 @@ gulp.task('build', function () {
 gulp.task('default', function () {
   runSequence(
     ['clean-pre', 'download-data'],
-    ['copy-fonts', 'download-firebase', 'partials'],
+    ['copy-fonts', 'download-firebase', 'download-loggly-tracker', 'download-stacktrace', 'partials'],
     ['less', 'js-app', 'js-top'],
     ['csslint', 'manifest']
   );

@@ -1,4 +1,4 @@
-/*global angular:true, browser:true, ENV:true, JS_TEMPLATES_IN_DEV:true */
+/*global angular:true, browser:true, ENV:true, JS_TEMPLATES_IN_DEV:true, _LTracker, printStackTrace */
 
 /**
  * @doc overview
@@ -9,7 +9,7 @@
  *
  * My personal website.
  */
-(function (angular) {
+(function (angular, logglyTracker, stackTrace) {
   'use strict';
 
   var
@@ -55,31 +55,31 @@
 
           // proper routes
           .when('/', {
-              templateUrl: getTemplatePath('home'),
-              controller: 'HomeCtrl'
+            templateUrl: getTemplatePath('home'),
+            controller: 'HomeCtrl'
           })
 
           .when('/cv/:language', {
-              templateUrl: getTemplatePath('cv'),
-              controller: 'CvCtrl'
+            templateUrl: getTemplatePath('cv'),
+            controller: 'CvCtrl'
           })
 
           .when('/game/:n', {
-              templateUrl: getTemplatePath('secretary-problem-standalone'),
-              controller: 'SecretaryProblemCtrl'
+            templateUrl: getTemplatePath('secretary-problem-standalone'),
+            controller: 'SecretaryProblemCtrl'
           })
 
           // redirections
           .when('/en', {
-              redirectTo: '/'
+            redirectTo: '/'
           })
 
           .when('/es', {
-              redirectTo: '/cv/spanish'
+            redirectTo: '/cv/spanish'
           })
 
           .when('/cv', {
-              redirectTo: '/cv/english'
+            redirectTo: '/cv/english'
           })
 
           .when('/game', {
@@ -87,31 +87,48 @@
           })
 
           .when('/secretary-problem', {
-              redirectTo: '/game'
+            redirectTo: '/game'
           })
 
           // error page
           .otherwise({
-              templateUrl: getTemplatePath('404')
+            templateUrl: getTemplatePath('404')
           });
 
         $locationProvider.html5Mode(false).hashPrefix('!');
+      }])
+
+    .config(['$provide', function ($provide) {
+      $provide.decorator("$exceptionHandler", ['$delegate', function ($delegate) {
+        return function (exception, cause) {
+          $delegate(exception, cause);
+
+          if (ENV === 'dev') {
+            return;
+          }
+
+          logglyTracker.push({
+            'message': exception.message,
+            'stack_trace': stackTrace({e: exception})
+          });
+        };
+      }]);
     }])
 
-    .run(['$window', '$rootScope', function($window, $rootScope) {
+    .run(['$window', '$rootScope', function ($window, $rootScope) {
       $rootScope.version = angular.version;
       $rootScope.online  = $window.navigator.onLine;
 
       var onlineHandler, offlineHandler;
 
       onlineHandler = function () {
-        $rootScope.$apply(function() {
+        $rootScope.$apply(function () {
           $rootScope.online = false;
         });
       };
 
       offlineHandler = function () {
-        $rootScope.$apply(function() {
+        $rootScope.$apply(function () {
           $rootScope.online = false;
         });
       };
@@ -125,4 +142,4 @@
       $window.addEventListener("offline", offlineHandler, false);
       $window.addEventListener("online", onlineHandler, false);
     }]);
-}(angular));
+}(angular, _LTracker, printStackTrace));
