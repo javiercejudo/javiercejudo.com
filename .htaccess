@@ -546,8 +546,8 @@ AddCharset utf-8 .atom .css .js .json .rss .vtt .xml
   RewriteCond %{REQUEST_URI} !^/$
   RewriteCond %{REQUEST_URI} !^/.*\.map
   RewriteCond %{REQUEST_URI} !^/manifest.appcache
-  RewriteCond %{REQUEST_URI} !^/assets/.*
   RewriteCond %{REQUEST_URI} !^/bower_components/.*
+  RewriteCond %{REQUEST_URI} !^/build/.*
   RewriteCond %{REQUEST_URI} !^/coverage/.*
   RewriteCond %{REQUEST_URI} !^/css/.*
   RewriteCond %{REQUEST_URI} !^/data/.*

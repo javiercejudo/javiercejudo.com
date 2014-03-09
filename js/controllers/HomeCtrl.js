@@ -6,9 +6,7 @@
   angular.module('JcApp').controller(
     'HomeCtrl',
     ['$scope',
-      function ($scope) {
-        $scope.a = b;
-      }
+      function ($scope) {}
     ]
   );
 

@@ -87,22 +87,23 @@ gulp.task('download-loggly-tracker', function() {
     .pipe(gulp.dest(paths.build));
 });
 
-gulp.task('download-stacktrace', function() {
+gulp.task('download-stacktrace', function () {
   return download('https://raw.github.com/stacktracejs/stacktrace.js/master/stacktrace.js')
     .pipe(rename('stacktrace.js'))
-    .pipe(gulp.dest(paths.vendor + '/stacktrace'));
+    .pipe(gulp.dest(paths.vendor + '/stacktrace'))
+    .pipe(rev())
+    .pipe(gulp.dest(paths.build));
 });
 
-gulp.task('download-data', function() {
+gulp.task('download-data', function () {
   return download('https://c3jud0.firebaseio.com/.json')
     .pipe(rename('c3jud0-export.json'))
     .pipe(gulp.dest(paths.data + '/min'));
 });
 
-gulp.task('js-app', function() {
+gulp.task('js-app', function () {
   var appJsScripts = [
     //paths.vendor + '/modernizr/modernizr-custom.js',
-    paths.vendor + '/stacktrace/stacktrace.js',
     paths.bower + '/angular/angular.js',
     paths.bower + '/angular-route/angular-route.js',
     paths.bower + '/angular-sanitize/angular-sanitize.js',
@@ -124,7 +125,7 @@ gulp.task('js-app', function() {
     .pipe(gulp.dest(paths.build));
 });
 
-gulp.task('js-top', function() {
+gulp.task('js-top', function () {
   var topJsScripts = [
     paths.bower + '/html5shiv/dist/html5shiv.js',
     paths.bower + '/respond/dest/respond.src.js'
@@ -137,7 +138,7 @@ gulp.task('js-top', function() {
     .pipe(gulp.dest(paths.build));
 });
 
-gulp.task('less', function() {
+gulp.task('less', function () {
   var cssFiles, lessOptions, cssminOptions;
 
   cssFiles = [
@@ -163,7 +164,7 @@ gulp.task('less', function() {
     .pipe(gulp.dest(paths.build));
 });
 
-gulp.task('csslint', function() {
+gulp.task('csslint', function () {
   var cssLintableFiles = [
     paths.css + "/jcApp.css"
   ];
@@ -173,7 +174,7 @@ gulp.task('csslint', function() {
     .pipe(csslint.reporter());
 });
 
-gulp.task('partials', function() {
+gulp.task('partials', function () {
   var hmltminOptions, ngHtml2JsOptions;
 
   hmltminOptions = {
@@ -194,7 +195,7 @@ gulp.task('partials', function() {
     .pipe(gulp.dest(paths.partials));
 });
 
-gulp.task('manifest', function() {
+gulp.task('manifest', function () {
   var files, options;
 
   files = [
