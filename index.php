@@ -5,7 +5,9 @@ header('Content-Type: text/html; charset=utf-8');
 define('ENV', (getenv('ENV') !== false) ? getenv('ENV') : 'live');
 
 $build = function ($name, $ext) {
-    return reset(glob("build/" . $name . "-*." . $ext));
+    $matchingFiles = glob("build/" . $name . "-*." . $ext);
+
+    return reset($matchingFiles);
 };
 
 $almaArray = array(
@@ -131,6 +133,8 @@ $alma = implode(' ', $almaArray);
     <script src="js/controllers/SecretaryProblemCtrl.js"></script>
 <?php else : ?>
     <script src="<?php echo $build("firebase", "js") ?>"></script>
+    <script src="<?php echo $build("loggly-tracker", "js") ?>"></script>
+    <script src="<?php echo $build("stacktrace", "js") ?>"></script>
     <script src="<?php echo $build("app", "js") ?>"></script>
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
@@ -139,6 +143,10 @@ $alma = implode(' ', $almaArray);
       e.src='//www.google-analytics.com/analytics.js';
       r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
       ga('create','UA-43072086-1');
+    </script>
+    <script>
+        var _LTracker = _LTracker || [];
+        _LTracker.push({'logglyKey': 'b2645489-466a-494b-ab92-f8772f42c0d1' });
     </script>
 <?php endif ?>
   </body>
