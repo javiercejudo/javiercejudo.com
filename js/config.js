@@ -3,5 +3,5 @@
 var
   ENV = ENV || 'live',
   JS_TEMPLATES_IN_DEV = true,
-  _LTracker = _LTracker || {},
+  _LTracker = _LTracker || [],
   printStackTrace = printStackTrace || {};

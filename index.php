@@ -133,10 +133,7 @@ $alma = implode(' ', $almaArray);
     <script src="js/controllers/SecretaryProblemCtrl.js"></script>
 <?php else : ?>
     <script type="text/javascript" src="//dl1d2m8ri9v3j.cloudfront.net/releases/1.2.1/tracker.js" data-customer="6f626efb34174c6885aef28b406d6bab"></script>
-    <script src="<?php echo $build("firebase", "js") ?>"></script>
-    <script src="<?php echo $build("loggly-tracker", "js") ?>"></script>
-    <script src="<?php echo $build("stacktrace", "js") ?>"></script>
-    <script src="<?php echo $build("app", "js") ?>"></script>
+    <script src="<?php echo $build("bottom", "js") ?>"></script>
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
       function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
