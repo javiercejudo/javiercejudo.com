@@ -5,7 +5,9 @@ header('Content-Type: text/html; charset=utf-8');
 define('ENV', (getenv('ENV') !== false) ? getenv('ENV') : 'live');
 
 $build = function ($name, $ext) {
-    return reset(glob("build/" . $name . "-*." . $ext));
+    $matchingFiles = glob("build/" . $name . "-*." . $ext);
+
+    return reset($matchingFiles);
 };
 
 $almaArray = array(
