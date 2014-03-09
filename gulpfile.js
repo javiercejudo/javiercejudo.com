@@ -33,7 +33,31 @@ var paths = {
   vendor: 'vendor'
 };
 
-gulp.task('jshint', function() {
+/**
+ * Downloads a file to an given vendor folder and optionally creates a build file for it
+ *
+ * @param url      string URL to download the file from
+ * @param filename string Name to give the downloaded file
+ * @param dest     string Destination foler
+ * @param build    bool   True to create a build file
+ *
+ * @returns {Object}
+ */
+var downloadVendorLib = function (url, filename, dest, build) {
+  var downloadStream = download(url)
+    .pipe(rename(filename))
+    .pipe(gulp.dest(paths.vendor + '/' + dest));
+
+  if (!build) {
+    return downloadStream;
+  }
+
+  return downloadStream
+    .pipe(rev())
+    .pipe(gulp.dest(paths.build));
+};
+
+gulp.task('jshint', function () {
   var jsHintableScripts = [
     'gulpfile.js',
     paths.js + '/**/*.js',
@@ -45,9 +69,10 @@ gulp.task('jshint', function() {
     .pipe(jshint.reporter('default'));
 });
 
-gulp.task('clean-pre', function() {
+gulp.task('clean-pre', function () {
   var pathsToClean = [
     paths.build + '/**/*',
+    paths.tmp + '/**/*',
     paths.fonts + '/**/*',
     paths.minifiedPartials + '/**/*',
     paths.css + '/**/*.css'
@@ -57,7 +82,7 @@ gulp.task('clean-pre', function() {
     .pipe(clean());
 });
 
-gulp.task('clean-partials', function() {
+gulp.task('clean-partials', function () {
   var pathsToClean = [
     paths.minifiedPartials
   ];
@@ -66,39 +91,55 @@ gulp.task('clean-partials', function() {
     .pipe(clean());
 });
 
-gulp.task('copy-fonts', function() {
+gulp.task('copy-fonts', function () {
   return gulp.src(paths.bower + '/bootstrap/dist/fonts/**')
     .pipe(gulp.dest(paths.fonts + '/'));
 });
 
-gulp.task('download-firebase', function() {
-  return download('https://cdn.firebase.com/v0/firebase.js')
-    .pipe(rename('firebase.js'))
-    .pipe(gulp.dest(paths.vendor + '/firebase'))
-    .pipe(rev())
-    .pipe(gulp.dest(paths.build));
+gulp.task('download-firebase', function () {
+  return downloadVendorLib(
+    'https://cdn.firebase.com/v0/firebase.js',
+    'firebase.js',
+    'firebase',
+    false
+  );
 });
 
-gulp.task('download-loggly-tracker', function() {
-  return download('https://raw.github.com/loggly/loggly-jslogger/master/src/loggly.tracker.js')
-    .pipe(rename('loggly-tracker.js'))
-    .pipe(gulp.dest(paths.vendor + '/loggly'))
-    .pipe(rev())
-    .pipe(gulp.dest(paths.build));
+gulp.task('download-loggly-tracker', function () {
+  return downloadVendorLib(
+    'https://raw.github.com/loggly/loggly-jslogger/master/src/loggly.tracker.js',
+    'loggly-tracker.js',
+    'loggly',
+    false
+  );
 });
 
 gulp.task('download-stacktrace', function () {
-  return download('https://raw.github.com/stacktracejs/stacktrace.js/master/stacktrace.js')
-    .pipe(rename('stacktrace.js'))
-    .pipe(gulp.dest(paths.vendor + '/stacktrace'))
-    .pipe(rev())
-    .pipe(gulp.dest(paths.build));
+  return downloadVendorLib(
+    'https://raw.github.com/stacktracejs/stacktrace.js/master/stacktrace.js',
+    'stacktrace.js',
+    'stacktrace',
+    false
+  );
 });
 
 gulp.task('download-data', function () {
   return download('https://c3jud0.firebaseio.com/.json')
     .pipe(rename('c3jud0-export.json'))
     .pipe(gulp.dest(paths.data + '/min'));
+});
+
+gulp.task('js-top', function () {
+  var topJsScripts = [
+    paths.bower + '/html5shiv/dist/html5shiv.js',
+    paths.bower + '/respond/dest/respond.src.js'
+  ];
+
+  return gulp.src(topJsScripts)
+    .pipe(concat("top.js"))
+    .pipe(uglify())
+    .pipe(rev())
+    .pipe(gulp.dest(paths.build));
 });
 
 gulp.task('js-app', function () {
@@ -121,19 +162,29 @@ gulp.task('js-app', function () {
   return gulp.src(appJsScripts)
     .pipe(concat("app.js"))
     .pipe(uglify())
-    .pipe(rev())
-    .pipe(gulp.dest(paths.build));
+    .pipe(gulp.dest(paths.tmp));
 });
 
-gulp.task('js-top', function () {
-  var topJsScripts = [
-    paths.bower + '/html5shiv/dist/html5shiv.js',
-    paths.bower + '/respond/dest/respond.src.js'
+gulp.task('js-vendor', function () {
+  var loggingScripts = [
+    paths.vendor + '/firebase/firebase.js',
+    paths.vendor + '/loggly/loggly-tracker.js',
+    paths.vendor + '/stacktrace/stacktrace.js'
   ];
 
-  return gulp.src(topJsScripts)
-    .pipe(concat("top.js"))
-    .pipe(uglify())
+  return gulp.src(loggingScripts)
+    .pipe(concat("vendor.js"))
+    .pipe(gulp.dest(paths.tmp));
+});
+
+gulp.task('js-bottom', function () {
+  var bottomScripts = [
+    paths.tmp + '/vendor.js',
+    paths.tmp + '/app.js'
+  ];
+
+  return gulp.src(bottomScripts)
+    .pipe(concat("bottom.js"))
     .pipe(rev())
     .pipe(gulp.dest(paths.build));
 });
@@ -240,9 +291,19 @@ gulp.task('build', function () {
 
 gulp.task('default', function () {
   runSequence(
-    ['clean-pre', 'download-data'],
+    ['jshint', 'clean-pre', 'download-data'],
     ['copy-fonts', 'download-firebase', 'download-loggly-tracker', 'download-stacktrace', 'partials'],
-    ['less', 'js-app', 'js-top'],
+    ['less', 'js-top', 'js-app', 'js-vendor'],
+    ['js-bottom'],
+    ['csslint', 'manifest']
+  );
+});
+
+gulp.task('cached', function () {
+  runSequence(
+    ['jshint'],
+    ['less', 'js-top', 'js-app', 'js-vendor'],
+    ['js-bottom'],
     ['csslint', 'manifest']
   );
 });
