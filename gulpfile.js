@@ -1,3 +1,4 @@
+
 var
   gulp = require('gulp'),
 //  gutil = require('gulp-util'),
@@ -26,7 +27,6 @@ var paths = {
   data: 'data',
   fonts: 'fonts',
   js: 'js',
-  minifiedPartials: this.tmp + '/partials',
   tmp: 'tmp',
   partials: 'partials',
   tests: 'tests',
@@ -59,6 +59,7 @@ var downloadVendorLib = function (url, filename, dest, build) {
 
 gulp.task('jshint', function () {
   var jsHintableScripts = [
+    'Gruntfile.js',
     'gulpfile.js',
     paths.js + '/**/*.js',
     paths.tests + '/**/*.js'
@@ -72,19 +73,10 @@ gulp.task('jshint', function () {
 gulp.task('clean-pre', function () {
   var pathsToClean = [
     paths.build + '/**/*',
+    paths.vendor + '/**/*',
     paths.tmp + '/**/*',
     paths.fonts + '/**/*',
-    paths.minifiedPartials + '/**/*',
     paths.css + '/**/*.css'
-  ];
-
-  return gulp.src(pathsToClean, {read: false})
-    .pipe(clean());
-});
-
-gulp.task('clean-partials', function () {
-  var pathsToClean = [
-    paths.minifiedPartials
   ];
 
   return gulp.src(pathsToClean, {read: false})
@@ -94,15 +86,6 @@ gulp.task('clean-partials', function () {
 gulp.task('copy-fonts', function () {
   return gulp.src(paths.bower + '/bootstrap/dist/fonts/**')
     .pipe(gulp.dest(paths.fonts + '/'));
-});
-
-gulp.task('download-firebase', function () {
-  return downloadVendorLib(
-    'https://cdn.firebase.com/v0/firebase.js',
-    'firebase.js',
-    'firebase',
-    false
-  );
 });
 
 gulp.task('download-loggly-tracker', function () {
@@ -166,14 +149,21 @@ gulp.task('js-app', function () {
 });
 
 gulp.task('js-vendor', function () {
-  var loggingScripts = [
-    paths.vendor + '/firebase/firebase.js',
+  var loggingScripts, uglifyOptions;
+
+  loggingScripts = [
+    paths.bower  + '/firebase/firebase.js',
     paths.vendor + '/loggly/loggly-tracker.js',
     paths.vendor + '/stacktrace/stacktrace.js'
   ];
 
+  uglifyOptions = {
+    mangle: false
+  };
+
   return gulp.src(loggingScripts)
     .pipe(concat("vendor.js"))
+    .pipe(uglify(uglifyOptions))
     .pipe(gulp.dest(paths.tmp));
 });
 
@@ -277,7 +267,7 @@ gulp.task('styles', function (cb) {
 
 gulp.task('scripts', function () {
   runSequence(
-    ['download-firebase', 'download-loggly-tracker', 'download-stacktrace', 'partials'],
+    ['download-loggly-tracker', 'download-stacktrace', 'partials'],
     ['js-app', 'js-top']
   );
 });
@@ -292,16 +282,16 @@ gulp.task('build', function () {
 gulp.task('default', function () {
   runSequence(
     ['jshint', 'clean-pre', 'download-data'],
-    ['copy-fonts', 'download-firebase', 'download-loggly-tracker', 'download-stacktrace', 'partials'],
+    ['copy-fonts', 'download-loggly-tracker', 'download-stacktrace', 'partials'],
     ['less', 'js-top', 'js-app', 'js-vendor'],
     ['js-bottom'],
     ['csslint', 'manifest']
   );
 });
 
-gulp.task('cached', function () {
+gulp.task('short', function () {
   runSequence(
-    ['jshint'],
+    ['jshint', 'partials'],
     ['less', 'js-top', 'js-app', 'js-vendor'],
     ['js-bottom'],
     ['csslint', 'manifest']

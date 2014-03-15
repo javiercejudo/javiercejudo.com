@@ -1,42 +1,26 @@
 <?php
 
-header('Content-Type: text/html; charset=utf-8');
+require 'init.php';
 
-define('ENV', (getenv('ENV') !== false) ? getenv('ENV') : 'live');
-
-$build = function ($name, $ext) {
-    $matchingFiles = glob("build/" . $name . "-*." . $ext);
-
-    return reset($matchingFiles);
-};
-
-$almaArray = array(
-    'angular' => 'data-ng-app="JcApp" data-ng-controller="AppCtrl"',
-    'lang'    => 'lang="en"'
-);
-
-if (ENV === 'live') {
-    $almaArray['manifest'] = 'manifest="manifest.appcache"';
-}
-
-$alma = implode(' ', $almaArray);
+/**
+ * @var string  $alma  Data to add to the html element regarding Angular, lang...
+ * @var closure $build Function with logic on how to include build files
+ */
 
 ?>
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html <?php echo $alma ?> class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html <?php echo $alma ?> class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html <?php echo $alma ?> class="no-js lt-ie9"> <![endif]-->
+<!--[if lt IE 9]>      <html <?php echo $alma ?> class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html <?php echo $alma ?> class="no-js"> <!--<![endif]-->
   <head>
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <title data-ng-bind-template="{{pageTitle}} | Javier Cejudo · Web Developer">Javier Cejudo · Web Developer</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Javier Cejudo">
     <meta name="description"
           content="I'm a young software engineer wishing to continue my career as a web
                    developer with special interest in frontend development and management
                    systems (e.g. e-commerce, finance) to apply my skills in databases,
                    data processing and mathematical training.">
-    <meta name="author" content="Javier Cejudo">
 
 <?php if (ENV === 'dev') : ?>
     <link href="css/custom-bootstrap.css" rel="stylesheet">
@@ -66,7 +50,7 @@ $alma = implode(' ', $almaArray);
       <meta itemprop="name" content="Javier Cejudo">
       <meta itemprop="jobTitle" content="Web Developer">
 
-      <!--[if lt IE 8]>
+      <!--[if lt IE 9]>
         <div class="alert alert-danger">
             Your browser is currently not supported. Please
             <a href="http://whatbrowser.org/">update your browser</a>.
@@ -76,14 +60,7 @@ $alma = implode(' ', $almaArray);
         <footer class="footer" ><?php include 'partials/footer.html' ?></footer>
       <![endif]-->
 
-      <!--[if gt IE 7]><!-->
-      <!--[if IE 8]>
-      <div class="alert alert-danger">
-        For full functionality of this site you need to
-        <a href="http://whatbrowser.org/">update your browser</a>.
-      </div>
-      <![endif]-->
-
+      <!--[if gt IE 8]><!-->
       <noscript>
         <div class="alert alert-danger">
           For full functionality of this site it is necessary to enable JavaScript.
@@ -100,13 +77,12 @@ $alma = implode(' ', $almaArray);
       <section data-ng-view class="jc-view-animation"></section>
       <footer class="footer" data-ng-include="'partials/footer.html'"></footer>
       <!--<![endif]-->
-
-      </div> <!-- /page -->
+    </div>
 
     <script>var ENV = '<?php echo ENV ?>';</script>
 
 <?php if (ENV === 'dev') : ?>
-    <script src='vendor/firebase/firebase.js'></script>
+    <script src='bower_components/firebase/firebase-debug.js'></script>
     <script src="bower_components/modernizr/modernizr.js"></script>
 
     <script src="bower_components/angular/angular.js"></script>

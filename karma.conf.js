@@ -23,9 +23,9 @@ module.exports = function(karma) {
 
     // list of files / patterns to load in the browser
     files: [
-      paths.bowerComponents +'/html5shiv/dist/html5shiv.js',
-      paths.bowerComponents +'/respond/dest/respond.src.js',
-      paths.vendor +'/firebase/firebase.js',
+      paths.bowerComponents + '/html5shiv/dist/html5shiv.js',
+      paths.bowerComponents + '/respond/dest/respond.src.js',
+      paths.bowerComponents + '/firebase/firebase.js',
       paths.bowerComponents + '/modernizr/modernizr.js',
       paths.bowerComponents + '/angular/angular.js',
       paths.bowerComponents + '/angular-route/angular-route.js',
