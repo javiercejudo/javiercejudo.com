@@ -22,16 +22,31 @@
         $scope.$on('$routeChangeSuccess', function() {
           $scope.path = $location.path();
 
-          // workaround for IE < 9
-          if (Object.prototype.hasOwnProperty.call($window, 'ga')) {
-            $window.ga('send', 'pageview', $location.path());
-          }
+          $scope.sendPageView($scope.path);
 
-          // scroll to top
           $timeout(function () {
-            $window.scrollTo(0, 0);
+            $scope.scrollToTop();
+            $scope.hideMainNavBar();
           });
         });
+
+        $scope.sendPageView = function (path) {
+          if ($window.hasOwnProperty('ga')) {
+            $window.ga('send', 'pageview', path);
+          }
+        };
+
+        $scope.scrollToTop = function () {
+          $window.scrollTo(0, 0);
+        };
+
+        $scope.hideMainNavBar = function () {
+          var mainNavBar = angular.element('#main-navbar');
+
+          if (mainNavBar.is(':visible')) {
+            mainNavBar.collapse('hide');
+          }
+        };
       }
     ]
   );

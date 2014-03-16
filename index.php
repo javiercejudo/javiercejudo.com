@@ -84,6 +84,7 @@ require 'init.php';
 <?php if (ENV === 'dev') : ?>
     <script src='bower_components/firebase/firebase-debug.js'></script>
     <script src="bower_components/modernizr/modernizr.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
 
     <script src="bower_components/angular/angular.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
@@ -95,6 +96,9 @@ require 'init.php';
     <script src="bower_components/ngstorage/ngStorage.js"></script>
 
     <script src="partials/templates.js"></script>
+
+    <script src="bower_components/bootstrap/js/collapse.js"></script>
+    <script src="bower_components/bootstrap/js/transition.js"></script>
 
     <script src="js/config.js"></script>
 
@@ -119,8 +123,8 @@ require 'init.php';
       ga('create','UA-43072086-1');
     </script>
     <script>
-        var _LTracker = _LTracker || [];
-        _LTracker.push({'logglyKey': 'b2645489-466a-494b-ab92-f8772f42c0d1' });
+      var _LTracker = _LTracker || [];
+      _LTracker.push({'logglyKey': 'b2645489-466a-494b-ab92-f8772f42c0d1' });
     </script>
 <?php endif ?>
   </body>

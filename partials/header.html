@@ -1,26 +1,38 @@
-<div class="row">
-  <div class="col-xs-12">
-    <ul class="nav nav-pills">
-      <li data-ng-class="{active: path == '/'}">
-        <a data-ng-href="{{ prefixLink }}/" class="home-link">
-          <span class="glyphicon glyphicon-home"></span>
-          <span class="icon-text">Home</span>
-        </a>
-      </li>
-      <li data-ng-class="{active: path.indexOf('/cv/') != -1}">
-        <a data-ng-href="{{ prefixLink }}/cv/english">
-          <span class="glyphicon glyphicon-book"></span>
-          <span class="icon-text">CV</span>
-        </a>
-      </li>
-      <li data-ng-class="{active: path.indexOf('/game/') != -1}">
-        <a data-ng-href="{{ prefixLink }}/game/10">
-          <span class="glyphicon glyphicon-briefcase"></span>
-          <span class="icon-text">Game</span>
-        </a>
-      </li>
-    </ul>
-  </div>
-</div>
+<nav class="navbar navbar-default" role="navigation">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" data-ng-href="{{ prefixLink }}/">
+        <span class="glyphicon glyphicon-home"></span>
+      </a>
+    </div>
 
-<hr />
+    <div class="collapse navbar-collapse" id="main-navbar">
+      <ul class="nav navbar-nav">
+        <li data-ng-class="{active: path.indexOf('/cv/') != -1}">
+          <a data-ng-href="{{ prefixLink }}/cv/english">
+            <span class="glyphicon glyphicon-list"></span>
+            <span class="icon-text">CV</span>
+          </a>
+        </li>
+        <li data-ng-class="{active: path.indexOf('/game/') != -1}">
+          <a data-ng-href="{{ prefixLink }}/game/10">
+            <span class="glyphicon glyphicon-briefcase"></span>
+            <span class="icon-text">Game</span>
+          </a>
+        </li>
+        <li>
+          <a href="http://blog.javiercejudo.com/">
+            <span class="glyphicon glyphicon-book"></span>
+            <span class="icon-text">Blog</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

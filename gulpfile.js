@@ -83,6 +83,15 @@ gulp.task('clean-pre', function () {
     .pipe(clean());
 });
 
+gulp.task('clean-build', function () {
+  var pathsToClean = [
+    paths.build + '/**/*'
+  ];
+
+  return gulp.src(pathsToClean, {read: false})
+    .pipe(clean());
+});
+
 gulp.task('copy-fonts', function () {
   return gulp.src(paths.bower + '/bootstrap/dist/fonts/**')
     .pipe(gulp.dest(paths.fonts + '/'));
@@ -128,6 +137,7 @@ gulp.task('js-top', function () {
 gulp.task('js-app', function () {
   var appJsScripts = [
     //paths.vendor + '/modernizr/modernizr-custom.js',
+    paths.bower + '/jquery/dist/jquery.js',
     paths.bower + '/angular/angular.js',
     paths.bower + '/angular-route/angular-route.js',
     paths.bower + '/angular-sanitize/angular-sanitize.js',
@@ -136,6 +146,8 @@ gulp.task('js-app', function () {
     paths.bower + '/angularfire/angularfire.js',
     paths.bower + '/ngstorage/ngStorage.js',
     paths.partials + '/templates.js',
+    paths.bower + '/bootstrap/js/collapse.js',
+    paths.bower + '/bootstrap/js/transition.js',
     paths.js + '/config.js',
     paths.js + '/JcApp.js',
     paths.js + '/*.js',
@@ -289,9 +301,10 @@ gulp.task('default', function () {
   );
 });
 
-gulp.task('short', function () {
+gulp.task('offline', function () {
   runSequence(
-    ['jshint', 'partials'],
+    ['jshint', 'clean-build'],
+    ['partials'],
     ['less', 'js-top', 'js-app', 'js-vendor'],
     ['js-bottom'],
     ['csslint', 'manifest']
