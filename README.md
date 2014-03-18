@@ -53,7 +53,7 @@
 
 ### Backend:
 
-- [Apache](http://httpd.apache.org/): the number one HTTP server on the internet.
+- [nginx](http://nginx.org/): HTTP and reverse proxy server.
 - [PHP](http://php.net/): widely-used general-purpose scripting language that is especially suited for Web development.
 - [Firebase](https://www.firebase.com/): scalable real-time backend.
 
