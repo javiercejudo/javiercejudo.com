@@ -1,4 +1,4 @@
-/*global angular:true, Firebase:true, browser:true */
+/*global angular, Firebase */
 
 (function (angular) {
   'use strict';
@@ -11,8 +11,6 @@
         // leave empty if using html5mode; otherwise it should be #[hashPrefix]
         $scope.prefixLink = '#!';
 
-        // offline
-
         // firebase root URL
         $scope.firebaseUrl = 'https://c3jud0.firebaseio.com';
 
@@ -24,10 +22,8 @@
 
           $scope.sendPageView($scope.path);
 
-          $timeout(function () {
-            $scope.scrollToTop();
-            $scope.hideMainNavBar();
-          });
+          $scope.scrollToTop();
+          $scope.hideMainNavBar();
         });
 
         $scope.sendPageView = function (path) {
@@ -41,10 +37,13 @@
         };
 
         $scope.hideMainNavBar = function () {
-          var mainNavBar = angular.element('#main-navbar');
+          var
+            navBar = angular.element('#main-navbar'),
+            collapsible = navBar.find('.navbar-collapse'),
+            toggle = navBar.find('.navbar-toggle');
 
-          if (mainNavBar.is(':visible')) {
-            mainNavBar.collapse('hide');
+          if (collapsible.is(':visible') && toggle.is(':visible')) {
+            collapsible.collapse('hide');
           }
         };
       }

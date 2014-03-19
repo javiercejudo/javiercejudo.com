@@ -82,7 +82,7 @@ require 'init.php';
     <script>var ENV = '<?php echo ENV ?>';</script>
 
 <?php if (ENV === 'dev') : ?>
-    <script src='bower_components/firebase/firebase-debug.js'></script>
+    <script src='bower_components/firebase/firebase.js'></script>
     <script src="bower_components/modernizr/modernizr.js"></script>
     <script src="bower_components/jquery/dist/jquery.js"></script>
 
