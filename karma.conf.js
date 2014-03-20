@@ -27,6 +27,7 @@ module.exports = function(karma) {
       paths.bowerComponents + '/respond/dest/respond.src.js',
       paths.bowerComponents + '/firebase/firebase.js',
       paths.bowerComponents + '/modernizr/modernizr.js',
+      paths.bowerComponents + '/jquery/dist/jquery.js',
       paths.bowerComponents + '/angular/angular.js',
       paths.bowerComponents + '/angular-route/angular-route.js',
       paths.bowerComponents + '/angular-mocks/angular-mocks.js',
