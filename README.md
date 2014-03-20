@@ -19,6 +19,10 @@
         <td>http://staging.javiercejudo.com</td>
     </tr>
     <tr>
+        <th>Feature branches</th>
+        <td>http://jc-[ branch_name ].herokuapp.com</td>
+    </tr>
+    <tr>
         <th>Dev</th>
         <td>http://www.javiercejudo.dev</td>
     </tr>
