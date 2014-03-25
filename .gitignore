@@ -28,6 +28,8 @@ wraith/*
 !wraith/configs/
 wraith/configs/test_config.yaml
 
+npm-debug.log
+
 # test related stuff
 sauce_connect.log
 libpeerconnection.log
