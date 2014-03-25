@@ -1,3 +1,4 @@
+
 var
   gulp = require('gulp'),
 //  gutil = require('gulp-util'),
@@ -26,7 +27,6 @@ var paths = {
   data: 'data',
   fonts: 'fonts',
   js: 'js',
-  minifiedPartials: this.tmp + '/partials',
   tmp: 'tmp',
   partials: 'partials',
   tests: 'tests',
@@ -59,6 +59,7 @@ var downloadVendorLib = function (url, filename, dest, build) {
 
 gulp.task('jshint', function () {
   var jsHintableScripts = [
+    'Gruntfile.js',
     'gulpfile.js',
     paths.js + '/**/*.js',
     paths.tests + '/**/*.js'
@@ -72,9 +73,9 @@ gulp.task('jshint', function () {
 gulp.task('clean-pre', function () {
   var pathsToClean = [
     paths.build + '/**/*',
+    paths.vendor + '/**/*',
     paths.tmp + '/**/*',
     paths.fonts + '/**/*',
-    paths.minifiedPartials + '/**/*',
     paths.css + '/**/*.css'
   ];
 
@@ -82,9 +83,9 @@ gulp.task('clean-pre', function () {
     .pipe(clean());
 });
 
-gulp.task('clean-partials', function () {
+gulp.task('clean-build', function () {
   var pathsToClean = [
-    paths.minifiedPartials
+    paths.build + '/**/*'
   ];
 
   return gulp.src(pathsToClean, {read: false})
@@ -94,15 +95,6 @@ gulp.task('clean-partials', function () {
 gulp.task('copy-fonts', function () {
   return gulp.src(paths.bower + '/bootstrap/dist/fonts/**')
     .pipe(gulp.dest(paths.fonts + '/'));
-});
-
-gulp.task('download-firebase', function () {
-  return downloadVendorLib(
-    'https://cdn.firebase.com/v0/firebase.js',
-    'firebase.js',
-    'firebase',
-    false
-  );
 });
 
 gulp.task('download-loggly-tracker', function () {
@@ -145,6 +137,7 @@ gulp.task('js-top', function () {
 gulp.task('js-app', function () {
   var appJsScripts = [
     //paths.vendor + '/modernizr/modernizr-custom.js',
+    paths.bower + '/jquery/dist/jquery.js',
     paths.bower + '/angular/angular.js',
     paths.bower + '/angular-route/angular-route.js',
     paths.bower + '/angular-sanitize/angular-sanitize.js',
@@ -153,6 +146,8 @@ gulp.task('js-app', function () {
     paths.bower + '/angularfire/angularfire.js',
     paths.bower + '/ngstorage/ngStorage.js',
     paths.partials + '/templates.js',
+    paths.bower + '/bootstrap/js/collapse.js',
+    paths.bower + '/bootstrap/js/transition.js',
     paths.js + '/config.js',
     paths.js + '/JcApp.js',
     paths.js + '/*.js',
@@ -166,14 +161,21 @@ gulp.task('js-app', function () {
 });
 
 gulp.task('js-vendor', function () {
-  var loggingScripts = [
-    paths.vendor + '/firebase/firebase.js',
+  var loggingScripts, uglifyOptions;
+
+  loggingScripts = [
+    paths.bower  + '/firebase/firebase.js',
     paths.vendor + '/loggly/loggly-tracker.js',
     paths.vendor + '/stacktrace/stacktrace.js'
   ];
 
+  uglifyOptions = {
+    mangle: false
+  };
+
   return gulp.src(loggingScripts)
     .pipe(concat("vendor.js"))
+    .pipe(uglify(uglifyOptions))
     .pipe(gulp.dest(paths.tmp));
 });
 
@@ -277,7 +279,7 @@ gulp.task('styles', function (cb) {
 
 gulp.task('scripts', function () {
   runSequence(
-    ['download-firebase', 'download-loggly-tracker', 'download-stacktrace', 'partials'],
+    ['download-loggly-tracker', 'download-stacktrace', 'partials'],
     ['js-app', 'js-top']
   );
 });
@@ -292,16 +294,17 @@ gulp.task('build', function () {
 gulp.task('default', function () {
   runSequence(
     ['jshint', 'clean-pre', 'download-data'],
-    ['copy-fonts', 'download-firebase', 'download-loggly-tracker', 'download-stacktrace', 'partials'],
+    ['copy-fonts', 'download-loggly-tracker', 'download-stacktrace', 'partials'],
     ['less', 'js-top', 'js-app', 'js-vendor'],
     ['js-bottom'],
     ['csslint', 'manifest']
   );
 });
 
-gulp.task('cached', function () {
+gulp.task('offline', function () {
   runSequence(
-    ['jshint'],
+    ['jshint', 'clean-build'],
+    ['partials'],
     ['less', 'js-top', 'js-app', 'js-vendor'],
     ['js-bottom'],
     ['csslint', 'manifest']
