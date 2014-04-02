@@ -24,7 +24,7 @@
             },
             base: {
               min: 6,
-              max: 14
+              max: 12
             },
             baseThis: null,
             n: 10,
@@ -238,6 +238,16 @@
             }
 
             return (game.items[index] >= $scope.getMax());
+          };
+
+          $scope.isLosingBet = function (index) {
+            var game = $scope.game;
+
+            if (game.itemSelected !== index) {
+              return false;
+            }
+
+            return !($scope.isMax(index));
           };
 
           $scope.getCurrentValue = function () {
