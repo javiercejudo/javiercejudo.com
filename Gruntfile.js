@@ -25,10 +25,12 @@ module.exports = function(grunt) {
         "devFile" : bowerPath + '/modernizr/modernizr.js',
         "outputFile" : bowerPath + '/modernizr/modernizr.custom.js',
         "parseFiles": true,
-        "files": [
-          [jsPath + '/**/*.js'],
-          [cssPath + '/**/*.css']
-        ],
+        "files": {
+            "src": [
+              jsPath + '/**/*.js',
+              cssPath + '/**/*.css'
+            ]
+        },
         "uglify" : false
       }
     },
