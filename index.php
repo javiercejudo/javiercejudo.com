@@ -1,6 +1,6 @@
 <?php
 
-require 'init.php';
+require 'layout/init.php';
 
 /**
  * @var string  $alma  Data to add to the html element regarding Angular, lang...
@@ -11,39 +11,8 @@ require 'init.php';
 <!DOCTYPE html>
 <!--[if lt IE 9]>      <html <?php echo $alma ?> class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html <?php echo $alma ?> class="no-js"> <!--<![endif]-->
-<head>
-  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-  <title data-ng-bind-template="{{pageTitle}} | Javier Cejudo · Web Developer">Javier Cejudo · Web Developer</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="author" content="Javier Cejudo">
-  <meta name="description"
-        content="I'm a young software engineer wishing to continue my career as a web
-                 developer with special interest in frontend development and management
-                 systems (e.g. e-commerce, finance) to apply my skills in databases,
-                 data processing and mathematical training.">
 
-<?php if (ENV === 'dev') : ?>
-  <link href="css/custom-bootstrap.css" rel="stylesheet">
-  <link href="css/jcApp.css" rel="stylesheet">
-<?php else : ?>
-  <link href="<?php echo $build("app", "css") ?>" rel="stylesheet">
-<?php endif ?>
-
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="ico/apple-touch-icon-144-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="ico/apple-touch-icon-114-precomposed.png">
-  <link rel="apple-touch-icon-precomposed" sizes="72x72"   href="ico/apple-touch-icon-72-precomposed.png">
-  <link rel="apple-touch-icon-precomposed"                 href="ico/apple-touch-icon-57-precomposed.png">
-  <link rel="shortcut icon"                                href="ico/favicon.png">
-
-  <!--[if lt IE 9]>
-<?php if (ENV === 'dev') : ?>
-  <script src="bower_components/html5shiv/dist/html5shiv.js"></script>
-  <script src="bower_components/respond/dest/respond.src.js"></script>
-<?php else : ?>
-  <script src="<?php echo $build("top", "js") ?>"></script>
-<?php endif ?>
-  <![endif]-->
-</head>
+<?php require 'layout/head.php' ?>
 
 <body>
   <div class="page ng-cloak" itemscope itemtype="http://schema.org/Person">
@@ -56,8 +25,8 @@ require 'init.php';
         <a href="http://whatbrowser.org/">update your browser</a>.
       </div>
 
-      <?php include 'partials/home.html' ?>
-      <footer class="footer" ><?php include 'partials/footer.html' ?></footer>
+      <?php require 'partials/home.html' ?>
+      <footer class="footer" ><?php require 'partials/footer.html' ?></footer>
     <![endif]-->
 
     <!--[if gt IE 8]><!-->
@@ -68,9 +37,9 @@ require 'init.php';
         instructions how to enable JavaScript in your web browser</a>.
       </div>
 
-      <header class="masthead"><?php include 'partials/header.html' ?></header>
-      <?php include 'partials/home.html' ?>
-      <footer class="footer" ><?php include 'partials/footer.html' ?></footer>
+      <header class="masthead"><?php require 'partials/header.html' ?></header>
+      <?php require 'partials/home.html' ?>
+      <footer class="footer" ><?php require 'partials/footer.html' ?></footer>
     </noscript>
 
     <header class="masthead" data-ng-include="'partials/header.html'"></header>
@@ -79,53 +48,7 @@ require 'init.php';
     <!--<![endif]-->
   </div>
 
-  <script>var ENV = '<?php echo ENV ?>';</script>
+  <?php require 'layout/foot.php' ?>
 
-<?php if (ENV === 'dev') : ?>
-  <script src='bower_components/firebase/firebase.js'></script>
-  <script src="bower_components/modernizr/modernizr.js"></script>
-  <script src="bower_components/jquery/dist/jquery.js"></script>
-
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-  <script src="bower_components/angular-touch/angular-touch.js"></script>
-  <script src="bower_components/angular-animate/angular-animate.js"></script>
-
-  <script src="bower_components/angularfire/angularfire.js"></script>
-  <script src="bower_components/ngstorage/ngStorage.js"></script>
-
-  <script src="partials/templates.js"></script>
-
-  <script src="bower_components/bootstrap/js/collapse.js"></script>
-  <script src="bower_components/bootstrap/js/transition.js"></script>
-
-  <script src="js/config.js"></script>
-
-  <script src="js/JcApp.js"></script>
-
-  <script src="js/AppDirectives.js"></script>
-  <script src="js/AppFilters.js"></script>
-
-  <script src="js/controllers/AppCtrl.js"></script>
-  <script src="js/controllers/HomeCtrl.js"></script>
-  <script src="js/controllers/CvCtrl.js"></script>
-  <script src="js/controllers/SecretaryProblemCtrl.js"></script>
-<?php else : ?>
-  <script type="text/javascript" src="//dl1d2m8ri9v3j.cloudfront.net/releases/1.2.1/tracker.js" data-customer="6f626efb34174c6885aef28b406d6bab"></script>
-  <script src="<?php echo $build("bottom", "js") ?>"></script>
-  <script>
-    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-    e.src='//www.google-analytics.com/analytics.js';
-    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-    ga('create','UA-43072086-1');
-  </script>
-  <script>
-    var _LTracker = _LTracker || [];
-    _LTracker.push({'logglyKey': 'b2645489-466a-494b-ab92-f8772f42c0d1' });
-  </script>
-<?php endif ?>
 </body>
 </html>
