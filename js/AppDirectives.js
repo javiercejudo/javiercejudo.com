@@ -15,11 +15,7 @@
 
     .directive('jcPageTitle', ['$rootScope', function ($rootScope) {
       return function (scope, element, attrs) {
-        if (attrs.jcPageTitle === '') {
-          attrs.jcPageTitle = 'Welcome';
-        }
-
-        $rootScope.pageTitle = attrs.jcPageTitle;
+        $rootScope.pageTitle = (attrs.jcPageTitle === '') ? 'Welcome' : attrs.jcPageTitle;
       };
     }]);
 
