@@ -2,18 +2,20 @@
   'use strict';
 
   describe("CV controller suite", function() {
-    var scope, controller;
+    var scope, controller, sLocalStorage;
 
     beforeEach(module('JcApp'));
 
-    beforeEach(inject(function($controller, $rootScope) {
+    beforeEach(inject(function($controller, $rootScope, $localStorage) {
       scope = $rootScope.$new();
       controller = $controller;
+      sLocalStorage = $localStorage
 
       // instantiate the controller
       controller('CvCtrl', {
         $scope: scope,
-        $routeParams: {}
+        $routeParams: {},
+        $localStorage: sLocalStorage
       });
     }));
 
@@ -22,6 +24,22 @@
         expect(scope.cv.data).toBe(null);
         scope.successCallback('response');
         expect(scope.cv.data).toBe('response');
+      });
+    });
+
+    describe('retrieveFromLocalStorage', function () {
+      it('should retrieve data from localStorage', function () {
+        sLocalStorage['cv-data'] = 'abc';
+        var infoRetrieved = scope.retrieveFromLocalStorage();
+        expect(infoRetrieved).toBe('abc');
+      });
+    });
+
+    describe('saveToLocalStorage', function () {
+      it('should save data to localStorage', function () {
+        scope.cv.data = 'abc';
+        scope.saveToLocalStorage();
+        expect(sLocalStorage['cv-data']).toBe('abc');
       });
     });
 
