@@ -2,18 +2,22 @@
   'use strict';
 
   describe("CV controller suite", function() {
-    var scope, controller, sLocalStorage;
+    var scope, rootScope, controller, location, sLocalStorage;
 
     beforeEach(module('JcApp'));
 
-    beforeEach(inject(function($controller, $rootScope, $localStorage) {
+    beforeEach(inject(function($rootScope, $controller, $location, $localStorage) {
       scope = $rootScope.$new();
+      rootScope = $rootScope;
       controller = $controller;
-      sLocalStorage = $localStorage
+      location = $location;
+      sLocalStorage = $localStorage;
 
       // instantiate the controller
       controller('CvCtrl', {
+        $rootScope: rootScope,
         $scope: scope,
+        $location: location,
         $routeParams: {},
         $localStorage: sLocalStorage
       });
@@ -40,6 +44,81 @@
         scope.cv.data = 'abc';
         scope.saveToLocalStorage();
         expect(sLocalStorage['cv-data']).toBe('abc');
+      });
+    });
+
+    describe('initCv', function () {
+      it('should initialise CV data', function () {
+        spyOn(scope, 'retrieveFromLocalStorage');
+        scope.initCv();
+        expect(scope.retrieveFromLocalStorage).toHaveBeenCalled();
+      });
+
+      it('should use firebase if online', function () {
+        scope.firebaseUrl = 'https://c3jud0.firebaseio.com';
+        rootScope.online = true;
+        scope.firebase.ref = null;
+        scope.$apply();
+
+        scope.initCv();
+        expect(scope.firebase.ref).not.toBe(null);
+      });
+    });
+
+    describe('watchCvData', function () {
+      beforeEach(function () {
+        spyOn(scope, 'setAvailableLanguages');
+        spyOn(scope, 'setLanguage');
+        spyOn(scope, 'saveToLocalStorage');
+
+        scope.cv.loading = true;
+      });
+
+      it('should watch the CV data and act on it', function () {
+        scope.cv.data = 'abc';
+        scope.$apply();
+
+        expect(scope.cv.loading).toBe(false);
+        expect(scope.setAvailableLanguages).toHaveBeenCalled();
+        expect(scope.setLanguage).toHaveBeenCalled();
+        expect(scope.saveToLocalStorage).toHaveBeenCalled();
+      });
+
+      it('should watch the CV data and act on it', function () {
+        scope.cv.data = null;
+        scope.$apply();
+
+        expect(scope.cv.loading).toBe(true);
+        expect(scope.setAvailableLanguages).not.toHaveBeenCalled();
+        expect(scope.setLanguage).not.toHaveBeenCalled();
+        expect(scope.saveToLocalStorage).not.toHaveBeenCalled();
+      });
+    });
+
+    describe('setCvDataFromBackup', function () {
+      it('should start loading CV data from backup', function () {
+        scope.setCvDataFromBackup(0);
+        expect(scope.cv.loading).toBe(true);
+      });
+    });
+
+    describe('onDataRemoteLoaded', function () {
+      it('should update CV data with the remote info upon loading', function () {
+        scope.cv.data = 'abc';
+        scope.cv.dataRemote = 'xyz';
+        scope.onDataRemoteLoaded();
+
+        expect(scope.cv.data).toBe('xyz');
+      });
+    });
+
+    describe('onDataRemoteChange', function () {
+      it('should update CV data with the remote info upon changes', function () {
+        scope.cv.data = 'abc';
+        scope.cv.dataRemote = 'xyz';
+        scope.onDataRemoteChange();
+
+        expect(scope.cv.data).toBe('xyz');
       });
     });
 
@@ -71,6 +150,17 @@
 
         expect(scope.pageTitle).toBe('CV: Language1');
         expect(scope.cvLocal).toBe(1);
+      });
+
+      it('should redirect to english when there is no data', function () {
+        var cv = scope.cv;
+
+        cv.data = {'language1': 1};
+        cv.params = {language: 'language2'};
+
+        scope.setLanguage();
+
+        expect(location.path()).toBe('/cv/english');
       });
     });
   });

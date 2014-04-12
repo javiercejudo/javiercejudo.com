@@ -9,7 +9,6 @@
       function ($rootScope, $scope, $routeParams, $location, $http, $filter, $timeout, $firebase, $localStorage) {
         $scope.cv = {
           loading: null,
-          error: null,
           params: $routeParams,
           languages: [],
           data: null,
@@ -55,18 +54,21 @@
           firebase.ref = new Firebase($scope.firebaseUrl + '/cv');
           cv.dataRemote = $firebase(firebase.ref);
 
-          cv.dataRemote.$on("loaded", function() {
-            $timeout(function () {
-              cv.loading = false;
-              cv.data = cv.dataRemote;
-            });
-          });
+          cv.dataRemote.$on("loaded", $scope.onDataRemoteLoaded);
+          cv.dataRemote.$on("change", $scope.onDataRemoteChange);
+        };
 
-          cv.dataRemote.$on("change", function() {
-            $timeout(function () {
-              cv.data = cv.dataRemote;
-            });
-          });
+        $scope.onDataRemoteLoaded = function() {
+          var cv = $scope.cv;
+
+          cv.loading = false;
+          cv.data = cv.dataRemote;
+        };
+
+        $scope.onDataRemoteChange = function() {
+          var cv = $scope.cv;
+
+          cv.data = cv.dataRemote;
         };
 
         $scope.setCvData = function () {
@@ -103,7 +105,6 @@
               })
               .error(function () {
                 cv.loading = false;
-                cv.error = true;
               });
           }, fakeDelay);
         };
