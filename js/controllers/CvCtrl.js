@@ -127,10 +127,10 @@
             cv = $scope.cv,
             languages = [];
 
-          angular.forEach(cv.data, function (language, key) {
-            if (key.substr(0, 1) !== '$') {
+          angular.forEach(cv.data, function (language, urlKey) {
+            if (language.hasOwnProperty('pos')) {
               languages.push({
-                url: key,
+                url: urlKey,
                 pos: language.pos
               });
             }

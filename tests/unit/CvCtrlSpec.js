@@ -29,7 +29,7 @@
       it('should detect relevant keys from cv.data', function () {
         scope.cv.data = {
           language1: {pos: 1},
-          $irrelevantKey: {pos: 2},
+          $irrelevantKey: 'xyz',
           language2: {pos: 3}
         };
 
