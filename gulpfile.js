@@ -8,7 +8,6 @@ var
   concat = require('gulp-concat'),
   download = require('gulp-download'),
   htmlmin = require('gulp-htmlmin'),
-//  imagemin = require('gulp-imagemin'),
   jshint = require('gulp-jshint'),
   karma = require('gulp-karma'),
   less = require('gulp-less'),
