@@ -71,12 +71,12 @@
 - [Wraith](https://github.com/BBC-News/wraith): front-end regression testing tool.
 - [Coveralls](https://coveralls.io/): test coverage history and statistics.
 
-### Building Process [![Build Status](https://travis-ci.org/javiercejudo/javiercejudo.com.svg?branch=master)](https://travis-ci.org/javiercejudo/javiercejudo.com)
+### Building Process
 
 - [Gulp](http://gulpjs.com/): the streaming build system.
 - [Grunt](http://gruntjs.com/): the JavaScript task runner.
 
-### Continuous Integration
+### Continuous Integration [![Build Status](https://travis-ci.org/javiercejudo/javiercejudo.com.svg?branch=master)](https://travis-ci.org/javiercejudo/javiercejudo.com)
 
 - [Travis CI](https://travis-ci.org/): free hosted continuous integration platform for the open source community.
 - [Heroku](https://www.heroku.com/): cloud computing designed and built for developers.
@@ -98,7 +98,7 @@
 - [Code Climate](https://codeclimate.com): quality & security analysis for Ruby on Rails and JavaScript.
 - [Scrutinizer](https://scrutinizer-ci.com/): build quality software, better.
 
-### Monitoring
+### Monitoring <a href="https://www.statuscake.com" title="Website Uptime Monitoring"><img src="https://www.statuscake.com/App/button/index.php?Track=EKqPqfW1dF&Days=30&Design=5" valign="middle" /></a>
 
 - [Loggly](https://www.loggly.com/): the world's most popular cloud-based log management service.
 - [{Track:js}](http://trackjs.com/): JavaScript error and event logging.
