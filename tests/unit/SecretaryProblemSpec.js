@@ -20,7 +20,7 @@
 
     describe('automaticGame', function () {
       it('requires numberOfGames to not be a negative integer', function () {
-        spyOn(scope, 'findBestStrategy').andReturn(0);
+        spyOn(scope, 'findBestStrategy').and.returnValue(0);
 
         var
           numberOfItems = 2,
@@ -31,7 +31,7 @@
       });
 
       it('should win and lose at least a game with n unrealistically big', function () {
-        spyOn(scope, 'findBestStrategy').andReturn(2759);
+        spyOn(scope, 'findBestStrategy').and.returnValue(2759);
 
         var
           numberOfItems = 7500,
@@ -43,7 +43,7 @@
       });
 
       it('should achieve a ~1/e success rate with n big', function () {
-        spyOn(scope, 'findBestStrategy').andReturn(94);
+        spyOn(scope, 'findBestStrategy').and.returnValue(94);
 
         var
           numberOfItems = 256,
@@ -57,7 +57,7 @@
       });
 
       it('should achieve ~20% success rate with n=5 if selecting the first box', function () {
-        spyOn(scope, 'findBestStrategy').andReturn(0);
+        spyOn(scope, 'findBestStrategy').and.returnValue(0);
 
         var
           numberOfItems = 5,
@@ -71,7 +71,7 @@
       });
 
       it('should achieve a ~1/2 success rate with n=3', function () {
-        spyOn(scope, 'findBestStrategy').andReturn(1);
+        spyOn(scope, 'findBestStrategy').and.returnValue(1);
 
         var
           numberOfItems = 3,
@@ -87,13 +87,13 @@
 
     describe('initialisation', function () {
       beforeEach(function () {
-        spyOn(scope, 'processN').andCallThrough();
+        spyOn(scope, 'processN').and.callThrough();
         scope.initSecretaryProblem();
         scope.initSecretaryProblem();
       });
 
       it('never initialises if the game just started', function () {
-        expect(scope.processN.callCount).toBe(1);
+        expect(scope.processN.calls.count()).toEqual(1);
       });
     });
 
@@ -243,7 +243,7 @@
         });
 
         it('re-initiates game if it was finished', function () {
-          spyOn(scope, 'initSecretaryProblem').andCallThrough();
+          spyOn(scope, 'initSecretaryProblem').and.callThrough();
           scope.generateItemValue(0);
           scope.game.itemSelected = 0;
           scope.generateItemValue(0);
@@ -252,7 +252,7 @@
         });
 
         it('selects the item if it was the current option', function () {
-          spyOn(scope, 'selectItem').andCallThrough();
+          spyOn(scope, 'selectItem').and.callThrough();
           scope.generateItemValue(1);
           scope.generateItemValue(1);
 
