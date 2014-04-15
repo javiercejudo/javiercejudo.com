@@ -142,11 +142,14 @@ module.exports = function(karma) {
 
     // report which specs are slower than [ms]
     // CLI --report-slower-than 500
-    reportSlowerThan: 500,
+    reportSlowerThan: 0,
+
+    // How long to wait for a message from a browser before disconnecting it (in ms)
+    browserNoActivityTimeout: 90000,
 
     // compile coffee scripts
     preprocessors: {
-      'js/**/*.js': ['coverage']
+      'js/**/!(JcApp|config).js': ['coverage']
     },
 
     coverageReporter: {
