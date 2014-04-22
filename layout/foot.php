@@ -48,6 +48,7 @@
     e.src='//www.google-analytics.com/analytics.js';
     r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
     ga('create','UA-43072086-1');
+    ga('require', 'displayfeatures');
   </script>
   <script>
     var _LTracker = _LTracker || [];
