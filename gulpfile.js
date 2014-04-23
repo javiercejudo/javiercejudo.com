@@ -1,4 +1,3 @@
-
 var
   gulp = require('gulp'),
 //  gutil = require('gulp-util'),
@@ -260,7 +259,7 @@ gulp.task('manifest', function () {
     filename: 'manifest.appcache',
     network: ['http://*', 'https://*', '*'],
     preferOnline: true,
-    timestamp: false,
+    timestamp: true,
     hash: false
   };
 
