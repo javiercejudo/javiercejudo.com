@@ -1,4 +1,4 @@
-# www.javiercejudo.com
+# javiercejudo <a href="LICENSE"><img src="https://poser.pugx.org/pugx/badge-poser/license.png"></a>
 
 [![Build Status](https://travis-ci.org/javiercejudo/javiercejudo.com.svg?branch=master)](https://travis-ci.org/javiercejudo/javiercejudo.com)
 [![Coverage Status](https://coveralls.io/repos/javiercejudo/javiercejudo.com/badge.png?branch=master)](https://coveralls.io/r/javiercejudo/javiercejudo.com?branch=master)
@@ -13,7 +13,7 @@
         <th>Live</th>
         <td>
             http://www.javiercejudo.com
-            <a href="https://www.statuscake.com" title="Website Uptime Monitoring"><img src="https://www.statuscake.com/App/button/index.php?Track=EKqPqfW1dF&Days=30&Design=5" valign="middle" /></a>
+            <a href="https://www.statuscake.com" title="Website Uptime Monitoring"><img src="https://www.statuscake.com/App/button/index.php?Track=EKqPqfW1dF&Days=30&Design=5" valign="middle"></a>
         </td>
     </tr>
     <tr>
@@ -98,7 +98,7 @@
 - [Code Climate](https://codeclimate.com): quality & security analysis for Ruby on Rails and JavaScript.
 - [Scrutinizer](https://scrutinizer-ci.com/): build quality software, better.
 
-### Monitoring <a href="https://www.statuscake.com" title="Website Uptime Monitoring"><img src="https://www.statuscake.com/App/button/index.php?Track=EKqPqfW1dF&Days=30&Design=5" valign="middle" /></a>
+### Monitoring <a href="https://www.statuscake.com" title="Website Uptime Monitoring"><img src="https://www.statuscake.com/App/button/index.php?Track=EKqPqfW1dF&Days=30&Design=5" valign="middle"></a>
 
 - [Loggly](https://www.loggly.com/): the world's most popular cloud-based log management service.
 - [{Track:js}](http://trackjs.com/): JavaScript error and event logging.
