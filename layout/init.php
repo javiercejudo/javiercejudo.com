@@ -4,6 +4,9 @@ header('Content-Type: text/html; charset=utf-8');
 
 define('ENV', (getenv('ENV') !== false) ? getenv('ENV') : 'live');
 
+$buildMapFile = file_get_contents('build/rev-manifest.json');
+$buildMap     = json_decode($buildMapFile, true);
+
 /**
  * @param string $name Name of build file without extension
  * @param string $ext  Extension of the build file
@@ -11,9 +14,7 @@ define('ENV', (getenv('ENV') !== false) ? getenv('ENV') : 'live');
  * @return mixed
  */
 $build = function ($name, $ext) {
-    $matchingFiles = glob("build/" . $name . "-*." . $ext);
-
-    return reset($matchingFiles);
+    return 'build/' . $GLOBALS["buildMap"]["$name.$ext"];
 };
 
 $almaArray = array(
