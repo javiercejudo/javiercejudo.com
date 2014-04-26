@@ -19,6 +19,7 @@ var
   uglify = require('gulp-uglify');
 
 var paths = {
+  assets: 'assets',
   build: 'build',
   bower: 'bower_components',
   css: 'css',
@@ -41,18 +42,10 @@ var paths = {
  *
  * @returns {Object}
  */
-var downloadVendorLib = function (url, filename, dest, build) {
-  var downloadStream = download(url)
+var downloadVendorLib = function (url, filename, dest) {
+  return download(url)
     .pipe(rename(filename))
     .pipe(gulp.dest(paths.vendor + '/' + dest));
-
-  if (!build) {
-    return downloadStream;
-  }
-
-  return downloadStream
-    .pipe(rev())
-    .pipe(gulp.dest(paths.build));
 };
 
 gulp.task('jshint', function () {
@@ -99,8 +92,7 @@ gulp.task('download-loggly-tracker', function () {
   return downloadVendorLib(
     'https://raw.github.com/loggly/loggly-jslogger/master/src/loggly.tracker.js',
     'loggly-tracker.js',
-    'loggly',
-    false
+    'loggly'
   );
 });
 
@@ -108,8 +100,7 @@ gulp.task('download-stacktrace', function () {
   return downloadVendorLib(
     'https://raw.github.com/stacktracejs/stacktrace.js/master/stacktrace.js',
     'stacktrace.js',
-    'stacktrace',
-    false
+    'stacktrace'
   );
 });
 
@@ -128,8 +119,7 @@ gulp.task('js-top', function () {
   return gulp.src(topJsScripts)
     .pipe(concat("top.js"))
     .pipe(uglify())
-    .pipe(rev())
-    .pipe(gulp.dest(paths.build));
+    .pipe(gulp.dest(paths.assets));
 });
 
 gulp.task('js-app', function () {
@@ -185,8 +175,7 @@ gulp.task('js-bottom', function () {
 
   return gulp.src(bottomScripts)
     .pipe(concat("bottom.js"))
-    .pipe(rev())
-    .pipe(gulp.dest(paths.build));
+    .pipe(gulp.dest(paths.assets));
 });
 
 gulp.task('less', function () {
@@ -211,8 +200,7 @@ gulp.task('less', function () {
     .pipe(gulp.dest(paths.css))
     .pipe(concat('app.css'))
     .pipe(cssmin(cssminOptions))
-    .pipe(rev())
-    .pipe(gulp.dest(paths.build));
+    .pipe(gulp.dest(paths.assets));
 });
 
 gulp.task('csslint', function () {
@@ -246,6 +234,14 @@ gulp.task('partials', function () {
     .pipe(gulp.dest(paths.partials));
 });
 
+gulp.task('rev', function () {
+  return gulp.src(paths.assets + '/*.{css,js}')
+    .pipe(rev())
+    .pipe(gulp.dest(paths.build))
+    .pipe(rev.manifest())
+    .pipe(gulp.dest(paths.build));
+});
+
 gulp.task('manifest', function () {
   var files, options;
 
@@ -268,34 +264,14 @@ gulp.task('manifest', function () {
     .pipe(gulp.dest(''));
 });
 
-gulp.task('styles', function (cb) {
-  runSequence(
-    'less',
-    'csslint'
-  );
-});
-
-gulp.task('scripts', function () {
-  runSequence(
-    ['download-loggly-tracker', 'download-stacktrace', 'partials'],
-    ['js-app', 'js-top']
-  );
-});
-
-gulp.task('build', function () {
-  runSequence(
-    ['copy-fonts', 'styles', 'scripts'],
-    'manifest'
-  );
-});
-
 gulp.task('default', function () {
   runSequence(
     ['jshint', 'clean-pre', 'download-data'],
     ['copy-fonts', 'download-loggly-tracker', 'download-stacktrace', 'partials'],
     ['less', 'js-top', 'js-app', 'js-vendor'],
     ['js-bottom'],
-    ['csslint', 'manifest']
+    ['rev'],
+    ['manifest', 'csslint']
   );
 });
 
@@ -305,6 +281,7 @@ gulp.task('offline', function () {
     ['partials'],
     ['less', 'js-top', 'js-app', 'js-vendor'],
     ['js-bottom'],
-    ['csslint', 'manifest']
+    ['rev'],
+    ['manifest', 'csslint']
   );
 });
