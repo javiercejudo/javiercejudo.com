@@ -1,5 +1,7 @@
 <?php
 
+date_default_timezone_set('Australia/Sydney');
+
 require 'vendor/autoload.php';
 
 use Aws\S3\S3Client;
