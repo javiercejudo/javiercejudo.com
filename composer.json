@@ -3,5 +3,8 @@
     "heroku": {
       "newrelic": true
     }
+  },
+  "require": {
+    "aws/aws-sdk-php": "2.6.*"
   }
 }
