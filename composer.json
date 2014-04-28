@@ -1,4 +1,12 @@
 {
+  "name": "javiercejudo.com",
+  "description": "Javier Cejudo's personal website.",
+  "authors": [
+    {
+      "name":  "Javier Cejudo",
+      "email": "javier@javiercejudo.com"
+    }
+  ],
   "extra": {
     "heroku": {
       "newrelic": true
