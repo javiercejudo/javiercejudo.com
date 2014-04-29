@@ -1,14 +1,14 @@
 {
   "name": "Secretary Problem",
   "description": "A game-like implementation of the Secretary Problem",
-  "version": "1.1.1",
+  "version": "1.2.1",
   "manifest_version": 2,
   "icons": {
-    "144": "ico/apple-touch-icon-144-precomposed.png",
-    "114": "ico/apple-touch-icon-114-precomposed.png",
-    "72": "ico/apple-touch-icon-72-precomposed.png",
+    "32": "ico/favicon.png",
     "57": "ico/apple-touch-icon-57-precomposed.png",
-    "32": "ico/favicon.png"
+    "72": "ico/apple-touch-icon-72-precomposed.png",
+    "114": "ico/apple-touch-icon-114-precomposed.png",
+    "144": "ico/apple-touch-icon-144-precomposed.png"
   },
   "app": {
     "urls": [

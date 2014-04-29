@@ -1,7 +1,18 @@
 {
+  "name": "javiercejudo.com",
+  "description": "Javier Cejudo's personal website.",
+  "authors": [
+    {
+      "name":  "Javier Cejudo",
+      "email": "javier@javiercejudo.com"
+    }
+  ],
   "extra": {
     "heroku": {
       "newrelic": true
     }
+  },
+  "require": {
+    "aws/aws-sdk-php": "2.6.*"
   }
 }

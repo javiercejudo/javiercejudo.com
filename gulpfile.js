@@ -1,6 +1,7 @@
 var
   gulp = require('gulp'),
 //  gutil = require('gulp-util'),
+  bump = require('gulp-bump'),
   clean = require('gulp-clean'),
   csslint = require('gulp-csslint'),
   cssmin = require('gulp-cssmin'),
@@ -33,12 +34,11 @@ var paths = {
 };
 
 /**
- * Downloads a file to an given vendor folder and optionally creates a build file for it
+ * Downloads a file to an given vendor folder
  *
- * @param url      string URL to download the file from
- * @param filename string Name to give the downloaded file
- * @param dest     string Destination foler
- * @param build    bool   True to create a build file
+ * @param {String} url      URL to download the file from
+ * @param {String} filename Name to give the downloaded file
+ * @param {String} dest     Destination foler
  *
  * @returns {Object}
  */
@@ -46,6 +46,23 @@ var downloadVendorLib = function (url, filename, dest) {
   return download(url)
     .pipe(rename(filename))
     .pipe(gulp.dest(paths.vendor + '/' + dest));
+};
+
+/**
+ * Downloads a file to an given vendor folder and optionally creates a build file for it
+ *
+ * @param {String} type Version to bump (major|minor|patch|prerelease)
+ *
+ * @returns {Object}
+ */
+var bumpVersion = function (type) {
+  var options = {
+    type: type
+  };
+
+  return gulp.src(['./package.json', './bower.json', './manifest.json'])
+    .pipe(bump(options))
+    .pipe(gulp.dest('./'));
 };
 
 gulp.task('jshint', function () {
@@ -262,6 +279,18 @@ gulp.task('manifest', function () {
   return gulp.src(files, {base: './'})
     .pipe(manifest(options))
     .pipe(gulp.dest(''));
+});
+
+gulp.task('bump-patch', function () {
+  return bumpVersion('patch');
+});
+
+gulp.task('bump-minor', function () {
+  return bumpVersion('minor');
+});
+
+gulp.task('bump-major', function () {
+  return bumpVersion('major');
 });
 
 gulp.task('default', function () {
