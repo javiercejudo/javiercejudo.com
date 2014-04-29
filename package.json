@@ -39,7 +39,7 @@
     "karma-phantomjs-launcher": "^0.1.4",
     "karma-requirejs": "~0.2.0",
     "karma-coverage": "~0.2.0",
-    "grunt-karma-coveralls": "~2.4.0",
+    "grunt-karma-coveralls": "^2.5.0",
     "karma-sauce-launcher": "~0.2.7"
   },
   "dependencies": {
