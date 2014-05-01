@@ -1,6 +1,6 @@
 {
   "name": "javiercejudo.com",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "engines": {
     "node": "0.10.x",
     "npm": "1.4.x"
