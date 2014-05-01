@@ -1,7 +1,6 @@
 module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-modernizr');
   grunt.loadNpmTasks('grunt-karma');
-  grunt.loadNpmTasks('grunt-karma-coveralls');
   grunt.loadNpmTasks('grunt-docular');
 
   var jsPath = 'js';
@@ -57,13 +56,6 @@ module.exports = function(grunt) {
       e2eDist: {
         configFile: 'karma-e2e.conf.js',
         browsers: ['Chrome', 'Firefox']
-      }
-    },
-
-    coveralls: {
-      options: {
-        debug: true,
-        coverage_dir: 'coverage/'
       }
     },
 
