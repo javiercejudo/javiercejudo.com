@@ -1,6 +1,5 @@
 module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-modernizr');
-  grunt.loadNpmTasks('grunt-contrib-imagemin');
   grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-karma-coveralls');
   grunt.loadNpmTasks('grunt-docular');
@@ -32,22 +31,6 @@ module.exports = function(grunt) {
             ]
         },
         "uglify" : false
-      }
-    },
-
-    imagemin: {
-      dist: {
-        options: {
-          optimizationLevel: 3
-        },
-        files: [
-          {
-            expand: true,
-            cwd: imgPath + '/',
-            src: ['**/*'],
-            dest: imgPath + '/'
-          }
-        ]
       }
     },
 
