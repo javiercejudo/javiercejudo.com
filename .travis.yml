@@ -1,6 +1,8 @@
 language: node_js
 node_js:
 - 0.10
+script:
+- if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
 after_success:
 - gulp coveralls
 env:
