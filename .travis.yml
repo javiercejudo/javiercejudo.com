@@ -1,8 +1,10 @@
 language: node_js
 node_js:
 - 0.10
+before_install:
+- if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
 after_success:
-- grunt coveralls
+- gulp coveralls
 env:
   global:
   - secure: b6zKdte5ZzHWllFMsoc4EVYY4GuaIPLEB3oY6pRoA437i0uNLqWUHUJGEIa7ebHXYPJ81Ki/wBTLrQtJmE8KGpIGs8rgxkSWcnFxUcDFsHyo/+izB8Mmx/tFJFCTNsi3kFy5fWhwFvzZW8WgwPyaJsXML3721Z7H5IiWYqBXQiU=

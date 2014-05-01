@@ -1,7 +1,6 @@
 var
   gulp = require('gulp'),
-//  gutil = require('gulp-util'),
-  bump = require('gulp-bump'),
+  gutil = require('gulp-util'),
   clean = require('gulp-clean'),
   csslint = require('gulp-csslint'),
   cssmin = require('gulp-cssmin'),
@@ -56,9 +55,11 @@ var downloadVendorLib = function (url, filename, dest) {
  * @returns {Object}
  */
 var bumpVersion = function (type) {
-  var options = {
-    type: type
-  };
+  var
+    bump = require('gulp-bump'),
+    options = {
+      type: type
+    };
 
   return gulp.src(['./package.json', './bower.json', './manifest.json'])
     .pipe(bump(options))
@@ -291,6 +292,13 @@ gulp.task('bump-minor', function () {
 
 gulp.task('bump-major', function () {
   return bumpVersion('major');
+});
+
+gulp.task('coveralls', function () {
+  var coveralls = require('gulp-coveralls');
+
+  return gulp.src('coverage/**/lcov.info')
+    .pipe(coveralls());
 });
 
 gulp.task('default', function () {
