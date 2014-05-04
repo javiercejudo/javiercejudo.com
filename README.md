@@ -1,4 +1,4 @@
-# javiercejudo <a href="LICENSE"><img src="https://poser.pugx.org/pugx/badge-poser/license.png"></a>
+# javiercejudo <a href="LICENSE"><img src="https://s3-ap-southeast-2.amazonaws.com/jc-general-images/mit-licence.png"></a>
 
 [![Build Status](https://travis-ci.org/javiercejudo/javiercejudo.com.svg?branch=master)](https://travis-ci.org/javiercejudo/javiercejudo.com)
 [![Coverage Status](https://coveralls.io/repos/javiercejudo/javiercejudo.com/badge.png?branch=master)](https://coveralls.io/r/javiercejudo/javiercejudo.com?branch=master)
@@ -62,6 +62,7 @@
 - [nginx](http://nginx.org/): HTTP and reverse proxy server.
 - [PHP](http://php.net/): widely-used general-purpose scripting language that is especially suited for Web development.
 - [Firebase](https://www.firebase.com/): scalable real-time backend.
+- [Amazon S3](http://aws.amazon.com/s3/): online cloud storage for data & files.
 
 ### Testing [![Coverage Status](https://coveralls.io/repos/javiercejudo/javiercejudo.com/badge.png?branch=master)](https://coveralls.io/r/javiercejudo/javiercejudo.com?branch=master)
 
@@ -101,5 +102,4 @@
 ### Monitoring <a href="https://www.statuscake.com" title="Website Uptime Monitoring"><img src="https://www.statuscake.com/App/button/index.php?Track=EKqPqfW1dF&Days=30&Design=5" valign="middle"></a>
 
 - [Loggly](https://www.loggly.com/): the world's most popular cloud-based log management service.
-- [{Track:js}](http://trackjs.com/): JavaScript error and event logging.
 - [StatusCake](https://www.statuscake.com): website uptime monitoring & alerts.
