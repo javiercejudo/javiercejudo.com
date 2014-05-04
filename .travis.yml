@@ -3,8 +3,8 @@ node_js:
 - 0.10
 git:
   depth: 100
-before_install:
-- if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
+# before_install:
+# - if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
 after_success:
 - gulp coveralls
 env:
