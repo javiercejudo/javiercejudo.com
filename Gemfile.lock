@@ -29,6 +29,8 @@ GEM
     json (1.8.1)
     launchy (2.4.2)
       addressable (~> 2.3)
+    mason (0.1.0)
+      thor
     method_source (0.8.2)
     mime-types (1.25.1)
     multi_json (1.8.4)
@@ -74,4 +76,5 @@ PLATFORMS
 
 DEPENDENCIES
   coveralls
+  mason (~> 0.1.0)
   travis (~> 1.6.10)
