@@ -25,6 +25,7 @@ var paths = {
   css: 'css',
   data: 'data',
   fonts: 'fonts',
+  ico: 'ico',
   js: 'js',
   tmp: 'tmp',
   partials: 'partials',
@@ -205,7 +206,7 @@ gulp.task('less', function () {
   ];
 
   lessOptions = {
-    //paths: cssFiles,
+    sourceMap: true,
     dumpLineNumbers: "comments"
   };
 
@@ -257,7 +258,7 @@ gulp.task('rev', function () {
     .pipe(rev())
     .pipe(gulp.dest(paths.build))
     .pipe(rev.manifest())
-    .pipe(gulp.dest(paths.build));
+    .pipe(gulp.dest('./'));
 });
 
 gulp.task('manifest', function () {
@@ -265,8 +266,9 @@ gulp.task('manifest', function () {
 
   files = [
     paths.build + '/**/*',
+    paths.data + '/min/**/*',
     paths.fonts + '/**/*',
-    paths.data + '/min/**/*'
+    paths.ico + '/**/*'
   ];
 
   options = {

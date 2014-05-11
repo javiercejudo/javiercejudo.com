@@ -4,7 +4,7 @@ header('Content-Type: text/html; charset=utf-8');
 
 define('ENV', (getenv('ENV') !== false) ? getenv('ENV') : 'live');
 
-$buildMapFile = file_get_contents('build/rev-manifest.json');
+$buildMapFile = file_get_contents('rev-manifest.json');
 $buildMap     = json_decode($buildMapFile, true);
 
 /**
