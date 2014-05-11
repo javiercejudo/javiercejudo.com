@@ -26,7 +26,7 @@
     </tr>
     <tr>
         <th>Dev</th>
-        <td>http://www.javiercejudo.dev</td>
+        <td>http://0.0.0.0:5000</td>
     </tr>
     <tr>
         <th>Issue tracker</th>
@@ -85,7 +85,6 @@
 - [Heroku](https://www.heroku.com/): cloud computing designed and built for developers.
 
 ### Dependency Management
-
 
 [![Dependency Status](https://gemnasium.com/javiercejudo/javiercejudo.com.svg)](https://gemnasium.com/javiercejudo/javiercejudo.com)
 [![Dependency Status](https://david-dm.org/javiercejudo/javiercejudo.com.svg?theme=shields.io)](https://david-dm.org/javiercejudo/javiercejudo.com)
