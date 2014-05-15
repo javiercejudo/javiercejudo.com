@@ -9,8 +9,10 @@ module.exports = function(karma) {
 
   paths = {
     bowerComponents: 'bower_components',
-    build: 'build',
-    tests: 'tests'
+    vendor: 'vendor',
+    tests: 'tests',
+    js: 'js',
+    partials: 'partials'
   };
 
   karma.set({
@@ -21,8 +23,21 @@ module.exports = function(karma) {
 
     // list of files / patterns to load in the browser
     files: [
-      paths.build + '/**/*.js',
+      paths.bowerComponents + '/firebase/firebase.js',
+      paths.bowerComponents + '/jquery/dist/jquery.js',
+      paths.bowerComponents + '/angular/angular.js',
+      paths.bowerComponents + '/angular-route/angular-route.js',
       paths.bowerComponents + '/angular-mocks/angular-mocks.js',
+      paths.bowerComponents + '/angular-sanitize/angular-sanitize.js',
+      paths.bowerComponents + '/angular-touch/angular-touch.js',
+      paths.bowerComponents + '/angular-animate/angular-animate.js',
+      paths.bowerComponents + '/angularfire/angularfire.js',
+      paths.bowerComponents + '/ngstorage/ngStorage.js',
+      paths.partials + '/templates.js',
+      paths.js + '/config.js',
+      paths.js + '/JcApp.js',
+      paths.js + '/AppFilters.js',
+      paths.js + '/**/*.js',
       paths.tests +'/unit/**/*Spec.js'
     ],
 
