@@ -44,7 +44,6 @@ module.exports = function(grunt) {
       dist: {
         browsers: [
           'SL_Chrome',
-          'SL_Firefox',
           'SL_IE_9'
         ]
       },
