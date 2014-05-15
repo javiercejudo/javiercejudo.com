@@ -1,9 +1,9 @@
 # javiercejudo <a href="LICENSE"><img src="https://s3-ap-southeast-2.amazonaws.com/jc-general-images/mit-licence.png"></a>
 
 [![Build Status](https://travis-ci.org/javiercejudo/javiercejudo.com.svg?branch=master)](https://travis-ci.org/javiercejudo/javiercejudo.com)
+[![Selenium Test Status](https://saucelabs.com/buildstatus/javiercejudo)](https://saucelabs.com/u/javiercejudo)
 [![Coverage Status](https://coveralls.io/repos/javiercejudo/javiercejudo.com/badge.png?branch=master)](https://coveralls.io/r/javiercejudo/javiercejudo.com?branch=master)
 [![Code Climate](https://codeclimate.com/github/javiercejudo/javiercejudo.com.png)](https://codeclimate.com/github/javiercejudo/javiercejudo.com)
-[![Dependency Status](https://gemnasium.com/javiercejudo/javiercejudo.com.svg)](https://gemnasium.com/javiercejudo/javiercejudo.com)
 [![Dependency Status](https://david-dm.org/javiercejudo/javiercejudo.com.svg?theme=shields.io)](https://david-dm.org/javiercejudo/javiercejudo.com)
 
 ## Useful Links
@@ -66,7 +66,10 @@
 - [CloudFlare](http://www.cloudflare.com/): the web performance & security company.
 - [Foreman](http://ddollar.github.io/foreman/): manage Procfile-based applications.
 
-### Testing [![Coverage Status](https://coveralls.io/repos/javiercejudo/javiercejudo.com/badge.png?branch=master)](https://coveralls.io/r/javiercejudo/javiercejudo.com?branch=master)
+### Testing
+
+[![Selenium Test Status](https://saucelabs.com/buildstatus/javiercejudo)](https://saucelabs.com/u/javiercejudo)
+[![Coverage Status](https://coveralls.io/repos/javiercejudo/javiercejudo.com/badge.png?branch=master)](https://coveralls.io/r/javiercejudo/javiercejudo.com?branch=master)
 
 - [Karma](http://karma-runner.github.io/): spectacular test runner for JavaScript.
 - [Jasmine](http://pivotal.github.io/jasmine/): behavior-driven development framework for testing JavaScript code.
