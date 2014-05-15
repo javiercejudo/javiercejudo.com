@@ -43,7 +43,6 @@ module.exports = function(grunt) {
       },
       dist: {
         browsers: [
-          'PhantomJS',
           'SL_Chrome',
           'SL_IE_9'
         ]
