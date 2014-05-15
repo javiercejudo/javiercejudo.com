@@ -59,6 +59,7 @@ module.exports = function(karma) {
       username: env.SAUCE_USERNAME,
       accessKey: env.SAUCE_ACCESS_KEY,
       build: env.TRAVIS_BUILD_NUMBER,
+      tunnelIdentifier: env.TRAVIS_JOB_NUMBER,
       startConnect: true,
       testName: 'javiercejudo.com: unit tests'
     },
