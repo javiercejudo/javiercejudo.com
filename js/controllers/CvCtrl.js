@@ -5,8 +5,8 @@
 
   angular.module('JcApp').controller(
     'CvCtrl',
-    ['$rootScope', '$scope', '$routeParams', '$location', '$http', '$filter', '$timeout', '$firebase', '$localStorage',
-      function ($rootScope, $scope, $routeParams, $location, $http, $filter, $timeout, $firebase, $localStorage) {
+    ['$rootScope', '$scope', '$routeParams', '$location', '$http', '$filter', '$timeout', '$firebase', '$localStorage', 'JcFirebaseURL',
+      function ($rootScope, $scope, $routeParams, $location, $http, $filter, $timeout, $firebase, $localStorage, JcFirebaseURL) {
         $scope.cv = {
           loading: null,
           params: $routeParams,
@@ -51,7 +51,7 @@
             return;
           }
 
-          firebase.ref = new Firebase($scope.firebaseUrl + '/cv');
+          firebase.ref = new Firebase(JcFirebaseURL + '/cv');
           cv.dataRemote = $firebase(firebase.ref);
 
           cv.dataRemote.$on("loaded", $scope.onDataRemoteLoaded);

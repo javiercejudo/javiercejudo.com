@@ -8,7 +8,6 @@ var
   download = require('gulp-download'),
   htmlmin = require('gulp-htmlmin'),
   jshint = require('gulp-jshint'),
-  karma = require('gulp-karma'),
   less = require('gulp-less'),
   manifest = require('gulp-manifest'),
   ngHtml2Js = require("gulp-ng-html2js"),

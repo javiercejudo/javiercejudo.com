@@ -141,5 +141,7 @@
 
       $window.addEventListener("offline", offlineHandler, false);
       $window.addEventListener("online", onlineHandler, false);
-    }]);
+    }])
+
+    .constant('JcFirebaseURL', 'https://c3jud0.firebaseio.com');
 }(angular, _LTracker, printStackTrace));

@@ -43,8 +43,8 @@ module.exports = function(grunt) {
       },
       dist: {
         browsers: [
-          'SL_Firefox',
-          'SL_IE_11'
+          'SL_Chrome',
+          'SL_IE_9'
         ]
       },
       // e2e tests have their own config file
@@ -97,7 +97,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('default', [
-    'karma:dev'
+    'karma:dist'
   ]);
 };
 

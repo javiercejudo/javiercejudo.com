@@ -9,10 +9,8 @@ module.exports = function(karma) {
 
   paths = {
     bowerComponents: 'bower_components',
-    vendor: 'vendor',
-    tests: 'tests',
-    js: 'js',
-    partials: 'partials'
+    build: 'build',
+    tests: 'tests'
   };
 
   karma.set({
@@ -23,24 +21,8 @@ module.exports = function(karma) {
 
     // list of files / patterns to load in the browser
     files: [
-      paths.bowerComponents + '/html5shiv/dist/html5shiv.js',
-      paths.bowerComponents + '/respond/dest/respond.src.js',
-      paths.bowerComponents + '/firebase/firebase.js',
-      paths.bowerComponents + '/modernizr/modernizr.js',
-      paths.bowerComponents + '/jquery/dist/jquery.js',
-      paths.bowerComponents + '/angular/angular.js',
-      paths.bowerComponents + '/angular-route/angular-route.js',
+      paths.build + '/**/*.js',
       paths.bowerComponents + '/angular-mocks/angular-mocks.js',
-      paths.bowerComponents + '/angular-sanitize/angular-sanitize.js',
-      paths.bowerComponents + '/angular-touch/angular-touch.js',
-      paths.bowerComponents + '/angular-animate/angular-animate.js',
-      paths.bowerComponents + '/angularfire/angularfire.js',
-      paths.bowerComponents + '/ngstorage/ngStorage.js',
-      paths.partials + '/templates.js',
-      paths.js + '/config.js',
-      paths.js + '/JcApp.js',
-      paths.js + '/AppFilters.js',
-      paths.js + '/**/*.js',
       paths.tests +'/unit/**/*Spec.js'
     ],
 
@@ -76,6 +58,7 @@ module.exports = function(karma) {
     sauceLabs: {
       username: env.SAUCE_USERNAME,
       accessKey: env.SAUCE_ACCESS_KEY,
+      build: env.TRAVIS_BUILD_NUMBER,
       startConnect: true,
       testName: 'javiercejudo.com: unit tests'
     },
@@ -87,8 +70,7 @@ module.exports = function(karma) {
       },
       'SL_Firefox': {
         base: 'SauceLabs',
-        browserName: 'firefox',
-        version: '26'
+        browserName: 'firefox'
       },
       'SL_Safari': {
         base: 'SauceLabs',
@@ -134,7 +116,7 @@ module.exports = function(karma) {
 
     // If browser does not capture in given timeout [ms], kill it
     // CLI --capture-timeout 5000
-    captureTimeout: 5000,
+    captureTimeout: 120000,
 
     // Auto run tests on start (when browsers are captured) and exit
     // CLI --single-run --no-single-run
@@ -145,7 +127,7 @@ module.exports = function(karma) {
     reportSlowerThan: 0,
 
     // How long to wait for a message from a browser before disconnecting it (in ms)
-    browserNoActivityTimeout: 90000,
+    browserNoActivityTimeout: 300000,
 
     // compile coffee scripts
     preprocessors: {
