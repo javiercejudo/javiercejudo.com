@@ -44,7 +44,11 @@ module.exports = function(grunt) {
       dist: {
         browsers: [
           'SL_Chrome',
-          'SL_IE_9'
+          'SL_Firefox',
+          'SL_IE_9',
+          'SL_IE_10',
+          'SL_IE_11',
+          'SL_Safari'
         ]
       },
       // e2e tests have their own config file
