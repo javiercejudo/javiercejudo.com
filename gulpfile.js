@@ -15,7 +15,8 @@ var
   rename = require('gulp-rename'),
   rev = require('gulp-rev'),
   runSequence = require('run-sequence'),
-  uglify = require('gulp-uglify');
+  uglify = require('gulp-uglify'),
+  uncss = require('gulp-uncss');
 
 var paths = {
   assets: 'assets',
@@ -197,9 +198,9 @@ gulp.task('js-bottom', function () {
 });
 
 gulp.task('less', function () {
-  var cssFiles, lessOptions, cssminOptions;
+  var lessFiles, lessOptions;
 
-  cssFiles = [
+  lessFiles = [
     paths.css + "/less/custom-bootstrap.less",
     paths.css + "/less/jcApp.less"
   ];
@@ -209,13 +210,17 @@ gulp.task('less', function () {
     dumpLineNumbers: "comments"
   };
 
-  cssminOptions = {
+  return gulp.src(lessFiles)
+    .pipe(less(lessOptions))
+    .pipe(gulp.dest(paths.css));
+});
+
+gulp.task('css-concat', ['uncss'], function () {
+  var cssminOptions = {
     keepSpecialComments: 0
   };
 
-  return gulp.src(cssFiles)
-    .pipe(less(lessOptions))
-    .pipe(gulp.dest(paths.css))
+  return gulp.src(paths.css + '/**/*.css')
     .pipe(concat('app.css'))
     .pipe(cssmin(cssminOptions))
     .pipe(gulp.dest(paths.assets));
@@ -283,6 +288,29 @@ gulp.task('manifest', function () {
     .pipe(gulp.dest(''));
 });
 
+gulp.task('uncss-pre', function() {
+  return gulp.src(paths.partials + '/**/*.html')
+    .pipe(concat('all.html'))
+    .pipe(gulp.dest(paths.tmp));
+});
+
+gulp.task('uncss', ['uncss-pre'], function() {
+  return gulp.src(paths.css + '/custom-bootstrap.css')
+    .pipe(uncss({
+        html: [
+          paths.tmp + '/all.html'
+        ],
+        ignore: [
+          '.fade', '.fade.in',
+          '.collapse', '.collapse.in',
+          '.collapsing',
+          /glyphicon.*/,
+          /print.*/,
+        ]
+    }))
+    .pipe(gulp.dest(paths.css));
+});
+
 gulp.task('bump-patch', function () {
   return bumpVersion('patch');
 });
@@ -307,7 +335,7 @@ gulp.task('default', function () {
     ['jshint', 'clean-pre', 'download-data'],
     ['copy-fonts', 'download-loggly-tracker', 'download-stacktrace', 'partials'],
     ['less', 'js-top', 'js-app', 'js-vendor'],
-    ['js-bottom'],
+    ['css-concat', 'js-bottom'],
     ['rev'],
     ['manifest', 'csslint']
   );
@@ -318,7 +346,7 @@ gulp.task('offline', function () {
     ['jshint', 'clean-build'],
     ['partials'],
     ['less', 'js-top', 'js-app', 'js-vendor'],
-    ['js-bottom'],
+    ['css-concat', 'js-bottom'],
     ['rev'],
     ['manifest', 'csslint']
   );
