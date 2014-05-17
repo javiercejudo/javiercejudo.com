@@ -1,4 +1,4 @@
-/*global angular:true, browser:true, ENV:true, JS_TEMPLATES_IN_DEV:true, _LTracker, printStackTrace */
+/*global angular, ENV, JS_TEMPLATES_IN_DEV, _LTracker, printStackTrace */
 
 /**
  * @doc overview
@@ -99,7 +99,7 @@
       }])
 
     .config(['$provide', function ($provide) {
-      $provide.decorator("$exceptionHandler", ['$delegate', function ($delegate) {
+      $provide.decorator('$exceptionHandler', ['$delegate', function ($delegate) {
         return function (exception, cause) {
           $delegate(exception, cause);
 
@@ -134,13 +134,13 @@
       };
 
       if (!$window.addEventListener) {
-        $window.attachEvent("offline", offlineHandler);
-        $window.attachEvent("online", onlineHandler);
+        $window.attachEvent('offline', offlineHandler);
+        $window.attachEvent('online', onlineHandler);
         return;
       }
 
-      $window.addEventListener("offline", offlineHandler, false);
-      $window.addEventListener("online", onlineHandler, false);
+      $window.addEventListener('offline', offlineHandler, false);
+      $window.addEventListener('online', onlineHandler, false);
     }])
 
     .constant('JcFirebaseURL', 'https://c3jud0.firebaseio.com');
