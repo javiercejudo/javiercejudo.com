@@ -34,6 +34,7 @@ deploy:
     staging: javiercejudo-staging
   on:
     repo: javiercejudo/javiercejudo.com
+    condition: "$BROWSER = SL_Chrome"
 notifications:
   webhooks:
     urls:
