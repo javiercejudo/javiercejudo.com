@@ -123,7 +123,8 @@ module.exports = function(karma) {
       'SL_iOS': {
         base: 'SauceLabs',
         browserName: 'iphone',
-        platform: 'OS X 10.9'
+        platform: 'OS X 10.9',
+        version: '7.1'
       },
     },
 
