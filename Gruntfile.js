@@ -96,9 +96,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('default', [
-    'karma:dist1',
-    'karma:dist2',
-    'karma:dist3'
+    'karma:dist'
   ]);
 };
 
