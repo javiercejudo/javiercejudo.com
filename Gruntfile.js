@@ -41,25 +41,9 @@ module.exports = function(grunt) {
       dev: {
         browsers: ['PhantomJS']
       },
-      dist1: {
+      dist: {
         browsers: [
-          'SL_Chrome',
-          'SL_Firefox',
-          'SL_Safari'
-        ]
-      },
-      dist2: {
-        browsers: [
-          'SL_IE_9',
-          'SL_IE_10',
-          'SL_IE_11'
-        ]
-      },
-      dist3: {
-        browsers: [
-          'SL_Opera',
-          'SL_Android',
-          'SL_iOS'
+          process.env.BROWSER
         ]
       },
       // e2e tests have their own config file
@@ -112,9 +96,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('default', [
-    'karma:dist1',
-    'karma:dist2',
-    'karma:dist3'
+    'karma:dist'
   ]);
 };
 
