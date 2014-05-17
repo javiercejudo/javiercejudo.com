@@ -6,6 +6,8 @@
 [![Code Climate](https://codeclimate.com/github/javiercejudo/javiercejudo.com.png)](https://codeclimate.com/github/javiercejudo/javiercejudo.com)
 [![Dependency Status](https://david-dm.org/javiercejudo/javiercejudo.com.svg?theme=shields.io)](https://david-dm.org/javiercejudo/javiercejudo.com)
 
+[![Selenium Test Status](https://saucelabs.com/browser-matrix/javiercejudo.svg)](https://saucelabs.com/u/javiercejudo)
+
 ## Useful Links
 
 <table>
