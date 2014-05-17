@@ -298,7 +298,7 @@ gulp.task('bump-major', function () {
 gulp.task('coveralls', function () {
   var coveralls = require('gulp-coveralls');
 
-  return gulp.src('coverage/Chrome*/lcov.info')
+  return gulp.src('coverage/**/lcov.info')
     .pipe(coveralls());
 });
 
