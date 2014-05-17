@@ -27,9 +27,8 @@ node_modules
 tmp
 vendor
 
-wraith/*
-!wraith/configs/
-wraith/configs/test_config.yaml
+wraith/javascript
+wraith/shots
 
 npm-debug.log
 
