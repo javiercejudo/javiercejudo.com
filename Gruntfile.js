@@ -41,14 +41,22 @@ module.exports = function(grunt) {
       dev: {
         browsers: ['PhantomJS']
       },
-      dist: {
+      dist1: {
         browsers: [
           'SL_Chrome',
           'SL_Firefox',
+          'SL_Safari'
+        ]
+      },
+      dist2: {
+        browsers: [
           'SL_IE_9',
           'SL_IE_10',
-          'SL_IE_11',
-          'SL_Safari',
+          'SL_IE_11'
+        ]
+      },
+      dist3: {
+        browsers: [
           'SL_Opera',
           'SL_Android',
           'SL_iOS'
@@ -104,7 +112,9 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('default', [
-    'karma:dist'
+    'karma:dist1',
+    'karma:dist2',
+    'karma:dist3'
   ]);
 };
 
