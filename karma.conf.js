@@ -91,8 +91,7 @@ module.exports = function(karma) {
       'SL_Safari': {
         base: 'SauceLabs',
         browserName: 'safari',
-        platform: 'OS X 10.9',
-        version: '7'
+        platform: 'OS X 10.9'
       },
       'SL_IE_9': {
         base: 'SauceLabs',
@@ -111,7 +110,21 @@ module.exports = function(karma) {
         browserName: 'internet explorer',
         platform: 'Windows 8.1',
         version: '11'
-      }
+      },
+      'SL_Opera': {
+        base: 'SauceLabs',
+        browserName: 'opera'
+      },
+      'SL_Android': {
+        base: 'SauceLabs',
+        browserName: 'android',
+        platform: 'Linux',
+      },
+      'SL_iOS': {
+        base: 'SauceLabs',
+        browserName: 'iphone',
+        platform: 'OS X 10.9'
+      },
     },
 
     // Start these browsers, currently available:

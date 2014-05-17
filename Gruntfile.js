@@ -49,6 +49,9 @@ module.exports = function(grunt) {
           'SL_IE_10',
           'SL_IE_11',
           'SL_Safari'
+          // 'SL_Opera',
+          // 'SL_Android',
+          // 'SL_iOS'
         ]
       },
       // e2e tests have their own config file
