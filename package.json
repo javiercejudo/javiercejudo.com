@@ -61,6 +61,7 @@
     "gulp-rev": "^0.3.0",
     "gulp-uglify": "^0.3.0",
     "gulp-util": "^2.2.14",
-    "run-sequence": "^0.3.6"
+    "run-sequence": "^0.3.6",
+    "gulp-uncss": "^0.4.3"
   }
 }
