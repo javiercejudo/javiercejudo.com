@@ -64,6 +64,7 @@
 - [nginx](http://nginx.org/): HTTP and reverse proxy server.
 - [PHP](http://php.net/): widely-used general-purpose scripting language that is especially suited for Web development.
 - [Firebase](https://www.firebase.com/): scalable real-time backend.
+- [CloudFront](http://aws.amazon.com/cloudfront/): Content Delivery Network & streaming.
 - [Amazon S3](http://aws.amazon.com/s3/): online cloud storage for data & files.
 - [CloudFlare](http://www.cloudflare.com/): the web performance & security company.
 - [Foreman](http://ddollar.github.io/foreman/): manage Procfile-based applications.
