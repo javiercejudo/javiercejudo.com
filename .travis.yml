@@ -22,11 +22,6 @@ env:
   - BROWSER="SL_Opera"
   - BROWSER="SL_Android"
   - BROWSER="SL_iOS"
-    allow_failures:
-    - BROWSER="SL_Safari"
-    - BROWSER="SL_Opera"
-    - BROWSER="SL_Android"
-    - BROWSER="SL_iOS"
 addons:
   sauce_connect:
     username: javiercejudo
