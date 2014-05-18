@@ -2,7 +2,7 @@
 
 header('Content-Type: text/html; charset=utf-8');
 
-define('ENV', (getenv('ENV') !== false) ? getenv('ENV') : 'live');
+define('ENV', getenv('ENV'));
 
 $buildMapFile = file_get_contents('rev-manifest.json');
 $buildMap     = json_decode($buildMapFile, true);
@@ -14,7 +14,7 @@ $buildMap     = json_decode($buildMapFile, true);
  * @return mixed
  */
 $build = function ($name, $ext) {
-    return 'build/' . $GLOBALS["buildMap"]["$name.$ext"];
+    return getenv('ASSETS_URL') . '/' . $GLOBALS["buildMap"]["$name.$ext"];
 };
 
 $almaArray = array(
