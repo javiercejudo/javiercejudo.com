@@ -1,11 +1,13 @@
 var
   gulp = require('gulp'),
   gutil = require('gulp-util'),
+  awspublish = require('gulp-awspublish'),
   clean = require('gulp-clean'),
   csslint = require('gulp-csslint'),
   cssmin = require('gulp-cssmin'),
   concat = require('gulp-concat'),
   download = require('gulp-download'),
+  gzip = require('gulp-gzip'),
   htmlmin = require('gulp-htmlmin'),
   jshint = require('gulp-jshint'),
   less = require('gulp-less'),
@@ -16,22 +18,22 @@ var
   rev = require('gulp-rev'),
   runSequence = require('run-sequence'),
   uglify = require('gulp-uglify'),
-  uncss = require('gulp-uncss');
-
-var paths = {
-  assets: 'assets',
-  build: 'build',
-  bower: 'bower_components',
-  css: 'css',
-  data: 'data',
-  fonts: 'fonts',
-  ico: 'ico',
-  js: 'js',
-  tmp: 'tmp',
-  partials: 'partials',
-  tests: 'tests',
-  vendor: 'vendor'
-};
+  uncss = require('gulp-uncss'),
+  env = process.env,
+  paths = {
+    assets: 'assets',
+    build: 'build',
+    bower: 'bower_components',
+    css: 'css',
+    data: 'data',
+    fonts: 'fonts',
+    ico: 'ico',
+    js: 'js',
+    tmp: 'tmp',
+    partials: 'partials',
+    tests: 'tests',
+    vendor: 'vendor'
+  };
 
 /**
  * Downloads a file to an given vendor folder
@@ -266,22 +268,34 @@ gulp.task('rev', function () {
 });
 
 gulp.task('manifest', function () {
-  var files, options;
+  var files, options, assetsURL, fontsURL, assetsRev = [], revManifest;
 
-  files = [
-    paths.build + '/**/*',
-    paths.data + '/min/**/*',
-    paths.fonts + '/**/*',
-    paths.ico + '/**/*'
-  ];
+  revManifest = require('./rev-manifest.json');
+  assetsURL = env.ASSETS_URL;
+  fontsURL = assetsURL + '/' + paths.fonts;
+
+  Object.keys(revManifest).forEach(function(filename) {
+    assetsRev.push(assetsURL + '/' +revManifest[filename]);
+  });
 
   options = {
     filename: 'manifest.appcache',
+    cache: assetsRev.concat([
+      fontsURL + '/glyphicons-halflings-regular.eot',
+      fontsURL + '/glyphicons-halflings-regular.svg',
+      fontsURL + '/glyphicons-halflings-regular.ttf',
+      fontsURL + '/glyphicons-halflings-regular.woff'
+    ]),
     network: ['http://*', 'https://*', '*'],
     preferOnline: true,
     timestamp: true,
     hash: false
   };
+
+  files = [
+    paths.data + '/min/**/*',
+    paths.ico + '/**/*'
+  ];
 
   return gulp.src(files, {base: './'})
     .pipe(manifest(options))
@@ -311,6 +325,58 @@ gulp.task('uncss', ['uncss-pre'], function() {
     .pipe(gulp.dest(paths.css));
 });
 
+gulp.task('compress', function() {
+  return gulp.src([
+    paths.build + '/**/*.{css,js}',
+    paths.fonts + '/**/*'
+  ], {base: './'})
+  .pipe(gzip())
+  .pipe(gulp.dest(''));
+});
+
+gulp.task('publish-fonts', function() {
+  var publisher, headers;
+
+  publisher = awspublish.create({
+    key: env.S3_KEY,
+    secret: env.S3_SECRET,
+    bucket: 'jc-build'
+  });
+
+  headers = {
+   'Cache-Control': 'max-age=604800, no-transform, public',
+   'Content-Encoding': 'gzip'
+  };
+
+  return gulp.src(paths.fonts + '/**/*.{eot,svg,ttf,woff}')
+    .pipe(gzip({ append: false }))
+    .pipe(rename(function (path) {
+        path.dirname += '/' + paths.fonts;
+    }))
+    .pipe(publisher.publish(headers))
+    .pipe(awspublish.reporter());
+});
+
+gulp.task('publish-build', ['publish-fonts'], function() {
+  var publisher, headers;
+
+  publisher = awspublish.create({
+    key: env.S3_KEY,
+    secret: env.S3_SECRET,
+    bucket: 'jc-build'
+  });
+
+  headers = {
+   'Cache-Control': 'max-age=31536000, no-transform, public',
+   'Content-Encoding': 'gzip'
+  };
+
+  return gulp.src(paths.build + '/**/*.{css,js}')
+    .pipe(gzip({ append: false }))
+    .pipe(publisher.publish(headers))
+    .pipe(awspublish.reporter());
+});
+
 gulp.task('bump-patch', function () {
   return bumpVersion('patch');
 });
@@ -337,7 +403,7 @@ gulp.task('default', function () {
     ['less', 'js-top', 'js-app', 'js-vendor'],
     ['css-concat', 'js-bottom'],
     ['rev'],
-    ['manifest', 'csslint']
+    ['manifest', 'csslint', 'publish-build']
   );
 });
 

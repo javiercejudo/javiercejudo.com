@@ -9,18 +9,19 @@ after_success:
 - gulp coveralls
 env:
   global:
+  - ASSETS_URL=//dxnqhjr6ye2au.cloudfront.net
   - secure: b6zKdte5ZzHWllFMsoc4EVYY4GuaIPLEB3oY6pRoA437i0uNLqWUHUJGEIa7ebHXYPJ81Ki/wBTLrQtJmE8KGpIGs8rgxkSWcnFxUcDFsHyo/+izB8Mmx/tFJFCTNsi3kFy5fWhwFvzZW8WgwPyaJsXML3721Z7H5IiWYqBXQiU=
   - secure: WebanR/qDdMW1nyxsifW5T8Z5rfd/sfBg10PUUzzEgcTJ7fKiWz3y/Ijq3gdoBG2gGM5YSGEvJGhvrthDbosRJn8ye0z7w04i2I8uHhxdPCZs+ZJ0qgboREu+7SQcb+z3N4K/HLGM6Ql8ubgPvWNcGa+77cBCeG00mbZnpnA5Nc=
   matrix:
-    - BROWSER="SL_Chrome"
-    - BROWSER="SL_Firefox"
-    - BROWSER="SL_Safari"
-    - BROWSER="SL_IE_9"
-    - BROWSER="SL_IE_10"
-    - BROWSER="SL_IE_11"
-    - BROWSER="SL_Opera"
-    - BROWSER="SL_Android"
-    - BROWSER="SL_iOS"
+  - BROWSER="SL_Chrome"
+  - BROWSER="SL_Firefox"
+  - BROWSER="SL_Safari"
+  - BROWSER="SL_IE_9"
+  - BROWSER="SL_IE_10"
+  - BROWSER="SL_IE_11"
+  - BROWSER="SL_Opera"
+  - BROWSER="SL_Android"
+  - BROWSER="SL_iOS"
 addons:
   sauce_connect: true
 deploy:
