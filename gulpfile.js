@@ -19,6 +19,7 @@ var
   runSequence = require('run-sequence'),
   uglify = require('gulp-uglify'),
   uncss = require('gulp-uncss'),
+  revManifest = require('./rev-manifest.json'),
   env = process.env,
   paths = {
     assets: 'assets',
@@ -268,22 +269,33 @@ gulp.task('rev', function () {
 });
 
 gulp.task('manifest', function () {
-  var files, options;
+  var files, options, assetsURL, fontsURL, assetsRev = [];
 
-  files = [
-    paths.build + '/**/*.{css,js}',
-    paths.data + '/min/**/*',
-    paths.fonts + '/**/*.{eot,svg,ttf,woff}',
-    paths.ico + '/**/*'
-  ];
+  assetsURL = env.ASSETS_URL;
+  fontsURL = assetsURL + '/' + paths.fonts;
+
+  Object.keys(revManifest).forEach(function(filename) {
+    assetsRev.push(assetsURL + '/' +revManifest[filename]);
+  });
 
   options = {
     filename: 'manifest.appcache',
+    cache: assetsRev.concat([
+      fontsURL + '/glyphicons-halflings-regular.eot',
+      fontsURL + '/glyphicons-halflings-regular.svg',
+      fontsURL + '/glyphicons-halflings-regular.ttf',
+      fontsURL + '/glyphicons-halflings-regular.woff'
+    ]),
     network: ['http://*', 'https://*', '*'],
     preferOnline: true,
     timestamp: true,
     hash: false
   };
+
+  files = [
+    paths.data + '/min/**/*',
+    paths.ico + '/**/*'
+  ];
 
   return gulp.src(files, {base: './'})
     .pipe(manifest(options))
@@ -356,8 +368,7 @@ gulp.task('publish-build', ['publish-fonts'], function() {
 
   headers = {
    'Cache-Control': 'max-age=31536000, no-transform, public',
-   'Content-Encoding': 'gzip',
-   'Vary': 'Accept-Encoding'
+   'Content-Encoding': 'gzip'
   };
 
   return gulp.src(paths.build + '/**/*.{css,js}')
