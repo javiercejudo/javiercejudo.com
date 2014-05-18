@@ -1,7 +1,7 @@
 language: node_js
 
 node_js:
-- 0.10
+- 0.1
 
 git:
   depth: 1
@@ -13,25 +13,27 @@ after_success:
 - gulp coveralls
 
 env:
-  - BROWSER="SL_Chrome"
-  - BROWSER="SL_Firefox"
-  - BROWSER="SL_Safari"
-  - BROWSER="SL_IE_9"
-  - BROWSER="SL_IE_10"
-  - BROWSER="SL_IE_11"
-  - BROWSER="SL_Opera"
-  - BROWSER="SL_Android"
-  - BROWSER="SL_iOS"
+  matrix:
+  - BROWSER=SL_Chrome
+  - BROWSER=SL_Firefox
+  - BROWSER=SL_Safari
+  - BROWSER=SL_IE_9
+  - BROWSER=SL_IE_10
+  - BROWSER=SL_IE_11
+  - BROWSER=SL_Opera
+  - BROWSER=SL_Android
+  - BROWSER=SL_iOS
   global:
   - secure: NP6lDYgTooItAuuJGSGh8DNmBPAu0JaGCi5MBE7976AvzybBL3sJBClZ8oYDfVlSxAMYcdYaUKLz3OpCLmvjVr8/ujZjtDoYwAGw92rPdklj0B5y2icbO8ulC+V1rNFAh1Al79zB/X9lLPdMBSEN3a5/PgNpbFnw4NcEfHodPBc=
   - secure: GNdL+ez0b6MuFd8jgnjxx0VqBd9ktJH11365P9yAA+Dq/lmiCd4hFZHkVwEzSdwibL8sixWWz/6Ox732S5LyNVI2//jjjHbppYLTtNEpMPlIlR9k27EGIFIifmO8o0wqkNpgdJzxkl8OOYebQR6roo/n4TsWTDIO9C6pD2Jon+0=
-  matrix:
-    allow_failures:
-    - BROWSER="SL_IE_9"
-    - BROWSER="SL_Safari"
-    - BROWSER="SL_Opera"
-    - BROWSER="SL_Android"
-    - BROWSER="SL_iOS"
+
+matrix:
+  allow_failures:
+  - env: BROWSER=SL_Safari
+  - env: BROWSER=SL_Opera
+  - env: BROWSER=SL_Android
+  - env: BROWSER=SL_iOS
+
 addons:
   sauce_connect:
     username: javiercejudo
