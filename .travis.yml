@@ -27,9 +27,11 @@ addons:
     username: javiercejudo
     access_key:
       secure: ONViR0Xn0yRJ2JDnQjPO60MlOkypwd3fjFzuJ+KsMqMrWwJr2owYb03l3vJgRetdWRkwOF03KMx0M1+oVTgn1FA4cMvuoahoKq3rf1uqMM/rmfn1sm6hpTE/hgOZzhjZrW/kecKZQCqAMIuL3jrZqcui3LwM/9mlnGlh1nLc/jc=
+before_deploy:
+- gulp publish-build
 deploy:
   provider: heroku
-  buildpack: https://github.com/javiercejudo/heroku-buildpack-php
+  skip_cleanup: true
   api_key:
     secure: bNRd9ba3QLhBfSbxMBb1chOZ0EogBbiGTjDP+R44BdwXkZSlu/2w5Jg4w/VGzG82IfZLYHDjCFCMJflQQlmCSE0/IStq3P+y/yu/4DIVY5GNLfTE6EUxF66YMsv0HorG8OMg6KR/e2USbCI1bZpT/SwJ0XOYD1LCCkvreJr8U+A=
   strategy: git

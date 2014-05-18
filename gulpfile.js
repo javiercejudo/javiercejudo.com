@@ -403,7 +403,7 @@ gulp.task('default', function () {
     ['less', 'js-top', 'js-app', 'js-vendor'],
     ['css-concat', 'js-bottom'],
     ['rev'],
-    ['manifest', 'csslint', 'publish-build']
+    ['manifest', 'csslint']
   );
 });
 
