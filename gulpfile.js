@@ -19,7 +19,6 @@ var
   runSequence = require('run-sequence'),
   uglify = require('gulp-uglify'),
   uncss = require('gulp-uncss'),
-  revManifest = require('./rev-manifest.json'),
   env = process.env,
   paths = {
     assets: 'assets',
@@ -269,8 +268,9 @@ gulp.task('rev', function () {
 });
 
 gulp.task('manifest', function () {
-  var files, options, assetsURL, fontsURL, assetsRev = [];
+  var files, options, assetsURL, fontsURL, assetsRev = [], revManifest;
 
+  revManifest = require('./rev-manifest.json');
   assetsURL = env.ASSETS_URL;
   fontsURL = assetsURL + '/' + paths.fonts;
 
