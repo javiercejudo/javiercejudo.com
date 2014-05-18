@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-- 0.10
+- 0.1
 git:
   depth: 1
 before_install:
@@ -10,8 +10,8 @@ after_success:
 env:
   global:
   - ASSETS_URL="//dxnqhjr6ye2au.cloudfront.net"
-  - secure: b6zKdte5ZzHWllFMsoc4EVYY4GuaIPLEB3oY6pRoA437i0uNLqWUHUJGEIa7ebHXYPJ81Ki/wBTLrQtJmE8KGpIGs8rgxkSWcnFxUcDFsHyo/+izB8Mmx/tFJFCTNsi3kFy5fWhwFvzZW8WgwPyaJsXML3721Z7H5IiWYqBXQiU=
-  - secure: WebanR/qDdMW1nyxsifW5T8Z5rfd/sfBg10PUUzzEgcTJ7fKiWz3y/Ijq3gdoBG2gGM5YSGEvJGhvrthDbosRJn8ye0z7w04i2I8uHhxdPCZs+ZJ0qgboREu+7SQcb+z3N4K/HLGM6Ql8ubgPvWNcGa+77cBCeG00mbZnpnA5Nc=
+  - secure: NP6lDYgTooItAuuJGSGh8DNmBPAu0JaGCi5MBE7976AvzybBL3sJBClZ8oYDfVlSxAMYcdYaUKLz3OpCLmvjVr8/ujZjtDoYwAGw92rPdklj0B5y2icbO8ulC+V1rNFAh1Al79zB/X9lLPdMBSEN3a5/PgNpbFnw4NcEfHodPBc=
+  - secure: GNdL+ez0b6MuFd8jgnjxx0VqBd9ktJH11365P9yAA+Dq/lmiCd4hFZHkVwEzSdwibL8sixWWz/6Ox732S5LyNVI2//jjjHbppYLTtNEpMPlIlR9k27EGIFIifmO8o0wqkNpgdJzxkl8OOYebQR6roo/n4TsWTDIO9C6pD2Jon+0=
   matrix:
   - BROWSER="SL_Chrome"
   - BROWSER="SL_Firefox"
@@ -22,8 +22,16 @@ env:
   - BROWSER="SL_Opera"
   - BROWSER="SL_Android"
   - BROWSER="SL_iOS"
+    allow_failures:
+    - BROWSER="SL_Safari"
+    - BROWSER="SL_Opera"
+    - BROWSER="SL_Android"
+    - BROWSER="SL_iOS"
 addons:
-  sauce_connect: true
+  sauce_connect:
+    username: javiercejudo
+    access_key:
+      secure: b6zKdte5ZzHWllFMsoc4EVYY4GuaIPLEB3oY6pRoA437i0uNLqWUHUJGEIa7ebHXYPJ81Ki/wBTLrQtJmE8KGpIGs8rgxkSWcnFxUcDFsHyo/+izB8Mmx/tFJFCTNsi3kFy5fWhwFvzZW8WgwPyaJsXML3721Z7H5IiWYqBXQiU=
 deploy:
   provider: heroku
   buildpack: https://github.com/javiercejudo/heroku-buildpack-php
@@ -35,7 +43,7 @@ deploy:
     staging: javiercejudo-staging
   on:
     repo: javiercejudo/javiercejudo.com
-    condition: "$BROWSER = SL_Chrome"
+    condition: $BROWSER = SL_Chrome
 notifications:
   webhooks:
     urls:
