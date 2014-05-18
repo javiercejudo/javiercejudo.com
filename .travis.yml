@@ -4,12 +4,12 @@ node_js:
 git:
   depth: 1
 before_install:
-- if [[ -a .git/shallow ]]; then git fetch --unshallow; fi
+- git fetch --unshallow
 after_success:
 - gulp coveralls
 env:
   global:
-  - ASSETS_URL=//dxnqhjr6ye2au.cloudfront.net
+  - ASSETS_URL="//dxnqhjr6ye2au.cloudfront.net"
   - secure: b6zKdte5ZzHWllFMsoc4EVYY4GuaIPLEB3oY6pRoA437i0uNLqWUHUJGEIa7ebHXYPJ81Ki/wBTLrQtJmE8KGpIGs8rgxkSWcnFxUcDFsHyo/+izB8Mmx/tFJFCTNsi3kFy5fWhwFvzZW8WgwPyaJsXML3721Z7H5IiWYqBXQiU=
   - secure: WebanR/qDdMW1nyxsifW5T8Z5rfd/sfBg10PUUzzEgcTJ7fKiWz3y/Ijq3gdoBG2gGM5YSGEvJGhvrthDbosRJn8ye0z7w04i2I8uHhxdPCZs+ZJ0qgboREu+7SQcb+z3N4K/HLGM6Ql8ubgPvWNcGa+77cBCeG00mbZnpnA5Nc=
   matrix:
@@ -29,7 +29,7 @@ deploy:
   buildpack: https://github.com/javiercejudo/heroku-buildpack-php
   api_key:
     secure: bNRd9ba3QLhBfSbxMBb1chOZ0EogBbiGTjDP+R44BdwXkZSlu/2w5Jg4w/VGzG82IfZLYHDjCFCMJflQQlmCSE0/IStq3P+y/yu/4DIVY5GNLfTE6EUxF66YMsv0HorG8OMg6KR/e2USbCI1bZpT/SwJ0XOYD1LCCkvreJr8U+A=
-  # strategy: git
+  strategy: git
   app:
     master: javiercejudo
     staging: javiercejudo-staging
