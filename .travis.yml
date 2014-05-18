@@ -5,6 +5,7 @@ git:
   depth: 1
 before_install:
 - git fetch --unshallow
+- bower install
 after_success:
 - gulp coveralls
 env:
@@ -47,4 +48,4 @@ notifications:
     - https://webhooks.gitter.im/e/afebf4197a02d9ac890f
     on_success: always
     on_failure: always
-    on_start: false
+    on_start: never
