@@ -302,13 +302,13 @@ gulp.task('manifest', function () {
     .pipe(gulp.dest(''));
 });
 
-gulp.task('uncss-pre', function() {
+gulp.task('uncss-pre', function () {
   return gulp.src(paths.partials + '/**/*.html')
     .pipe(concat('all.html'))
     .pipe(gulp.dest(paths.tmp));
 });
 
-gulp.task('uncss', ['uncss-pre'], function() {
+gulp.task('uncss', ['uncss-pre'], function () {
   return gulp.src(paths.css + '/custom-bootstrap.css')
     .pipe(uncss({
         html: [
@@ -325,17 +325,11 @@ gulp.task('uncss', ['uncss-pre'], function() {
     .pipe(gulp.dest(paths.css));
 });
 
-gulp.task('compress', function() {
-  return gulp.src([
-    paths.build + '/**/*.{css,js}',
-    paths.fonts + '/**/*'
-  ], {base: './'})
-  .pipe(gzip())
-  .pipe(gulp.dest(''));
-});
-
-gulp.task('publish-fonts', function() {
-  var publisher, headers;
+gulp.task('publish-fonts', function () {
+  var
+    publisher, headers,
+    gzip = require('gulp-gzip'),
+    uncss = require('gulp-uncss');
 
   publisher = awspublish.create({
     key: env.S3_KEY,
@@ -357,8 +351,11 @@ gulp.task('publish-fonts', function() {
     .pipe(awspublish.reporter());
 });
 
-gulp.task('publish-build', ['publish-fonts'], function() {
-  var publisher, headers;
+gulp.task('publish-build', ['publish-fonts'], function () {
+  var
+    publisher, headers,
+    gzip = require('gulp-gzip'),
+    uncss = require('gulp-uncss');
 
   publisher = awspublish.create({
     key: env.S3_KEY,
