@@ -5,6 +5,7 @@ git:
   depth: 1
 before_install:
 - git fetch --unshallow
+before_script:
 - bower install
 after_success:
 - gulp coveralls
