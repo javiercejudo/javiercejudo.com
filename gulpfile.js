@@ -356,7 +356,8 @@ gulp.task('publish-build', ['publish-fonts'], function() {
 
   headers = {
    'Cache-Control': 'max-age=31536000, no-transform, public',
-   'Content-Encoding': 'gzip'
+   'Content-Encoding': 'gzip',
+   'Vary': 'Accept-Encoding'
   };
 
   return gulp.src(paths.build + '/**/*.{css,js}')
