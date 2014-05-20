@@ -6,6 +6,7 @@
 !.htaccess
 !.jshintrc
 !.travis.yml
+!.S3-cors-build.xml
 
 config.php
 manifest.appcache
