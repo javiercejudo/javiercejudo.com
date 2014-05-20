@@ -47,9 +47,6 @@ after_success:
 
 before_deploy:
 - gulp publish-build
-- bundle install
-- wraith
-# - gulp publish-wraith
 
 deploy:
   provider: heroku
@@ -63,6 +60,11 @@ deploy:
   on:
     repo: javiercejudo/javiercejudo.com
     condition: $BROWSER = SL_Chrome
+
+after_deploy:
+- bundle install
+- cd wraith && wraith capture config && cd ..
+# - gulp publish-wraith
 
 notifications:
   webhooks:
