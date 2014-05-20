@@ -64,7 +64,7 @@ deploy:
 after_deploy:
 - bundle install
 - cd wraith && wraith capture config && cd ..
-# - gulp publish-wraith
+- gulp publish-wraith
 
 notifications:
   webhooks:
