@@ -1,7 +1,6 @@
 var
   gulp = require('gulp'),
   gutil = require('gulp-util'),
-  awspublish = require('gulp-awspublish'),
   clean = require('gulp-clean'),
   csslint = require('gulp-csslint'),
   cssmin = require('gulp-cssmin'),
@@ -133,8 +132,7 @@ gulp.task('download-data', function () {
 
 gulp.task('js-top', function () {
   var topJsScripts = [
-    paths.bower + '/html5shiv/dist/html5shiv.js',
-    paths.bower + '/respond/dest/respond.src.js'
+    paths.bower + '/html5shiv/dist/html5shiv.js'
   ];
 
   return gulp.src(topJsScripts)
@@ -328,6 +326,7 @@ gulp.task('uncss', ['uncss-pre'], function () {
 gulp.task('publish-fonts', function () {
   var
     publisher, headers,
+    awspublish = require('gulp-awspublish'),
     gzip = require('gulp-gzip'),
     uncss = require('gulp-uncss');
 
@@ -354,6 +353,7 @@ gulp.task('publish-fonts', function () {
 gulp.task('publish-build', ['publish-fonts'], function () {
   var
     publisher, headers,
+    awspublish = require('gulp-awspublish'),
     gzip = require('gulp-gzip'),
     uncss = require('gulp-uncss');
 

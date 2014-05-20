@@ -60,7 +60,7 @@
     "gulp-ng-html2js": "^0.1.4",
     "gulp-notify": "^1.2.1",
     "gulp-rename": "^1.2.0",
-    "gulp-rev": "^0.3.0",
+    "gulp-rev": "^0.4.0",
     "gulp-uglify": "^0.3.0",
     "gulp-util": "^2.2.14",
     "gulp-uncss": "^0.4.3",

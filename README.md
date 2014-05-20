@@ -56,7 +56,6 @@
 ### CSS
 
 - [LESS](http://lesscss.org/): the dynamic stylesheet language.
-- [Preboot](http://getpreboot.com/): a collection of LESS mixins and variables for writing better CSS.
 - [Bootstrap](http://getbootstrap.com/): sleek, intuitive, and powerful mobile-first front-end framework.
 
 ### Backend
