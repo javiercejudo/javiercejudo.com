@@ -28,6 +28,7 @@ env:
   - secure: GNdL+ez0b6MuFd8jgnjxx0VqBd9ktJH11365P9yAA+Dq/lmiCd4hFZHkVwEzSdwibL8sixWWz/6Ox732S5LyNVI2//jjjHbppYLTtNEpMPlIlR9k27EGIFIifmO8o0wqkNpgdJzxkl8OOYebQR6roo/n4TsWTDIO9C6pD2Jon+0=
 
 matrix:
+  fast_finish: true
   allow_failures:
   - env: BROWSER=SL_Firefox
   - env: BROWSER=SL_Safari
