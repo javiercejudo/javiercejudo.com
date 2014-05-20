@@ -22,6 +22,7 @@
     "jquery": "~2.1.0",
     "modernizr": "2.8.1",
     "bootstrap": "~3.1.1",
+    "preboot": "*",
     "html5shiv": "~3.7.0",
     "firebase": "1.0.15"
   }
