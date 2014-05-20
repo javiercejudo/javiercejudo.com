@@ -13,7 +13,7 @@ $result = file_put_contents($localBackup, file_get_contents($firebaseExport));
 
 // if the local file is not created, something went wrong and we can stop
 if (false === $result) {
-    exit();
+    exit("There was an error saving the local copy.");
 }
 
 $s3Client = S3Client::factory(array(
