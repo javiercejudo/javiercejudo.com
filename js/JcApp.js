@@ -1,4 +1,4 @@
-/*global angular, ENV, JS_TEMPLATES_IN_DEV, _LTracker, printStackTrace */
+/*global browser:true, angular, ENV, JS_TEMPLATES_IN_DEV, _LTracker, printStackTrace */
 
 /**
  * @doc overview

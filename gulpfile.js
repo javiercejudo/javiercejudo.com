@@ -30,7 +30,8 @@ var
     tmp: 'tmp',
     partials: 'partials',
     tests: 'tests',
-    vendor: 'vendor'
+    vendor: 'vendor',
+    wraith: 'wraith'
   };
 
 /**
@@ -368,6 +369,23 @@ gulp.task('publish-build', ['publish-fonts'], function () {
   return gulp.src(paths.build + '/**/*.{css,js}')
     .pipe(gzip({ append: false }))
     .pipe(publisher.publish(headers))
+    .pipe(awspublish.reporter());
+});
+
+gulp.task('publish-wraith', function () {
+  var
+    publisher,
+    awspublish = require('gulp-awspublish');
+
+  publisher = awspublish.create({
+    key: env.S3_KEY,
+    secret: env.S3_SECRET,
+    bucket: 'jc-wraith-shots'
+  });
+
+  return gulp.src(paths.wraith + '/shots/**/*')
+    .pipe(publisher.publish())
+    .pipe(publisher.sync())
     .pipe(awspublish.reporter());
 });
 

@@ -47,6 +47,9 @@ after_success:
 
 before_deploy:
 - gulp publish-build
+- bundle install
+- wraith
+# - gulp publish-wraith
 
 deploy:
   provider: heroku
