@@ -6,7 +6,6 @@ var
   cssmin = require('gulp-cssmin'),
   concat = require('gulp-concat'),
   download = require('gulp-download'),
-  gzip = require('gulp-gzip'),
   htmlmin = require('gulp-htmlmin'),
   jshint = require('gulp-jshint'),
   less = require('gulp-less'),
@@ -327,8 +326,7 @@ gulp.task('publish-fonts', function () {
   var
     publisher, headers,
     awspublish = require('gulp-awspublish'),
-    gzip = require('gulp-gzip'),
-    uncss = require('gulp-uncss');
+    gzip = require('gulp-gzip');
 
   publisher = awspublish.create({
     key: env.S3_KEY,
@@ -354,8 +352,7 @@ gulp.task('publish-build', ['publish-fonts'], function () {
   var
     publisher, headers,
     awspublish = require('gulp-awspublish'),
-    gzip = require('gulp-gzip'),
-    uncss = require('gulp-uncss');
+    gzip = require('gulp-gzip');
 
   publisher = awspublish.create({
     key: env.S3_KEY,

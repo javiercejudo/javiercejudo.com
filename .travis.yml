@@ -6,12 +6,6 @@ node_js:
 git:
   depth: 1
 
-before_install:
-- git fetch --unshallow
-
-after_success:
-- gulp coveralls
-
 env:
   matrix:
   - BROWSER=SL_Chrome
@@ -44,6 +38,12 @@ addons:
     username: javiercejudo
     access_key:
       secure: ONViR0Xn0yRJ2JDnQjPO60MlOkypwd3fjFzuJ+KsMqMrWwJr2owYb03l3vJgRetdWRkwOF03KMx0M1+oVTgn1FA4cMvuoahoKq3rf1uqMM/rmfn1sm6hpTE/hgOZzhjZrW/kecKZQCqAMIuL3jrZqcui3LwM/9mlnGlh1nLc/jc=
+
+before_install:
+- git fetch --unshallow
+
+after_success:
+- gulp coveralls
 
 before_deploy:
 - gulp publish-build
