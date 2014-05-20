@@ -63,8 +63,7 @@ deploy:
 
 after_deploy:
 - bundle install
-- cd wraith && wraith capture config && cd ..
-- gulp publish-wraith
+- if [ "$TRAVIS_BRANCH" = "staging" ]; then cd wraith && wraith capture config && cd .. && gulp publish-wraith; fi
 
 notifications:
   webhooks:
