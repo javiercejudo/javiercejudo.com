@@ -62,8 +62,7 @@ deploy:
     condition: $BROWSER = SL_Chrome
 
 after_deploy:
-- bundle install
-- if [ "$TRAVIS_BRANCH" = "staging" ]; then cd wraith && wraith capture config && cd .. && gulp publish-wraith; fi
+- ./scripts/publish_wraith.sh
 
 notifications:
   webhooks:
