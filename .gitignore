@@ -27,7 +27,6 @@ node_modules
 tmp
 vendor
 
-wraith/javascript
 wraith/shots
 
 npm-debug.log

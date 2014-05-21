@@ -7,7 +7,7 @@
 
 # TECHNOLOGY COLOPHON
 
-    NPM, Bower, Grunt, Karma, Travis CI,
+    NPM, Bower, Grunt, Gulp, Karma
     AngularJS, AngularFire, Firebase,
     jQuery, Modernizr, Bootstrap, Jasmine,
-    LESS, Preboot, PHP, html5shiv, respond.js
+    LESS, Preboot, html5shiv, Wraith, Preboot

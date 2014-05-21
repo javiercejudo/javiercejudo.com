@@ -6,12 +6,6 @@ node_js:
 git:
   depth: 1
 
-before_install:
-- git fetch --unshallow
-
-after_success:
-- gulp coveralls
-
 env:
   matrix:
   - BROWSER=SL_Chrome
@@ -21,8 +15,8 @@ env:
   - BROWSER=SL_IE_10
   - BROWSER=SL_IE_11
   - BROWSER=SL_Opera
-  - BROWSER=SL_Android
-  - BROWSER=SL_iOS
+  # - BROWSER=SL_Android
+  # - BROWSER=SL_iOS
   global:
   - secure: NP6lDYgTooItAuuJGSGh8DNmBPAu0JaGCi5MBE7976AvzybBL3sJBClZ8oYDfVlSxAMYcdYaUKLz3OpCLmvjVr8/ujZjtDoYwAGw92rPdklj0B5y2icbO8ulC+V1rNFAh1Al79zB/X9lLPdMBSEN3a5/PgNpbFnw4NcEfHodPBc=
   - secure: GNdL+ez0b6MuFd8jgnjxx0VqBd9ktJH11365P9yAA+Dq/lmiCd4hFZHkVwEzSdwibL8sixWWz/6Ox732S5LyNVI2//jjjHbppYLTtNEpMPlIlR9k27EGIFIifmO8o0wqkNpgdJzxkl8OOYebQR6roo/n4TsWTDIO9C6pD2Jon+0=
@@ -36,14 +30,20 @@ matrix:
   - env: BROWSER=SL_IE_10
   - env: BROWSER=SL_IE_11
   - env: BROWSER=SL_Opera
-  - env: BROWSER=SL_Android
-  - env: BROWSER=SL_iOS
+  # - env: BROWSER=SL_Android
+  # - env: BROWSER=SL_iOS
 
 addons:
   sauce_connect:
     username: javiercejudo
     access_key:
       secure: ONViR0Xn0yRJ2JDnQjPO60MlOkypwd3fjFzuJ+KsMqMrWwJr2owYb03l3vJgRetdWRkwOF03KMx0M1+oVTgn1FA4cMvuoahoKq3rf1uqMM/rmfn1sm6hpTE/hgOZzhjZrW/kecKZQCqAMIuL3jrZqcui3LwM/9mlnGlh1nLc/jc=
+
+before_install:
+- git fetch --unshallow
+
+after_success:
+- gulp coveralls
 
 before_deploy:
 - gulp publish-build
@@ -60,6 +60,10 @@ deploy:
   on:
     repo: javiercejudo/javiercejudo.com
     condition: $BROWSER = SL_Chrome
+
+after_deploy:
+- bundle install
+- if [ "$TRAVIS_BRANCH" = "staging" ]; then cd wraith && wraith capture config && cd .. && gulp publish-wraith; fi
 
 notifications:
   webhooks:

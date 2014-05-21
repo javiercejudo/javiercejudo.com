@@ -1,13 +1,11 @@
 var
   gulp = require('gulp'),
   gutil = require('gulp-util'),
-  awspublish = require('gulp-awspublish'),
   clean = require('gulp-clean'),
   csslint = require('gulp-csslint'),
   cssmin = require('gulp-cssmin'),
   concat = require('gulp-concat'),
   download = require('gulp-download'),
-  gzip = require('gulp-gzip'),
   htmlmin = require('gulp-htmlmin'),
   jshint = require('gulp-jshint'),
   less = require('gulp-less'),
@@ -32,7 +30,8 @@ var
     tmp: 'tmp',
     partials: 'partials',
     tests: 'tests',
-    vendor: 'vendor'
+    vendor: 'vendor',
+    wraith: 'wraith'
   };
 
 /**
@@ -133,8 +132,7 @@ gulp.task('download-data', function () {
 
 gulp.task('js-top', function () {
   var topJsScripts = [
-    paths.bower + '/html5shiv/dist/html5shiv.js',
-    paths.bower + '/respond/dest/respond.src.js'
+    paths.bower + '/html5shiv/dist/html5shiv.js'
   ];
 
   return gulp.src(topJsScripts)
@@ -328,8 +326,8 @@ gulp.task('uncss', ['uncss-pre'], function () {
 gulp.task('publish-fonts', function () {
   var
     publisher, headers,
-    gzip = require('gulp-gzip'),
-    uncss = require('gulp-uncss');
+    awspublish = require('gulp-awspublish'),
+    gzip = require('gulp-gzip');
 
   publisher = awspublish.create({
     key: env.S3_KEY,
@@ -354,8 +352,8 @@ gulp.task('publish-fonts', function () {
 gulp.task('publish-build', ['publish-fonts'], function () {
   var
     publisher, headers,
-    gzip = require('gulp-gzip'),
-    uncss = require('gulp-uncss');
+    awspublish = require('gulp-awspublish'),
+    gzip = require('gulp-gzip');
 
   publisher = awspublish.create({
     key: env.S3_KEY,
@@ -371,6 +369,23 @@ gulp.task('publish-build', ['publish-fonts'], function () {
   return gulp.src(paths.build + '/**/*.{css,js}')
     .pipe(gzip({ append: false }))
     .pipe(publisher.publish(headers))
+    .pipe(awspublish.reporter());
+});
+
+gulp.task('publish-wraith', function () {
+  var
+    publisher,
+    awspublish = require('gulp-awspublish');
+
+  publisher = awspublish.create({
+    key: env.S3_KEY,
+    secret: env.S3_SECRET,
+    bucket: 'jc-wraith-shots'
+  });
+
+  return gulp.src(paths.wraith + '/shots/**/*')
+    .pipe(publisher.publish())
+    .pipe(publisher.sync())
     .pipe(awspublish.reporter());
 });
 
