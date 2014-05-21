@@ -42,6 +42,10 @@
         <th>Chat room</th>
         <td>https://gitter.im/javiercejudo/javiercejudo.com</td>
     </tr>
+    <tr>
+        <th>Staging vs. Live<br>screenshots</th>
+        <td>http://jc-wraith-shots.s3-website-us-west-2.amazonaws.com</td>
+    </tr>
 </table>
 
 ## Tenchologies
