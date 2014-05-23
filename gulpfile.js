@@ -27,6 +27,7 @@ var
     fonts: 'fonts',
     ico: 'ico',
     js: 'js',
+    layout: 'layout',
     tmp: 'tmp',
     partials: 'partials',
     tests: 'tests',
@@ -301,7 +302,7 @@ gulp.task('manifest', function () {
 });
 
 gulp.task('uncss-pre', function () {
-  return gulp.src(paths.partials + '/**/*.html')
+  return gulp.src([paths.partials + '/**/*.html', paths.layout + '/**/*.php'])
     .pipe(concat('all.html'))
     .pipe(gulp.dest(paths.tmp));
 });
@@ -313,9 +314,9 @@ gulp.task('uncss', ['uncss-pre'], function () {
           paths.tmp + '/all.html'
         ],
         ignore: [
-          '.fade', '.fade.in',
-          '.collapse', '.collapse.in',
-          '.collapsing',
+          /\.alert/,
+          /\.active/, /\.disabled/,
+          /\.fade/, /\.collapse/, /\.collapsing/,
           /glyphicon.*/,
           /print.*/,
         ]
