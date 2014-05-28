@@ -62,8 +62,8 @@
     "gulp-rename": "^1.2.0",
     "gulp-rev": "^0.4.0",
     "gulp-uglify": "^0.3.0",
-    "gulp-util": "^2.2.14",
     "gulp-uncss": "^0.4.3",
+    "gulp-util": "^2.2.14",
     "run-sequence": "^0.3.6"
   }
 }
