@@ -270,7 +270,7 @@ gulp.task('manifest', function () {
   var files, options, assetsURL, fontsURL, assetsRev = [], revManifest;
 
   revManifest = require('./rev-manifest.json');
-  assetsURL = '//dxnqhjr6ye2au.cloudfront.net';
+  assetsURL = 'http://static.javiercejudo.com';
   fontsURL = assetsURL + '/' + paths.fonts;
 
   Object.keys(revManifest).forEach(function(filename) {
