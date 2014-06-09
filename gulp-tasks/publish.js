@@ -7,7 +7,8 @@ gulp.task('publish-fonts', function () {
   var
     publisher, headers,
     awspublish = require('gulp-awspublish'),
-    gzip = require('gulp-gzip');
+    gzip = require('gulp-gzip'),
+    rename = require('gulp-rename');
 
   publisher = awspublish.create({
     key: process.env.S3_KEY,
