@@ -2,7 +2,7 @@ var
   gulp = require('gulp'),
   clean = require('gulp-clean'),
   jc = require('../jcConfig'),
-  paths = jc.jcConfig.paths;
+  paths = jc.paths;
 
 gulp.task('clean-pre', function () {
   var pathsToClean = [

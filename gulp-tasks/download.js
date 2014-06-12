@@ -3,7 +3,7 @@ var
   download = require('gulp-download'),
   rename = require('gulp-rename'),
   jc = require('../jcConfig'),
-  paths = jc.jcConfig.paths;
+  paths = jc.paths;
 
 /**
  * Downloads a file to an given vendor folder

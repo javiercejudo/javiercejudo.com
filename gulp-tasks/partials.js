@@ -5,7 +5,7 @@ var
   ngHtml2Js = require("gulp-ng-html2js"),
   uglify = require('gulp-uglify'),
   jc = require('../jcConfig'),
-  paths = jc.jcConfig.paths;
+  paths = jc.paths;
 
 gulp.task('partials', function () {
   var hmltminOptions, ngHtml2JsOptions;

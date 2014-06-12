@@ -3,7 +3,7 @@ var
   concat = require('gulp-concat'),
   uglify = require('gulp-uglify'),
   jc = require('../jcConfig'),
-  paths = jc.jcConfig.paths;
+  paths = jc.paths;
 
 gulp.task('js-top', function () {
   var topJsScripts = [

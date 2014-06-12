@@ -2,7 +2,7 @@ var
   gulp = require('gulp'),
   rev = require('gulp-rev'),
   jc = require('../jcConfig'),
-  paths = jc.jcConfig.paths;
+  paths = jc.paths;
 
 gulp.task('rev', function () {
   return gulp.src(paths.assets + '/*.{css,js}')

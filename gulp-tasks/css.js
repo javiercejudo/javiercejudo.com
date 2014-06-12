@@ -5,7 +5,7 @@ var
   less = require('gulp-less'),
   uncss = require('gulp-uncss'),
   jc = require('../jcConfig'),
-  paths = jc.jcConfig.paths;
+  paths = jc.paths;
 
 gulp.task('less', function () {
   var lessFiles, lessOptions;

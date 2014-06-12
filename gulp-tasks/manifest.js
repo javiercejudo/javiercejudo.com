@@ -2,8 +2,8 @@ var
   gulp = require('gulp'),
   manifest = require('gulp-manifest'),
   jc = require('../jcConfig'),
-  paths = jc.jcConfig.paths,
-  constants = jc.jcConfig.constants;
+  paths = jc.paths,
+  constants = jc.constants;
 
 gulp.task('manifest', function () {
   var files, options, assetsURL, fontsURL, assetsRev = [], revManifest;

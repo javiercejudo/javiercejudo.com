@@ -1,7 +1,7 @@
 var
   gulp = require('gulp'),
   jc = require('../jcConfig'),
-  paths = jc.jcConfig.paths;
+  paths = jc.paths;
 
 /**
  * Bumps version according to the given type

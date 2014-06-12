@@ -21,7 +21,5 @@ paths = {
   wraith: 'wraith'
 };
 
-exports.jcConfig = {
-  constants: constants,
-  paths: paths
-};
+exports.constants = constants;
+exports.paths = paths;
