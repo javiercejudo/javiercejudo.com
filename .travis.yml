@@ -67,6 +67,6 @@ after_deploy:
 notifications:
   webhooks:
     urls:
-    - https://webhooks.gitter.im/e/afebf4197a02d9ac890f
+    - https: //webhooks.gitter.im/e/afebf4197a02d9ac890f
     on_success: always
     on_failure: always
