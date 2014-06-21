@@ -4,7 +4,7 @@
 [![Selenium Test Status](https://saucelabs.com/buildstatus/javiercejudo)](https://saucelabs.com/u/javiercejudo)
 [![Coverage Status](https://coveralls.io/repos/javiercejudo/javiercejudo.com/badge.png?branch=master)](https://coveralls.io/r/javiercejudo/javiercejudo.com?branch=master)
 [![Code Climate](https://codeclimate.com/github/javiercejudo/javiercejudo.com.png)](https://codeclimate.com/github/javiercejudo/javiercejudo.com)
-[![Dependency Status](https://david-dm.org/javiercejudo/javiercejudo.com.svg?theme=shields.io)](https://david-dm.org/javiercejudo/javiercejudo.com)
+[![Dependency Status](https://gemnasium.com/javiercejudo/javiercejudo.com.svg)](https://gemnasium.com/javiercejudo/javiercejudo.com)
 
 [![Selenium Test Status](https://saucelabs.com/browser-matrix/javiercejudo.svg)](https://saucelabs.com/u/javiercejudo)
 
