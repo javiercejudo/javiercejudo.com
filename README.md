@@ -35,8 +35,12 @@
         <td>https://github.com/javiercejudo/javiercejudo.com/issues</td>
     </tr>
     <tr>
-        <th>Heroku buildpack</th>
-        <td>https://github.com/javiercejudo/heroku-buildpack-php</td>
+        <th>Heroku buildpacks</th>
+        <td>
+            https://github.com/ddollar/heroku-buildpack-multi<br>
+            https://github.com/heroku/heroku-buildpack-php<br>
+            https://github.com/heroku/heroku-buildpack-nodejs
+        </td>
     </tr>
     <tr>
         <th>Chat room</th>
