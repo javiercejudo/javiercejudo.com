@@ -7,7 +7,6 @@ var
 gulp.task('clean-pre', function () {
   var pathsToClean = [
     paths.build + '/**/*',
-    paths.vendor + '/**/*',
     paths.tmp + '/**/*',
     paths.fonts + '/**/*',
     paths.css + '/**/*.css'
