@@ -76,7 +76,7 @@
 
           cv.loading = true;
 
-          $http.get($scope.firebaseUrl + '/cv.json', {cache: true})
+          $http.get(JcFirebaseURL + '/cv.json', {cache: true})
             .success(function (response) {
               cv.loading = false;
               $scope.successCallback(response);
