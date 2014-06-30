@@ -57,7 +57,13 @@
 
 <script>
   Offline.options = {
-    checks: {xhr: {url: 'ico/favicon.png' }},
+    checks: {
+      xhr: {
+        url: function() {
+          return "ico/favicon.png?_=" + Math.random();
+        }
+      }
+    },
     checkOnLoad: true,
     interceptRequests: false,
     requests: false
