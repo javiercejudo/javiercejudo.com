@@ -20,7 +20,7 @@
   },
   "scripts": {
     "test": "grunt",
-    "postinstall": "bower install && gulp"
+    "postinstall": "./scripts/post-install.sh"
   },
   "devDependencies": {
     "coveralls": "^2.10.0",

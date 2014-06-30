@@ -48,8 +48,8 @@ before_script:
 after_success:
 - gulp coveralls
 
-before_deploy:
-- gulp publish-build
+# before_deploy:
+# - gulp publish-build
 
 deploy:
   provider: heroku
