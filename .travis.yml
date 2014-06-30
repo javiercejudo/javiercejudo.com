@@ -42,6 +42,9 @@ addons:
 before_install:
 - git fetch --unshallow
 
+before_script:
+- npm install -g grunt-cli bower gulp
+
 after_success:
 - gulp coveralls
 
