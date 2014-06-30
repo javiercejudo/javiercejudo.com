@@ -35,9 +35,7 @@ gulp.task('uncss-pre', function () {
 gulp.task('uncss', ['uncss-pre'], function () {
   return gulp.src(paths.css + '/custom-bootstrap.css')
     .pipe(uncss({
-        html: [
-          paths.tmp + '/all.html'
-        ],
+        html: [paths.tmp + '/all.html'],
         ignore: [
           /\.alert/,
           /\.active/, /\.disabled/,
@@ -54,7 +52,11 @@ gulp.task('css-concat', ['uncss'], function () {
     keepSpecialComments: 0
   };
 
-  return gulp.src(paths.css + '/**/*.css')
+  return gulp.src([
+      paths.bower + '/offline/themes/offline-language-english-indicator.css',
+      paths.bower + '/offline/themes/offline-theme-chrome-indicator.css',
+      paths.css + '/**/*.css'
+    ])
     .pipe(concat('app.css'))
     .pipe(cssmin(cssminOptions))
     .pipe(gulp.dest(paths.assets));

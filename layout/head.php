@@ -18,6 +18,8 @@
                  data processing and mathematical training.">
 
 <?php if (ENV === 'dev') : ?>
+  <link href="bower_components/offline/themes/offline-language-english-indicator.css" rel="stylesheet">
+  <link href="bower_components/offline/themes/offline-theme-chrome-indicator.css" rel="stylesheet">
   <link href="css/custom-bootstrap.css" rel="stylesheet">
   <link href="css/jcApp.css" rel="stylesheet">
 <?php else : ?>

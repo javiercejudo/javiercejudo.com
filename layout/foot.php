@@ -27,6 +27,8 @@
   <script src="bower_components/bootstrap/js/collapse.js"></script>
   <script src="bower_components/bootstrap/js/transition.js"></script>
 
+  <script src="bower_components/offline/offline.min.js"></script>
+
   <script src="js/config.js"></script>
 
   <script src="js/JcApp.js"></script>
@@ -52,3 +54,12 @@
     _LTracker.push({'logglyKey': 'b2645489-466a-494b-ab92-f8772f42c0d1' });
   </script>
 <?php endif ?>
+
+<script>
+  Offline.options = {
+    checks: {xhr: {url: 'ico/favicon.png' }},
+    checkOnLoad: true,
+    interceptRequests: false,
+    requests: false
+  };
+</script>

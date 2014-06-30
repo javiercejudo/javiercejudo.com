@@ -24,6 +24,7 @@
     "bootstrap": "~3.1.1",
     "preboot": "*",
     "html5shiv": "~3.7.0",
-    "firebase": "~1.0.17"
+    "firebase": "~1.0.17",
+    "offline": "~0.7.3"
   }
 }

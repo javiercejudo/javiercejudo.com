@@ -43,10 +43,11 @@ gulp.task('js-app', function () {
 });
 
 gulp.task('js-vendor', function () {
-  var loggingScripts, uglifyOptions;
+  var vendorScripts, uglifyOptions;
 
-  loggingScripts = [
+  vendorScripts = [
     paths.bower  + '/firebase/firebase.js',
+    paths.bower  + '/offline/offline.min.js',
     paths.vendor + '/loggly/loggly-tracker.js',
     paths.vendor + '/stacktrace/stacktrace.js'
   ];
@@ -55,7 +56,7 @@ gulp.task('js-vendor', function () {
     mangle: false
   };
 
-  return gulp.src(loggingScripts)
+  return gulp.src(vendorScripts)
     .pipe(concat("vendor.js"))
     .pipe(uglify(uglifyOptions))
     .pipe(gulp.dest(paths.tmp));
