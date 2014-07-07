@@ -4,20 +4,20 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "72fccaa0d667e9e17b79d9f3e982e297",
+    "hash": "7fe70900af8e7de5757aaecd85079288",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "2.6.8",
+            "version": "2.6.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "96886d56c54c1052f6c0c5f067278ad2e4d33314"
+                "reference": "11b56a0fc4b0e00c09d088cf31a64710653b46bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/96886d56c54c1052f6c0c5f067278ad2e4d33314",
-                "reference": "96886d56c54c1052f6c0c5f067278ad2e4d33314",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/11b56a0fc4b0e00c09d088cf31a64710653b46bc",
+                "reference": "11b56a0fc4b0e00c09d088cf31a64710653b46bc",
                 "shasum": ""
             },
             "require": {
@@ -72,7 +72,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2014-06-20 17:52:24"
+            "time": "2014-07-02 20:42:09"
         },
         {
             "name": "guzzle/guzzle",
@@ -229,16 +229,16 @@
     "packages-dev": [
         {
             "name": "heroku/heroku-buildpack-php",
-            "version": "v20",
+            "version": "v21",
             "source": {
                 "type": "git",
                 "url": "https://github.com/heroku/heroku-buildpack-php.git",
-                "reference": "b97d8ea26bd0242ca53c94c1a23ba6c874303316"
+                "reference": "a22698774ac4f09e142414d819de20f6b1a8cd9f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/b97d8ea26bd0242ca53c94c1a23ba6c874303316",
-                "reference": "b97d8ea26bd0242ca53c94c1a23ba6c874303316",
+                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/a22698774ac4f09e142414d819de20f6b1a8cd9f",
+                "reference": "a22698774ac4f09e142414d819de20f6b1a8cd9f",
                 "shasum": ""
             },
             "bin": [
@@ -269,7 +269,7 @@
                 "nginx",
                 "php"
             ],
-            "time": "2014-06-17 20:58:52"
+            "time": "2014-06-27 22:11:01"
         }
     ],
     "aliases": [

@@ -10,7 +10,7 @@
 
 <?php if (ENV === 'dev') : ?>
   <script src='bower_components/firebase/firebase.js'></script>
-  <script src="bower_components/modernizr/modernizr.js"></script>
+  <!-- <script src="bower_components/modernizr/modernizr.js"></script> -->
   <script src="bower_components/jquery/dist/jquery.js"></script>
 
   <script src="bower_components/angular/angular.js"></script>
