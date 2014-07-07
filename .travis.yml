@@ -41,8 +41,6 @@ addons:
 
 before_install:
 - git fetch --unshallow
-
-before_script:
 - ./scripts/setup-timezone.sh
 
 after_success:
