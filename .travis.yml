@@ -8,10 +8,11 @@ git:
 
 env:
   matrix:
-  - BROWSER=SL_Chrome
-  - BROWSER=SL_Firefox
-  - BROWSER=SL_IE_9
-  - BROWSER=SL_IE_11
+  - BROWSER=phantomjs
+  # - BROWSER=SL_Chrome
+  # - BROWSER=SL_Firefox
+  # - BROWSER=SL_IE_9
+  # - BROWSER=SL_IE_11
   # - BROWSER=SL_Safari
   # - BROWSER=SL_IE_10
   # - BROWSER=SL_Opera
@@ -22,12 +23,12 @@ env:
   - secure: PP7iX1E/QBQJiUSSbFzZMWav4d3HXxe622KyOo97T36EHzz7Tm0ofZKRquAJVdmGTHJVE5WOII/dQ4wp9WvI1HSe6Mqn2oJfl5Bu86zk5KPooON4Jduz4V/bqtzwhCTDmkJ8QEGBAXSPQ2al9linVejXhWto3o2h8Iu5L5ZHMQY=
   - secure: NP6lDYgTooItAuuJGSGh8DNmBPAu0JaGCi5MBE7976AvzybBL3sJBClZ8oYDfVlSxAMYcdYaUKLz3OpCLmvjVr8/ujZjtDoYwAGw92rPdklj0B5y2icbO8ulC+V1rNFAh1Al79zB/X9lLPdMBSEN3a5/PgNpbFnw4NcEfHodPBc=
   - secure: GNdL+ez0b6MuFd8jgnjxx0VqBd9ktJH11365P9yAA+Dq/lmiCd4hFZHkVwEzSdwibL8sixWWz/6Ox732S5LyNVI2//jjjHbppYLTtNEpMPlIlR9k27EGIFIifmO8o0wqkNpgdJzxkl8OOYebQR6roo/n4TsWTDIO9C6pD2Jon+0=
-matrix:
-  fast_finish: true
-  allow_failures:
-  - env: BROWSER=SL_Firefox
-  - env: BROWSER=SL_IE_9
-  - env: BROWSER=SL_IE_11
+# matrix:
+  # fast_finish: true
+  # allow_failures:
+  # - env: BROWSER=SL_Firefox
+  # - env: BROWSER=SL_IE_9
+  # - env: BROWSER=SL_IE_11
   # - env: BROWSER=SL_Safari
   # - env: BROWSER=SL_IE_10
   # - env: BROWSER=SL_Opera
@@ -44,8 +45,8 @@ before_install:
 - git fetch --unshallow
 - ./scripts/setup-timezone.sh
 
-before_script:
-- curl https://gist.githubusercontent.com/henrikhodne/9322897/raw/sauce-connect.sh | bash
+# before_script:
+# - curl https://gist.githubusercontent.com/henrikhodne/9322897/raw/sauce-connect.sh | bash
 
 after_success:
 - gulp coveralls
@@ -61,7 +62,7 @@ deploy:
     staging: javiercejudo-staging
   on:
     repo: javiercejudo/javiercejudo.com
-    condition: $BROWSER = SL_Chrome
+    condition: $BROWSER = phantomjs
 
 after_deploy:
 - ./scripts/publish-wraith.sh
