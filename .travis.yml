@@ -10,11 +10,11 @@ env:
   matrix:
   - BROWSER=SL_Chrome
   - BROWSER=SL_Firefox
-  - BROWSER=SL_Safari
   - BROWSER=SL_IE_9
-  - BROWSER=SL_IE_10
   - BROWSER=SL_IE_11
-  - BROWSER=SL_Opera
+  # - BROWSER=SL_Safari
+  # - BROWSER=SL_IE_10
+  # - BROWSER=SL_Opera
   # - BROWSER=SL_Android
   # - BROWSER=SL_iOS
   global:
@@ -25,11 +25,11 @@ matrix:
   fast_finish: true
   allow_failures:
   - env: BROWSER=SL_Firefox
-  - env: BROWSER=SL_Safari
   - env: BROWSER=SL_IE_9
-  - env: BROWSER=SL_IE_10
-  - env: BROWSER=SL_IE_11
-  - env: BROWSER=SL_Opera
+  - env: BROnetrestWSER=SL_IE_11
+  # - env: BROWSER=SL_Safari
+  # - env: BROWSER=SL_IE_10
+  # - env: BROWSER=SL_Opera
   # - env: BROWSER=SL_Android
   # - env: BROWSER=SL_iOS
 
