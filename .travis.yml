@@ -19,10 +19,9 @@ env:
   # - BROWSER=SL_iOS
   global:
   - SAUCE_USERNAME=javiercejudo
-  - secure: ONViR0Xn0yRJ2JDnQjPO60MlOkypwd3fjFzuJ+KsMqMrWwJr2owYb03l3vJgRetdWRkwOF03KMx0M1+oVTgn1FA4cMvuoahoKq3rf1uqMM/rmfn1sm6hpTE/hgOZzhjZrW/kecKZQCqAMIuL3jrZqcui3LwM/9mlnGlh1nLc/jc=
+  - secure: PP7iX1E/QBQJiUSSbFzZMWav4d3HXxe622KyOo97T36EHzz7Tm0ofZKRquAJVdmGTHJVE5WOII/dQ4wp9WvI1HSe6Mqn2oJfl5Bu86zk5KPooON4Jduz4V/bqtzwhCTDmkJ8QEGBAXSPQ2al9linVejXhWto3o2h8Iu5L5ZHMQY=
   - secure: NP6lDYgTooItAuuJGSGh8DNmBPAu0JaGCi5MBE7976AvzybBL3sJBClZ8oYDfVlSxAMYcdYaUKLz3OpCLmvjVr8/ujZjtDoYwAGw92rPdklj0B5y2icbO8ulC+V1rNFAh1Al79zB/X9lLPdMBSEN3a5/PgNpbFnw4NcEfHodPBc=
   - secure: GNdL+ez0b6MuFd8jgnjxx0VqBd9ktJH11365P9yAA+Dq/lmiCd4hFZHkVwEzSdwibL8sixWWz/6Ox732S5LyNVI2//jjjHbppYLTtNEpMPlIlR9k27EGIFIifmO8o0wqkNpgdJzxkl8OOYebQR6roo/n4TsWTDIO9C6pD2Jon+0=
-
 matrix:
   fast_finish: true
   allow_failures:
