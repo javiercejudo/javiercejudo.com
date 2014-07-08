@@ -8,7 +8,7 @@ git:
 
 env:
   matrix:
-  - BROWSER=phantomjs
+  - BROWSER=PhantomJS
   # - BROWSER=SL_Chrome
   # - BROWSER=SL_Firefox
   # - BROWSER=SL_IE_9
@@ -62,7 +62,7 @@ deploy:
     staging: javiercejudo-staging
   on:
     repo: javiercejudo/javiercejudo.com
-    condition: $BROWSER = phantomjs
+    condition: $BROWSER = PhantomJS
 
 after_deploy:
 - ./scripts/publish-wraith.sh
