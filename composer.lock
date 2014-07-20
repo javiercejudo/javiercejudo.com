@@ -4,20 +4,20 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "7fe70900af8e7de5757aaecd85079288",
+    "hash": "507c6f246db99d5773550e0bf3c10460",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
-            "version": "2.6.10",
+            "version": "2.6.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/aws/aws-sdk-php.git",
-                "reference": "11b56a0fc4b0e00c09d088cf31a64710653b46bc"
+                "reference": "88d075461e95111a5e42ead60c68e847c1856cc3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/11b56a0fc4b0e00c09d088cf31a64710653b46bc",
-                "reference": "11b56a0fc4b0e00c09d088cf31a64710653b46bc",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/88d075461e95111a5e42ead60c68e847c1856cc3",
+                "reference": "88d075461e95111a5e42ead60c68e847c1856cc3",
                 "shasum": ""
             },
             "require": {
@@ -72,7 +72,7 @@
                 "s3",
                 "sdk"
             ],
-            "time": "2014-07-02 20:42:09"
+            "time": "2014-07-16 21:01:13"
         },
         {
             "name": "guzzle/guzzle",
@@ -168,17 +168,17 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.5.0",
+            "version": "v2.5.2",
             "target-dir": "Symfony/Component/EventDispatcher",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/EventDispatcher.git",
-                "reference": "cb62ec8dd05893fc8e4f0e6e21e326e1fc731fe8"
+                "reference": "2215d2ef6fd7ab24d55576a3d924df575c741762"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/cb62ec8dd05893fc8e4f0e6e21e326e1fc731fe8",
-                "reference": "cb62ec8dd05893fc8e4f0e6e21e326e1fc731fe8",
+                "url": "https://api.github.com/repos/symfony/EventDispatcher/zipball/2215d2ef6fd7ab24d55576a3d924df575c741762",
+                "reference": "2215d2ef6fd7ab24d55576a3d924df575c741762",
                 "shasum": ""
             },
             "require": {
@@ -223,22 +223,22 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "http://symfony.com",
-            "time": "2014-04-29 10:13:57"
+            "time": "2014-07-09 09:05:48"
         }
     ],
     "packages-dev": [
         {
             "name": "heroku/heroku-buildpack-php",
-            "version": "v21",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/heroku/heroku-buildpack-php.git",
-                "reference": "a22698774ac4f09e142414d819de20f6b1a8cd9f"
+                "reference": "af189a161081993cad1c1cd3622373f705f502b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/a22698774ac4f09e142414d819de20f6b1a8cd9f",
-                "reference": "a22698774ac4f09e142414d819de20f6b1a8cd9f",
+                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/af189a161081993cad1c1cd3622373f705f502b2",
+                "reference": "af189a161081993cad1c1cd3622373f705f502b2",
                 "shasum": ""
             },
             "bin": [
@@ -269,16 +269,16 @@
                 "nginx",
                 "php"
             ],
-            "time": "2014-06-27 22:11:01"
+            "time": "2014-07-16 09:57:17"
         }
     ],
     "aliases": [
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ],
+    "stability-flags": {
+        "heroku/heroku-buildpack-php": 20
+    },
     "platform": {
         "php": "~5.5.0"
     },
