@@ -1,4 +1,4 @@
 source "https://rubygems.org"
 
-gem "travis", '~> 1.6.14'
-gem 'wraith', '~> 1.2.2'
+gem "travis", '~> 1.6.16'
+gem 'wraith', '~> 1.3.0'

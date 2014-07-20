@@ -12,6 +12,6 @@
     "aws/aws-sdk-php": "2.6.*"
   },
   "require-dev": {
-    "heroku/heroku-buildpack-php": "v20"
+    "heroku/heroku-buildpack-php": "dev-master"
   }
 }
