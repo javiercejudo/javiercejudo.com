@@ -1,7 +1,6 @@
 # javiercejudo <a href="LICENSE"><img src="https://s3-ap-southeast-2.amazonaws.com/jc-general-images/mit-licence.png"></a>
 
 [![Build Status](https://travis-ci.org/javiercejudo/javiercejudo.com.svg?branch=master)](https://travis-ci.org/javiercejudo/javiercejudo.com)
-[![Selenium Test Status](https://saucelabs.com/buildstatus/javiercejudo)](https://saucelabs.com/u/javiercejudo)
 [![Coverage Status](https://coveralls.io/repos/javiercejudo/javiercejudo.com/badge.png?branch=master)](https://coveralls.io/r/javiercejudo/javiercejudo.com?branch=master)
 [![Code Climate](https://codeclimate.com/github/javiercejudo/javiercejudo.com.png)](https://codeclimate.com/github/javiercejudo/javiercejudo.com)
 [![Dependency Status](https://gemnasium.com/javiercejudo/javiercejudo.com.svg)](https://gemnasium.com/javiercejudo/javiercejudo.com)
