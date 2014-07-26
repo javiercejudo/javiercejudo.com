@@ -8,7 +8,7 @@ requireDir('./gulp-tasks');
 gulp.task('default', function () {
   runSequence(
     ['jshint', 'clean-pre', 'download-data'],
-    ['copy-fonts', 'download-loggly-tracker', 'download-stacktrace', 'partials'],
+    ['copy-fonts', 'partials'],
     ['less', 'js-top', 'js-app', 'js-vendor'],
     ['css-concat', 'js-bottom'],
     ['rev'],

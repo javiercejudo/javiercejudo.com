@@ -27,8 +27,6 @@
   <script src="bower_components/bootstrap/js/collapse.js"></script>
   <script src="bower_components/bootstrap/js/transition.js"></script>
 
-  <script src="bower_components/offline/offline.min.js"></script>
-
   <script src="js/config.js"></script>
 
   <script src="js/JcApp.js"></script>
@@ -41,7 +39,7 @@
   <script src="js/controllers/CvCtrl.js"></script>
   <script src="js/controllers/SecretaryProblemCtrl.js"></script>
 <?php else : ?>
-  <script src="<?php echo $build("bottom", "js") ?>"></script>
+  <script src="<?php echo $build("bottom", "js") ?>" async></script>
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -49,23 +47,4 @@
     })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
     ga('create', 'UA-43072086-1', 'www.javiercejudo.com');
   </script>
-  <script>
-    var _LTracker = _LTracker || [];
-    _LTracker.push({'logglyKey': 'b2645489-466a-494b-ab92-f8772f42c0d1' });
-  </script>
 <?php endif ?>
-
-<script>
-  Offline.options = {
-    checks: {
-      xhr: {
-        url: function() {
-          return "ico/favicon.png?_=" + Math.random();
-        }
-      }
-    },
-    checkOnLoad: true,
-    interceptRequests: false,
-    requests: false
-  };
-</script>

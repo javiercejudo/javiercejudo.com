@@ -1,7 +1,5 @@
-/*global ENV:true, _LTracker:true, printStackTrace:true */
+/*global ENV:true */
 
 var
   ENV = ENV || 'live',
-  JS_TEMPLATES_IN_DEV = true,
-  _LTracker = _LTracker || [],
-  printStackTrace = printStackTrace || {};
+  JS_TEMPLATES_IN_DEV = true;

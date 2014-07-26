@@ -46,10 +46,7 @@ gulp.task('js-vendor', function () {
   var vendorScripts, uglifyOptions;
 
   vendorScripts = [
-    paths.bower  + '/firebase/firebase.js',
-    paths.bower  + '/offline/offline.min.js',
-    paths.vendor + '/loggly/loggly-tracker.js',
-    paths.vendor + '/stacktrace/stacktrace.js'
+    paths.bower  + '/firebase/firebase.js'
   ];
 
   uglifyOptions = {
