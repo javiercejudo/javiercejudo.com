@@ -17,13 +17,13 @@ $build = function ($name, $ext) {
     return getenv('ASSETS_URL') . '/' . $GLOBALS["buildMap"]["$name.$ext"];
 };
 
-$almaArray = array(
-    'angular' => 'data-ng-app="JcApp" data-ng-controller="AppCtrl"',
-    'lang'    => 'lang="en"'
-);
+$almaArray = [
+    'data-ng-app="JcApp" data-ng-controller="AppCtrl"',
+    'lang="en"'
+];
 
-if (ENV === 'live') {
-    $almaArray['manifest'] = 'manifest="manifest.appcache"';
+if (isset($_GET['offline'])) {
+    $almaArray[] = 'manifest="manifest.appcache"';
 }
 
 $alma = implode(' ', $almaArray);

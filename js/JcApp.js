@@ -1,4 +1,4 @@
-/*global browser:true, angular, ENV, JS_TEMPLATES_IN_DEV, _LTracker, printStackTrace */
+/*global browser:true, angular, ENV, JS_TEMPLATES_IN_DEV */
 
 /**
  * @doc overview
@@ -9,7 +9,7 @@
  *
  * My personal website.
  */
-(function (angular, logglyTracker, stackTrace) {
+(function (angular) {
   'use strict';
 
   var
@@ -98,23 +98,6 @@
         $locationProvider.html5Mode(false).hashPrefix('!');
       }])
 
-    .config(['$provide', function ($provide) {
-      $provide.decorator('$exceptionHandler', ['$delegate', function ($delegate) {
-        return function (exception, cause) {
-          $delegate(exception, cause);
-
-          if (ENV === 'dev') {
-            return;
-          }
-
-          logglyTracker.push({
-            'message': exception.message,
-            'stack_trace': stackTrace({e: exception})
-          });
-        };
-      }]);
-    }])
-
     .run(['$window', '$rootScope', function ($window, $rootScope) {
       $rootScope.version = angular.version;
       $rootScope.online  = $window.navigator.onLine;
@@ -144,4 +127,4 @@
     }])
 
     .constant('JcFirebaseURL', 'https://c3jud0.firebaseio.com');
-}(angular, _LTracker, printStackTrace));
+}(angular));
