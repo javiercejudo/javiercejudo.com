@@ -9,47 +9,15 @@
 
 ## Useful Links
 
-<table>
-    <tr>
-        <th>Live</th>
-        <td>
-            http://www.javiercejudo.com
-            <a href="https://www.statuscake.com" title="Website Uptime Monitoring"><img src="https://www.statuscake.com/App/button/index.php?Track=EKqPqfW1dF&Days=30&Design=5" valign="middle"></a>
-        </td>
-    </tr>
-    <tr>
-        <th>Staging</th>
-        <td>http://staging.javiercejudo.com</td>
-    </tr>
-    <tr>
-        <th>Feature branches</th>
-        <td>http://jc-[ branch_name ].herokuapp.com</td>
-    </tr>
-    <tr>
-        <th>Dev</th>
-        <td>http://0.0.0.0:5000</td>
-    </tr>
-    <tr>
-        <th>Issue tracker</th>
-        <td>https://github.com/javiercejudo/javiercejudo.com/issues</td>
-    </tr>
-    <tr>
-        <th>Heroku buildpacks</th>
-        <td>
-            https://github.com/ddollar/heroku-buildpack-multi<br>
-            https://github.com/heroku/heroku-buildpack-php<br>
-            https://github.com/heroku/heroku-buildpack-nodejs
-        </td>
-    </tr>
-    <tr>
-        <th>Chat room</th>
-        <td>https://gitter.im/javiercejudo/javiercejudo.com</td>
-    </tr>
-    <tr>
-        <th>Staging vs. Live<br>screenshots</th>
-        <td>http://jc-wraith-shots.s3-website-us-west-2.amazonaws.com</td>
-    </tr>
-</table>
+Live | http://www.javiercejudo.com <a href="https://www.statuscake.com" title="Website Uptime Monitoring"><img src="https://www.statuscake.com/App/button/index.php?Track=EKqPqfW1dF&Days=30&Design=5" valign="middle"></a> <br> http://javiercejudo.herokuapp.com
+--- | :---
+Staging | http://staging.javiercejudo.com <br> http://javiercejudo-staging.herokuapp.com
+Feature branches | http://jc-[ branch_name ].herokuapp.com
+Dev | http://0.0.0.0:5000
+Issue tracker | https://github.com/javiercejudo/javiercejudo.com/issues
+Heroku buildpacks | https://github.com/ddollar/heroku-buildpack-multi <br> https://github.com/heroku/heroku-buildpack-php <br> https://github.com/heroku/heroku-buildpack-nodejs
+Chat room | https://gitter.im/javiercejudo/javiercejudo.com
+Staging vs. Live<br>screenshots | http://jc-wraith-shots.s3-website-us-west-2.amazonaws.com
 
 ## Tenchologies
 
