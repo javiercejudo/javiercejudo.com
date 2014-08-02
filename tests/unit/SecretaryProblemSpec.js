@@ -42,26 +42,26 @@
       //   expect(successRate).toBeLessThan(1);
       // });
 
-      // it('should achieve a ~1/e success rate with n big', function () {
-      //   spyOn(scope, 'findBestStrategy').and.returnValue(94);
+      it('should achieve a ~1/e success rate with n=30', function () {
+        spyOn(scope, 'findBestStrategy').and.returnValue(11);
 
-      //   var
-      //     numberOfItems = 256,
-      //     numberOfGames = 1000, // max: 22500
-      //     expectedRate = 1 / Math.E,
-      //     acceptedMargin = 0.075,
-      //     successRate = scope.automaticGame(numberOfItems, numberOfGames),
-      //     rateDifference = Math.abs(successRate - expectedRate);
+        var
+          numberOfItems = 30,
+          numberOfGames = 2000,
+          expectedRate = 1 / Math.E,
+          acceptedMargin = 0.06,
+          successRate = scope.automaticGame(numberOfItems, numberOfGames),
+          rateDifference = Math.abs(successRate - expectedRate);
 
-      //   expect(rateDifference).toBeLessThan(acceptedMargin);
-      // });
+        expect(rateDifference).toBeLessThan(acceptedMargin);
+      });
 
       it('should achieve ~20% success rate with n=5 if selecting the first box', function () {
         spyOn(scope, 'findBestStrategy').and.returnValue(0);
 
         var
           numberOfItems = 5,
-          numberOfGames = 1000,
+          numberOfGames = 3000,
           expectedRate = 1 / numberOfItems,
           acceptedMargin = 0.05,
           successRate = scope.automaticGame(numberOfItems, numberOfGames),
@@ -75,7 +75,7 @@
 
         var
           numberOfItems = 3,
-          numberOfGames = 1000, // max: 500000
+          numberOfGames = 5000,
           expectedRate = 0.5,
           acceptedMargin = 0.05,
           successRate = scope.automaticGame(numberOfItems, numberOfGames),
