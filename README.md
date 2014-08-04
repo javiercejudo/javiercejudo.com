@@ -11,7 +11,7 @@
 
 Title | Links
 :--- | :---
-Live | http://www.javiercejudo.com <a href="https://www.statuscake.com" title="Website Uptime Monitoring"><img src="https://www.statuscake.com/App/button/index.php?Track=EKqPqfW1dF&Days=30&Design=5" valign="middle"></a> <br> http://javiercejudo.herokuapp.com
+Live | http://www.javiercejudo.com <br> http://javiercejudo.herokuapp.com
 Staging | http://staging.javiercejudo.com <br> http://javiercejudo-staging.herokuapp.com
 Feature branches | http://jc-[ branch_name ].herokuapp.com
 Dev | http://0.0.0.0:5000
@@ -61,7 +61,9 @@ Staging vs. Live<br>screenshots | http://jc-wraith-shots.s3-website-us-west-2.am
 - [Gulp](http://gulpjs.com/): the streaming build system.
 - [Grunt](http://gruntjs.com/): the JavaScript task runner.
 
-### Continuous Integration [![Build Status](https://travis-ci.org/javiercejudo/javiercejudo.com.svg?branch=master)](https://travis-ci.org/javiercejudo/javiercejudo.com)
+### Continuous Integration
+
+[![Build Status](https://travis-ci.org/javiercejudo/javiercejudo.com.svg?branch=master)](https://travis-ci.org/javiercejudo/javiercejudo.com)
 
 - [Travis CI](https://travis-ci.org/): free hosted continuous integration platform for the open source community.
 - [Heroku](https://www.heroku.com/): cloud computing designed and built for developers.
@@ -77,12 +79,15 @@ Staging vs. Live<br>screenshots | http://jc-wraith-shots.s3-website-us-west-2.am
 - [David](https://david-dm.org/): a dependency management tool for Node.js projects.
 - [Gemnasium](https://gemnasium.com/): monitors your project dependencies and alerts you about updates and security vulnerabilities.
 
-### Quality Tools [![Code Climate](https://codeclimate.com/github/javiercejudo/javiercejudo.com.png)](https://codeclimate.com/github/javiercejudo/javiercejudo.com)
+### Quality Tools
+
+[![Code Climate](https://codeclimate.com/github/javiercejudo/javiercejudo.com.png)](https://codeclimate.com/github/javiercejudo/javiercejudo.com)
 
 - [Code Climate](https://codeclimate.com): quality & security analysis for Ruby on Rails and JavaScript.
 - [Scrutinizer](https://scrutinizer-ci.com/): build quality software, better.
 
-### Monitoring <a href="https://www.statuscake.com" title="Website Uptime Monitoring"><img src="https://www.statuscake.com/App/button/index.php?Track=EKqPqfW1dF&Days=30&Design=5" valign="middle"></a>
+### Monitoring
+[![Uptime](https://www.statuscake.com/App/button/index.php?Track=EKqPqfW1dF&Days=30&Design=5)](https://www.statuscake.com)
 
 - [Loggly](https://www.loggly.com/): the world's most popular cloud-based log management service.
 - [StatusCake](https://www.statuscake.com): website uptime monitoring & alerts.
