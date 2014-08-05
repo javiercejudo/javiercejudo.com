@@ -69,3 +69,22 @@ gulp.task('publish-wraith', function () {
     .pipe(publisher.sync())
     .pipe(awspublish.reporter());
 });
+
+gulp.task('publish-backup', ['download-data'], function () {
+  var
+    publisher,
+    awspublish = require('gulp-awspublish');
+    rename = require('gulp-rename'),
+    date = new Date();
+
+  publisher = awspublish.create({
+    key: process.env.S3_KEY,
+    secret: process.env.S3_SECRET,
+    bucket: 'jc-firebase'
+  });
+
+  return gulp.src(paths.data + '/min/c3jud0-export.json')
+    .pipe(rename(date.toISOString() + '.json'))
+    .pipe(publisher.publish())
+    .pipe(awspublish.reporter());
+});

@@ -21,7 +21,7 @@ var downloadVendorLib = function (url, filename, dest) {
 };
 
 gulp.task('download-data', function () {
-  return download('https://c3jud0.firebaseio.com/.json')
+  return download('https://c3jud0.firebaseio.com/.json?format=export')
     .pipe(rename('c3jud0-export.json'))
     .pipe(gulp.dest(paths.data + '/min'));
 });
