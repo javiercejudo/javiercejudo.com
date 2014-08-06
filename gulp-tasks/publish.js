@@ -73,7 +73,7 @@ gulp.task('publish-wraith', function () {
 gulp.task('publish-backup', ['download-data'], function () {
   var
     publisher,
-    awspublish = require('gulp-awspublish');
+    awspublish = require('gulp-awspublish'),
     rename = require('gulp-rename'),
     date = new Date();
 
