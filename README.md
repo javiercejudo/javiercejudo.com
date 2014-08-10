@@ -3,8 +3,6 @@
 [![Build Status](http://img.shields.io/travis/javiercejudo/javiercejudo.com.svg?style=flat)](https://travis-ci.org/javiercejudo/javiercejudo.com)
 [![Coverage Status](http://img.shields.io/coveralls/javiercejudo/javiercejudo.com.svg?style=flat)](https://coveralls.io/r/javiercejudo/javiercejudo.com?branch=master)
 [![Code Climate](http://img.shields.io/codeclimate/github/javiercejudo/javiercejudo.com.svg?style=flat)](https://codeclimate.com/github/javiercejudo/javiercejudo.com)
-
-
 [![Dependency Status](http://img.shields.io/gemnasium/javiercejudo/javiercejudo.com.svg?style=flat)](https://gemnasium.com/javiercejudo/javiercejudo.com)
 [![devDependency Status](http://img.shields.io/david/dev/javiercejudo/javiercejudo.com.svg?style=flat)](https://david-dm.org/javiercejudo/javiercejudo.com#info=devDependencies)
 
