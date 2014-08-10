@@ -26,7 +26,5 @@
       "required": true
     }
   },
-  "addons": [
-    "deployhooks:email"
-  ]
+  "addons": []
 }
