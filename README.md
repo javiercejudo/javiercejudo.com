@@ -1,4 +1,4 @@
-# javiercejudo [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/javiercejudo/javiercejudo.com)
+# javiercejudo
 
 [![Build Status](https://travis-ci.org/javiercejudo/javiercejudo.com.svg?branch=master)](https://travis-ci.org/javiercejudo/javiercejudo.com)
 [![Coverage Status](https://coveralls.io/repos/javiercejudo/javiercejudo.com/badge.png?branch=master)](https://coveralls.io/r/javiercejudo/javiercejudo.com?branch=master)
@@ -21,6 +21,8 @@ Heroku buildpacks | https://github.com/ddollar/heroku-buildpack-multi <br> https
 Chat room | https://gitter.im/javiercejudo/javiercejudo.com
 Staging vs. Live<br>screenshots | http://jc-wraith-shots.s3-website-us-west-2.amazonaws.com
 License | [![License](https://s3-ap-southeast-2.amazonaws.com/jc-general-images/mit-licence.png)](LICENSE)
+
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 ## Tenchologies
 
