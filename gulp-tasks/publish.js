@@ -1,9 +1,18 @@
 var
   gulp = require('gulp'),
   jc = require('../jcConfig'),
-  paths = jc.paths;
+  paths = jc.paths,
+  isS3Available;
+
+isS3Available = function () {
+  return (process.env.S3_KEY !== '' && process.env.S3_SECRET !== '');
+};
 
 gulp.task('publish-fonts', function () {
+  if (!isS3Available()) {
+    return;
+  }
+
   var
     publisher, headers,
     awspublish = require('gulp-awspublish'),
@@ -31,6 +40,10 @@ gulp.task('publish-fonts', function () {
 });
 
 gulp.task('publish-build', ['publish-fonts'], function () {
+  if (!isS3Available()) {
+    return;
+  }
+
   var
     publisher, headers,
     awspublish = require('gulp-awspublish'),
@@ -54,6 +67,10 @@ gulp.task('publish-build', ['publish-fonts'], function () {
 });
 
 gulp.task('publish-wraith', function () {
+  if (!isS3Available()) {
+    return;
+  }
+
   var
     publisher,
     awspublish = require('gulp-awspublish');
@@ -71,6 +88,10 @@ gulp.task('publish-wraith', function () {
 });
 
 gulp.task('publish-backup', ['download-data'], function () {
+  if (!isS3Available()) {
+    return;
+  }
+
   var
     publisher,
     awspublish = require('gulp-awspublish'),

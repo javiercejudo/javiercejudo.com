@@ -14,16 +14,14 @@
     "WWWROOT": "/",
     "BUILDPACK_URL": "https://github.com/ddollar/heroku-buildpack-multi.git",
     "ASSETS_URL": {
-      "description": "URL from where assets should be loaded",
+      "description": "URL from where assets should be loaded. It can be a CDN.",
       "value": "build"
     },
     "S3_KEY": {
-      "description": "S3 key to publish assets on deployment",
-      "required": true
+      "description": "(Optional) S3 key to publish assets on deployment."
     },
     "S3_SECRET": {
-      "description": "S3 secret to publish assets on deployment",
-      "required": true
+      "description": "(Optional) S3 secret to publish assets on deployment."
     }
   },
   "addons": []

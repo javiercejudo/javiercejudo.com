@@ -10,7 +10,7 @@ function jcecho {
     done;
 
     jcecho "Application ready!"
-    sudo chmod 666 /tmp/heroku.fcgi.5000.sock
+    sudo chmod o+w /tmp/heroku.fcgi.5000.sock
 } &
 
 jcecho "Starting application..."
