@@ -1,9 +1,12 @@
-# JavierCejudo [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+# javiercejudo [![Deploy to Heroku](http://img.shields.io/badge/deploy-heroku-7056BF.svg?style=flat)](https://heroku.com/deploy)
 
-[![Build Status](https://travis-ci.org/javiercejudo/javiercejudo.com.svg?branch=master)](https://travis-ci.org/javiercejudo/javiercejudo.com)
-[![Coverage Status](https://coveralls.io/repos/javiercejudo/javiercejudo.com/badge.png?branch=master)](https://coveralls.io/r/javiercejudo/javiercejudo.com?branch=master)
-[![Code Climate](https://codeclimate.com/github/javiercejudo/javiercejudo.com.png)](https://codeclimate.com/github/javiercejudo/javiercejudo.com)
-[![Dependency Status](https://gemnasium.com/javiercejudo/javiercejudo.com.svg)](https://gemnasium.com/javiercejudo/javiercejudo.com)
+[![Build Status](http://img.shields.io/travis/javiercejudo/javiercejudo.com.svg?style=flat)](https://travis-ci.org/javiercejudo/javiercejudo.com)
+[![Coverage Status](http://img.shields.io/coveralls/javiercejudo/javiercejudo.com.svg?style=flat)](https://coveralls.io/r/javiercejudo/javiercejudo.com?branch=master)
+[![Code Climate](http://img.shields.io/codeclimate/github/javiercejudo/javiercejudo.com.svg?style=flat)](https://codeclimate.com/github/javiercejudo/javiercejudo.com)
+
+
+[![Dependency Status](http://img.shields.io/gemnasium/javiercejudo/javiercejudo.com.svg?style=flat)](https://gemnasium.com/javiercejudo/javiercejudo.com)
+[![devDependency Status](http://img.shields.io/david/dev/javiercejudo/javiercejudo.com.svg?style=flat)](https://david-dm.org/javiercejudo/javiercejudo.com#info=devDependencies)
 
 [![Selenium Test Status](https://saucelabs.com/browser-matrix/javiercejudo.svg)](https://saucelabs.com/u/javiercejudo)
 
@@ -11,7 +14,7 @@
 
 Title | Links
 :--- | :---
-Live | http://www.javiercejudo.com <br> http://javiercejudo.herokuapp.com
+Live | [![Uptime](https://www.statuscake.com/App/button/index.php?Track=EKqPqfW1dF&Days=30&Design=5)](https://www.statuscake.com) <br> http://www.javiercejudo.com <br> http://javiercejudo.herokuapp.com
 Staging | http://staging.javiercejudo.com <br> http://javiercejudo-staging.herokuapp.com
 Feature branches | http://jc-[ branch_name ].herokuapp.com
 Dev | http://0.0.0.0:5000
@@ -20,7 +23,7 @@ Issue tracker | https://github.com/javiercejudo/javiercejudo.com/issues
 Heroku buildpacks | https://github.com/ddollar/heroku-buildpack-multi <br> https://github.com/heroku/heroku-buildpack-php <br> https://github.com/heroku/heroku-buildpack-nodejs
 Chat room | https://gitter.im/javiercejudo/javiercejudo.com
 Staging vs. Live<br>screenshots | http://jc-wraith-shots.s3-website-us-west-2.amazonaws.com
-License | [![License](https://s3-ap-southeast-2.amazonaws.com/jc-general-images/mit-licence.png)](LICENSE)
+License | [![Lincese](http://img.shields.io/badge/lincese-MIT-blue.svg?style=flat)](LICENSE)
 
 ## Tenchologies
 
@@ -49,9 +52,6 @@ License | [![License](https://s3-ap-southeast-2.amazonaws.com/jc-general-images/
 
 ### Testing
 
-[![Selenium Test Status](https://saucelabs.com/buildstatus/javiercejudo)](https://saucelabs.com/u/javiercejudo)
-[![Coverage Status](https://coveralls.io/repos/javiercejudo/javiercejudo.com/badge.png?branch=master)](https://coveralls.io/r/javiercejudo/javiercejudo.com?branch=master)
-
 - [Karma](http://karma-runner.github.io/): spectacular test runner for JavaScript.
 - [Jasmine](http://pivotal.github.io/jasmine/): behavior-driven development framework for testing JavaScript code.
 - [Sauce Labs](https://saucelabs.com/): Selenium testing, mobile testing, JS unit testing and more.
@@ -65,16 +65,10 @@ License | [![License](https://s3-ap-southeast-2.amazonaws.com/jc-general-images/
 
 ### Continuous Integration
 
-[![Build Status](https://travis-ci.org/javiercejudo/javiercejudo.com.svg?branch=master)](https://travis-ci.org/javiercejudo/javiercejudo.com)
-
 - [Travis CI](https://travis-ci.org/): free hosted continuous integration platform for the open source community.
 - [Heroku](https://www.heroku.com/): cloud computing designed and built for developers.
 
 ### Dependency Management
-
-[![Dependency Status](https://gemnasium.com/javiercejudo/javiercejudo.com.svg)](https://gemnasium.com/javiercejudo/javiercejudo.com)
-[![Dependency Status](https://david-dm.org/javiercejudo/javiercejudo.com.svg?theme=shields.io)](https://david-dm.org/javiercejudo/javiercejudo.com)
-[![devDependency Status](https://david-dm.org/javiercejudo/javiercejudo.com/dev-status.svg?theme=shields.io)](https://david-dm.org/javiercejudo/javiercejudo.com#info=devDependencies)
 
 - [NPM](https://npmjs.org/): the official package manager for [Node.js](http://nodejs.org/).
 - [Bower](http://bower.io/): a package manager for the web.
@@ -83,13 +77,10 @@ License | [![License](https://s3-ap-southeast-2.amazonaws.com/jc-general-images/
 
 ### Quality Tools
 
-[![Code Climate](https://codeclimate.com/github/javiercejudo/javiercejudo.com.png)](https://codeclimate.com/github/javiercejudo/javiercejudo.com)
-
 - [Code Climate](https://codeclimate.com): quality & security analysis for Ruby on Rails and JavaScript.
 - [Scrutinizer](https://scrutinizer-ci.com/): build quality software, better.
 
 ### Monitoring
-[![Uptime](https://www.statuscake.com/App/button/index.php?Track=EKqPqfW1dF&Days=30&Design=5)](https://www.statuscake.com)
 
 - [Loggly](https://www.loggly.com/): the world's most popular cloud-based log management service.
 - [StatusCake](https://www.statuscake.com): website uptime monitoring & alerts.
