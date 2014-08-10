@@ -1,4 +1,4 @@
-# javiercejudo [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/heroku/node-js-sample)
+# javiercejudo [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy?template=https://github.com/javiercejudo/javiercejudo.com)
 
 [![Build Status](https://travis-ci.org/javiercejudo/javiercejudo.com.svg?branch=master)](https://travis-ci.org/javiercejudo/javiercejudo.com)
 [![Coverage Status](https://coveralls.io/repos/javiercejudo/javiercejudo.com/badge.png?branch=master)](https://coveralls.io/r/javiercejudo/javiercejudo.com?branch=master)
