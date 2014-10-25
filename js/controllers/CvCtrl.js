@@ -57,19 +57,6 @@
           cv.dataRemote.$bindTo($scope, "cv.data");
         };
 
-        // $scope.onDataRemoteLoaded = function() {
-        //   var cv = $scope.cv;
-
-        //   cv.loading = false;
-        //   cv.data = cv.dataRemote;
-        // };
-
-        // $scope.onDataRemoteChange = function() {
-        //   var cv = $scope.cv;
-
-        //   cv.data = cv.dataRemote;
-        // };
-
         $scope.setCvData = function () {
           var cv = $scope.cv;
 
