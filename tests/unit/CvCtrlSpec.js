@@ -102,26 +102,6 @@
       });
     });
 
-    describe('onDataRemoteLoaded', function () {
-      it('should update CV data with the remote info upon loading', function () {
-        scope.cv.data = 'abc';
-        scope.cv.dataRemote = 'xyz';
-        scope.onDataRemoteLoaded();
-
-        expect(scope.cv.data).toBe('xyz');
-      });
-    });
-
-    describe('onDataRemoteChange', function () {
-      it('should update CV data with the remote info upon changes', function () {
-        scope.cv.data = 'abc';
-        scope.cv.dataRemote = 'xyz';
-        scope.onDataRemoteChange();
-
-        expect(scope.cv.data).toBe('xyz');
-      });
-    });
-
     describe('setAvailableLanguages', function () {
       it('should detect relevant keys from cv.data', function () {
         scope.cv.data = {
