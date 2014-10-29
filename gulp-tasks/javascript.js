@@ -25,7 +25,7 @@ gulp.task('js-app', function () {
     paths.bower + '/angular-sanitize/angular-sanitize.js',
     paths.bower + '/angular-touch/angular-touch.js',
     paths.bower + '/angular-animate/angular-animate.js',
-    paths.bower + '/angularfire/angularfire.js',
+    paths.bower + '/angularfire/dist/angularfire.js',
     paths.bower + '/ngstorage/ngStorage.js',
     paths.partials + '/templates.js',
     paths.bower + '/bootstrap/js/collapse.js',

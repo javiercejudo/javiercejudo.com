@@ -52,23 +52,9 @@
           }
 
           firebase.ref = new Firebase(JcFirebaseURL + '/cv');
-          cv.dataRemote = $firebase(firebase.ref);
+          cv.dataRemote = $firebase(firebase.ref).$asObject();
 
-          cv.dataRemote.$on("loaded", $scope.onDataRemoteLoaded);
-          cv.dataRemote.$on("change", $scope.onDataRemoteChange);
-        };
-
-        $scope.onDataRemoteLoaded = function() {
-          var cv = $scope.cv;
-
-          cv.loading = false;
-          cv.data = cv.dataRemote;
-        };
-
-        $scope.onDataRemoteChange = function() {
-          var cv = $scope.cv;
-
-          cv.data = cv.dataRemote;
+          cv.dataRemote.$bindTo($scope, "cv.data");
         };
 
         $scope.setCvData = function () {
@@ -129,7 +115,7 @@
             languages = [];
 
           angular.forEach(cv.data, function (language, urlKey) {
-            if (language.hasOwnProperty('pos')) {
+            if (language !== null && language.hasOwnProperty('pos')) {
               languages.push({
                 url: urlKey,
                 pos: language.pos
