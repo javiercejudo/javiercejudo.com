@@ -11,11 +11,11 @@ env:
   - BROWSER=PhantomJS
   - BROWSER=SL_Chrome
   - BROWSER=SL_Firefox
-  - BROWSER=SL_IE_9
+  # - BROWSER=SL_IE_9
   - BROWSER=SL_IE_10
   - BROWSER=SL_IE_11
-  - BROWSER=SL_Safari
-  - BROWSER=SL_Opera
+  # - BROWSER=SL_Safari
+  # - BROWSER=SL_Opera
   # - BROWSER=SL_Android
   # - BROWSER=SL_iOS
   global:
