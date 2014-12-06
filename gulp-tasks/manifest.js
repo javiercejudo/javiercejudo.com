@@ -13,7 +13,7 @@ gulp.task('manifest', function () {
   fontsURL = assetsURL + '/' + paths.fonts;
 
   Object.keys(revManifest).forEach(function(filename) {
-    assetsRev.push(assetsURL + '/' +revManifest[filename]);
+    assetsRev.push(assetsURL + '/' + revManifest[filename]);
   });
 
   options = {
