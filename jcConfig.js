@@ -1,7 +1,7 @@
 var constants, paths;
 
 constants = {
-  ASSETS_URL: '//dxnqhjr6ye2au.cloudfront.net'
+  ASSETS_URL: process.env.ASSETS_URL || 'build'
 };
 
 paths = {
