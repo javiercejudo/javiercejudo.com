@@ -5,7 +5,7 @@ function jcecho {
 }
 
 {
-    while [ ! -e /tmp/heroku.fcgi.5000.sock ]; do
+    while [[ ! -e /tmp/heroku.fcgi.5000.sock ]]; do
         sleep 1
     done;
 
@@ -15,6 +15,9 @@ function jcecho {
 
 jcecho "Starting application..."
 
-sudo foreman start
+if [[ $1 == "live" ]]
+then sudo foreman start --env=.env.live
+else sudo foreman start
+fi
 
 jcecho "Goodbye!"
