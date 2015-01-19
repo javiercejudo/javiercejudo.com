@@ -19,11 +19,13 @@
     },
     "S3_KEY": {
       "description": "(Optional) S3 key to publish assets on deployment.",
-      "value": ""
+      "value": "",
+      "required": false
     },
     "S3_SECRET": {
       "description": "(Optional) S3 secret to publish assets on deployment.",
-      "value": ""
+      "value": "",
+      "required": false
     }
   },
   "addons": []
