@@ -47,12 +47,12 @@
       expect(browser().location().path()).toBe("/game/2");
     });
 
-    it('should jump to the /game/256 path when /game/X is accessed, with X > 256', function() {
-      browser().navigateTo(linkPrefix + '/game/257');
-      expect(browser().location().path()).toBe("/game/256");
+    it('should jump to the /game/500 path when /game/X is accessed, with X > 500', function() {
+      browser().navigateTo(linkPrefix + '/game/501');
+      expect(browser().location().path()).toBe("/game/500");
 
       browser().navigateTo(linkPrefix + '/game/4242');
-      expect(browser().location().path()).toBe("/game/256");
+      expect(browser().location().path()).toBe("/game/500");
     });
 
     it('should jump to the /game/[int] path when /game/[int][string] is accessed, with X an integer', function() {

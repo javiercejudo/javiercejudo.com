@@ -43,6 +43,14 @@
    */
   angular.module('JcApp',  dependencies)
 
+    .constant('JC_ENV', ENV)
+
+    .config(['JC_ENV', '$compileProvider', function (JC_ENV, $compileProvider) {
+      if (JC_ENV !== 'dev') {
+        $compileProvider.debugInfoEnabled(false);
+      }
+    }])
+
     .config([
       '$routeProvider', '$locationProvider',
       function ($routeProvider, $locationProvider) {

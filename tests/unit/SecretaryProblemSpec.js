@@ -206,12 +206,12 @@
           expect(n).toBe(2);
         });
 
-        it('converts to 256 any n higher than that', function () {
-          routeParamsStub.n = '257';
+        it('converts to 500 any n higher than that', function () {
+          routeParamsStub.n = '501';
 
           var n = scope.processN();
 
-          expect(n).toBe(256);
+          expect(n).toBe(500);
         });
 
         it('coverts n to int', function () {

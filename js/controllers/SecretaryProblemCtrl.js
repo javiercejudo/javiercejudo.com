@@ -96,8 +96,8 @@
 
             if (candidateN < 2) {
               candidateN = 2;
-            } else if (candidateN > 256) {
-              candidateN = 256;
+            } else if (candidateN > 500) {
+              candidateN = 500;
             }
 
             if (candidateN.toString() === $routeParams.n) {
