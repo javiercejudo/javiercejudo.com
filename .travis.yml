@@ -45,7 +45,8 @@ matrix:
 before_install:
 - git fetch --unshallow
 - ./scripts/setup-timezone.sh
-- curl -L https://npmjs.org/install.sh | sh
+- npm install -g npm@latest
+# - curl -L https://npmjs.org/install.sh | sh
 
 # before_script:
 # - curl https://gist.githubusercontent.com/henrikhodne/9322897/raw/sauce-connect.sh | bash
