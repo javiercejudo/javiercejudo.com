@@ -11,13 +11,8 @@ env:
   - BROWSER=PhantomJS
   - BROWSER=SL_Chrome
   - BROWSER=SL_Firefox
-  # - BROWSER=SL_IE_9
   - BROWSER=SL_IE_10
   - BROWSER=SL_IE_11
-  # - BROWSER=SL_Safari
-  # - BROWSER=SL_Opera
-  # - BROWSER=SL_Android
-  # - BROWSER=SL_iOS
   global:
   - SAUCE_USERNAME=javiercejudo
   - secure: PP7iX1E/QBQJiUSSbFzZMWav4d3HXxe622KyOo97T36EHzz7Tm0ofZKRquAJVdmGTHJVE5WOII/dQ4wp9WvI1HSe6Mqn2oJfl5Bu86zk5KPooON4Jduz4V/bqtzwhCTDmkJ8QEGBAXSPQ2al9linVejXhWto3o2h8Iu5L5ZHMQY=
@@ -36,20 +31,10 @@ matrix:
   # - env: BROWSER=SL_Android
   # - env: BROWSER=SL_iOS
 
-# addons:
-#   sauce_connect:
-#     username: javiercejudo
-#     access_key:
-#       secure: ONViR0Xn0yRJ2JDnQjPO60MlOkypwd3fjFzuJ+KsMqMrWwJr2owYb03l3vJgRetdWRkwOF03KMx0M1+oVTgn1FA4cMvuoahoKq3rf1uqMM/rmfn1sm6hpTE/hgOZzhjZrW/kecKZQCqAMIuL3jrZqcui3LwM/9mlnGlh1nLc/jc=
-
 before_install:
 - git fetch --unshallow
 - ./scripts/setup-timezone.sh
 - npm install -g npm@latest
-# - curl -L https://npmjs.org/install.sh | sh
-
-# before_script:
-# - curl https://gist.githubusercontent.com/henrikhodne/9322897/raw/sauce-connect.sh | bash
 
 after_success:
 - gulp coveralls
