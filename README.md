@@ -23,7 +23,7 @@ Chat room | https://gitter.im/javiercejudo/javiercejudo.com
 Staging vs. Live<br>screenshots | http://jc-wraith-shots.s3-website-us-west-2.amazonaws.com
 License | [![Lincese](http://img.shields.io/badge/lincese-MIT-blue.svg?style=flat)](LICENSE)
 
-## Tenchologies
+## Technologies
 
 ### JavaScript
 
