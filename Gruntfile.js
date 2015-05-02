@@ -42,9 +42,7 @@ module.exports = function(grunt) {
         browsers: ['PhantomJS']
       },
       dist: {
-        browsers: [
-          process.env.BROWSER
-        ]
+        browsers: process.env.BROWSERS.split(',')
       },
       // e2e tests have their own config file
       // so we need to overwrite the general one
@@ -99,4 +97,3 @@ module.exports = function(grunt) {
     'karma:dist'
   ]);
 };
-
