@@ -47,7 +47,7 @@ module.exports = function(karma) {
     // use dolts reporter, as travis terminal does not support escaping sequences
     // possible values: 'dots', 'progress', 'junit', 'teamcity'
     // CLI --reporters progress
-    reporters: ['progress', 'coverage', 'saucelabs'],
+    reporters: ['dots', 'coverage', 'saucelabs'],
 
     // web server port
     // CLI --port 9876
@@ -75,7 +75,7 @@ module.exports = function(karma) {
       accessKey: env.SAUCE_ACCESS_KEY,
       build: env.TRAVIS_BUILD_NUMBER,
       tunnelIdentifier: env.TRAVIS_JOB_NUMBER,
-      startConnect: true,
+      startConnect: false,
       testName: 'javiercejudo.com: unit tests'
     },
 
@@ -146,7 +146,7 @@ module.exports = function(karma) {
 
     // If browser does not capture in given timeout [ms], kill it
     // CLI --capture-timeout 5000
-    captureTimeout: 120000,
+    captureTimeout: 180000,
 
     // Auto run tests on start (when browsers are captured) and exit
     // CLI --single-run --no-single-run
