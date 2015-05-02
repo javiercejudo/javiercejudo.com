@@ -20,9 +20,11 @@ gulp.task('publish-fonts', function () {
     rename = require('gulp-rename');
 
   publisher = awspublish.create({
-    key: process.env.S3_KEY,
-    secret: process.env.S3_SECRET,
-    bucket: 'jc-build'
+    params: {
+      Bucket: 'jc-build'
+    },
+    accessKeyId: process.env.S3_KEY,
+    secretAccessKey: process.env.S3_SECRET
   });
 
   headers = {
@@ -50,9 +52,11 @@ gulp.task('publish-build', ['publish-fonts'], function () {
     gzip = require('gulp-gzip');
 
   publisher = awspublish.create({
-    key: process.env.S3_KEY,
-    secret: process.env.S3_SECRET,
-    bucket: 'jc-build'
+    params: {
+      Bucket: 'jc-build'
+    },
+    accessKeyId: process.env.S3_KEY,
+    secretAccessKey: process.env.S3_SECRET
   });
 
   headers = {
@@ -76,9 +80,11 @@ gulp.task('publish-wraith', function () {
     awspublish = require('gulp-awspublish');
 
   publisher = awspublish.create({
-    key: process.env.S3_KEY,
-    secret: process.env.S3_SECRET,
-    bucket: 'jc-wraith-shots'
+    params: {
+      Bucket: 'jc-wraith-shots'
+    },
+    accessKeyId: process.env.S3_KEY,
+    secretAccessKey: process.env.S3_SECRET
   });
 
   return gulp.src(paths.wraith + '/shots/**/*')
@@ -99,9 +105,11 @@ gulp.task('publish-backup', ['download-data'], function () {
     date = new Date();
 
   publisher = awspublish.create({
-    key: process.env.S3_KEY,
-    secret: process.env.S3_SECRET,
-    bucket: 'jc-firebase'
+    params: {
+      Bucket: 'jc-firebase'
+    },
+    accessKeyId: process.env.S3_KEY,
+    secretAccessKey: process.env.S3_SECRET
   });
 
   return gulp.src(paths.data + '/min/c3jud0-export.json')
