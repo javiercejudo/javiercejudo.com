@@ -144,10 +144,6 @@ module.exports = function(karma) {
       'SL_IE_11'
     ],
 
-    // If browser does not capture in given timeout [ms], kill it
-    // CLI --capture-timeout 5000
-    captureTimeout: 180000,
-
     // Auto run tests on start (when browsers are captured) and exit
     // CLI --single-run --no-single-run
     singleRun: true,
@@ -156,8 +152,12 @@ module.exports = function(karma) {
     // CLI --report-slower-than 500
     reportSlowerThan: 0,
 
+    // If browser does not capture in given timeout [ms], kill it
+    // CLI --capture-timeout 5000
+    captureTimeout: 0,
+
     // How long to wait for a message from a browser before disconnecting it (in ms)
-    browserNoActivityTimeout: 300000,
+    browserNoActivityTimeout: 0,
 
     // compile coffee scripts
     preprocessors: {
