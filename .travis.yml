@@ -1,3 +1,5 @@
+sudo: false
+
 language: node_js
 
 node_js:
@@ -21,7 +23,7 @@ addons:
 
 before_install:
 - git fetch --unshallow
-- ./scripts/setup-timezone.sh
+# - ./scripts/setup-timezone.sh
 - npm install -g npm@latest
 
 after_success:
