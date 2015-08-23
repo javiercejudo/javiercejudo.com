@@ -20,7 +20,8 @@
   },
   "scripts": {
     "test": "grunt",
-    "postinstall": "./scripts/post-install.sh"
+    "postinstall": "./scripts/post-install.sh",
+    "local-server": "./scripts/local-server.sh"
   },
   "devDependencies": {
     "coveralls": "^2.10.0",
