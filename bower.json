@@ -8,22 +8,22 @@
     "tests"
   ],
   "devDependencies": {
-    "angular-mocks": "1.4.4",
-    "angular-scenario": "1.4.4"
+    "angular-mocks": "1.4.6",
+    "angular-scenario": "1.4.6"
   },
   "dependencies": {
-    "angular": "1.4.4",
-    "angular-route": "1.4.4",
-    "angular-sanitize": "1.4.4",
-    "angular-touch": "1.4.4",
-    "angular-animate": "1.4.4",
+    "angular": "1.4.6",
+    "angular-route": "1.4.6",
+    "angular-sanitize": "1.4.6",
+    "angular-touch": "1.4.6",
+    "angular-animate": "1.4.6",
     "angularfire": "^1.0.0",
-    "ngstorage": "^0.3.0",
+    "ngstorage": "^0.3.9",
     "jquery": "^2.1.4",
     "modernizr": "^2.8.3",
     "bootstrap": "^3.3.5",
-    "preboot": "*",
-    "html5shiv": "^3.7.0",
+    "preboot": "2.1.0",
+    "html5shiv": "^3.7.3",
     "firebase": "^2.2.4"
   }
 }
