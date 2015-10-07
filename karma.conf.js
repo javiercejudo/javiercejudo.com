@@ -5,15 +5,7 @@ module.exports = function(karma) {
 
   var
     env = process.env,
-    paths;
-
-  paths = {
-    bowerComponents: 'bower_components',
-    vendor: 'vendor',
-    tests: 'tests',
-    js: 'js',
-    partials: 'partials'
-  };
+    paths = require('./jcConfig').paths;
 
   karma.set({
     // base path, that will be used to resolve files and exclude
@@ -23,16 +15,16 @@ module.exports = function(karma) {
 
     // list of files / patterns to load in the browser
     files: [
-      paths.bowerComponents + '/firebase/firebase.js',
-      paths.bowerComponents + '/jquery/dist/jquery.js',
-      paths.bowerComponents + '/angular/angular.js',
-      paths.bowerComponents + '/angular-route/angular-route.js',
-      paths.bowerComponents + '/angular-mocks/angular-mocks.js',
-      paths.bowerComponents + '/angular-sanitize/angular-sanitize.js',
-      paths.bowerComponents + '/angular-touch/angular-touch.js',
-      paths.bowerComponents + '/angular-animate/angular-animate.js',
-      paths.bowerComponents + '/angularfire/dist/angularfire.js',
-      paths.bowerComponents + '/ngstorage/ngStorage.js',
+      paths.bower + '/firebase/firebase.js',
+      paths.bower + '/jquery/dist/jquery.js',
+      paths.npm + '/angular/angular.js',
+      paths.npm + '/angular-route/angular-route.js',
+      paths.npm + '/angular-mocks/angular-mocks.js',
+      paths.npm + '/angular-sanitize/angular-sanitize.js',
+      paths.npm + '/angular-touch/angular-touch.js',
+      paths.npm + '/angular-animate/angular-animate.js',
+      paths.bower + '/angularfire/dist/angularfire.js',
+      paths.bower + '/ngstorage/ngStorage.js',
       paths.partials + '/templates.js',
       paths.js + '/config.js',
       paths.js + '/JcApp.js',

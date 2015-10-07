@@ -8,6 +8,7 @@ paths = {
   assets: 'assets',
   build: 'build',
   bower: 'bower_components',
+  npm: 'node_modules',
   css: 'css',
   data: 'data',
   fonts: 'fonts',

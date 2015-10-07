@@ -13,11 +13,11 @@
   <!-- <script src="bower_components/modernizr/modernizr.js"></script> -->
   <script src="bower_components/jquery/dist/jquery.js"></script>
 
-  <script src="bower_components/angular/angular.js"></script>
-  <script src="bower_components/angular-route/angular-route.js"></script>
-  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-  <script src="bower_components/angular-touch/angular-touch.js"></script>
-  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="node_modules/angular/angular.js"></script>
+  <script src="node_modules/angular-route/angular-route.js"></script>
+  <script src="node_modules/angular-sanitize/angular-sanitize.js"></script>
+  <script src="node_modules/angular-touch/angular-touch.js"></script>
+  <script src="node_modules/angular-animate/angular-animate.js"></script>
 
   <script src="bower_components/angularfire/dist/angularfire.js"></script>
   <script src="bower_components/ngstorage/ngStorage.js"></script>
