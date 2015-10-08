@@ -64,7 +64,7 @@
     "gulp-htmlmin": "1.2.0",
     "gulp-jshint": "1.11.2",
     "gulp-less": "3.0.3",
-    "gulp-manifest": "0.0.10",
+    "gulp-manifest": "0.1.0",
     "gulp-minify-css": "1.2.1",
     "gulp-ng-html2js": "0.2.0",
     "gulp-notify": "2.2.0",
