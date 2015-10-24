@@ -11,7 +11,7 @@
     "angularfire": "^1.0.0",
     "ngstorage": "^0.3.9",
     "jquery": "^2.1.4",
-    "modernizr": "^2.8.3",
+    "modernizr": "^3.1.0",
     "bootstrap": "^3.3.5",
     "preboot": "2.1.0",
     "html5shiv": "^3.7.3",
