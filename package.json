@@ -52,7 +52,7 @@
     "angular-sanitize": "1.4.7",
     "angular-scenario": "1.4.7",
     "angular-touch": "1.4.7",
-    "bower": "1.6.3",
+    "bower": "1.6.5",
     "gulp": "3.9.0",
     "gulp-awspublish": "3.0.0",
     "gulp-clean": "0.3.1",
