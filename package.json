@@ -33,7 +33,7 @@
     "grunt-cli": "^0.1.13",
     "grunt-docular": "^0.2.4",
     "grunt-karma": "^0.12.1",
-    "grunt-modernizr": "^0.6.1",
+    "grunt-modernizr": "^1.0.1",
     "gulp-bump": "^1.0.0",
     "gulp-coveralls": "^0.1.4",
     "jasmine-core": "^2.3.4",
