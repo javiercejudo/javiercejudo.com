@@ -5,6 +5,7 @@
         "This file is @generated automatically"
     ],
     "hash": "e21debf4f2bd5518e6640f23cb5d9619",
+    "content-hash": "3006311d5e4f11f3197022a7ae3ea30c",
     "packages": [],
     "packages-dev": [
         {
@@ -13,12 +14,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/heroku/heroku-buildpack-php.git",
-                "reference": "04a7e4f82914744b261d7bae866c85926404964c"
+                "reference": "5d0f849ad6f76d7d62fb82036ebf6c4793b1707e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/04a7e4f82914744b261d7bae866c85926404964c",
-                "reference": "04a7e4f82914744b261d7bae866c85926404964c",
+                "url": "https://api.github.com/repos/heroku/heroku-buildpack-php/zipball/5d0f849ad6f76d7d62fb82036ebf6c4793b1707e",
+                "reference": "5d0f849ad6f76d7d62fb82036ebf6c4793b1707e",
                 "shasum": ""
             },
             "bin": [
@@ -49,7 +50,7 @@
                 "nginx",
                 "php"
             ],
-            "time": "2015-05-18 14:24:40"
+            "time": "2016-02-08 23:53:13"
         }
     ],
     "aliases": [],

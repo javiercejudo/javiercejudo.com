@@ -67,7 +67,7 @@ module.exports = function(karma) {
       accessKey: env.SAUCE_ACCESS_KEY,
       build: env.TRAVIS_BUILD_NUMBER,
       tunnelIdentifier: env.TRAVIS_JOB_NUMBER,
-      startConnect: false,
+      startConnect: true,
       testName: 'javiercejudo.com: unit tests'
     },
 
@@ -85,23 +85,16 @@ module.exports = function(karma) {
         browserName: 'safari',
         platform: 'OS X 10.9'
       },
-      'SL_IE_9': {
-        base: 'SauceLabs',
-        browserName: 'internet explorer',
-        platform: 'Windows 2008',
-        version: '9'
-      },
-      'SL_IE_10': {
-        base: 'SauceLabs',
-        browserName: 'internet explorer',
-        platform: 'Windows 2012',
-        version: '10'
-      },
       'SL_IE_11': {
         base: 'SauceLabs',
         browserName: 'internet explorer',
         platform: 'Windows 8.1',
         version: '11'
+      },
+      'SL_Edge': {
+        base: 'SauceLabs',
+        browserName: 'microsoftedge',
+        platform: 'Windows 10'
       },
       'SL_Opera': {
         base: 'SauceLabs',

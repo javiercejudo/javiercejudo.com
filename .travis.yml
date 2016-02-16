@@ -10,7 +10,7 @@ git:
 
 env:
   global:
-  # - BROWSERS=SL_Chrome,SL_Firefox,SL_IE_9,SL_IE_10,SL_IE_11,SL_Safari,SL_Opera
+  # - BROWSERS=SL_Chrome,SL_Firefox,SL_Safari,SL_Opera
   - BROWSERS=PhantomJS
   - SAUCE_USERNAME=javiercejudo
   - secure: PP7iX1E/QBQJiUSSbFzZMWav4d3HXxe622KyOo97T36EHzz7Tm0ofZKRquAJVdmGTHJVE5WOII/dQ4wp9WvI1HSe6Mqn2oJfl5Bu86zk5KPooON4Jduz4V/bqtzwhCTDmkJ8QEGBAXSPQ2al9linVejXhWto3o2h8Iu5L5ZHMQY=
