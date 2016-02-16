@@ -23,10 +23,10 @@ screen_widths:
 
 #Type page URL paths below, here are a couple of examples
 paths:
-  1_home: /
-  2_cv: /#!/cv/english
-  3_game: /#!/game/10
-  4_404: /#!/404
+  home: /#!/
+  cv: /#!/cv/english
+  game: /#!/game/10
+  error: /#!/404
 
 # If you don't want to name the paths explicitly you can use a yaml
 # collection as follows, and names will be derived by replacing / with _
