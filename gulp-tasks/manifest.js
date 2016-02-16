@@ -10,7 +10,7 @@ gulp.task('manifest', function () {
 
   revManifest = require('../rev-manifest.json');
   assetsURL = constants.ASSETS_URL;
-  fontsURL = assetsURL + '/' + paths.fonts;
+  fontsURL = paths.fonts;
 
   Object.keys(revManifest).forEach(function(filename) {
     assetsRev.push(assetsURL + '/' + revManifest[filename]);

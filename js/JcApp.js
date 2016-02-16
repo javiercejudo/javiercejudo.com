@@ -46,9 +46,7 @@
     .constant('JC_ENV', ENV)
 
     .config(['JC_ENV', '$compileProvider', function (JC_ENV, $compileProvider) {
-      if (JC_ENV !== 'dev') {
-        $compileProvider.debugInfoEnabled(false);
-      }
+        $compileProvider.debugInfoEnabled(JC_ENV === 'dev');
     }])
 
     .config([

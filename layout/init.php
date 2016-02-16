@@ -18,7 +18,7 @@ $build = function ($name, $ext) {
 };
 
 $almaArray = [
-    'data-ng-app="JcApp" data-ng-controller="AppCtrl"',
+    'data-ng-app="JcApp" data-ng-controller="AppCtrl" data-ng-strict-di',
     'lang="en"'
 ];
 
