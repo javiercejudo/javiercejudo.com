@@ -4,6 +4,9 @@ browser: "phantomjs"
 # (required) The directory that your screenshots will be stored in
 directory: 'shots'
 
+# (optional) JavaScript file to execute before taking screenshot of every path. Default: nil
+before_capture: 'javascript/wait--phantom.js'
+
 # (required) The domains to take screenshots of.
 domains:
   live: "http://www.javiercejudo.com"
@@ -26,4 +29,4 @@ paths:
 fuzz: '5%'
 
 # (optional) The maximum acceptable level of difference (in %) between two images before Wraith reports a failure. Default: 0
-threshold: 1
+threshold: 0.05
