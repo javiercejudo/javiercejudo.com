@@ -9,7 +9,7 @@ before_capture: 'javascript/wait--phantom.js'
 
 # (required) The domains to take screenshots of.
 domains:
-  live: "http://www.javiercejudo.com"
+  live: "https://www.javiercejudo.com"
   staging: "http://staging.javiercejudo.com"
 
 # (required) Screen widths (and optional height) to resize the browser to before taking the screenshot.
