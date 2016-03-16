@@ -24,8 +24,8 @@ addons:
 
 before_install:
 - git fetch --unshallow
-# - ./scripts/setup-timezone.sh
-- npm install -g npm@latest
+- ./scripts/setup-timezone.sh
+- npm install -g npm@latest phantomjs-prebuilt
 
 after_success:
 - gulp coveralls
