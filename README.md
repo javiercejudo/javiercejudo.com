@@ -51,7 +51,7 @@ License | [![Lincese](http://img.shields.io/badge/lincese-MIT-blue.svg?style=fla
 ### Testing
 
 - [Karma](http://karma-runner.github.io/): spectacular test runner for JavaScript.
-- [Jasmine](http://pivotal.github.io/jasmine/): behavior-driven development framework for testing JavaScript code.
+- [Jasmine](https://jasmine.github.io/): behavior-driven development framework for testing JavaScript code.
 - [Sauce Labs](https://saucelabs.com/): Selenium testing, mobile testing, JS unit testing and more.
 - [Wraith](https://github.com/BBC-News/wraith): front-end regression testing tool.
 - [Coveralls](https://coveralls.io/): test coverage history and statistics.
