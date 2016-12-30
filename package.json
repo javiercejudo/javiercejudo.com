@@ -2,8 +2,8 @@
   "name": "javiercejudo.com",
   "version": "1.2.6",
   "engines": {
-    "node": "0.10.x",
-    "npm": "2.1.x"
+    "node": "7.x",
+    "npm": "3.x"
   },
   "description": "Javier Cejudo's personal website.",
   "author": "Javier Cejudo",
