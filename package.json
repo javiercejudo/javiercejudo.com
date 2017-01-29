@@ -37,7 +37,7 @@
     "gulp-bump": "^2.0.0",
     "gulp-coveralls": "^0.1.4",
     "jasmine-core": "^2.3.4",
-    "karma": "^0.13.14",
+    "karma": "^1.4.1",
     "karma-chrome-launcher": "^0.2.0",
     "karma-coverage": "^0.5.3",
     "karma-firefox-launcher": "^0.1.6",
