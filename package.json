@@ -19,8 +19,8 @@
     "url": "https://github.com/javiercejudo/javiercejudo.com.git"
   },
   "scripts": {
-    "php:dev": "foreman run php -S localhost:5000",
-    "php:live": "foreman run -e .env.live php -S localhost:5000",
+    "php:dev": "nf run php -- -S localhost:5000",
+    "php:live": "nf run -e .env.live php -- -S localhost:5000",
     "test": "grunt",
     "postinstall": "./scripts/post-install.sh",
     "local-server": "./scripts/local-server.sh"
@@ -29,6 +29,7 @@
     "angular-mocks": "1.5.2",
     "angular-scenario": "1.5.2",
     "coveralls": "^2.11.4",
+    "foreman": "^2.0.0",
     "grunt": "^0.4.5",
     "grunt-cli": "^1.0.0",
     "grunt-docular": "^0.2.4",

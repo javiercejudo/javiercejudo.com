@@ -26,6 +26,7 @@ before_install:
 - git fetch --unshallow
 #- ./scripts/setup-timezone.sh
 - npm install -g npm@latest phantomjs-prebuilt
+- rvm install 2.1.5
 
 after_success:
 - gulp coveralls
