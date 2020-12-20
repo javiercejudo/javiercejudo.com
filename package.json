@@ -1,9 +1,9 @@
 {
   "name": "javiercejudo.com",
-  "version": "1.2.6",
+  "version": "2.0.0-alpha",
   "engines": {
-    "node": "7.x",
-    "npm": "3.x"
+    "node": "14.x",
+    "npm": "6.x"
   },
   "description": "Javier Cejudo's personal website.",
   "author": "Javier Cejudo",
@@ -19,65 +19,14 @@
     "url": "https://github.com/javiercejudo/javiercejudo.com.git"
   },
   "scripts": {
-    "php:dev": "nf run php -- -S localhost:5000",
-    "php:live": "nf run -e .env.live php -- -S localhost:5000",
-    "test": "grunt",
-    "postinstall": "./scripts/post-install.sh",
-    "local-server": "./scripts/local-server.sh"
+    "build": "./scripts/build/index.js",
+    "clean": "./scripts/build/clean.js",
+    "serve": "serve -s build"
   },
   "devDependencies": {
-    "angular-mocks": "1.5.2",
-    "angular-scenario": "1.5.2",
-    "coveralls": "^2.11.4",
-    "foreman": "^2.0.0",
-    "grunt": "^0.4.5",
-    "grunt-cli": "^1.0.0",
-    "grunt-docular": "^0.2.4",
-    "grunt-karma": "^0.12.1",
-    "grunt-modernizr": "^1.0.1",
-    "gulp-bump": "^2.0.0",
-    "gulp-coveralls": "^0.1.4",
-    "jasmine-core": "^2.3.4",
-    "karma": "^0.13.14",
-    "karma-chrome-launcher": "^0.2.0",
-    "karma-coverage": "^0.5.3",
-    "karma-firefox-launcher": "^0.1.6",
-    "karma-html2js-preprocessor": "^0.1.0",
-    "karma-jasmine": "^0.3.6",
-    "karma-ng-scenario": "^0.1.0",
-    "karma-phantomjs-launcher": "^1.0.0",
-    "karma-sauce-launcher": "^0.3.0",
-    "phantomjs-prebuilt": "^2.1.4"
+    "serve": "^11.3.2"
   },
   "dependencies": {
-    "angular": "1.5.2",
-    "angular-animate": "1.5.2",
-    "angular-route": "1.5.2",
-    "angular-sanitize": "1.5.2",
-    "angular-touch": "1.5.2",
-    "bower": "^1.6.5",
-    "gulp": "^3.9.0",
-    "gulp-awspublish": "^3.0.1",
-    "gulp-clean": "^0.3.1",
-    "gulp-concat": "^2.6.0",
-    "gulp-csslint": "^0.2.0",
-    "gulp-cssmin": "^0.1.7",
-    "gulp-download": "^0.0.1",
-    "gulp-gzip": "^1.2.0",
-    "gulp-htmlmin": "^1.2.0",
-    "gulp-jshint": "^2.0.0",
-    "gulp-less": "^3.0.3",
-    "gulp-manifest": "^0.1.0",
-    "gulp-minify-css": "^1.2.1",
-    "gulp-ng-html2js": "^0.2.0",
-    "gulp-notify": "^2.2.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-rev": "^7.0.0",
-    "gulp-uglify": "^1.4.2",
-    "gulp-uncss": "^1.0.4",
-    "gulp-util": "^3.0.7",
-    "jshint": "^2.9.1",
-    "require-dir": "^0.3.0",
-    "run-sequence": "^1.1.4"
+    "mustache": "^4.1.0"
   }
 }

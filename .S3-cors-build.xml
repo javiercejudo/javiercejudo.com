@@ -1,7 +1,0 @@
-<CORSConfiguration>
- <CORSRule>
-   <AllowedOrigin>http://*.javiercejudo.com</AllowedOrigin>
-   <AllowedMethod>GET</AllowedMethod>
-   <AllowedHeader>*</AllowedHeader>
- </CORSRule>
-</CORSConfiguration>
