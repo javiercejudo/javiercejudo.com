@@ -6,9 +6,7 @@ const onReadPage = ({viewData, resolve, reject}) => (err, page) => {
     reject(err);
   }
 
-  resolve(
-    Mustache.render(page.toString(), viewData).replace(/^\s*[\r\n]/gm)
-  );
+  resolve(Mustache.render(page.toString(), viewData));
 };
 
 const buildPage = async ({sourcePath, viewData}) => {

@@ -1,2 +1,5 @@
 node_modules/
+generated/
+dist/
+.cache/
 /build/

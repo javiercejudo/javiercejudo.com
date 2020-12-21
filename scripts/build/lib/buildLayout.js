@@ -1,4 +1,6 @@
 const fs = require('fs');
+var mkdirp = require('mkdirp');
+var path = require('path');
 const Mustache = require('mustache');
 
 const onWrite = ({outputPath, resolve, reject}) => err => {
@@ -20,7 +22,15 @@ const onReadLayout = ({viewData, outputPath, resolve, reject}) => (
   }
 
   const output = Mustache.render(layout.toString(), viewData);
-  fs.writeFile(outputPath, output, onWrite({outputPath, resolve, reject}));
+
+  mkdirp(path.dirname(outputPath), function (err) {
+    if (err) {
+      reject(err);
+      return;
+    }
+
+    fs.writeFile(outputPath, output, onWrite({outputPath, resolve, reject}));
+  });
 };
 
 const buildLayout = ({sourcePath, outputPath, viewData}) => {
