@@ -1,6 +1,6 @@
 @import '../../node_modules/normalize.css/normalize.css';
 
 body {
-  background-color: black;
-  color: white;
+  background-color: rgb(219, 219, 219);
+  color: rgb(32, 32, 32);
 }

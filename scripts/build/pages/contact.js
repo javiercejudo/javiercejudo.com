@@ -2,29 +2,22 @@ const path = require('path');
 const buildPage = require('../lib/buildPage');
 const buildLayout = require('../lib/buildLayout');
 
-const buildProject = async project => {
+const buildHome = async () => {
   try {
     const body = await buildPage({
-      sourcePath: path.join('src', 'pages', 'project', 'template.mustache'),
-      viewData: {
-        name: project.name,
-      },
+      sourcePath: path.join('src', 'pages', 'contact', 'template.html'),
+      viewData: {},
     });
 
-    const outputPathParts = [
-      'src',
-      'generated',
-      ...project.path.split('/'),
-      'index.html',
-    ];
+    const outputPathParts = ['src', 'generated', 'contact.html'];
 
     const doneMessage = await buildLayout({
       sourcePath: path.join('src', 'layouts', 'main.mustache'),
       outputPath: path.join(...outputPathParts),
       viewData: {
         homePath: '../'.repeat(outputPathParts.length - 2),
-        title: `Project: ${project.name} - javiercejudo.com`,
-        description: project.description,
+        title: 'Contact me - javiercejudo.com',
+        description: 'Get in touch',
         body,
       },
     });
@@ -35,4 +28,4 @@ const buildProject = async project => {
   }
 };
 
-module.exports = buildProject;
+module.exports = buildHome;
