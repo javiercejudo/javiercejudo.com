@@ -1,5 +1,8 @@
 node_modules/
-generated/
 dist/
 .cache/
 /build/
+
+src/static/*
+!src/static/css/
+!src/static/js/

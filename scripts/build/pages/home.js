@@ -10,13 +10,13 @@ const buildHome = async () => {
       viewData,
     });
 
-    const outputPathParts = ['src', 'generated', 'index.html'];
+    const outputPathParts = ['src', 'static', 'index.html'];
 
     const doneMessage = await buildLayout({
       sourcePath: path.join('src', 'layouts', 'main.mustache'),
       outputPath: path.join(...outputPathParts),
       viewData: {
-        homePath: '../'.repeat(outputPathParts.length - 2),
+        static: '../'.repeat(outputPathParts.length - 3) ,
         title: 'Homepage - javiercejudo.com',
         description: 'Javier Cejudo’s personal website',
         body,

@@ -1,10 +1,10 @@
 {{#hasProjects}}
-<ul>
-  {{#projects}}
-  <li><a href="{{path}}">{{name}}</a></li>
-  {{/projects}}
-</ul>
+  <ul>
+    {{#projects}}
+      <li><a href="{{{path}}}">{{name}}</a></li>
+    {{/projects}}
+  </ul>
 {{/hasProjects}}
 {{^hasProjects}}
-No projects
+  No projects
 {{/hasProjects}}

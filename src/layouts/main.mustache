@@ -7,13 +7,22 @@
 
   <meta name="description" content="{{description}}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <link rel="stylesheet" type="text/css" href="{{{homePath}}}css/common.css">
+  {{! Parcel does not seem to look at the base tag, so despite this we will }}
+  {{! use `static` throught the template. We still need the base tag so that }}
+  {{! the browser can use it as the final build uses relative paths. }}
+  <base href="{{{static}}}">
+  <link rel="stylesheet" type="text/css" href="{{{static}}}css/common.css">
 </head>
 
 <body>
-  <header><a href="/">Home</a> - <a href="/contact">Contact</a></header>
+  <header>
+    <a href="{{{static}}}index.html">Home</a>
+    -
+    <a href="{{{static}}}contact.html">Contact</a>
+  </header>
+
   {{{body}}}
+
   <footer>Footer</footer>
 </body>
 

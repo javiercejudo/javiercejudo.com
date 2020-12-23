@@ -2,5 +2,5 @@
 
 set -e
 
-./scripts/build/pages.js
-npx parcel build src/generated/**/*.html
+./scripts/build/pages/index.js
+npx parcel build --public-url '.' src/static/**/*.html

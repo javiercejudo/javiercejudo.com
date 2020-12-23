@@ -12,18 +12,13 @@ const buildProject = async project => {
       },
     });
 
-    const outputPathParts = [
-      'src',
-      'generated',
-      ...project.path.split('/'),
-      'index.html',
-    ];
+    const outputPathParts = ['src', 'static', ...project.path.split('/')];
 
     const doneMessage = await buildLayout({
       sourcePath: path.join('src', 'layouts', 'main.mustache'),
       outputPath: path.join(...outputPathParts),
       viewData: {
-        homePath: '../'.repeat(outputPathParts.length - 2),
+        static: '../'.repeat(outputPathParts.length - 3),
         title: `Project: ${project.name} - javiercejudo.com`,
         description: project.description,
         body,
