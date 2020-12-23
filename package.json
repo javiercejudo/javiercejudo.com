@@ -22,7 +22,7 @@
     "build-pages": "./scripts/build/pages.js",
     "serve": "./scripts/build/serve.sh",
     "watch": "./scripts/build/watch.sh",
-    "livereload": "livereload dist -w 1000",
+    "livereload": "livereload dist",
     "build": "npm run build-pages && parcel build src/generated/*.html"
   },
   "devDependencies": {

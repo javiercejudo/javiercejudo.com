@@ -8,6 +8,7 @@ const buildProject = async project => {
       sourcePath: path.join('src', 'pages', 'project', 'template.mustache'),
       viewData: {
         name: project.name,
+        description: project.description,
       },
     });
 
