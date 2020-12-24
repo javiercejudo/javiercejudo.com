@@ -6,7 +6,6 @@ const buildContact = async () => {
   try {
     const body = await buildPage({
       sourcePath: path.join('src', 'pages', 'contact', 'template.html'),
-      viewData: {},
     });
 
     const outputPathParts = ['src', 'static', 'contact.html'];
