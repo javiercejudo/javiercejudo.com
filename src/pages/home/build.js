@@ -1,12 +1,12 @@
 const path = require('path');
-const buildPage = require('../lib/buildPage');
-const pageViewData = require('../../../src/pages/home/data');
+const buildPage = require('../../../lib/buildPage');
+const pageViewData = require('./data');
 
 const buildHome = async () => {
   const outputPathArray = ['src', 'static', 'index.html'];
 
   await buildPage({
-    pageSourcePath: path.join('src', 'pages', 'home', 'template.mustache'),
+    pageSourcePath: path.join(__dirname, 'template.mustache'),
     pageViewData,
     outputPathArray,
     templateViewData: {

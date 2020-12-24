@@ -7,4 +7,6 @@ npx nodemon \
   --watch src/static/js \
   --watch scripts/build \
   -e mustache,html,css,js \
-  -x ./scripts/build/index.sh
+  -x ./scripts/build.sh
+
+exit 0

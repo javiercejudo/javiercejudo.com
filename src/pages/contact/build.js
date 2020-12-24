@@ -1,11 +1,11 @@
 const path = require('path');
-const buildPage = require('../lib/buildPage');
+const buildPage = require('../../../lib/buildPage');
 
 const buildContact = async () => {
   const outputPathArray = ['src', 'static', 'contact.html'];
 
   await buildPage({
-    pageSourcePath: path.join('src', 'pages', 'contact', 'template.html'),
+    pageSourcePath: path.join(__dirname, 'template.html'),
     outputPathArray,
     templateViewData: {
       title: 'Contact me - javiercejudo.com',

@@ -19,11 +19,10 @@
     "url": "https://github.com/javiercejudo/javiercejudo.com.git"
   },
   "scripts": {
-    "build-pages": "./scripts/build/pages.js",
-    "serve": "./scripts/build/serve.sh",
-    "watch": "./scripts/build/watch.sh",
-    "livereload": "livereload dist",
-    "build": "./scripts/build/index.sh"
+    "build": "./scripts/build.sh",
+    "watch": "./scripts/watch.sh",
+    "serve": "./scripts/serve.sh",
+    "livereload": "livereload dist"
   },
   "devDependencies": {
     "livereload": "^0.9.1",
