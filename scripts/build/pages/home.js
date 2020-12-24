@@ -1,32 +1,19 @@
 const path = require('path');
 const buildPage = require('../lib/buildPage');
-const buildLayout = require('../lib/buildLayout');
-const viewData = require('../../../src/pages/home/data');
+const pageViewData = require('../../../src/pages/home/data');
 
 const buildHome = async () => {
-  try {
-    const body = await buildPage({
-      sourcePath: path.join('src', 'pages', 'home', 'template.mustache'),
-      viewData,
-    });
+  const outputPathArray = ['src', 'static', 'index.html'];
 
-    const outputPathParts = ['src', 'static', 'index.html'];
-
-    const doneMessage = await buildLayout({
-      sourcePath: path.join('src', 'layouts', 'main.mustache'),
-      outputPath: path.join(...outputPathParts),
-      viewData: {
-        static: '../'.repeat(outputPathParts.length - 3) ,
-        title: 'Homepage - javiercejudo.com',
-        description: 'Javier Cejudo’s personal website',
-        body,
-      },
-    });
-
-    console.log(doneMessage);
-  } catch (err) {
-    console.error(err);
-  }
+  await buildPage({
+    pageSourcePath: path.join('src', 'pages', 'home', 'template.mustache'),
+    pageViewData,
+    outputPathArray,
+    templateViewData: {
+      title: 'Homepage - javiercejudo.com',
+      description: 'Javier Cejudo’s personal website',
+    },
+  });
 };
 
 module.exports = buildHome;
