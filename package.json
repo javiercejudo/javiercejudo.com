@@ -20,9 +20,9 @@
   },
   "scripts": {
     "build": "./scripts/build.sh",
-    "watch": "./scripts/watch.sh",
+    "dev": "./scripts/watch.sh",
     "serve": "./scripts/serve.sh",
-    "livereload": "livereload dist"
+    "livereload": "livereload src/static"
   },
   "devDependencies": {
     "livereload": "^0.9.1",
@@ -30,6 +30,7 @@
     "nodemon": "^2.0.6",
     "normalize.css": "^8.0.1",
     "parcel-bundler": "^1.12.4",
-    "serve": "^11.3.2"
+    "serve": "^11.3.2",
+    "turbolinks": "^5.2.0"
   }
 }

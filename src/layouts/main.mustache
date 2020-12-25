@@ -7,11 +7,19 @@
 
   <meta name="description" content="{{description}}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  {{! Parcel does not seem to look at the base tag, so despite this we will }}
-  {{! use `static` throught the template. We still need the base tag so that }}
-  {{! the browser can use it as the final build uses relative paths. }}
-  <base href="{{{static}}}">
+
+  {{#isProd}}
+    {{! Parcel does not seem to look at the base tag, so despite this we will }}
+    {{! use `static` throught the template. We still need the base tag so that }}
+    {{! the browser can use it as the final build uses relative paths. }}
+    <base href="{{{static}}}">
+  {{/isProd}}
+
   <link rel="stylesheet" type="text/css" href="{{{static}}}css/common.css">
+
+  {{#isProd}}
+    <script src="{{{static}}}/js/turbolinks.js" defer></script>
+  {{/isProd}}
 </head>
 
 <body>
