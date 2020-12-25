@@ -2,5 +2,5 @@
 
 set -e
 
-./scripts/build-pages.js
+npx nf -e .env,.env.prod run ./scripts/build-pages.js
 npx parcel build --public-url '.' src/static/**/*.html

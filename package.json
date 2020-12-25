@@ -21,10 +21,11 @@
   "scripts": {
     "build": "./scripts/build.sh",
     "dev": "./scripts/watch.sh",
-    "serve": "./scripts/serve.sh",
+    "start": "./scripts/serve.sh",
     "livereload": "livereload src/static"
   },
   "devDependencies": {
+    "foreman": "^3.0.1",
     "livereload": "^0.9.1",
     "mustache": "^4.1.0",
     "nodemon": "^2.0.6",

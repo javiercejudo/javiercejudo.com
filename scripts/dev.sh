@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-./scripts/build-pages.js
+npx nf run ./scripts/build-pages.js
