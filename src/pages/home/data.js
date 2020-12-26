@@ -1,8 +1,8 @@
-const projects = require('../project/data')
+const projectsData = require('../project/data');
 
-const viewData = {
-  hasProjects: projects.length > 0,
-  projects,
+const homeData = {
+  hasProjects: projectsData.length > 0,
+  projects: projectsData,
 };
 
-module.exports = viewData;
+module.exports = homeData;

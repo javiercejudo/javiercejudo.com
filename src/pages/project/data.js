@@ -1,4 +1,4 @@
-const projects = [
+const projectsData = [
   {
     name: 'javiercejudo.com',
     description: 'My personal website',
@@ -18,4 +18,4 @@ const projects = [
   },
 ];
 
-module.exports = projects;
+module.exports = projectsData;

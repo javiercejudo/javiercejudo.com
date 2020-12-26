@@ -1,20 +1,18 @@
 const path = require('path');
+const Mustache = require('mustache');
 const buildPage = require('../../../lib/buildPage');
 
 const buildProject = async project => {
-  const outputPathArray = ['src', 'static', ...project.path.split('/')];
-
   await buildPage({
     pageSourcePath: path.join(__dirname, 'template.mustache'),
-    pageViewData: {
-      name: project.name,
-      description: project.description,
-    },
-    outputPathArray,
-    templateViewData: {
-      title: `Project: ${project.name} - javiercejudo.com`,
-      description: project.description,
-    },
+    outputPathArray: ['src', 'static', ...project.path.split('/')],
+    transformPage: page => Mustache.render(page, project),
+    transformLayout: (layout, viewData) =>
+      Mustache.render(layout, {
+        ...viewData,
+        title: `Project: ${project.name} - javiercejudo.com`,
+        description: project.description,
+      }),
   });
 };
 

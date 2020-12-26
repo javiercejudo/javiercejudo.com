@@ -9,16 +9,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   {{#isProd}}
-    {{! Parcel does not seem to look at the base tag, so despite this we will }}
-    {{! use `static` throught the template. We still need the base tag so that }}
-    {{! the browser can use it as the final build uses relative paths. }}
+    {{! Parcel does not seem to look at the base tag, so `static` is still }}
+    {{! used throughout the template. In prod, all assets and links to files }}
+    {{! are relative to `static`, hence why we need this base tag. }}
     <base href="{{{static}}}">
   {{/isProd}}
 
   <link rel="stylesheet" type="text/css" href="{{{static}}}css/common.css">
 
   {{#isProd}}
-    <script src="{{{static}}}/js/app.js" defer></script>
+    <script src="{{{static}}}js/app.js" defer></script>
   {{/isProd}}
   {{#isDev}}
     <!-- <script src="{{{static}}}../../node_modules/turbolinks/dist/turbolinks.js"></script> -->

@@ -8,5 +8,3 @@ npx nodemon \
   --watch scripts \
   -e mustache,html,css,js,sh \
   -x ./scripts/dev.sh
-
-exit 0
