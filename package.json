@@ -25,6 +25,7 @@
     "dev": "./scripts/watch.sh & npm run start & npm run livereload"
   },
   "devDependencies": {
+    "@hotwired/turbo": "^7.0.0-beta.1",
     "foreman": "^3.0.1",
     "http-server": "^0.12.3",
     "livereload": "^0.9.1",
@@ -34,7 +35,6 @@
     "parcel-bundler": "^1.12.4",
     "parcel-plugin-compress": "^2.0.2",
     "quicklink": "^2.0.0",
-    "serve": "^11.3.2",
     "turbolinks": "^5.2.0"
   }
 }
