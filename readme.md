@@ -1,8 +1,9 @@
 # Setup
 
     npm install
-    npm run watch
-    npm run livereload
+
+# Developing locally
+    npm run dev
 
 Go to http://localhost:5000.  
 Activate the [LiveReload][livereload] extension.

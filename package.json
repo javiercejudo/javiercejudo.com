@@ -20,17 +20,20 @@
   },
   "scripts": {
     "build": "./scripts/build.sh",
-    "dev": "./scripts/watch.sh",
     "start": "./scripts/serve.sh",
-    "livereload": "livereload src/static"
+    "livereload": "livereload src/static",
+    "dev": "./scripts/watch.sh & npm run start & npm run livereload"
   },
   "devDependencies": {
     "foreman": "^3.0.1",
+    "http-server": "^0.12.3",
     "livereload": "^0.9.1",
     "mustache": "^4.1.0",
     "nodemon": "^2.0.6",
     "normalize.css": "^8.0.1",
     "parcel-bundler": "^1.12.4",
+    "parcel-plugin-compress": "^2.0.2",
+    "quicklink": "^2.0.0",
     "serve": "^11.3.2",
     "turbolinks": "^5.2.0"
   }
