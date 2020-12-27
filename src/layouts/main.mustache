@@ -9,21 +9,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   {{#isProd}}
-    {{! Parcel does not seem to look at the base tag, so `static` is still }}
+    {{! Parcel does not seem to look at the base tag, so `baseHref` is still }}
     {{! used throughout the template. In prod, all assets and links to files }}
-    {{! are relative to `static`, hence why we need this base tag. }}
-    <base href="{{{static}}}">
+    {{! are relative to `baseHref`, hence why we need this base tag. }}
+    <base href="{{{baseHref}}}">
   {{/isProd}}
 
-  <link rel="stylesheet" type="text/css" href="{{{static}}}css/common.css">
+  <link rel="stylesheet" type="text/css" href="{{{baseHref}}}css/common.css">
 
   {{#isProd}}
-    <script src="{{{static}}}js/app.js" defer></script>
+    <script src="{{{baseHref}}}js/app.js" defer></script>
   {{/isProd}}
   {{#isDev}}
-    <!-- <script src="{{{static}}}../../node_modules/turbolinks/dist/turbolinks.js"></script> -->
-    <!-- <script src="{{{static}}}../../node_modules/@hotwired/turbo/dist/turbo.es5-umd.js"></script> -->
-    <script src="{{{static}}}../../node_modules/quicklink/dist/quicklink.umd.js"></script>
+    <!-- <script src="{{{baseHref}}}../../node_modules/turbolinks/dist/turbolinks.js"></script> -->
+    <!-- <script src="{{{baseHref}}}../../node_modules/@hotwired/turbo/dist/turbo.es5-umd.js"></script> -->
+    <script src="{{{baseHref}}}../../node_modules/quicklink/dist/quicklink.umd.js"></script>
     <script>
       window.addEventListener('load', () => {
         // Turbolinks.start();
@@ -35,11 +35,11 @@
 
 <body>
   <header>
-    <a href="{{{static}}}index.html">Home</a>
+    <a href="{{{baseHref}}}index.html">Home</a>
     -
-    <a href="{{{static}}}about-me.html">About me</a>
+    <a href="{{{baseHref}}}about-me.html">About me</a>
     -
-    <a href="{{{static}}}contact.html">Contact</a>
+    <a href="{{{baseHref}}}contact.html">Contact</a>
   </header>
 
   {{{body}}}

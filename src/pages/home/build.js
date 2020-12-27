@@ -4,9 +4,10 @@ const homeData = require('./data');
 
 const buildHome = async ({buildPage}) => {
   await buildPage({
+    outputPath: path.join('src', 'static', 'index.html'),
     pageSourcePath: path.join(__dirname, 'template.mustache'),
-    outputPathArray: ['src', 'static', 'index.html'],
-    transformPage: page => Mustache.render(page, homeData),
+    transformPage: (page, viewData) =>
+      Mustache.render(page, {...viewData, ...homeData}),
     transformLayout: (layout, viewData) =>
       Mustache.render(layout, {
         ...viewData,

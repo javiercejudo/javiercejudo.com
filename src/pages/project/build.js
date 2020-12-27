@@ -3,9 +3,10 @@ const Mustache = require('mustache');
 
 const buildProject = project => async ({buildPage}) => {
   await buildPage({
+    outputPath: path.join('src', 'static', ...project.path.split('/')),
     pageSourcePath: path.join(__dirname, 'template.mustache'),
-    outputPathArray: ['src', 'static', ...project.path.split('/')],
-    transformPage: page => Mustache.render(page, project),
+    transformPage: (page, viewData) =>
+      Mustache.render(page, {...viewData, ...project}),
     transformLayout: (layout, viewData) =>
       Mustache.render(layout, {
         ...viewData,

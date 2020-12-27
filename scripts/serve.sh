@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -x
+
 npx http-server . \
   --gzip \
   --brotli \
