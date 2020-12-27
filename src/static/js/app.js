@@ -1,9 +1,9 @@
 import {listen} from 'quicklink';
+import {start} from '@hotwired/turbo';
 // import Turbolinks from 'turbolinks';
-// import {start} from '@hotwired/turbo';
 
 window.addEventListener('load', () => {
   listen();
+  start();
   // Turbolinks.start();
-  // start();
 });
