@@ -1,16 +1,16 @@
 const path = require('path');
 const Mustache = require('mustache');
 
-const buildAbout = async ({buildPage}) => {
+const buildAbout = async ({buildPage, templateTransform}) => {
   await buildPage({
     relativeOutputPath: 'about-me.html',
     pageSourcePath: path.join(__dirname, 'template.html'),
-    transformLayout: (layout, viewData) =>
-      Mustache.render(layout, {
-        ...viewData,
+    transformLayout: templateTransform({
+      data: {
         title: 'About me - javiercejudo.com',
         description: 'Who am I?',
-      }),
+      },
+    }),
   });
 };
 
