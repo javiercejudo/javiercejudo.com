@@ -1,16 +1,13 @@
 const path = require('path');
-const Mustache = require('mustache');
 
-const buildContact = async ({buildPage, templateTransform}) => {
+const buildContact = async ({buildPage}) => {
   await buildPage({
-    relativeOutputPath: 'contact.html',
     pageSourcePath: path.join(__dirname, 'template.html'),
-    transformLayout: templateTransform({
-      data: {
-        title: 'Contact me - javiercejudo.com',
-        description: 'Get in touch',
-      },
-    }),
+    relativeOutputPath: 'contact.html',
+    layoutData: {
+      title: 'Contact me - javiercejudo.com',
+      description: 'Get in touch',
+    },
   });
 };
 

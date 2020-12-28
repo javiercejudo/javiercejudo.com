@@ -1,18 +1,15 @@
 const path = require('path');
-const Mustache = require('mustache');
 const homeData = require('./data');
 
-const buildHome = async ({buildPage, templateTransform}) => {
+const buildHome = async ({buildPage}) => {
   await buildPage({
-    relativeOutputPath: 'index.html',
     pageSourcePath: path.join(__dirname, 'template.mustache'),
-    transformPage: templateTransform({data: homeData}),
-    transformLayout: templateTransform({
-      data: {
-        title: 'Homepage - javiercejudo.com',
-        description: 'Javier Cejudo’s personal website',
-      },
-    }),
+    relativeOutputPath: 'index.html',
+    data: homeData,
+    layoutData: {
+      title: 'Homepage - javiercejudo.com',
+      description: 'Javier Cejudo’s personal website',
+    },
   });
 };
 
