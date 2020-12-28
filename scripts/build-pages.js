@@ -10,7 +10,9 @@ const buildProject = require('../src/pages/project/build');
 const projects = require('../src/pages/project/data');
 
 const buildPage = molino({
-  defaultTemplateSourcePath: path.join('src', 'layouts', 'main.mustache'),
+  defaultTemplatesFolderPath: path.join('src', 'layouts'),
+  defaultTemplatePath: 'main.mustache',
+  defaultOutputFolderPath: path.join('src', 'static'),
   publicFolderDepth: 2,
 });
 

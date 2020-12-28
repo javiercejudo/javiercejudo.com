@@ -3,7 +3,7 @@ const Mustache = require('mustache');
 
 const buildContact = async ({buildPage}) => {
   await buildPage({
-    outputPath: path.join('src', 'static', 'contact.html'),
+    relativeOutputPath: 'contact.html',
     pageSourcePath: path.join(__dirname, 'template.html'),
     transformLayout: (layout, viewData) =>
       Mustache.render(layout, {
