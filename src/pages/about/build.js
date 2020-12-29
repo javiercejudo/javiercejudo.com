@@ -1,6 +1,6 @@
 const path = require('path');
 
-const buildAbout = async ({buildPage}) => {
+const buildAbout = async ({buildPage}) =>
   await buildPage({
     pageSourcePath: path.join(__dirname, 'template.html'),
     relativeOutputPath: 'about-me.html',
@@ -9,6 +9,5 @@ const buildAbout = async ({buildPage}) => {
       description: 'Who am I?',
     },
   });
-};
 
 module.exports = buildAbout;

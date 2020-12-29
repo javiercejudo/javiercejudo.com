@@ -1,7 +1,7 @@
 const path = require('path');
 const homeData = require('./data');
 
-const buildHome = async ({buildPage}) => {
+const buildHome = async ({buildPage}) =>
   await buildPage({
     pageSourcePath: path.join(__dirname, 'template.mustache'),
     relativeOutputPath: 'index.html',
@@ -11,6 +11,5 @@ const buildHome = async ({buildPage}) => {
       description: 'Javier Cejudo’s personal website',
     },
   });
-};
 
 module.exports = buildHome;

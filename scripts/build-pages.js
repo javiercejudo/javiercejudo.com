@@ -3,7 +3,6 @@
 const path = require('path');
 const Mustache = require('mustache');
 const molino = require('../lib/molino');
-const molinoTemplateAdapter = require('../lib/molinoTemplateAdapter');
 
 const buildHome = require('../src/pages/home/build');
 const buildContact = require('../src/pages/contact/build');
@@ -28,4 +27,17 @@ const builders = [
   ...projects.map(buildProject),
 ];
 
-builders.forEach(builder => builder({buildPage, render}));
+Promise.all(builders.map(builder => builder({buildPage, render})))
+  .then(pagesInfo => {
+    pagesInfo.map(pageInfo => console.log(`Built ${pageInfo.outputPath}`));
+
+    console.log('----');
+    console.log('Done');
+    console.log('----');
+  })
+  .catch(err => {
+    console.log('----');
+    console.log('Someting went wrong:');
+    console.log(err);
+    console.log('----');
+  });

@@ -1,6 +1,6 @@
 const path = require('path');
 
-const buildProject = project => async ({buildPage}) => {
+const buildProject = project => async ({buildPage}) =>
   await buildPage({
     pageSourcePath: path.join(__dirname, 'template.mustache'),
     relativeOutputPath: path.join(...project.path.split('/')),
@@ -10,6 +10,5 @@ const buildProject = project => async ({buildPage}) => {
     },
     data: project,
   });
-};
 
 module.exports = buildProject;
