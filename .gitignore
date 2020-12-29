@@ -2,6 +2,7 @@ node_modules/
 dist/
 .cache/
 /build/
+molino-registry.txt
 
 src/static/*
 !src/static/css/

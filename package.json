@@ -22,7 +22,7 @@
     "build": "./scripts/build.sh",
     "start": "./scripts/serve.sh",
     "livereload": "livereload src/static",
-    "dev": "./scripts/watch.sh & npm run start & npm run livereload"
+    "dev": "npm run start & npm run livereload & ./scripts/watch.sh"
   },
   "devDependencies": {
     "@hotwired/turbo": "^7.0.0-beta.1",
