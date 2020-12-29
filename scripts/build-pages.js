@@ -11,13 +11,14 @@ const buildAbout = require('../src/pages/about/build');
 const buildProject = require('../src/pages/project/build');
 const projects = require('../src/pages/project/data');
 
-const templateTransform = molinoTemplateAdapter({render: Mustache.render});
+const render = Mustache.render;
 
 const buildPage = molino({
   layoutsFolderPath: path.join('src', 'layouts'),
   layoutPath: 'main.mustache',
   outputFolderPath: path.join('src', 'static'),
-  templateTransform,
+  // you may add partials or other Mustache-specific options here
+  render: (template, viewData) => Mustache.render(template, viewData),
 });
 
 const builders = [
@@ -27,4 +28,4 @@ const builders = [
   ...projects.map(buildProject),
 ];
 
-builders.forEach(builder => builder({buildPage, templateTransform}));
+builders.forEach(builder => builder({buildPage, render}));

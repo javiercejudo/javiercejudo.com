@@ -1,0 +1,10 @@
+{{#hasProjects}}
+  <ul>
+    {{#projects}}
+      <li><a href="{{{baseHref}}}{{{path}}}">{{name}}</a></li>
+    {{/projects}}
+  </ul>
+{{/hasProjects}}
+{{^hasProjects}}
+  No projects
+{{/hasProjects}}
