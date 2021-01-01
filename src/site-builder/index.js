@@ -19,7 +19,7 @@ const siteBuilder = ({pageBuilders}) => async ({
     );
 
     pagesInfo.forEach(pageInfo => {
-      registryStream.write(`${pageInfo.outputPath} \n`);
+      registryStream.write(`${pageInfo.outputPath}\n`);
       console.log(`Built ${pageInfo.outputPath}`);
     });
 

@@ -20,15 +20,19 @@
   },
   "scripts": {
     "build": "./scripts/build.sh",
+    "clean": "./scripts/clean.js && delete-empty ./src/static && del dist",
     "start": "./scripts/serve.sh",
     "livereload": "livereload src/static",
     "dev": "npm run start & npm run livereload & ./scripts/watch.sh"
   },
   "devDependencies": {
     "@hotwired/turbo": "^7.0.0-beta.1",
+    "del-cli": "^3.0.1",
+    "delete-empty": "^3.0.0",
     "foreman": "^3.0.1",
     "http-server": "^0.12.3",
     "livereload": "^0.9.1",
+    "make-dir": "^3.1.0",
     "mustache": "^4.1.0",
     "nodemon": "^2.0.6",
     "normalize.css": "^8.0.1",
