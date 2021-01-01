@@ -34,7 +34,6 @@
     "normalize.css": "^8.0.1",
     "parcel-bundler": "^1.12.4",
     "parcel-plugin-compress": "^2.0.2",
-    "quicklink": "^2.0.0",
-    "turbolinks": "^5.2.0"
+    "quicklink": "^2.0.0"
   }
 }

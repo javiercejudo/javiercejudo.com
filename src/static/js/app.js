@@ -1,9 +1,7 @@
-import {listen} from 'quicklink';
-import {start} from '@hotwired/turbo';
-// import Turbolinks from 'turbolinks';
+import {listen} from '../../../node_modules/quicklink/dist/quicklink.mjs';
+import {start} from '../../../node_modules/@hotwired/turbo/dist/turbo.es2017-esm.js';
 
 window.addEventListener('load', () => {
   listen();
   start();
-  // Turbolinks.start();
 });
