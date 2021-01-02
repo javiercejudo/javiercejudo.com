@@ -1,6 +1,14 @@
 @import '../../../node_modules/normalize.css/normalize.css';
+@import './border-box.css';
+
+html {
+  /* Prevent system color scheme’s background color being used in Firefox, IE, and Opera. */
+  /* See https://css-tricks.com/just-one-of-those-weird-things-about-css-background-on-body/ */
+  background-color: #fff;
+}
 
 body {
-  background-color: rgb(219, 219, 219);
-  color: rgb(32, 32, 32);
+  /* borrowed from GitHub */
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji;
 }

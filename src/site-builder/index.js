@@ -11,6 +11,9 @@ const siteBuilder = ({pageBuilders}) => async ({
     outputFolderPath: path.join('src', 'static'),
     // you may add partials or other Mustache-specific options here
     render: (template, viewData) => Mustache.render(template, viewData),
+    data: {
+      currentYear: new Date().getFullYear(),
+    },
   });
 
   try {

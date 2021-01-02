@@ -8,7 +8,7 @@ const buildProject = project => async ({buildPage}) =>
       title: `Project: ${project.name} - javiercejudo.com`,
       description: project.description,
     },
-    data: project,
+    pageData: project,
   });
 
 module.exports = buildProject;

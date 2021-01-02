@@ -9,7 +9,7 @@ const buildHome = async ({buildPage}) =>
       title: 'Homepage - javiercejudo.com',
       description: 'Javier Cejudo’s personal website',
     },
-    data: homeData,
+    pageData: homeData,
   });
 
 module.exports = buildHome;

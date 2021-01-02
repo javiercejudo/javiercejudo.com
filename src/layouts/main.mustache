@@ -26,17 +26,23 @@
 </head>
 
 <body>
-  <header>
-    <a href="{{{baseHref}}}index.html">Home</a>
-    -
-    <a href="{{{baseHref}}}about-me/index.html">About me</a>
-    -
-    <a href="{{{baseHref}}}contact/index.html">Contact</a>
-  </header>
+  <div class="page">
+    <header>
+      <nav>
+        <ul>
+          <li><a href="{{{baseHref}}}index.html">Home</a></li>
+          <li><a href="{{{baseHref}}}about-me/index.html">About me</a></li>
+          <li><a href="{{{baseHref}}}contact/index.html">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
 
-  {{{body}}}
+    <div class="content">
+      {{{body}}}
+    </div>
 
-  <footer>Footer</footer>
+    <footer>© javiercejudo.com 2013-{{currentYear}}</footer>
+  </div>
 </body>
 
 </html>
