@@ -8,21 +8,21 @@
   <meta name="description" content="{{description}}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  {{#isProd}}
+  {{#molino.isProd}}
     {{! Parcel does not seem to look at the base tag, so `baseHref` is still }}
     {{! used throughout the template. In prod, all assets and links to files }}
     {{! are relative to `baseHref`, hence why we need this base tag. }}
-    <base href="{{{baseHref}}}">
-  {{/isProd}}
+    <base href="{{{molino.baseHref}}}">
+  {{/molino.isProd}}
 
-  <link rel="stylesheet" type="text/css" href="{{{baseHref}}}css/common/index.css">
+  <link rel="stylesheet" type="text/css" href="{{{molino.baseHref}}}css/common/index.css">
 
-  {{#isProd}}
-    <script src="{{{baseHref}}}js/app.js" defer></script>
-  {{/isProd}}
-  {{^isProd}}
-    <script type="module" src="{{{baseHref}}}js/app.js"></script>
-  {{/isProd}}
+  {{#molino.isProd}}
+    <script src="{{{molino.baseHref}}}js/app.js" defer></script>
+  {{/molino.isProd}}
+  {{^molino.isProd}}
+    <script type="module" src="{{{molino.baseHref}}}js/app.js"></script>
+  {{/molino.isProd}}
 </head>
 
 <body>
@@ -30,15 +30,15 @@
     <header>
       <nav>
         <ul>
-          <li><a href="{{{baseHref}}}index.html">Home</a></li>
-          <li><a href="{{{baseHref}}}about-me/index.html">About me</a></li>
-          <li><a href="{{{baseHref}}}contact/index.html">Contact</a></li>
+          <li><a href="{{{molino.baseHref}}}index.html">Home</a></li>
+          <li><a href="{{{molino.baseHref}}}about-me/index.html">About me</a></li>
+          <li><a href="{{{molino.baseHref}}}contact/index.html">Contact</a></li>
         </ul>
       </nav>
     </header>
 
     <div class="content">
-      {{{body}}}
+      {{{molino.body}}}
     </div>
 
     <footer>© javiercejudo.com 2013-{{currentYear}}</footer>

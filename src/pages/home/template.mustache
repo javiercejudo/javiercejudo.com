@@ -1,10 +1,10 @@
-{{#hasProjects}}
+{{#data.hasProjects}}
   <ul>
-    {{#projects}}
-      <li><a href="{{{baseHref}}}{{{path}}}">{{name}}</a></li>
-    {{/projects}}
+    {{#data.projects}}
+      <li><a href="{{{molino.baseHref}}}{{{path}}}">{{name}}</a></li>
+    {{/data.projects}}
   </ul>
-{{/hasProjects}}
-{{^hasProjects}}
+{{/data.hasProjects}}
+{{^data.hasProjects}}
   No projects
-{{/hasProjects}}
+{{/data.hasProjects}}
