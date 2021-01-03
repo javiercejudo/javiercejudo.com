@@ -1,0 +1,19 @@
+header {
+  border-bottom: 1px solid #222;
+}
+
+header > nav > ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+}
+
+header > nav > ul > li {
+  margin: 5px;
+  padding: 10px;
+}
+
+header > nav a {
+  text-decoration: none;
+}

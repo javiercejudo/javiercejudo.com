@@ -1,0 +1,13 @@
+body {
+  color: #ccc;
+}
+
+a {
+  color: #ccc;
+  transition: color 200ms ease-in;
+}
+
+a:hover,
+a:focus {
+  color: #fff;
+}

@@ -1,10 +1,8 @@
-@import '../../../node_modules/normalize.css/normalize.css';
-@import './border-box.css';
-
 html {
   /* Prevent system color scheme’s background color being used in Firefox, IE, and Opera. */
   /* See https://css-tricks.com/just-one-of-those-weird-things-about-css-background-on-body/ */
-  background-color: #fff;
+  background-color: #000;
+  margin: 0;
 }
 
 body {
