@@ -3,9 +3,9 @@
 
 <head>
   <meta charset="utf-8">
-  <title>{{title}}</title>
+  <title>{{data.title}}</title>
 
-  <meta name="description" content="{{description}}">
+  <meta name="description" content="{{data.description}}">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   {{#molino.isProd}}
@@ -41,7 +41,7 @@
       {{{molino.body}}}
     </div>
 
-    <footer>© javiercejudo.com 2013-{{currentYear}}</footer>
+    <footer>© javiercejudo.com 2013-{{data.currentYear}}</footer>
   </div>
 </body>
 
