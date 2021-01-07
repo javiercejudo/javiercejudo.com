@@ -2,6 +2,15 @@ header {
   border-bottom: 1px solid #222;
 }
 
+header > nav {
+  display: flex;
+  align-items: center;
+}
+
+header > nav > .logo-link {
+  margin: 0 15px;
+}
+
 header > nav > ul {
   margin: 0;
   padding: 0;
