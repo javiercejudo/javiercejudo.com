@@ -38,7 +38,7 @@
     "normalize.css": "^8.0.1",
     "parcel-bundler": "^1.12.4",
     "parcel-plugin-compress": "^2.0.2",
-    "parcel-plugin-remove-index-html": "^0.1.0",
+    "parcel-plugin-remove-index-html": "javiercejudo/parcel-plugin-remove-index-html#relative-and-search-and-hash-support",
     "quicklink": "^2.0.0"
   }
 }
