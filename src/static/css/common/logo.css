@@ -20,9 +20,8 @@
 }
 
 .logo .logo-c {
-  /* border-top-width: 2px; */
-  /* border-left-width: 2px; */
-  /* border-bottom-width: 2px; */
   border-color: #000;
   background-color: #fff;
+  border-top-left-radius: 999px;
+  border-bottom-left-radius: 999px;
 }

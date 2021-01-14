@@ -9,6 +9,7 @@ header > nav {
 
 header > nav > .logo-link {
   margin: 0 15px;
+  margin-right: 0;
 }
 
 header > nav > ul {
