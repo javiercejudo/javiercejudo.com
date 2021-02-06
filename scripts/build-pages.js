@@ -17,7 +17,7 @@ const pageBuilders = [
   ...projects.map(buildProject),
 ];
 
-const siteBuilder = async ({registryStream}) => {
+const siteBuilder = async () => {
   const buildPage = ({
     pageSourcePath,
     relativeOutputPath,
@@ -46,11 +46,12 @@ const siteBuilder = async ({registryStream}) => {
     );
 
     pagesInfo.forEach(pageInfo => {
-      registryStream.write(`${pageInfo.outputPath}\n`);
       console.log(`Built ${pageInfo.outputPath}`);
     });
 
-    console.log('Done');
+    console.log('Done.');
+
+    return pagesInfo;
   } catch (err) {
     console.log('Someting went wrong:');
     console.log(err);
