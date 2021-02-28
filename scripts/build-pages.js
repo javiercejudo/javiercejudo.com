@@ -2,20 +2,12 @@
 
 const path = require('path');
 const Mustache = require('mustache');
+const makeMd = require('markdown-it');
 const molino = require('../lib/molino');
 
-const buildHome = require('../src/pages/home/build');
-const buildContact = require('../src/pages/contact/build');
-const buildAbout = require('../src/pages/about/build');
-const buildProject = require('../src/pages/project/build');
-const projects = require('../src/pages/project/data');
+const pageBuilders = require('../src/pages/builders');
 
-const pageBuilders = [
-  buildHome,
-  buildContact,
-  buildAbout,
-  ...projects.map(buildProject),
-];
+const md = makeMd();
 
 const siteBuilder = async () => {
   const mustacheRender = (template, viewData) =>
@@ -47,7 +39,7 @@ const siteBuilder = async () => {
   try {
     const pagesInfo = await Promise.all(
       pageBuilders.map(pageBuilder =>
-        pageBuilder({buildPage, mustacheRender, identityRender})
+        pageBuilder({buildPage, mustacheRender, identityRender, md})
       )
     );
 

@@ -33,6 +33,7 @@
     "http-server": "^0.12.3",
     "livereload": "^0.9.1",
     "make-dir": "^3.1.0",
+    "markdown-it": "^12.0.4",
     "mustache": "^4.1.0",
     "nodemon": "^2.0.6",
     "normalize.css": "^8.0.1",

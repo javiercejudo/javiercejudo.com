@@ -1,4 +1,7 @@
+<p>Hey, I'm Javier!</p>
+
 {{#data.hasProjects}}
+  <h2>Projects</h2>
   <ul>
     {{#data.projects}}
       <li><a href="{{{molino.baseHref}}}{{{path}}}">{{name}}</a></li>
@@ -8,3 +11,17 @@
 {{^data.hasProjects}}
   No projects
 {{/data.hasProjects}}
+
+{{#data.hasPosts}}
+  <h2>Blog posts</h2>
+  <ul>
+    {{#data.posts}}
+      <li>
+        <a href="{{{molino.baseHref}}}{{{outputPath}}}">{{title}}</a>
+      </li>
+    {{/data.posts}}
+  </ul>
+{{/data.hasPosts}}
+{{^data.hasPosts}}
+  No blog posts
+{{/data.hasPosts}}
