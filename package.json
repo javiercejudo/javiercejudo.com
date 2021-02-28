@@ -19,6 +19,7 @@
     "url": "https://github.com/javiercejudo/javiercejudo.com.git"
   },
   "scripts": {
+    "prebuild": "npm run clean",
     "build": "./scripts/build.sh",
     "clean": "./scripts/clean.js && delete-empty ./src/static && del dist",
     "start": "./scripts/serve.sh",
