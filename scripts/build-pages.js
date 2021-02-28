@@ -18,31 +18,36 @@ const pageBuilders = [
 ];
 
 const siteBuilder = async () => {
+  const mustacheRender = (template, viewData) =>
+    Mustache.render(template, viewData);
+  const identityRender = x => x;
+
   const buildPage = ({
-    pageSourcePath,
-    relativeOutputPath,
     pageData = {},
     layoutData = {},
+    renderPage = mustacheRender,
+    renderLayout = mustacheRender,
+    ...other
   }) => {
     const currentYear = new Date().getFullYear();
-    const render = (template, viewData) => Mustache.render(template, viewData);
 
     return molino.buildPage({
-      pageSourcePath,
-      relativeOutputPath,
       layoutsFolderPath: path.join('src', 'layouts'),
       layoutFilename: 'main.mustache',
       outputFolderPath: path.join('src', 'static'),
       pageData: {currentYear, ...pageData},
       layoutData: {currentYear, ...layoutData},
-      renderPage: render,
-      renderLayout: render,
+      renderPage,
+      renderLayout,
+      ...other,
     });
   };
 
   try {
     const pagesInfo = await Promise.all(
-      pageBuilders.map(pageBuilder => pageBuilder({buildPage}))
+      pageBuilders.map(pageBuilder =>
+        pageBuilder({buildPage, mustacheRender, identityRender})
+      )
     );
 
     pagesInfo.forEach(pageInfo => {
