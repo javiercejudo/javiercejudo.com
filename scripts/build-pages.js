@@ -27,19 +27,20 @@ const siteBuilder = async () => {
     layoutData = {},
     renderPage = mustacheRender,
     renderLayout = mustacheRender,
-    ...other
+    ...passThrough
   }) => {
-    const currentYear = new Date().getFullYear();
+    const commonData = {
+      currentYear: new Date().getFullYear(),
+    };
 
     return molino.buildPage({
-      layoutsFolderPath: path.join('src', 'layouts'),
-      layoutFilename: 'main.mustache',
+      layoutPath: path.join('src', 'layouts', 'main.mustache'),
       outputFolderPath: path.join('src', 'static'),
-      pageData: {currentYear, ...pageData},
-      layoutData: {currentYear, ...layoutData},
+      pageData: {...commonData, ...pageData},
+      layoutData: {...commonData, ...layoutData},
       renderPage,
       renderLayout,
-      ...other,
+      ...passThrough,
     });
   };
 
