@@ -26,6 +26,21 @@
 </head>
 
 <body>
+  {{#data.styles}}
+    <link rel="stylesheet" type="text/css" href="{{{molino.baseHref}}}css/{{{.}}}">
+  {{/data.styles}}
+
+  {{#molino.isProd}}
+    {{#data.scripts}}
+      <script src="{{{molino.baseHref}}}js/{{{.}}}" defer></script>
+    {{/data.scripts}}
+  {{/molino.isProd}}
+  {{^molino.isProd}}
+    {{#data.scripts}}
+      <script type="module" src="{{{molino.baseHref}}}js/{{{.}}}"></script>
+    {{/data.scripts}}
+  {{/molino.isProd}}
+
   <div class="page">
     <header>
       <nav>
