@@ -8,8 +8,6 @@ const buildHome = async ({buildPage}) =>
     layoutData: {
       title: 'Homepage - javiercejudo.com',
       description: 'Javier Cejudo’s personal website',
-      scripts: ['home/index.js'],
-      styles: ['home/index.css'],
     },
     pageData: homeData,
   });

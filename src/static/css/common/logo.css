@@ -1,25 +1,45 @@
 .logo {
+  --logo-letter-height: 18px;
+  --logo-j-width: var(--logo-letter-height);
+  --logo-j-radius: calc(var(--logo-letter-height) / 3.6);
+  --logo-c-width: calc(var(--logo-letter-height) / 1.2);
+  --logo-spacing: calc(var(--logo-letter-height) / 6);
+  --logo-radius: calc(var(--logo-letter-height) / 6);
+  --logo-border-width: calc(var(--logo-letter-height) / 9);
+}
+
+.logo {
   display: flex;
   align-items: center;
-  padding: 3px 0 3px 0px;
-  border: 2px solid #fff;
+  padding: var(--logo-spacing) 0 var(--logo-spacing) 0px;
+  border: var(--logo-border-width) solid #fff;
+  border-radius: var(--logo-radius);
 }
 
 .logo span {
-  height: 18px;
-  width: 15px;
+  height: var(--logo-letter-height);
   border-color: #fff;
   border-style: solid;
   border-width: 0;
 }
 
 .logo .logo-j {
-  border-bottom-width: 18px;
-  border-left: 18px solid transparent;
-  margin-right: 3px;
+  margin-right: var(--logo-spacing);
+  width: var(--logo-j-width);
+  background: #fff;
+  border-bottom-right-radius: var(--logo-j-radius);
+}
+
+.logo .logo-j2 {
+  border-color: #000;
+  border-top-width: var(--logo-letter-height);
+  border-right: var(--logo-j-width) solid transparent;
+  margin-right: var(--logo-spacing);
+  position: absolute;
 }
 
 .logo .logo-c {
+  width: var(--logo-c-width);
   border-color: #000;
   background-color: #fff;
   border-top-left-radius: 999px;
