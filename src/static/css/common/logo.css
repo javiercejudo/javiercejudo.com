@@ -14,6 +14,7 @@
   padding: var(--logo-spacing) 0 var(--logo-spacing) 0px;
   border: var(--logo-border-width) solid #fff;
   border-radius: var(--logo-radius);
+  background: black;
 }
 
 .logo span {
@@ -36,6 +37,7 @@
   border-right: var(--logo-j-width) solid transparent;
   margin-right: var(--logo-spacing);
   position: absolute;
+  /* top: 0; */
 }
 
 .logo .logo-c {

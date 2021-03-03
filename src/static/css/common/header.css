@@ -5,11 +5,12 @@ header {
 header > nav {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 header > nav > .logo-link {
-  margin: 0 15px;
-  margin-right: 0;
+  margin: 5px;
+  padding: 10px;
 }
 
 header > nav > ul {

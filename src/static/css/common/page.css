@@ -1,6 +1,26 @@
 .page {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   min-height: 100vh;
+}
+
+header,
+.content {
+  padding: 0 8px;
+}
+
+.content {
+  flex: 1;
+}
+
+.container {
+  max-width: 1024px;
+  margin: 0 auto;
+}
+
+@media all and (min-width: 768px) {
+  header,
+  .content {
+    padding: 0 32px;
+  }
 }
