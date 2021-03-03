@@ -4,7 +4,7 @@
   <div id="root"></div>
 
   {{#data.hasProjects}}
-    <h2>Projects</h2>
+    <h2><a href="{{{molino.baseHref}}}projects/index.html">Projects</a></h2>
     <ul>
       {{#data.projects}}
         <li><a href="{{{molino.baseHref}}}{{{path}}}">{{name}}</a></li>
@@ -16,7 +16,7 @@
   {{/data.hasProjects}}
 
   {{#data.hasPosts}}
-    <h2>Blog posts</h2>
+    <h2><a href="{{{molino.baseHref}}}blog/index.html">Blog</a></h2>
     <ul>
       {{#data.posts}}
         <li>
