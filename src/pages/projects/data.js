@@ -1,4 +1,4 @@
-const projectsData = require('../project/data');
+const projectsData = require('./projects-collection/data');
 
 const data = {
   hasProjects: projectsData.length > 0,

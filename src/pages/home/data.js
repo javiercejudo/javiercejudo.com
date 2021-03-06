@@ -1,5 +1,5 @@
-const postsData = require('../posts-collection/data');
-const projectsData = require('../project/data');
+const postsData = require('../blog/posts-collection/data');
+const projectsData = require('../projects/projects-collection/data');
 
 const homeData = {
   hasProjects: projectsData.length > 0,

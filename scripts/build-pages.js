@@ -5,7 +5,7 @@ const Mustache = require('mustache');
 const makeMd = require('markdown-it');
 const molino = require('../lib/molino');
 
-const pageBuilders = require('../src/pages/builders');
+const builders = require('../src/pages/builders');
 
 const md = makeMd();
 
@@ -38,7 +38,7 @@ const siteBuilder = async () => {
 
   try {
     const pagesInfo = await Promise.all(
-      pageBuilders.map(pageBuilder =>
+      builders.map(pageBuilder =>
         pageBuilder({buildPage, mustacheRender, identityRender, md})
       )
     );

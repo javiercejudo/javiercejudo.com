@@ -1,4 +1,4 @@
-const postsData = require('../posts-collection/data');
+const postsData = require('./posts-collection/data');
 
 const blogData = {
   hasPosts: postsData.length > 0,
