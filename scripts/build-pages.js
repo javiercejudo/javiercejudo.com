@@ -3,11 +3,22 @@
 const path = require('path');
 const Mustache = require('mustache');
 const makeMd = require('markdown-it');
+const hljs = require('highlight.js');
 const molino = require('../lib/molino');
 
 const builders = require('../src/pages/builders');
 
-const md = makeMd();
+const md = makeMd({
+  highlight: function (str, lang) {
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        return hljs.highlight(lang, str).value;
+      } catch (__) {}
+    }
+
+    return ''; // use external default escaping
+  },
+});
 
 const siteBuilder = async () => {
   const mustacheRender = (template, viewData) =>

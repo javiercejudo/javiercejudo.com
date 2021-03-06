@@ -11,6 +11,11 @@ const buildPosts = postData => ({buildPage, md}) =>
         }
 
         const content = md.render(markdownBuffer.toString());
+        const styles = ['blog-post/index.css'];
+
+        if (postData.withHighlightJs !== false) {
+          styles.push('highlight-js/index.css');
+        }
 
         const page = buildPage({
           pageSourcePath: path.join(__dirname, 'template.mustache'),
@@ -18,6 +23,7 @@ const buildPosts = postData => ({buildPage, md}) =>
           layoutData: {
             title: `${postData.title} - example.com`,
             description: postData.description,
+            styles,
           },
           pageData: {
             ...postData,

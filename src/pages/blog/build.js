@@ -3,7 +3,7 @@ const blogData = require('./data');
 
 const buildBlog = async ({buildPage}) =>
   await buildPage({
-    pageSourcePath: path.join(__dirname, 'template.mustache'),
+    pageSourcePath: path.join(__dirname, 'index.mustache'),
     relativeOutputPath: path.join('blog', 'index.html'),
     layoutData: {
       title: 'Blog - javiercejudo.com',
