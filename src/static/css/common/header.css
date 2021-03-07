@@ -20,16 +20,17 @@ header > nav > ul {
   display: flex;
 }
 
-header > nav > ul > li {
-  margin: calc(5rem / 16);
-  padding: calc(10rem / 16);
-}
+/* header > nav > ul > li {
+} */
 
 header > nav a {
   text-decoration: none;
+  margin: calc(5rem / 16);
+  padding: calc(10rem / 16);
+  display: inline-block;
+  position: relative;
 }
 
-header > nav a.is-active{
-  font-weight: bold;
+/* header > nav a.is-active {
   color: #fff;
-}
+} */
