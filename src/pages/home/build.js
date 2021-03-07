@@ -8,6 +8,7 @@ const buildHome = async ({buildPage}) =>
     layoutData: {
       title: 'Homepage - javiercejudo.com',
       description: 'Javier Cejudo’s personal website',
+      pageIsHome: true,
     },
     pageData: homeData,
   });

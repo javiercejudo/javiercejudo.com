@@ -9,8 +9,8 @@ header > nav {
 }
 
 header > nav > .logo-link {
-  margin: 5px;
-  padding: 10px;
+  margin: calc(5rem / 16);
+  padding: calc(10rem / 16);
 }
 
 header > nav > ul {
@@ -21,10 +21,15 @@ header > nav > ul {
 }
 
 header > nav > ul > li {
-  margin: 5px;
-  padding: 10px;
+  margin: calc(5rem / 16);
+  padding: calc(10rem / 16);
 }
 
 header > nav a {
   text-decoration: none;
+}
+
+header > nav a.is-active{
+  font-weight: bold;
+  color: #fff;
 }

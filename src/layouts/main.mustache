@@ -52,8 +52,22 @@
           </div>
         </a>
         <ul>
-          <li><a href="{{{molino.baseHref}}}index.html">Javier Cejudo</a></li>
-          <li><a href="{{{molino.baseHref}}}menu/index.html">Menu</a></li>
+          <li>
+            <a
+              href="{{{molino.baseHref}}}index.html"
+              class="nav-home {{#data.pageIsHome}}is-active{{/data.pageIsHome}}"
+            >
+              Home
+            </a>
+          </li>
+          <li>
+            <a
+              href="{{{molino.baseHref}}}menu/index.html"
+              class="nav-menu {{#data.pageIsMenu}}is-active{{/data.pageIsMenu}}"
+            >
+              Menu
+            </a>
+          </li>
         </ul>
       </nav>
     </header>

@@ -1,9 +1,10 @@
 body {
-  color: #ccc;
+  color: #ddd;
+  line-height: 1.4;
 }
 
 a {
-  color: #ccc;
+  color: #ddd;
   transition: color 200ms ease-in;
 }
 

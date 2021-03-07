@@ -1,5 +1,5 @@
 .logo {
-  --logo-letter-height: 18px;
+  --logo-letter-height: calc(18rem / 16);
   --logo-j-width: var(--logo-letter-height);
   --logo-j-radius: calc(var(--logo-letter-height) / 3.6);
   --logo-c-width: calc(var(--logo-letter-height) / 1.2);

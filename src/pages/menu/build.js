@@ -7,6 +7,7 @@ const buildContact = async ({buildPage}) =>
     layoutData: {
       title: 'Menu - javiercejudo.com',
       description: 'Find your way around my site',
+      pageIsMenu: true,
     },
   });
 
