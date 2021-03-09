@@ -8,6 +8,7 @@ const buildContact = async ({buildPage}) =>
       title: 'Menu - javiercejudo.com',
       description: 'Find your way around my site',
       pageIsMenu: true,
+      styles: ['menu/index.css'],
     },
   });
 

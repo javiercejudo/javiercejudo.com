@@ -15,31 +15,38 @@
     <base href="{{{molino.baseHref}}}">
   {{/molino.isProd}}
 
+
+  <link rel="preload" href="{{{molino.baseHref}}}css/common/index.css" as="style">
   <link rel="stylesheet" type="text/css" href="{{{molino.baseHref}}}css/common/index.css">
 
+  <link rel="preload" href="{{{molino.baseHref}}}js/app.js" as="script">
   {{#molino.isProd}}
     <script src="{{{molino.baseHref}}}js/app.js" defer></script>
   {{/molino.isProd}}
   {{^molino.isProd}}
     <script type="module" src="{{{molino.baseHref}}}js/app.js"></script>
   {{/molino.isProd}}
+
+
+  {{! Resources that are likely to be needed soon }}
+  <link rel="prefetch" href="{{{molino.baseHref}}}css/blog-post/index.css" as="style">
+  <link rel="prefetch" href="{{{molino.baseHref}}}css/highlight-js/index.css" as="style">
 </head>
 
 <body>
   {{#data.styles}}
+    <link rel="preload" href="{{{molino.baseHref}}}css/{{{.}}}" as="style">
     <link rel="stylesheet" type="text/css" href="{{{molino.baseHref}}}css/{{{.}}}">
   {{/data.styles}}
 
-  {{#molino.isProd}}
-    {{#data.scripts}}
+  {{#data.scripts}}
+    {{#molino.isProd}}
       <script src="{{{molino.baseHref}}}js/{{{.}}}" defer></script>
-    {{/data.scripts}}
-  {{/molino.isProd}}
-  {{^molino.isProd}}
-    {{#data.scripts}}
+    {{/molino.isProd}}
+    {{^molino.isProd}}
       <script type="module" src="{{{molino.baseHref}}}js/{{{.}}}"></script>
-    {{/data.scripts}}
-  {{/molino.isProd}}
+    {{/molino.isProd}}
+  {{/data.scripts}}
 
   <div class="page">
     <header>

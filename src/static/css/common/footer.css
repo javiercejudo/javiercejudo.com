@@ -2,4 +2,5 @@ footer {
   padding: calc(15rem / 16);
   text-align: center;
   font-size: calc(13rem / 16);
+  background-color: #222;
 }

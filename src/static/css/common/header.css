@@ -1,5 +1,8 @@
 header {
-  border-bottom: 1px solid #222;
+  border-bottom: 2px solid #222;
+  background-color: #000;
+  position: sticky;
+  top: 0;
 }
 
 header > nav {
