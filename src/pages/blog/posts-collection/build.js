@@ -11,7 +11,7 @@ const buildPosts = postData => ({buildPage, md}) =>
         }
 
         const content = md.render(markdownBuffer.toString());
-        const styles = ['blog-post/index.css'];
+        const styles = [];
 
         if (postData.withHighlightJs !== false) {
           styles.push('highlight-js/index.css');

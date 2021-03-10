@@ -37,7 +37,6 @@
   border-right: var(--logo-j-width) solid transparent;
   margin-right: var(--logo-spacing);
   position: absolute;
-  /* top: 0; */
 }
 
 .logo .logo-c {
@@ -46,4 +45,5 @@
   background-color: #fff;
   border-top-left-radius: 999px;
   border-bottom-left-radius: 999px;
+  margin-right: calc(-0.5rem / 16);
 }

@@ -15,7 +15,9 @@ module.exports = ({templatesPath}) => {
     );
 
     res.send(
-      Mustache.render(template.toString(), {time: new Date().toISOString()})
+      Mustache.render(template.toString(), {
+        data: {time: new Date().toISOString()},
+      })
     );
   };
   router.get(`/clock/`, clockHandler);

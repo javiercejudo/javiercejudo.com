@@ -18,6 +18,10 @@ header,
   margin: 0 auto;
 }
 
+.container.narrow {
+  max-width: 768px;
+}
+
 @media all and (min-width: 768px) {
   header,
   .content {
