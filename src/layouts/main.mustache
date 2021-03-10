@@ -16,35 +16,35 @@
   {{/molino.isProd}}
 
 
-  <link rel="preload" href="{{{molino.baseHref}}}css/common/index.css" as="style">
-  <link rel="stylesheet" type="text/css" href="{{{molino.baseHref}}}css/common/index.css">
+  <link rel="preload" href="{{{molino.baseHref}}}assets/css/common/index.css" as="style">
+  <link rel="stylesheet" type="text/css" href="{{{molino.baseHref}}}assets/css/common/index.css">
 
   {{#molino.isProd}}
-    <link rel="preload" href="{{{molino.baseHref}}}js/app.js" as="script">
-    <script src="{{{molino.baseHref}}}js/app.js" defer></script>
+    <link rel="preload" href="{{{molino.baseHref}}}assets/js/app.js" as="script">
+    <script src="{{{molino.baseHref}}}assets/js/app.js" defer></script>
   {{/molino.isProd}}
   {{^molino.isProd}}
-    <link rel="modulepreload" href="{{{molino.baseHref}}}js/app.js" as="script">
-    <script type="module" src="{{{molino.baseHref}}}js/app.js"></script>
+    <link rel="modulepreload" href="{{{molino.baseHref}}}assets/js/app.js" as="script">
+    <script type="module" src="{{{molino.baseHref}}}assets/js/app.js"></script>
   {{/molino.isProd}}
 
 
   {{! Resources that are likely to be needed soon }}
-  <link rel="prefetch" href="{{{molino.baseHref}}}css/highlight-js/index.css" as="style">
+  <link rel="prefetch" href="{{{molino.baseHref}}}assets/css/highlight-js/index.css" as="style">
 </head>
 
 <body>
   {{#data.styles}}
-    <link rel="preload" href="{{{molino.baseHref}}}css/{{{.}}}" as="style">
-    <link rel="stylesheet" type="text/css" href="{{{molino.baseHref}}}css/{{{.}}}">
+    <link rel="preload" href="{{{molino.baseHref}}}assets/css/{{{.}}}" as="style">
+    <link rel="stylesheet" type="text/css" href="{{{molino.baseHref}}}assets/css/{{{.}}}">
   {{/data.styles}}
 
   {{#data.scripts}}
     {{#molino.isProd}}
-      <script src="{{{molino.baseHref}}}js/{{{.}}}" defer></script>
+      <script src="{{{molino.baseHref}}}assets/js/{{{.}}}" defer></script>
     {{/molino.isProd}}
     {{^molino.isProd}}
-      <script type="module" src="{{{molino.baseHref}}}js/{{{.}}}"></script>
+      <script type="module" src="{{{molino.baseHref}}}assets/js/{{{.}}}"></script>
     {{/molino.isProd}}
   {{/data.scripts}}
 

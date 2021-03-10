@@ -6,5 +6,4 @@ dist-server/
 molino-registry.txt
 
 src/static/*
-!src/static/css/
-!src/static/js/
+!src/static/assets/

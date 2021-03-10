@@ -2,9 +2,9 @@ import {
   h,
   render,
   Component,
-} from '../../../../node_modules/preact/dist/preact.module.js';
+} from '../../../../../node_modules/preact/dist/preact.module.js';
 
-import htm from '../../../../node_modules/htm/dist/htm.module.js';
+import htm from '../../../../../node_modules/htm/dist/htm.module.js';
 
 const html = htm.bind(h);
 
