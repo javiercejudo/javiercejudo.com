@@ -9,7 +9,7 @@ Well, here is my attempt:
 (function () {
   'use strict';
 
-  var api = {};
+  const api = {};
 
   // element needs to have type="email"
   api.isValidEmail = function (element) {
