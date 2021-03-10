@@ -3,7 +3,6 @@
 set -x
 
 npx nodemon \
-  --watch src/site-builder \
   --watch src/layouts \
   --watch src/pages \
   --watch src/static/css \

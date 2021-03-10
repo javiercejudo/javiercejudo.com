@@ -1,9 +1,11 @@
 const express = require('express');
+const compression = require('compression');
 const serveStatic = require('serve-static');
 
 const router = require('./src/router');
 
 const app = express();
+app.use(compression());
 app.use(router({templatesPath: 'dist'}));
 
 app.use(

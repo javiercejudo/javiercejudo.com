@@ -41,7 +41,7 @@
     "mustache": "^4.1.0",
     "nodemon": "^2.0.6",
     "normalize.css": "^8.0.1",
-    "open": "^8.0.2",
+    "open-cli": "^6.0.1",
     "parcel-bundler": "^1.12.4",
     "parcel-plugin-remove-index-html": "javiercejudo/parcel-plugin-remove-index-html#relative-and-search-and-hash-support",
     "preact": "^10.5.12",
@@ -49,6 +49,7 @@
     "serve-index": "^1.9.1"
   },
   "dependencies": {
+    "compression": "^1.7.4",
     "express": "^4.17.1",
     "serve-static": "^1.14.1"
   }

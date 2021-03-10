@@ -2,10 +2,5 @@
 
 set -x
 
-# npx http-server . \
-#   --gzip \
-#   --brotli \
-#   --silent \
-#   -c-1 \
-#   -o src/static/
-node ./serve-dev.js
+npx nodemon ./serve-dev.js &
+open-cli http:localhost:8081/src/static/index.html

@@ -8,24 +8,18 @@ const readFile = util.promisify(fs.readFile);
 
 module.exports = ({templatesPath}) => {
   const router = express.Router({strict: true});
-  const serverRoutes = [
-    {
-      route: 'clock',
-      handler: route => async (_, res) => {
-        const template = await readFile(path.join(templatesPath, route, 'index.html'));
 
-        res.send(
-          Mustache.render(template.toString(), {time: new Date().toISOString()})
-        );
-      },
-    },
-  ];
+  const clockHandler = async (_, res) => {
+    const template = await readFile(
+      path.join(templatesPath, 'clock', 'index.html')
+    );
 
-  serverRoutes.forEach(serverRoute => {
-    const handler = serverRoute.handler(serverRoute.route);
-    router.get(`/${serverRoute.route}/`, handler);
-    router.get(`/${serverRoute.route}/index.html`, handler);
-  });
+    res.send(
+      Mustache.render(template.toString(), {time: new Date().toISOString()})
+    );
+  };
+  router.get(`/clock/`, clockHandler);
+  router.get(`/clock/index.html`, clockHandler);
 
   return router;
 };

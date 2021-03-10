@@ -2,7 +2,6 @@ const express = require('express');
 const serveStatic = require('serve-static');
 const serveIndex = require('serve-index');
 const path = require('path');
-const open = require('open');
 
 const router = require('./src/router');
 const port = 8081;
@@ -14,5 +13,3 @@ app.use('/', serveIndex(__dirname));
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
-
-open(`http://localhost:${port}/src/static`);
