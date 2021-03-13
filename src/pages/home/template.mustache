@@ -4,28 +4,37 @@
   <div id="root"></div>
 
   {{#data.hasProjects}}
-    <h2><a href="{{{molino.baseHref}}}projects/index.html">Projects</a></h2>
-    <ul>
-      {{#data.projects}}
-        <li><a href="{{{molino.baseHref}}}projects/{{{path}}}">{{name}}</a></li>
-      {{/data.projects}}
-    </ul>
+  <h2><a href="{{{ molino.baseHref }}}projects/index.html">Projects</a></h2>
+  <ul>
+    {{#data.projects}}
+    <li>
+      <a href="{{{ molino.baseHref }}}projects/{{{ path }}}">{{ name }}</a>
+    </li>
+    {{/data.projects}}
+  </ul>
   {{/data.hasProjects}}
   {{^data.hasProjects}}
-    No projects
+  No projects
   {{/data.hasProjects}}
 
   {{#data.hasPosts}}
-    <h2><a href="{{{molino.baseHref}}}{{{data.postsData.path}}}/index.html">Blog</a></h2>
-    <ul>
-      {{#data.postsData.posts}}
-        <li>
-          <a href="{{{molino.baseHref}}}{{{data.postsData.path}}}/{{{outputPath}}}">{{title}}</a>
-        </li>
-      {{/data.postsData.posts}}
-    </ul>
+  <h2>
+    <a href="{{{ molino.baseHref }}}{{{ data.postsData.path }}}/index.html">
+      Blog
+    </a>
+  </h2>
+  <ul>
+    {{#data.postsData.posts}}
+    <li>
+      <a
+        href="{{{ molino.baseHref }}}{{{ data.postsData.path }}}/{{{ outputPath }}}"
+        >{{ title }}</a
+      >
+    </li>
+    {{/data.postsData.posts}}
+  </ul>
   {{/data.hasPosts}}
   {{^data.hasPosts}}
-    No blog posts
+  No blog posts
   {{/data.hasPosts}}
 </div>

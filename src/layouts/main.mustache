@@ -1,92 +1,128 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en-AU">
+  <head>
+    <meta charset="utf-8" />
+    <title>{{ data.title }}</title>
 
-<head>
-  <meta charset="utf-8">
-  <title>{{data.title}}</title>
+    <meta name="description" content="{{ data.description }}" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <meta name="description" content="{{data.description}}">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  {{#molino.isProd}}
+    {{#molino.isProd}}
     {{! Parcel does not seem to look at the base tag, so `baseHref` is still }}
     {{! used throughout the template. In prod, all assets and links to files }}
     {{! are relative to `baseHref`, hence why we need this base tag. }}
-    <base href="{{{molino.baseHref}}}">
-  {{/molino.isProd}}
+    <base href="{{{ molino.baseHref }}}" />
+    {{/molino.isProd}}
 
+    <link
+      rel="preload"
+      href="{{{ molino.baseHref }}}assets/css/common/index.css"
+      as="style"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{{ molino.baseHref }}}assets/css/common/index.css"
+    />
 
-  <link rel="preload" href="{{{molino.baseHref}}}assets/css/common/index.css" as="style">
-  <link rel="stylesheet" type="text/css" href="{{{molino.baseHref}}}assets/css/common/index.css">
-
-  {{#molino.isProd}}
-    <link rel="preload" href="{{{molino.baseHref}}}assets/js/app.js" as="script">
-    <script src="{{{molino.baseHref}}}assets/js/app.js" defer></script>
-  {{/molino.isProd}}
-  {{^molino.isProd}}
-    <link rel="modulepreload" href="{{{molino.baseHref}}}assets/js/app.js" as="script">
-    <script type="module" src="{{{molino.baseHref}}}assets/js/app.js"></script>
-  {{/molino.isProd}}
-
-
-  {{! Resources that are likely to be needed soon }}
-  <link rel="prefetch" href="{{{molino.baseHref}}}assets/css/highlight-js/index.css" as="style">
-</head>
-
-<body>
-  {{#data.styles}}
-    <link rel="preload" href="{{{molino.baseHref}}}assets/css/{{{.}}}" as="style">
-    <link rel="stylesheet" type="text/css" href="{{{molino.baseHref}}}assets/css/{{{.}}}">
-  {{/data.styles}}
-
-  {{#data.scripts}}
     {{#molino.isProd}}
-      <script src="{{{molino.baseHref}}}assets/js/{{{.}}}" defer></script>
+    <link
+      rel="preload"
+      href="{{{ molino.baseHref }}}assets/js/quicklink.js"
+      as="script"
+    />
+    <script src="{{{ molino.baseHref }}}assets/js/quicklink.js" defer></script>
     {{/molino.isProd}}
     {{^molino.isProd}}
-      <script type="module" src="{{{molino.baseHref}}}assets/js/{{{.}}}"></script>
+    <link
+      rel="modulepreload"
+      href="{{{ molino.baseHref }}}assets/js/quicklink.js"
+      as="script"
+    />
+    <script
+      type="module"
+      src="{{{ molino.baseHref }}}assets/js/quicklink.js"
+    ></script>
     {{/molino.isProd}}
-  {{/data.scripts}}
 
-  <div class="page">
-    <header>
-      <nav>
-        <ul>
-          <li>
-            <a
-              href="{{{molino.baseHref}}}index.html"
-              class="nav-home {{#data.pageIsHome}}is-active{{/data.pageIsHome}}"
-            >
-              Home
-            </a>
-          </li>
-        </ul>
-        <a class="logo-link" href="{{{molino.baseHref}}}index.html">
-          <div class="logo">
-            <span class="logo-j"></span>
-            <span class="logo-j2"></span>
-            <span class="logo-c"></span>
-          </div>
-        </a>
-        <ul>
-          <li>
-            <a
-              href="{{{molino.baseHref}}}menu/index.html"
-              class="nav-menu {{#data.pageIsMenu}}is-active{{/data.pageIsMenu}}"
-            >
-              Menu
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </header>
+    {{! Resources that are likely to be needed soon }}
+    <link
+      rel="prefetch"
+      href="{{{ molino.baseHref }}}assets/css/highlight-js/index.css"
+      as="style"
+    />
+  </head>
 
-    <div class="content">
-      {{{body}}}
+  <body>
+    <a href="#skip-nav" class="skip-nav">Skip to content</a>
+
+    {{#data.styles}}
+    <link
+      rel="preload"
+      href="{{{ molino.baseHref }}}assets/css/{{{ . }}}"
+      as="style"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{{ molino.baseHref }}}assets/css/{{{ . }}}"
+    />
+    {{/data.styles}}
+
+    {{#data.scripts}}
+    {{#molino.isProd}}
+    <script src="{{{ molino.baseHref }}}assets/js/{{{ . }}}" defer></script>
+    {{/molino.isProd}}
+    {{^molino.isProd}}
+    <script
+      type="module"
+      src="{{{ molino.baseHref }}}assets/js/{{{ . }}}"
+    ></script>
+    {{/molino.isProd}}
+    {{/data.scripts}}
+
+    <div class="page">
+      <header>
+        <div class="container">
+          <nav>
+            <ul>
+              <li>
+                <a
+                  href="{{{ molino.baseHref }}}index.html"
+                  class="nav-home {{#data.pageIsHome}}is-active{{/data.pageIsHome}}"
+                >
+                  Home
+                </a>
+              </li>
+            </ul>
+            <a
+              class="logo-link"
+              href="{{{ molino.baseHref }}}index.html"
+              title="Home"
+            >
+              <div class="logo">
+                <span class="logo-j"></span>
+                <span class="logo-j2"></span>
+                <span class="logo-c"></span>
+              </div>
+            </a>
+            <ul>
+              <li>
+                <a
+                  href="{{{ molino.baseHref }}}menu/index.html"
+                  class="nav-menu {{#data.pageIsMenu}}is-active{{/data.pageIsMenu}}"
+                >
+                  Menu
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+
+      <div class="content" id="skip-nav">{{{ body }}}</div>
+
+      <footer>© javiercejudo.com 2013-{{ data.currentYear }}</footer>
     </div>
-
-    <footer>© javiercejudo.com 2013-{{data.currentYear}}</footer>
-  </div>
-</body>
-
+  </body>
 </html>

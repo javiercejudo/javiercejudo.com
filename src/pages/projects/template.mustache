@@ -1,13 +1,15 @@
 <div class="container">
   {{#data.hasProjects}}
-    <h2>Projects</h2>
-    <ul>
-      {{#data.projects}}
-        <li><a href="{{{molino.baseHref}}}projects/{{{path}}}">{{name}}</a></li>
-      {{/data.projects}}
-    </ul>
+  <h2>Projects</h2>
+  <ul>
+    {{#data.projects}}
+    <li>
+      <a href="{{{ molino.baseHref }}}projects/{{{ path }}}">{{ name }}</a>
+    </li>
+    {{/data.projects}}
+  </ul>
   {{/data.hasProjects}}
   {{^data.hasProjects}}
-    No projects
+  No projects
   {{/data.hasProjects}}
 </div>

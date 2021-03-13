@@ -1,15 +1,17 @@
 <div class="container">
   {{#data.hasPosts}}
-    <h2>Blog</h2>
-    <ul>
-      {{#data.posts}}
-        <li>
-          <a href="{{{molino.baseHref}}}{{{data.path}}}/{{{outputPath}}}">{{title}}</a>
-        </li>
-      {{/data.posts}}
-    </ul>
+  <h2>Blog</h2>
+  <ul>
+    {{#data.posts}}
+    <li>
+      <a href="{{{ molino.baseHref }}}{{{ data.path }}}/{{{outputPath}}}">{{
+        title
+      }}</a>
+    </li>
+    {{/data.posts}}
+  </ul>
   {{/data.hasPosts}}
   {{^data.hasPosts}}
-    No blog posts
+  No blog posts
   {{/data.hasPosts}}
 </div>

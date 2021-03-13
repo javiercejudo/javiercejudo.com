@@ -5,35 +5,37 @@ header {
   top: 0;
 }
 
-header > nav {
+header nav {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-flow: row wrap;
 }
 
-header > nav > .logo-link {
+header nav .logo-link {
   margin: calc(5rem / 16);
   padding: calc(10rem / 16);
 }
 
-header > nav > ul {
+header nav ul {
   margin: 0;
   padding: 0;
   list-style-type: none;
   display: flex;
 }
 
-/* header > nav > ul > li {
-} */
-
-header > nav a {
+header nav a {
   text-decoration: none;
   margin: calc(5rem / 16);
   padding: calc(10rem / 16);
   display: inline-block;
   position: relative;
+  transition: background-color 200ms ease;
 }
 
-/* header > nav a.is-active {
-  color: #fff;
-} */
+header nav ul a.is-active,
+header nav ul a:hover,
+header nav ul a:focus {
+  background-color: #222;
+  border-radius: calc(5rem / 16);
+}

@@ -4,11 +4,6 @@
   min-height: 100vh;
 }
 
-header,
-.content {
-  padding: 0 calc(8rem / 16);
-}
-
 .content {
   flex: 1;
 }
@@ -16,15 +11,38 @@ header,
 .container {
   max-width: 1024px;
   margin: 0 auto;
+  padding: 0 calc(8rem / 16);
 }
 
 .container.narrow {
   max-width: 768px;
 }
 
+.skip-nav {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  position: absolute;
+}
+
+.skip-nav:focus {
+  padding: 1rem;
+  position: fixed;
+  top: calc(10rem / 16);
+  left: calc(10rem / 16);
+  background: #000;
+  z-index: 1;
+  width: auto;
+  height: auto;
+  clip: auto;
+}
+
 @media all and (min-width: 768px) {
-  header,
-  .content {
-    padding: 0 32px;
+  .container {
+    padding: 0;
   }
 }

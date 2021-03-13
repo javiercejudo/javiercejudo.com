@@ -2,7 +2,7 @@ const path = require('path');
 
 const buildAboutEn = async ({buildPage}) =>
   await buildPage({
-    pageSourcePath: path.join(__dirname, 'template.html'),
+    pageSourcePath: path.join(__dirname, 'template.mustache'),
     relativeOutputPath: path.join('about-me', 'index.html'),
     layoutData: {
       title: 'About me - javiercejudo.com',
@@ -17,7 +17,7 @@ const buildAboutEn = async ({buildPage}) =>
 
 const buildAboutEs = async ({buildPage}) =>
   await buildPage({
-    pageSourcePath: path.join(__dirname, 'template.html'),
+    pageSourcePath: path.join(__dirname, 'template.mustache'),
     relativeOutputPath: path.join('sobre-mi', 'index.html'),
     layoutData: {
       title: 'Sobre mí - javiercejudo.com',
