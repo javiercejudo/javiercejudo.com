@@ -1,11 +1,11 @@
-const postsData = require('../blog/posts-collection/data');
+const postsData = require('../blog/data');
 const projectsData = require('../projects/projects-collection/data');
 
 const homeData = {
   hasProjects: projectsData.length > 0,
   projects: projectsData,
-  hasPosts: postsData.length > 0,
-  posts: postsData,
+  hasPosts: postsData.posts.length > 0,
+  postsData,
 };
 
 module.exports = homeData;
