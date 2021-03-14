@@ -14,5 +14,5 @@ app.use(serveStatic('.', {maxAge: '0'}));
 app.use('.', serveIndex(__dirname));
 
 app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+  console.log(`Listening on port ${port}.`);
 });

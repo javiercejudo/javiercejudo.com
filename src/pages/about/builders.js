@@ -1,5 +1,5 @@
-const {buildAboutEn, buildAboutEs} = require('./build');
+const {aboutEnBuilder, aboutEsBuilder} = require('./build');
 
-const builders = [buildAboutEn, buildAboutEs];
+const builders = [aboutEnBuilder, aboutEsBuilder];
 
 module.exports = builders;

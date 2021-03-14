@@ -1,12 +1,10 @@
-const buildBlogHome = require('./build');
+const homeBuilder = require('./homeBuilder');
 const blogData = require('./data');
-const buildPost = require('./posts-collection/build');
+const postBuilder = require('./posts-collection/builder');
 
 const blogBuilders = [
-  buildBlogHome,
-  ...blogData.posts.map(postData =>
-    buildPost({blogPath: blogData.path, postData})
-  ),
+  homeBuilder,
+  ...blogData.posts.map(post => postBuilder({blogPath: blogData.path, post})),
 ];
 
 module.exports = blogBuilders;

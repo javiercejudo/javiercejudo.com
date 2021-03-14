@@ -59,7 +59,7 @@ const siteBuilder = () => {
     );
 
     pagesInfo.forEach(pageInfo => {
-      pageInfo.then(info => console.log(`Built ${info.outputPath}`));
+      pageInfo.then(info => console.log(`Built ${info.outputPath}.`));
     });
 
     Promise.all(pagesInfo).then(() => {
@@ -68,7 +68,7 @@ const siteBuilder = () => {
 
     return pagesInfo;
   } catch (err) {
-    console.log('Someting went wrong:');
+    console.log('Someting went wrong building the site:');
     console.log(err);
   }
 };

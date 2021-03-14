@@ -1,6 +1,6 @@
 const path = require('path');
 
-const buildClock = ({buildPage, identityRender}) =>
+const clockBuilder = ({buildPage, identityRender}) =>
   buildPage({
     pageSourcePath: path.join(__dirname, 'template.mustache'),
     relativeOutputPath: path.join('clock', 'index.html'),
@@ -11,4 +11,4 @@ const buildClock = ({buildPage, identityRender}) =>
     renderPage: identityRender,
   });
 
-module.exports = buildClock;
+module.exports = clockBuilder;

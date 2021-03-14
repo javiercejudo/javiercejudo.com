@@ -4,6 +4,7 @@ dist-server/
 .cache/
 /build/
 *.temp
+sitemap.txt
 
 src/static/*
 !src/static/assets/

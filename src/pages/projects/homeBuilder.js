@@ -1,7 +1,7 @@
 const path = require('path');
 const projectsData = require('./data');
 
-const buildHome = ({buildPage}) =>
+const homeBuilder = ({buildPage}) =>
   buildPage({
     pageSourcePath: path.join(__dirname, 'template.mustache'),
     relativeOutputPath: path.join('projects', 'index.html'),
@@ -12,4 +12,4 @@ const buildHome = ({buildPage}) =>
     pageData: projectsData,
   });
 
-module.exports = buildHome;
+module.exports = homeBuilder;

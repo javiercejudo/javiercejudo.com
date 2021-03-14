@@ -4,31 +4,32 @@ const util = require('util');
 
 const readFile = util.promisify(fs.readFile);
 
-const buildPosts = ({blogPath, postData}) => async ({buildPage, md}) => {
+const postBuilder = ({blogPath, post}) => async ({buildPage, md}) => {
   const markdownBuffer = await readFile(
-    path.join(__dirname, ...postData.sourcePath.split('/'))
+    path.join(__dirname, ...post.sourcePath.split('/'))
   );
 
   const content = md.render(markdownBuffer.toString());
   const styles = [];
 
-  if (postData.withHighlightJs !== false) {
+  if (post.withHighlightJs !== false) {
     styles.push('highlight-js/index.css');
   }
 
   return buildPage({
     pageSourcePath: path.join(__dirname, 'template.mustache'),
-    relativeOutputPath: path.join(blogPath, ...postData.outputPath.split('/')),
+    relativeOutputPath: path.join(blogPath, ...post.outputPath.split('/')),
     layoutData: {
-      title: `${postData.title} - example.com`,
-      description: postData.description,
+      title: `${post.title} - example.com`,
+      description: post.description,
       styles,
     },
     pageData: {
-      ...postData,
+      post,
       blogPath,
       content,
     },
   });
 };
-module.exports = buildPosts;
+
+module.exports = postBuilder;

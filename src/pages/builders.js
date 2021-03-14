@@ -1,16 +1,16 @@
-const buildHome = require('./home/build');
-const buildMenu = require('./menu/build');
-const buildContact = require('./contact/build');
-const buildClock= require('./clock/build');
+const homeBuilder = require('./home/builder');
+const menuBuilder = require('./menu/builder');
+const contactBuilder = require('./contact/builder');
+const clockBuilder= require('./clock/builder');
 const aboutBuilders = require('./about/builders');
 const projectsBuilders = require('./projects/builders');
 const blogBuilders = require('./blog/builders');
 
 const builders = [
-  buildHome,
-  buildMenu,
-  buildContact,
-  buildClock,
+  homeBuilder,
+  menuBuilder,
+  contactBuilder,
+  clockBuilder,
   ...aboutBuilders,
   ...projectsBuilders,
   ...blogBuilders,

@@ -1,6 +1,6 @@
 const path = require('path');
 
-const buildAboutEn = ({buildPage}) =>
+const aboutEnBuilder = ({buildPage}) =>
   buildPage({
     pageSourcePath: path.join(__dirname, 'template.mustache'),
     relativeOutputPath: path.join('about-me', 'index.html'),
@@ -15,7 +15,7 @@ const buildAboutEn = ({buildPage}) =>
     },
   });
 
-const buildAboutEs = ({buildPage}) =>
+const aboutEsBuilder = ({buildPage}) =>
   buildPage({
     pageSourcePath: path.join(__dirname, 'template.mustache'),
     relativeOutputPath: path.join('sobre-mi', 'index.html'),
@@ -31,6 +31,6 @@ const buildAboutEs = ({buildPage}) =>
   });
 
 module.exports = {
-  buildAboutEn,
-  buildAboutEs,
+  aboutEnBuilder,
+  aboutEsBuilder,
 };

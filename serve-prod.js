@@ -19,7 +19,7 @@ app.use(
 );
 
 app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+  console.log(`Listening on port ${port}.`);
 });
 
 function setCustomCacheControl(res, path) {
