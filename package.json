@@ -28,13 +28,12 @@
     "dev": "npm run start-dev & npm run livereload & ./scripts/watch.sh"
   },
   "devDependencies": {
-    "@hotwired/turbo": "^7.0.0-beta.1",
+    "@hotwired/turbo": "^7.0.0-beta.4",
     "del-cli": "^3.0.1",
     "delete-empty": "^3.0.0",
     "foreman": "^3.0.1",
     "highlight.js": "^10.6.0",
     "htm": "^3.0.4",
-    "http-server": "^0.12.3",
     "livereload": "^0.9.1",
     "make-dir": "^3.1.0",
     "markdown-it": "^12.0.4",

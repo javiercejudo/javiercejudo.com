@@ -1,0 +1,16 @@
+
+src/static/menu/index.html
+src/static/about-me/index.html
+src/static/contact/index.html
+src/static/sobre-mi/index.html
+src/static/clock/index.html
+src/static/projects/index.html
+src/static/blog/index.html
+src/static/projects/personal-site/index.html
+src/static/projects/modelico/index.html
+src/static/projects/arbitrary-precision/index.html
+src/static/index.html
+src/static/blog/ultimate-frontend-email-validation/index.html
+src/static/blog/microdata-for-rich-snippets/index.html
+src/static/blog/css-limitations-on-ie/index.html
+src/static/blog/thoughts-on-the-status-of-web-development/index.html

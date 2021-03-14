@@ -26,7 +26,7 @@ const md = makeMd({
   },
 });
 
-const siteBuilder = async () => {
+const siteBuilder = () => {
   const mustacheRender = (template, viewData) =>
     Mustache.render(template, viewData);
   const identityRender = x => x;
@@ -54,17 +54,17 @@ const siteBuilder = async () => {
   };
 
   try {
-    const pagesInfo = await Promise.all(
-      builders.map(pageBuilder =>
-        pageBuilder({buildPage, mustacheRender, identityRender, md})
-      )
+    const pagesInfo = builders.map(pageBuilder =>
+      pageBuilder({buildPage, mustacheRender, identityRender, md})
     );
 
     pagesInfo.forEach(pageInfo => {
-      console.log(`Built ${pageInfo.outputPath}`);
+      pageInfo.then(info => console.log(`Built ${info.outputPath}`));
     });
 
-    console.log('Done.');
+    Promise.all(pagesInfo).then(() => {
+      console.log('Done.');
+    });
 
     return pagesInfo;
   } catch (err) {

@@ -4,6 +4,7 @@ dist-server/
 .cache/
 /build/
 molino-registry.txt
+*.temp
 
 src/static/*
 !src/static/assets/

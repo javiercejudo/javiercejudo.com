@@ -1,42 +1,34 @@
 const fs = require('fs');
 const path = require('path');
+const util = require('util');
 
-const buildPosts = ({blogPath, postData}) => ({buildPage, md}) =>
-  new Promise((resolve, reject) => {
-    fs.readFile(
-      path.join(__dirname, ...postData.sourcePath.split('/')),
-      (err, markdownBuffer) => {
-        if (err) {
-          return reject(err);
-        }
+const readFile = util.promisify(fs.readFile);
 
-        const content = md.render(markdownBuffer.toString());
-        const styles = [];
+const buildPosts = ({blogPath, postData}) => async ({buildPage, md}) => {
+  const markdownBuffer = await readFile(
+    path.join(__dirname, ...postData.sourcePath.split('/'))
+  );
 
-        if (postData.withHighlightJs !== false) {
-          styles.push('highlight-js/index.css');
-        }
+  const content = md.render(markdownBuffer.toString());
+  const styles = [];
 
-        const page = buildPage({
-          pageSourcePath: path.join(__dirname, 'template.mustache'),
-          relativeOutputPath: path.join(
-            blogPath,
-            ...postData.outputPath.split('/')
-          ),
-          layoutData: {
-            title: `${postData.title} - example.com`,
-            description: postData.description,
-            styles,
-          },
-          pageData: {
-            ...postData,
-            blogPath,
-            content,
-          },
-        });
+  if (postData.withHighlightJs !== false) {
+    styles.push('highlight-js/index.css');
+  }
 
-        resolve(page);
-      }
-    );
+  return buildPage({
+    pageSourcePath: path.join(__dirname, 'template.mustache'),
+    relativeOutputPath: path.join(blogPath, ...postData.outputPath.split('/')),
+    layoutData: {
+      title: `${postData.title} - example.com`,
+      description: postData.description,
+      styles,
+    },
+    pageData: {
+      ...postData,
+      blogPath,
+      content,
+    },
   });
+};
 module.exports = buildPosts;
