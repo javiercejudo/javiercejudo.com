@@ -1,7 +1,7 @@
 const path = require('path');
 
-const buildAboutEn = async ({buildPage}) =>
-  await buildPage({
+const buildAboutEn = ({buildPage}) =>
+  buildPage({
     pageSourcePath: path.join(__dirname, 'template.mustache'),
     relativeOutputPath: path.join('about-me', 'index.html'),
     layoutData: {
@@ -15,8 +15,8 @@ const buildAboutEn = async ({buildPage}) =>
     },
   });
 
-const buildAboutEs = async ({buildPage}) =>
-  await buildPage({
+const buildAboutEs = ({buildPage}) =>
+  buildPage({
     pageSourcePath: path.join(__dirname, 'template.mustache'),
     relativeOutputPath: path.join('sobre-mi', 'index.html'),
     layoutData: {

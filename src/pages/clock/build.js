@@ -1,7 +1,7 @@
 const path = require('path');
 
-const buildClock = async ({buildPage, identityRender}) =>
-  await buildPage({
+const buildClock = ({buildPage, identityRender}) =>
+  buildPage({
     pageSourcePath: path.join(__dirname, 'template.mustache'),
     relativeOutputPath: path.join('clock', 'index.html'),
     layoutData: {

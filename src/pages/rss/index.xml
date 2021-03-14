@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <link href="http://blog.javiercejudo.com/feed.xml" rel="self" type="application/atom+xml" />
+  <link href="http://blog.javiercejudo.com/" rel="alternate" type="text/html" />
+  <updated>2020-05-20T08:13:34+00:00</updated>
+  <id>http://blog.javiercejudo.com/feed.xml</id>
+  <title type="html">Tech notes by Javier Cejudo</title>
+  <subtitle>Full-stack developer</subtitle>
+  <entry>
+    <title type="html">Your ultimate frontend email validation</title>
+    <link href="http://blog.javiercejudo.com/ultimate-frontend-email-validation/" rel="alternate" type="text/html" title="Your ultimate frontend email validation" />
+    <published>2014-08-03T00:00:00+00:00</published>
+    <updated>2014-08-03T00:00:00+00:00</updated>
+    <id>http://blog.javiercejudo.com/ultimate-frontend-email-validation</id>
+    <content type="html" xml:base="http://blog.javiercejudo.com/ultimate-frontend-email-validation/">&lt;p&gt;It is common practice to validate emails using complex regular expressions,
+  but chances are they are all technically wrong. Frontend validation in general
+  is great for letting users know of issues early, but it cannot come at the cost
+  of rejecting valid input:&lt;/p&gt;
+
+  &lt;p&gt;Well, here is my attempt:&lt;/p&gt;
+
+  &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;use strict&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;api&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{};&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// element needs to have type=&quot;email&quot;&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;api&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;isValidEmail&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;element&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+
+      &lt;span class=&quot;c1&quot;&gt;// leverage the Constraint Validation API when it is available&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;typeof&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;element&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;checkValidity&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;===&lt;/span&gt; &lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;element&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;checkValidity&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+      &lt;span class=&quot;c1&quot;&gt;// otherwise, this is about the only regex&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// that doesn't reject any valid email addresses&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/@/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;element&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}());&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+  &lt;p&gt;Please note that, at the time of writing, the Constraint Validation API has a
+  willful violation of RFC 5322 with the following explanation:&lt;/p&gt;
+
+  &lt;blockquote&gt;
+    &lt;p&gt;[RFC 5322] defines a syntax for e-mail addresses that is simultaneously
+  too strict (before the “@” character), too vague (after the “@” character),
+  and too lax (allowing comments, whitespace characters, and quoted strings
+  in manners unfamiliar to most users) to be of practical use here.&lt;/p&gt;
+  &lt;/blockquote&gt;
+
+  &lt;p&gt;Source: &lt;a href=&quot;http://www.w3.org/TR/html5/forms.html#valid-e-mail-address&quot;&gt;W3C E-mail state&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;That link also provides a regular &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;expression&lt;/code&gt; that implements the
+  current specification in case you really want to go down that road:&lt;/p&gt;
+
+  &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;    &lt;span class=&quot;o&quot;&gt;/^&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;zA&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Z0&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;#&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;%&amp;amp;&lt;/span&gt;&lt;span class=&quot;dl&quot;&gt;'&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;*+&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;</content>
+    <author>
+      <name></name>
+    </author>
+    <summary type="html">It is common practice to validate emails using complex regular expressions, but chances are they are all technically wrong. Frontend validation in general is great for letting users know of issues early, but it cannot come at the cost of rejecting valid input: Well, here is my attempt: (function () { 'use strict'; var api = {}; // element needs to have type=&quot;email&quot; api.isValidEmail = function (element) { // leverage the Constraint Validation API when it is available if (typeof element.checkValidity === 'function') { return element.checkValidity(); } // otherwise, this is about the only regex // that doesn't reject any valid email addresses return (/@/).test(element.value); }; }()); Please note that, at the time of writing, the Constraint Validation API has a willful violation of RFC 5322 with the following explanation: [RFC 5322] defines a syntax for e-mail addresses that is simultaneously too strict (before the “@” character), too vague (after the “@” character), and too lax (allowing comments, whitespace characters, and quoted strings in manners unfamiliar to most users) to be of practical use here. Source: W3C E-mail state That link also provides a regular expression that implements the current specification in case you really want to go down that road: /^[a-zA-Z0-9.!#$%&amp;amp;'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/</summary>
+  </entry>
+  <entry>
+    <title type="html">Thoughts on the status of web development</title>
+    <link href="http://blog.javiercejudo.com/thoughts-on-the-status-of-web-development/" rel="alternate" type="text/html" title="Thoughts on the status of web development" />
+    <published>2014-07-12T00:00:00+00:00</published>
+    <updated>2014-07-12T00:00:00+00:00</updated>
+    <id>http://blog.javiercejudo.com/thoughts-on-the-status-of-web-development</id>
+    <content type="html" xml:base="http://blog.javiercejudo.com/thoughts-on-the-status-of-web-development/">&lt;p&gt;Web development is becoming more and more relevant every day, as private
+  companies, public organisations and even individuals develop ever more
+  complex (and useful) applications that manage all sorts of processes:
+  &lt;a href=&quot;http://www.theiconic.com.au/mens-shoes/&quot;&gt;buying a pair of shoes&lt;/a&gt;,
+  &lt;a href=&quot;https://www.healthcare.gov/&quot;&gt;applying for health insurance&lt;/a&gt; and even
+  &lt;a href=&quot;http://www.qantas.com.au/travel/airlines/flight-search/global/en&quot;&gt;purchasing tickets&lt;/a&gt;
+  for your next international flight.&lt;/p&gt;
+
+  &lt;h2 id=&quot;the-exciting-parts&quot;&gt;The exciting parts&lt;/h2&gt;
+
+  &lt;p&gt;In my opinion, one of the most exciting things happening in the field is the
+  proliferation of incredibly powerful, cost-effective tools that are at the
+  disposal of the public. I am referring to tools like cloud application platforms
+  (e.g. &lt;a href=&quot;https://www.heroku.com/&quot;&gt;Heroku&lt;/a&gt;), continuous integration services
+  (e.g. &lt;a href=&quot;https://travis-ci.org/&quot;&gt;Travis&lt;/a&gt;) and so on.&lt;/p&gt;
+
+  &lt;p&gt;The concepts behind these tools are not new, but the convenience and
+  affordability they have brought to the community of web development is
+  remarkable, usually allowing people to develop their skills free of charge
+  through their &lt;em&gt;freemium&lt;/em&gt; models.&lt;/p&gt;
+
+  &lt;p&gt;On top of that, there is an increasing trend to share code within the community,
+  not only from individual developers but also from origanisations. It is hard to
+  find a technology company not sharing interesting solutions on their
+  &lt;a href=&quot;https://github.com/&quot;&gt;GitHub&lt;/a&gt; account.&lt;/p&gt;
+
+  &lt;p&gt;At a more technical level, how all that code comes together without conflicting
+  with each other is no trivial matter, but tools like &lt;a href=&quot;http://bower.io/&quot;&gt;Bower&lt;/a&gt;
+  or &lt;a href=&quot;http://enderjs.com/&quot;&gt;Ender&lt;/a&gt; are easing the pain that frontend dependency
+  management used to be.&lt;/p&gt;
+
+  &lt;p&gt;The steady shift to rich client-side applications in recent years offers
+  developers the opportunity to create an enhanced user experience with faster,
+  more responsive sites and meaningful lightweight animations, among other things.
+  Frameworks like &lt;a href=&quot;https://angularjs.org/&quot;&gt;AngularJS&lt;/a&gt; or
+  &lt;a href=&quot;http://facebook.github.io/react/&quot;&gt;React&lt;/a&gt; facilitate that work by providing ways
+  to organise, extend, and reuse easily testable modules. All these frameworks are
+  still in a relatively early stage of maturity, so it is my expectation that
+  their continued improvement will drive the foundation for a better web.&lt;/p&gt;
+
+  &lt;h2 id=&quot;the-necessary-specs&quot;&gt;The necessary specs&lt;/h2&gt;
+
+  &lt;p&gt;Moving onto not so exciting aspects of the field, web developers have already
+  adopted &lt;a href=&quot;http://en.wikipedia.org/wiki/Cascading_Style_Sheets#CSS_3&quot;&gt;CSS3&lt;/a&gt; and
+  &lt;a href=&quot;http://en.wikipedia.org/wiki/HTML5&quot;&gt;HTML5&lt;/a&gt; as part of their daily workflow.
+  AngularJS is designing version 2 using
+  &lt;a href=&quot;http://en.wikipedia.org/wiki/ECMAScript#Versions&quot;&gt;ECMAScript 6&lt;/a&gt; that compiles
+  into 5.&lt;/p&gt;
+
+  &lt;p&gt;However, it is worth mentioning that neither of those have final specifications:
+  only &lt;a href=&quot;http://www.w3.org/TR/#tr_CSS&quot;&gt;a few out of over fifty CSS3&lt;/a&gt; modules have
+  been published as recommendations, and HTML5 as well as ECMAScript 6 are still
+  works in progress. It is easy to get excited about the possibilities for
+  innovation that new languages bring, but a greater effort and willingness to be
+  involved will be needed in the coming years.&lt;/p&gt;
+
+  &lt;p&gt;This ensures that the reality of web development does not fall out of sync with
+  the specification of the necessary standards to support it.&lt;/p&gt;</content>
+    <author>
+      <name></name>
+    </author>
+    <summary type="html">Web development is becoming more and more relevant every day, as private companies, public organisations and even individuals develop ever more complex (and useful) applications that manage all sorts of processes: buying a pair of shoes, applying for health insurance and even purchasing tickets for your next international flight. The exciting parts In my opinion, one of the most exciting things happening in the field is the proliferation of incredibly powerful, cost-effective tools that are at the disposal of the public. I am referring to tools like cloud application platforms (e.g. Heroku), continuous integration services (e.g. Travis) and so on. The concepts behind these tools are not new, but the convenience and affordability they have brought to the community of web development is remarkable, usually allowing people to develop their skills free of charge through their freemium models. On top of that, there is an increasing trend to share code within the community, not only from individual developers but also from origanisations. It is hard to find a technology company not sharing interesting solutions on their GitHub account. At a more technical level, how all that code comes together without conflicting with each other is no trivial matter, but tools like Bower or Ender are easing the pain that frontend dependency management used to be. The steady shift to rich client-side applications in recent years offers developers the opportunity to create an enhanced user experience with faster, more responsive sites and meaningful lightweight animations, among other things. Frameworks like AngularJS or React facilitate that work by providing ways to organise, extend, and reuse easily testable modules. All these frameworks are still in a relatively early stage of maturity, so it is my expectation that their continued improvement will drive the foundation for a better web. The necessary specs Moving onto not so exciting aspects of the field, web developers have already adopted CSS3 and HTML5 as part of their daily workflow. AngularJS is designing version 2 using ECMAScript 6 that compiles into 5. However, it is worth mentioning that neither of those have final specifications: only a few out of over fifty CSS3 modules have been published as recommendations, and HTML5 as well as ECMAScript 6 are still works in progress. It is easy to get excited about the possibilities for innovation that new languages bring, but a greater effort and willingness to be involved will be needed in the coming years. This ensures that the reality of web development does not fall out of sync with the specification of the necessary standards to support it.</summary>
+  </entry>
+  <entry>
+    <title type="html">Microdata for Rich Snippets</title>
+    <link href="http://blog.javiercejudo.com/microdata-for-rich-snippets/" rel="alternate" type="text/html" title="Microdata for Rich Snippets" />
+    <published>2013-12-23T00:00:00+00:00</published>
+    <updated>2013-12-23T00:00:00+00:00</updated>
+    <id>http://blog.javiercejudo.com/microdata-for-rich-snippets</id>
+    <content type="html" xml:base="http://blog.javiercejudo.com/microdata-for-rich-snippets/">&lt;h2 id=&quot;the-concept&quot;&gt;The concept&lt;/h2&gt;
+
+  &lt;blockquote&gt;
+    &lt;p&gt;Microdata annotates the DOM with scoped name/value pairs from custom vocabularies.&lt;/p&gt;
+  &lt;/blockquote&gt;
+
+  &lt;p&gt;The vocabulary we are using is &lt;a href=&quot;http://schema.org/&quot;&gt;Schema.org&lt;/a&gt;, which is
+  recognized by Google, Bing and Yahoo! among others.&lt;/p&gt;
+
+  &lt;h2 id=&quot;the-goal&quot;&gt;The goal&lt;/h2&gt;
+
+  &lt;p&gt;Help search engines understand the content of a page in a semantic way.&lt;/p&gt;
+
+  &lt;h2 id=&quot;basic-example&quot;&gt;Basic example&lt;/h2&gt;
+
+  &lt;p&gt;Pay special attention to the attributes &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;itemscope&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;itemtype&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;itemprop&lt;/code&gt;,
+  and to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;meta&lt;/code&gt; tags:&lt;/p&gt;
+
+  &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;itemscope&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;itemtype=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schema.org/Product&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;itemprop=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sku&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;123-sku&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;h1&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;itemprop=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      Product title
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/h1&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;brand-name&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;itemprop=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;brand&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;itemscope&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;itemtype=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schema.org/Brand&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;a&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;itemprop=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;url&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;/brand-1&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;itemprop=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;Brand name&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/a&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;star-wrap&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;itemprop=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;aggregateRating&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;itemscope&lt;/span&gt;
+          &lt;span class=&quot;na&quot;&gt;itemtype=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schema.org/AggregateRating&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;itemprop=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;bestRating&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;5&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;itemprop=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ratingValue&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;4&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt;  &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;2&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fa-icon-star&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fa-icon-star&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fa-icon-star&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fa-icon-star&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;fa-icon-star stop&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&amp;gt;&lt;/span&gt;
+        (&lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;rating-num stop&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;itemprop=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;reviewCount&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;2&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;)
+      &lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+    ...
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+  &lt;p&gt;The previous syntax describes a structure like the following:&lt;/p&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;&lt;strong&gt;Product&lt;/strong&gt; [creates a new scope]
+      &lt;ul&gt;
+        &lt;li&gt;&lt;em&gt;Sku:&lt;/em&gt; 123-sku&lt;/li&gt;
+        &lt;li&gt;&lt;em&gt;Name:&lt;/em&gt; Product name&lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Brand&lt;/strong&gt; [creates a new scope]
+          &lt;ul&gt;
+            &lt;li&gt;&lt;em&gt;URL:&lt;/em&gt; /brand-1&lt;/li&gt;
+            &lt;li&gt;&lt;em&gt;Name:&lt;/em&gt; Brand name&lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/li&gt;
+        &lt;li&gt;&lt;strong&gt;Aggregate rating&lt;/strong&gt; [creates a new scope]
+          &lt;ul&gt;
+            &lt;li&gt;&lt;em&gt;Best rating:&lt;/em&gt; 5&lt;/li&gt;
+            &lt;li&gt;&lt;em&gt;Rating value:&lt;/em&gt; 4&lt;/li&gt;
+            &lt;li&gt;&lt;em&gt;Review count:&lt;/em&gt; 2&lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/li&gt;
+        &lt;li&gt;…&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+
+  &lt;p&gt;All that information is extracted by search engines and they can use it to
+  improve their results.&lt;/p&gt;
+
+  &lt;h2 id=&quot;things-to-consider-when-annotating-data&quot;&gt;Things to consider when annotating data&lt;/h2&gt;
+
+  &lt;p&gt;While implementing the rich snippets, one challenge we might come across is
+  that the data we want to annotate is either not in the DOM or it is not readily
+  available to be annotated. In other cases, even if the information is readily
+  available, the vocabulary requires it to be specified in a certain way. Have a
+  look at the following cases:&lt;/p&gt;
+
+  &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;c&quot;&gt;&amp;lt;!-- 1. The data is not in the DOM! --&amp;gt;&lt;/span&gt;
+
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;itemprop=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;sku&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;123-sku&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+  &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- 2. The data cannot be annotated as is! --&amp;gt;&lt;/span&gt;
+
+  &lt;span class=&quot;c&quot;&gt;&amp;lt;!--
+  The rating of a particular product is represented in the DOM
+  by stars that cannot be annotated.
+  We need to markup the actual value (★★★★☆ → 4):
+  --&amp;gt;&lt;/span&gt;
+
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;itemprop=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;bestRating&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;5&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;meta&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;itemprop=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ratingValue&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;4&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+
+  &lt;span class=&quot;c&quot;&gt;&amp;lt;!--
+  The date of a review is displayed but it is not
+  machine friendly (09/07/2013 → 2013-07-09):
+  --&amp;gt;&lt;/span&gt;
+
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;itemprop=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;datePublished&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;content=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;2013-07-09&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;09/07/2013&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+
+  &lt;span class=&quot;c&quot;&gt;&amp;lt;!-- 3. The data needs to be specified in a certain way! --&amp;gt;&lt;/span&gt;
+
+  &lt;span class=&quot;c&quot;&gt;&amp;lt;!--
+  Stock availability is shown in the DOM as 'In Stock',
+  but the vocabulary needs it to be specified as follows
+  --&amp;gt;&lt;/span&gt;
+
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;link&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;itemprop=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;availability&quot;&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;href=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;http://schema.org/InStock&quot;&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;/&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+  &lt;p&gt;The documentation is clear about which properties need to be declared as above
+  and the options available.&lt;/p&gt;
+
+  &lt;h2 id=&quot;things-to-consider-when-writing-new-html-applying-css-styles-or-simply-moving-things-around&quot;&gt;Things to consider when writing new HTML, applying CSS styles or simply moving things around&lt;/h2&gt;
+
+  &lt;h3 id=&quot;wrap-semantic-blocks&quot;&gt;Wrap semantic blocks&lt;/h3&gt;
+
+  &lt;p&gt;To make it easy for new HTML to be annotated, it is good practice to wrap any
+  piece of information into its own element. A problem that we had when annotating
+  the product page was that the only common parent of the product information and
+  its reviews was the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;body&lt;/code&gt;, so we needed to wrap all the information in the
+  product page into its own &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;div&lt;/code&gt;, which of course created a huge diff in Git.
+  The same applies to small pieces of information: if you need to display the
+  brand of a product and the product name, wrap each one into its own element:&lt;/p&gt;
+
+  &lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-html&quot; data-lang=&quot;html&quot;&gt;&lt;span class=&quot;c&quot;&gt;&amp;lt;!--Suboptimal  --&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;product-details&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    Brand name - Product name
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+
+  &lt;span class=&quot;c&quot;&gt;&amp;lt;!--Better  --&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;div&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;class=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;product-details&quot;&lt;/span&gt;&lt;span class=&quot;nt&quot;&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&amp;gt;&lt;/span&gt;Brand name&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt; - &lt;span class=&quot;nt&quot;&gt;&amp;lt;span&amp;gt;&lt;/span&gt;Product name&lt;span class=&quot;nt&quot;&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;
+  &lt;span class=&quot;nt&quot;&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+
+  &lt;h3 id=&quot;apply-css-styles-via-html-classes&quot;&gt;Apply CSS styles via HTML classes&lt;/h3&gt;
+
+  &lt;p&gt;Continuing with the example above, if we need to apply styling to the brand
+  name, it is better to do it through classes as this way is more robust than
+  applying styles through elements.&lt;/p&gt;
+
+  &lt;h3 id=&quot;moving-things-around&quot;&gt;Moving things around&lt;/h3&gt;
+
+  &lt;p&gt;As the microdata lives within the HTML, changes in the markup of a page can
+  easily break pre-existing annotations. To prevent that, if a block containing
+  microdata needs to be refactored, make sure to use the
+  &lt;a href=&quot;http://www.google.com/webmasters/tools/richsnippets&quot;&gt;Google Structured Data Testing Tool&lt;/a&gt;
+  to check that the microdata is still valid or needs to be rearranged as well
+  (e.g. maybe a property that belongs to a particular scope has been moved out
+  of that scope).&lt;/p&gt;
+
+  &lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&quot;http://schema.org/docs/gs.html&quot;&gt;Getting started with schema.org&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;http://diveintohtml5.info/extensibility.html#what-is-microdata&quot;&gt;Dive Into HTML5: What is microdata?&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;http://www.whatwg.org/specs/web-apps/current-work/multipage/microdata.html#microdata&quot;&gt;Living Standard - Microdata&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;http://www.google.com/webmasters/tools/richsnippets&quot;&gt;Google Structured Data Testing Tool&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;</content>
+    <author>
+      <name></name>
+    </author>
+    <summary type="html">The concept Microdata annotates the DOM with scoped name/value pairs from custom vocabularies. The vocabulary we are using is Schema.org, which is recognized by Google, Bing and Yahoo! among others. The goal Help search engines understand the content of a page in a semantic way. Basic example Pay special attention to the attributes itemscope, itemtype and itemprop, and to the meta tags: &amp;lt;div itemscope itemtype=&quot;http://schema.org/Product&quot;&amp;gt; &amp;lt;meta itemprop=&quot;sku&quot; content=&quot;123-sku&quot;&amp;gt; &amp;lt;h1 itemprop=&quot;name&quot;&amp;gt; Product title &amp;lt;/h1&amp;gt; &amp;lt;span class=&quot;brand-name&quot; itemprop=&quot;brand&quot; itemscope itemtype=&quot;http://schema.org/Brand&quot;&amp;gt; &amp;lt;a itemprop=&quot;url&quot; href=&quot;/brand-1&quot;&amp;gt; &amp;lt;span itemprop=&quot;name&quot;&amp;gt;Brand name&amp;lt;/span&amp;gt; &amp;lt;/a&amp;gt; &amp;lt;/span&amp;gt; &amp;lt;span class=&quot;star-wrap&quot; itemprop=&quot;aggregateRating&quot; itemscope itemtype=&quot;http://schema.org/AggregateRating&quot;&amp;gt; &amp;lt;meta itemprop=&quot;bestRating&quot; content=&quot;5&quot;&amp;gt; &amp;lt;meta itemprop=&quot;ratingValue&quot; content=&quot;4&quot;&amp;gt; &amp;lt;meta content=&quot;2&quot;&amp;gt; &amp;lt;span class=&quot;fa-icon-star&quot;&amp;gt;&amp;lt;/span&amp;gt; &amp;lt;span class=&quot;fa-icon-star&quot;&amp;gt;&amp;lt;/span&amp;gt; &amp;lt;span class=&quot;fa-icon-star&quot;&amp;gt;&amp;lt;/span&amp;gt; &amp;lt;span class=&quot;fa-icon-star&quot;&amp;gt;&amp;lt;/span&amp;gt; &amp;lt;span class=&quot;fa-icon-star stop&quot;&amp;gt;&amp;lt;/span&amp;gt; &amp;lt;span&amp;gt; (&amp;lt;span class=&quot;rating-num stop&quot; itemprop=&quot;reviewCount&quot;&amp;gt;2&amp;lt;/span&amp;gt;) &amp;lt;/span&amp;gt; &amp;lt;/span&amp;gt; ... &amp;lt;/div&amp;gt; The previous syntax describes a structure like the following: Product [creates a new scope] Sku: 123-sku Name: Product name Brand [creates a new scope] URL: /brand-1 Name: Brand name Aggregate rating [creates a new scope] Best rating: 5 Rating value: 4 Review count: 2 … All that information is extracted by search engines and they can use it to improve their results. Things to consider when annotating data While implementing the rich snippets, one challenge we might come across is that the data we want to annotate is either not in the DOM or it is not readily available to be annotated. In other cases, even if the information is readily available, the vocabulary requires it to be specified in a certain way. Have a look at the following cases: &amp;lt;!-- 1. The data is not in the DOM! --&amp;gt; &amp;lt;meta itemprop=&quot;sku&quot; content=&quot;123-sku&quot;&amp;gt; &amp;lt;!-- 2. The data cannot be annotated as is! --&amp;gt; &amp;lt;!-- The rating of a particular product is represented in the DOM by stars that cannot be annotated. We need to markup the actual value (★★★★☆ → 4): --&amp;gt; &amp;lt;meta itemprop=&quot;bestRating&quot; content=&quot;5&quot;&amp;gt; &amp;lt;meta itemprop=&quot;ratingValue&quot; content=&quot;4&quot;&amp;gt; &amp;lt;!-- The date of a review is displayed but it is not machine friendly (09/07/2013 → 2013-07-09): --&amp;gt; &amp;lt;span itemprop=&quot;datePublished&quot; content=&quot;2013-07-09&quot;&amp;gt;09/07/2013&amp;lt;/span&amp;gt; &amp;lt;!-- 3. The data needs to be specified in a certain way! --&amp;gt; &amp;lt;!-- Stock availability is shown in the DOM as 'In Stock', but the vocabulary needs it to be specified as follows --&amp;gt; &amp;lt;link itemprop=&quot;availability&quot; href=&quot;http://schema.org/InStock&quot; /&amp;gt; The documentation is clear about which properties need to be declared as above and the options available. Things to consider when writing new HTML, applying CSS styles or simply moving things around Wrap semantic blocks To make it easy for new HTML to be annotated, it is good practice to wrap any piece of information into its own element. A problem that we had when annotating the product page was that the only common parent of the product information and its reviews was the body, so we needed to wrap all the information in the product page into its own div, which of course created a huge diff in Git. The same applies to small pieces of information: if you need to display the brand of a product and the product name, wrap each one into its own element: &amp;lt;!--Suboptimal --&amp;gt; &amp;lt;div class=&quot;product-details&quot;&amp;gt; Brand name - Product name &amp;lt;/div&amp;gt; &amp;lt;!--Better --&amp;gt; &amp;lt;div class=&quot;product-details&quot;&amp;gt; &amp;lt;span&amp;gt;Brand name&amp;lt;/span&amp;gt; - &amp;lt;span&amp;gt;Product name&amp;lt;/span&amp;gt; &amp;lt;/div&amp;gt; Apply CSS styles via HTML classes Continuing with the example above, if we need to apply styling to the brand name, it is better to do it through classes as this way is more robust than applying styles through elements. Moving things around As the microdata lives within the HTML, changes in the markup of a page can easily break pre-existing annotations. To prevent that, if a block containing microdata needs to be refactored, make sure to use the Google Structured Data Testing Tool to check that the microdata is still valid or needs to be rearranged as well (e.g. maybe a property that belongs to a particular scope has been moved out of that scope). References Getting started with schema.org Dive Into HTML5: What is microdata? Living Standard - Microdata Google Structured Data Testing Tool</summary>
+  </entry>
+  <entry>
+    <title type="html">CSS limitations on IE</title>
+    <link href="http://blog.javiercejudo.com/css-limitations-on-ie/" rel="alternate" type="text/html" title="CSS limitations on IE" />
+    <published>2013-12-15T00:00:00+00:00</published>
+    <updated>2013-12-15T00:00:00+00:00</updated>
+    <id>http://blog.javiercejudo.com/css-limitations-on-ie</id>
+    <content type="html" xml:base="http://blog.javiercejudo.com/css-limitations-on-ie/">&lt;p&gt;If you search for CSS limitations on IE, you will see sites where they state
+  that IE has asize limitation for CSS files, but in fact that is not the case:&lt;/p&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;All style rules after the first 4,095 selectors are not applied. This is limited per sheet, not globally.&lt;/li&gt;
+    &lt;li&gt;All style tags after the first 31 style tags are not applied.&lt;/li&gt;
+    &lt;li&gt;On pages that uses the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@import&lt;/code&gt; rule to continously import external style sheets that import other style sheets, style sheets that are more than three levels deep are ignored.&lt;/li&gt;
+  &lt;/ul&gt;
+
+  &lt;p&gt;Here is a
+  &lt;a href=&quot;http://demos.telerik.com/testcases/4095issues.html&quot;&gt;live demo for the first case&lt;/a&gt;.&lt;/p&gt;
+
+  &lt;p&gt;IE 10 has limitations of the same nature but it’d take a lot more effort to
+  reach them:&lt;/p&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;A sheet may contain up to 65534 rules.&lt;/li&gt;
+    &lt;li&gt;A document may use up to 4095 stylesheets.&lt;/li&gt;
+    &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@import&lt;/code&gt; nesting is limited to 4095 levels (due to the 4095 stylesheet limit).&lt;/li&gt;
+  &lt;/ul&gt;
+
+  &lt;p&gt;If you think you might having issues due to the 4,095 constraint, you can take
+  your CSS and roughly count the number of selectors following the following
+  formula,&lt;/p&gt;
+
+  &lt;blockquote&gt;
+    &lt;p&gt;Selectors ≈ Braces + Commas&lt;/p&gt;
+  &lt;/blockquote&gt;
+
+  &lt;p&gt;where &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Braces&lt;/code&gt; is the number of braces (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;{&lt;/code&gt;), and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Commas&lt;/code&gt; is the number of
+  commas (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;,&lt;/code&gt;). The formula is an approximation because there are commas inside
+  some CSS rules. A better option is to run your stylesheets through
+  &lt;a href=&quot;http://cssstats.com&quot;&gt;CSS Stats&lt;/a&gt;.&lt;/p&gt;
+
+  &lt;p&gt;A quick solution is to simply separate the CSS file(s) with problems into
+  smaller pieces.&lt;/p&gt;
+
+  &lt;p&gt;There is a
+  &lt;a href=&quot;https://github.com/makandra/ie-css-test&quot;&gt;github project with tests for this&lt;/a&gt;
+  you can check out that confirms that the size is not the issue:&lt;/p&gt;
+
+  &lt;blockquote&gt;
+    &lt;p&gt;There are some rumors on the interwebs about IE breaking at a file size around roughly 288 kilobytes.&lt;/p&gt;
+
+    &lt;p&gt;We generate a CSS file of about 500 kb (when built statically).&lt;/p&gt;
+
+    &lt;p&gt;Tested with IE 8 and 9, none broke. People were probably just hitting the selector limit.&lt;/p&gt;
+  &lt;/blockquote&gt;
+
+  &lt;h2 id=&quot;references&quot;&gt;References&lt;/h2&gt;
+
+  &lt;ul&gt;
+    &lt;li&gt;&lt;a href=&quot;http://support.microsoft.com/kb/262161&quot;&gt;Microsoft Support&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;http://blogs.msdn.com/b/ieinternals/archive/2011/05/14/10164546.aspx&quot;&gt;IEInternals&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;</content>
+    <author>
+      <name></name>
+    </author>
+    <summary type="html">If you search for CSS limitations on IE, you will see sites where they state that IE has asize limitation for CSS files, but in fact that is not the case: All style rules after the first 4,095 selectors are not applied. This is limited per sheet, not globally. All style tags after the first 31 style tags are not applied. On pages that uses the @import rule to continously import external style sheets that import other style sheets, style sheets that are more than three levels deep are ignored. Here is a live demo for the first case. IE 10 has limitations of the same nature but it’d take a lot more effort to reach them: A sheet may contain up to 65534 rules. A document may use up to 4095 stylesheets. @import nesting is limited to 4095 levels (due to the 4095 stylesheet limit). If you think you might having issues due to the 4,095 constraint, you can take your CSS and roughly count the number of selectors following the following formula, Selectors ≈ Braces + Commas where Braces is the number of braces ({), and Commas is the number of commas (,). The formula is an approximation because there are commas inside some CSS rules. A better option is to run your stylesheets through CSS Stats. A quick solution is to simply separate the CSS file(s) with problems into smaller pieces. There is a github project with tests for this you can check out that confirms that the size is not the issue: There are some rumors on the interwebs about IE breaking at a file size around roughly 288 kilobytes. We generate a CSS file of about 500 kb (when built statically). Tested with IE 8 and 9, none broke. People were probably just hitting the selector limit. References Microsoft Support IEInternals</summary>
+  </entry>
+</feed>

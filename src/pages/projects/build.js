@@ -1,8 +1,8 @@
 const path = require('path');
 const projectsData = require('./data');
 
-const buildHome = async ({buildPage}) =>
-  await buildPage({
+const buildHome = ({buildPage}) =>
+  buildPage({
     pageSourcePath: path.join(__dirname, 'template.mustache'),
     relativeOutputPath: path.join('projects', 'index.html'),
     layoutData: {
