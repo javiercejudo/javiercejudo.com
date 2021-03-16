@@ -9,3 +9,5 @@ npx parcel build \
   --public-url '.' \
   --experimental-scope-hoisting \
   src/static/**/*.html
+
+npx cpy '**/*.xml' '../../dist/' --cwd=src/static --parents

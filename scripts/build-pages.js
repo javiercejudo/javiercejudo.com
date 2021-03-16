@@ -7,6 +7,7 @@ const hljs = require('highlight.js');
 const molino = require('../lib/molino');
 
 const builders = require('../src/pages/builders');
+const siteData = require('../src/siteData');
 
 const md = makeMd({
   highlight: function (str, lang) {
@@ -40,6 +41,7 @@ const siteBuilder = () => {
   }) => {
     const commonData = {
       currentYear: new Date().getFullYear(),
+      site: siteData
     };
 
     return molino.buildPage({

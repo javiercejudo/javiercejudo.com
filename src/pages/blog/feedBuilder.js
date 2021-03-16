@@ -12,7 +12,6 @@ const homeBuilder = async ({buildPage, md}) =>
     relativeOutputPath: path.join(blogData.path, 'feed.xml'),
     layoutPath: path.join('src', 'layouts', 'identity.mustache'),
     pageData: {
-      site: siteData,
       blog: blogData,
       updated: new Date().toISOString(),
       renderedPosts: await Promise.all(
