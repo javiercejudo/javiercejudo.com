@@ -1,5 +1,6 @@
 const path = require('path');
 const blogData = require('../blog/data');
+const clockData = require('../clock/data');
 
 const menuBuilder = ({buildPage}) =>
   buildPage({
@@ -13,6 +14,7 @@ const menuBuilder = ({buildPage}) =>
     },
     pageData: {
       blogPath: blogData.path,
+      clockPath: clockData.relativeOutputPath,
     },
   });
 

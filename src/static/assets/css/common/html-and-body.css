@@ -1,7 +1,8 @@
 html {
   /* Prevent system color scheme’s background color being used in Firefox, IE, and Opera. */
   /* See https://css-tricks.com/just-one-of-those-weird-things-about-css-background-on-body/ */
-  background-color: #000;
+  --jc-bg-colour: #000;
+  background-color: var(--jc-bg-colour);
   margin: 0;
 }
 

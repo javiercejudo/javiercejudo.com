@@ -1,48 +1,50 @@
 .logo {
-  --logo-letter-height: calc(18rem / 16);
-  --logo-j-width: var(--logo-letter-height);
-  --logo-j-radius: calc(var(--logo-letter-height) / 3.6);
-  --logo-c-width: calc(var(--logo-letter-height) / 1.2);
-  --logo-spacing: calc(var(--logo-letter-height) / 6);
-  --logo-radius: calc(var(--logo-letter-height) / 6);
-  --logo-border-width: calc(var(--logo-letter-height) / 9);
+  --jc-logo-letter-height: calc(18rem / 16);
+  --jc-logo-j-width: var(--jc-logo-letter-height);
+  --jc-logo-j-radius: calc(var(--jc-logo-letter-height) / 3.6);
+  --jc-logo-c-width: calc(var(--jc-logo-letter-height) / 1.2);
+  --jc-logo-spacing: calc(var(--jc-logo-letter-height) / 6);
+  --jc-logo-radius: calc(var(--jc-logo-letter-height) / 6);
+  --jc-logo-border-width: calc(var(--jc-logo-letter-height) / 9);
+  --jc-logo-colour: white;
+  --jc-logo-bg-colour: var(--jc-bg-colour);
 }
 
 .logo {
   display: flex;
   align-items: center;
-  padding: var(--logo-spacing) 0 var(--logo-spacing) 0px;
-  border: var(--logo-border-width) solid #fff;
-  border-radius: var(--logo-radius);
-  background: black;
+  padding: var(--jc-logo-spacing) 0 var(--jc-logo-spacing) 0px;
+  border: var(--jc-logo-border-width) solid var(--jc-logo-colour);
+  border-radius: var(--jc-logo-radius);
+  background: var(--jc-logo-bg-colour);
 }
 
 .logo span {
-  height: var(--logo-letter-height);
-  border-color: #fff;
+  height: var(--jc-logo-letter-height);
+  border-color: var(--jc-logo-colour);
   border-style: solid;
   border-width: 0;
 }
 
 .logo .logo-j {
-  margin-right: var(--logo-spacing);
-  width: var(--logo-j-width);
-  background: #fff;
-  border-bottom-right-radius: var(--logo-j-radius);
+  margin-right: var(--jc-logo-spacing);
+  width: var(--jc-logo-j-width);
+  background: var(--jc-logo-colour);
+  border-bottom-right-radius: var(--jc-logo-j-radius);
 }
 
 .logo .logo-j2 {
-  border-color: #000;
-  border-top-width: var(--logo-letter-height);
-  border-right: var(--logo-j-width) solid transparent;
-  margin-right: var(--logo-spacing);
+  border-color: var(--jc-logo-bg-colour);
+  border-top-width: var(--jc-logo-letter-height);
+  border-right: var(--jc-logo-j-width) solid transparent;
+  margin-right: var(--jc-logo-spacing);
   position: absolute;
 }
 
 .logo .logo-c {
-  width: var(--logo-c-width);
-  border-color: #000;
-  background-color: #fff;
+  width: var(--jc-logo-c-width);
+  border-color: var(--jc-logo-bg-colour);
+  background-color: var(--jc-logo-colour);
   border-top-left-radius: 999px;
   border-bottom-left-radius: 999px;
   margin-right: calc(-0.5rem / 16);

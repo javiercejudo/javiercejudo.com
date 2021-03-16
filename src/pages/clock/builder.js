@@ -1,9 +1,10 @@
 const path = require('path');
+const clockData = require('./data');
 
 const clockBuilder = ({buildPage, identityRender}) =>
   buildPage({
     pageSourcePath: path.join(__dirname, 'template.mustache'),
-    relativeOutputPath: path.join('clock', 'index.html'),
+    relativeOutputPath: path.join(...clockData.relativeOutputPath.split('/')),
     layoutData: {
       title: 'Clock - javiercejudo.com',
       description: 'In case you were wondering what the time is',
