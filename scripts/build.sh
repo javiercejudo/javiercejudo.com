@@ -3,7 +3,7 @@
 set -e
 set -x
 
-npx nf -e .env,.env.prod run ./scripts/build-pages.js
+npx nf -e .env,.env.prod,.env.local run ./scripts/build-pages.js
 
 npx parcel build \
   --public-url '.' \
