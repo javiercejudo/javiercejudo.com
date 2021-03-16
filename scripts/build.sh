@@ -10,4 +10,6 @@ npx parcel build \
   --experimental-scope-hoisting \
   src/static/**/*.html
 
+# Necessary because Parcel hashes XML files like the RSS feed so we opt
+# out of having Parcel process it by referencing it with an absolut URL
 npx cpy '**/*.xml' '../../dist/' --cwd=src/static --parents
