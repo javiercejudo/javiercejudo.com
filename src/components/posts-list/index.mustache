@@ -1,0 +1,10 @@
+<ul>
+  {{#data.component.postsList.posts}}
+  <li>
+    <a
+      href="{{{ molino.baseHref }}}{{{ data.component.postsList.path }}}/{{{ outputPath }}}"
+      >{{ title }}</a
+    >
+  </li>
+  {{/data.component.postsList.posts}}
+</ul>

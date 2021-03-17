@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+const fs = require('fs');
 const path = require('path');
 const Mustache = require('mustache');
 const makeMd = require('markdown-it');
@@ -8,6 +9,9 @@ const molino = require('../lib/molino');
 
 const builders = require('../src/pages/builders');
 const siteData = require('../src/siteData');
+
+const loadComponent = componentPath =>
+  fs.readFileSync(componentPath).toString();
 
 const md = makeMd({
   highlight: function (str, lang) {
@@ -29,7 +33,12 @@ const md = makeMd({
 
 const siteBuilder = () => {
   const mustacheRender = (template, viewData) =>
-    Mustache.render(template, viewData);
+    Mustache.render(template, viewData, {
+      postsList: loadComponent(
+        path.join('src', 'components', 'posts-list', 'index.mustache')
+      ),
+    });
+
   const identityRender = x => x;
 
   const buildPage = ({
@@ -41,7 +50,7 @@ const siteBuilder = () => {
   }) => {
     const commonData = {
       currentYear: new Date().getFullYear(),
-      site: siteData
+      site: siteData,
     };
 
     return molino.buildPage({

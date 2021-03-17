@@ -14,9 +14,9 @@ const postsPaths = [
 //   return a < b ? 1 : 0;
 // });
 
-const postsData = postsPaths.map(postPath => ({
+const posts = postsPaths.map(postPath => ({
   ...require(postPath),
   sourcePath: path.join(...postPath.split('/'), 'index.md'),
 }));
 
-module.exports = postsData;
+module.exports = posts;
