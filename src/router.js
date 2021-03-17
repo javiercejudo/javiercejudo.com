@@ -7,7 +7,7 @@ module.exports = ({templatesPath}) => {
 
   const clockHandler = makeClockHandler({templatesPath});
   router.get(
-    `/${clockData.relativeOutputPath.replace('/index.html', '')}`,
+    `/${clockData.relativeOutputPath.replace(/index\.html$/, '')}`,
     clockHandler
   );
   router.get(`/${clockData.relativeOutputPath}`, clockHandler);
