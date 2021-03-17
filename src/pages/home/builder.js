@@ -9,6 +9,7 @@ const homeBuilder = ({buildPage}) =>
       title: 'Homepage - javiercejudo.com',
       description: 'Javier Cejudo’s personal website',
       pageIsHome: true,
+      styles: ['home/index.css'],
     },
     pageData: homeData,
   });

@@ -9,6 +9,9 @@ const homeBuilder = ({buildPage}) =>
       title: 'Blog - javiercejudo.com',
       description: 'Javier Cejudo’s blog',
     },
+    layoutData: {
+      styles: ['blog/index.css'],
+    },
     pageData: blogData,
   });
 

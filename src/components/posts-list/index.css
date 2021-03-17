@@ -1,0 +1,8 @@
+.jc-posts-list {
+  list-style: none;
+  padding: 0;
+}
+
+.jc-posts-list > li {
+  padding: calc(8rem / 16) 0;
+}
