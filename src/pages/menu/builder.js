@@ -14,7 +14,7 @@ const menuBuilder = ({buildPage}) =>
     },
     pageData: {
       blogPath: blogData.path,
-      clockPath: clockData.relativeOutputPath,
+      clockPath: clockData.path,
     },
   });
 

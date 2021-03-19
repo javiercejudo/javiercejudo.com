@@ -1,18 +1,32 @@
 const path = require('path');
+const Mustache = require('mustache');
 const blogData = require('./data');
 
-const homeBuilder = ({buildPage}) =>
-  buildPage({
+const blogHomeBuilder = async ({buildPage, loadComponent}) => {
+  const postsList = await loadComponent(
+    path.join('src', 'components', 'posts-list', 'index.mustache')
+  );
+
+  return buildPage({
     pageSourcePath: path.join(__dirname, 'index.mustache'),
     relativeOutputPath: path.join(blogData.path, 'index.html'),
+    renderPage: (...args) => Mustache.render(...args, {postsList}),
     layoutData: {
       title: 'Blog - javiercejudo.com',
       description: 'Javier Cejudo’s blog',
-    },
-    layoutData: {
       styles: ['blog/index.css'],
     },
-    pageData: blogData,
+    pageData: {
+      blogData,
+      hasPosts: blogData.posts.length > 0,
+      component: {
+        postsList: {
+          path: blogData.path,
+          posts: blogData.posts,
+        },
+      },
+    },
   });
+};
 
-module.exports = homeBuilder;
+module.exports = blogHomeBuilder;

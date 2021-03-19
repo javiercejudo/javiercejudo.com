@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const fs = require('fs');
+const fs = require('fs/promises');
 const path = require('path');
 const Mustache = require('mustache');
 const makeMd = require('markdown-it');
@@ -8,10 +8,9 @@ const hljs = require('highlight.js');
 const molino = require('../lib/molino');
 
 const builders = require('../src/pages/builders');
-const siteData = require('../src/siteData');
 
-const loadComponent = componentPath =>
-  fs.readFileSync(componentPath).toString();
+const loadComponent = async componentPath =>
+  (await fs.readFile(componentPath)).toString();
 
 const md = makeMd({
   highlight: function (str, lang) {
@@ -33,11 +32,7 @@ const md = makeMd({
 
 const siteBuilder = () => {
   const mustacheRender = (template, viewData) =>
-    Mustache.render(template, viewData, {
-      postsList: loadComponent(
-        path.join('src', 'components', 'posts-list', 'index.mustache')
-      ),
-    });
+    Mustache.render(template, viewData);
 
   const identityRender = x => x;
 
@@ -49,8 +44,9 @@ const siteBuilder = () => {
     ...passThrough
   }) => {
     const commonData = {
+      lang: 'en-AU',
+      siteUrl: process.env.URL,
       currentYear: new Date().getFullYear(),
-      site: siteData,
     };
 
     return molino.buildPage({
@@ -66,7 +62,13 @@ const siteBuilder = () => {
 
   try {
     const pagesInfo = builders.map(pageBuilder =>
-      pageBuilder({buildPage, mustacheRender, identityRender, md})
+      pageBuilder({
+        buildPage,
+        mustacheRender,
+        identityRender,
+        md,
+        loadComponent,
+      })
     );
 
     pagesInfo.forEach(pageInfo => {

@@ -1,7 +1,6 @@
 const path = require('path');
 const fs = require('fs');
 const util = require('util');
-const siteData = require('../../siteData');
 const blogData = require('./data');
 
 const readFile = util.promisify(fs.readFile);

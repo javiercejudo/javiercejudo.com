@@ -9,7 +9,7 @@ const readFile = util.promisify(fs.readFile);
 const clockHandler = ({templatesPath}) => async (_, res) => {
   try {
     const template = await readFile(
-      path.join(templatesPath, ...clockData.relativeOutputPath.split('/'))
+      path.join(templatesPath, ...clockData.path.split('/'))
     );
 
     res.send(

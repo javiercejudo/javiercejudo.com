@@ -1,6 +1,6 @@
 const express = require('express');
-const clockData = require('./pages/clock/data');
-const makeClockHandler = require('./pages/clock/handler');
+const clockData = require('./clock/data');
+const makeClockHandler = require('./clock/handler');
 
 module.exports = ({templatesPath}) => {
   const router = express.Router({strict: true});
@@ -10,7 +10,7 @@ module.exports = ({templatesPath}) => {
     router.get(`/${path}`, handler);
   };
 
-  simpleRoute(clockData.relativeOutputPath, makeClockHandler({templatesPath}));
+  simpleRoute(clockData.path, makeClockHandler({templatesPath}));
 
   return router;
 };

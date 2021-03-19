@@ -1,5 +1,5 @@
 const clockData = {
-  relativeOutputPath: 'clock/index.html'
+  path: 'clock/index.html'
 }
 
 module.exports = clockData

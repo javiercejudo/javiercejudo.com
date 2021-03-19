@@ -3,8 +3,7 @@ const helmet = require('helmet');
 const compression = require('compression');
 const serveStatic = require('serve-static');
 
-const router = require('./src/router');
-
+const router = require('./src/pages/router');
 const port = 8080;
 const app = express();
 app.use(helmet());

@@ -40,9 +40,3 @@
   height: auto;
   clip: auto;
 }
-
-@media all and (min-width: 768px) {
-  .container {
-    padding: 0;
-  }
-}

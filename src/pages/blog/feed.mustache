@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <link
-    href="{{{data.site.url}}}/{{{data.blog.path}}}/feed.xml"
+    href="{{{data.siteUrl}}}/{{{data.blog.path}}}/feed.xml"
     rel="self"
     type="application/atom+xml"
   />
-  <link href="{{{data.site.url}}}" rel="alternate" type="text/html" />
+  <link href="{{{data.siteUrl}}}" rel="alternate" type="text/html" />
   <updated>{{ data.updated }}</updated>
-  <id>{{{data.site.url}}}/{{{data.blog.path}}}/feed.xml</id>
+  <id>{{{data.siteUrl}}}/{{{data.blog.path}}}/feed.xml</id>
   <title type="html">{{ data.blog.title }}</title>
   {{#data.renderedPosts}}
   <entry>
     <title type="html">{{ title }}</title>
     <link
-      href="{{{data.site.url}}}/{{{data.blog.path}}}/{{{outputPath}}}"
+      href="{{{data.siteUrl}}}/{{{data.blog.path}}}/{{{outputPath}}}"
       rel="alternate"
       type="text/html"
       title="{{ title }}"
     />
     <published>{{ date }}T00:00:00+00:00</published>
     <updated>{{ date }}T00:00:00+00:00</updated>
-    <id>{{{data.site.url}}}/{{{data.blog.path}}}/{{{outputPath}}}</id>
+    <id>{{{data.siteUrl}}}/{{{data.blog.path}}}/{{{outputPath}}}</id>
     <content
       type="html"
-      xml:base="{{{data.site.url}}}/{{{data.blog.path}}}/{{{outputPath}}}"
+      xml:base="{{{data.siteUrl}}}/{{{data.blog.path}}}/{{{outputPath}}}"
       >{{ content }}</content
     >
     <author>

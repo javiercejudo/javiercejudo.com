@@ -20,6 +20,7 @@ const aboutEsBuilder = ({buildPage}) =>
     pageSourcePath: path.join(__dirname, 'template.mustache'),
     relativeOutputPath: path.join('sobre-mi', 'index.html'),
     layoutData: {
+      lang: 'es-ES',
       title: 'Sobre mí - javiercejudo.com',
       description: '¿Quién soy?',
     },
