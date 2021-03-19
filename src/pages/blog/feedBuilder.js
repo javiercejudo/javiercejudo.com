@@ -5,6 +5,7 @@ const siteData = require('../../siteData');
 const blogData = require('./data');
 
 const readFile = util.promisify(fs.readFile);
+const MAX_FEED_LENGTH = 10;
 
 const homeBuilder = async ({buildPage, md}) =>
   buildPage({
@@ -15,7 +16,7 @@ const homeBuilder = async ({buildPage, md}) =>
       blog: blogData,
       updated: new Date().toISOString(),
       renderedPosts: await Promise.all(
-        blogData.posts.map(async post => {
+        blogData.posts.slice(0, MAX_FEED_LENGTH).map(async post => {
           const markdownBuffer = await readFile(
             path.join(
               __dirname,

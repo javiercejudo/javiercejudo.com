@@ -5,12 +5,12 @@ const makeClockHandler = require('./pages/clock/handler');
 module.exports = ({templatesPath}) => {
   const router = express.Router({strict: true});
 
-  const clockHandler = makeClockHandler({templatesPath});
-  router.get(
-    `/${clockData.relativeOutputPath.replace(/index\.html$/, '')}`,
-    clockHandler
-  );
-  router.get(`/${clockData.relativeOutputPath}`, clockHandler);
+  const simpleRoute = (path, handler) => {
+    router.get(`/${path.replace(/index\.html$/, '')}`, handler);
+    router.get(`/${path}`, handler);
+  };
+
+  simpleRoute(clockData.relativeOutputPath, makeClockHandler({templatesPath}));
 
   return router;
 };
