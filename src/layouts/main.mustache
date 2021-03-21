@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="{{ data.lang }}">
+<html lang="{{ commonData.lang }}">
   <head>
     <meta charset="utf-8" />
-    <title>{{ data.title }}</title>
+    <title>{{ title }}</title>
 
     <meta name="description" content="{{ data.description }}" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -55,7 +55,7 @@
     <link
       type="application/atom+xml"
       rel="alternate"
-      href="{{{ data.siteUrl }}}/blog/feed.xml"
+      href="{{{ commonData.siteUrl }}}/blog/feed.xml"
       title="Tech notes by Javier Cejudo"
     />
   </head>
@@ -63,7 +63,7 @@
   <body>
     <a href="#skip-nav" class="skip-nav">Skip to content</a>
 
-    {{#data.styles}}
+    {{#styles}}
     <link
       rel="preload"
       href="{{{ molino.baseHref }}}assets/css/{{{ . }}}"
@@ -74,9 +74,9 @@
       type="text/css"
       href="{{{ molino.baseHref }}}assets/css/{{{ . }}}"
     />
-    {{/data.styles}}
+    {{/styles}}
 
-    {{#data.scripts}}
+    {{#scripts}}
     {{#molino.isProd}}
     <script src="{{{ molino.baseHref }}}assets/js/{{{ . }}}" defer></script>
     {{/molino.isProd}}
@@ -86,7 +86,7 @@
       src="{{{ molino.baseHref }}}assets/js/{{{ . }}}"
     ></script>
     {{/molino.isProd}}
-    {{/data.scripts}}
+    {{/scripts}}
 
     <div class="page">
       <header>
@@ -96,7 +96,7 @@
               <li>
                 <a
                   href="{{{ molino.baseHref }}}index.html"
-                  class="nav-home {{#data.pageIsHome}}is-active{{/data.pageIsHome}}"
+                  class="nav-home {{#pageIsHome}}is-active{{/pageIsHome}}"
                 >
                   Home
                 </a>
@@ -117,7 +117,7 @@
               <li>
                 <a
                   href="{{{ molino.baseHref }}}menu/index.html"
-                  class="nav-menu {{#data.pageIsMenu}}is-active{{/data.pageIsMenu}}"
+                  class="nav-menu {{#pageIsMenu}}is-active{{/pageIsMenu}}"
                 >
                   Menu
                 </a>
@@ -129,7 +129,7 @@
 
       <div class="content" id="skip-nav">{{{ content }}}</div>
 
-      <footer>© javiercejudo.com 2013-{{ data.currentYear }}</footer>
+      <footer>© javiercejudo.com 2013-{{ commonData.currentYear }}</footer>
     </div>
   </body>
 </html>

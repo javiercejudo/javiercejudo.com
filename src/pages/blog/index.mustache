@@ -1,9 +1,9 @@
 <div class="container">
-  {{#data.hasPosts}}
+  {{#hasPosts}}
   <h2>Blog</h2>
   {{> postsList}}
-  {{/data.hasPosts}}
-  {{^data.hasPosts}}
+  {{/hasPosts}}
+  {{^hasPosts}}
   No blog posts
-  {{/data.hasPosts}}
+  {{/hasPosts}}
 </div>

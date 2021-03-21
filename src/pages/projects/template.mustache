@@ -1,15 +1,15 @@
 <div class="container">
-  {{#data.hasProjects}}
+  {{#hasProjects}}
   <h2>Projects</h2>
   <ul>
-    {{#data.projects}}
+    {{#projects}}
     <li>
       <a href="{{{ molino.baseHref }}}projects/{{{ path }}}">{{ name }}</a>
     </li>
-    {{/data.projects}}
+    {{/projects}}
   </ul>
-  {{/data.hasProjects}}
-  {{^data.hasProjects}}
+  {{/hasProjects}}
+  {{^hasProjects}}
   No projects
-  {{/data.hasProjects}}
+  {{/hasProjects}}
 </div>

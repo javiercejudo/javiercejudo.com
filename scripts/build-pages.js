@@ -37,8 +37,8 @@ const siteBuilder = () => {
   const identityRender = x => x;
 
   const buildPage = ({
-    pageData = {},
-    layoutData = {},
+    pageData = () => ({}),
+    layoutData = content => ({content}),
     renderPage = mustacheRender,
     renderLayout = mustacheRender,
     ...passThrough
@@ -52,10 +52,11 @@ const siteBuilder = () => {
     return molino.buildPage({
       layoutPath: path.join('src', 'layouts', 'main.mustache'),
       outputFolderPath: path.join('src', 'static'),
-      pageData: {...commonData, ...pageData},
-      layoutData: {...commonData, ...layoutData},
-      renderPage,
+      layoutData: (content, molino) =>
+        layoutData(content, {molino, commonData}),
+      pageData: molino => pageData({molino, commonData}),
       renderLayout,
+      renderPage,
       ...passThrough,
     });
   };

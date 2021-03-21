@@ -14,7 +14,7 @@ const clockHandler = ({templatesPath}) => async (_, res) => {
 
     res.send(
       Mustache.render(template.toString(), {
-        data: {time: new Date().toISOString()},
+        time: new Date().toISOString(),
       })
     );
   } catch (err) {

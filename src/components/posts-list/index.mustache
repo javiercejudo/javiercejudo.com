@@ -1,10 +1,10 @@
 <ul class="jc-posts-list">
-  {{#data.component.postsList.posts}}
+  {{#component.postsList.posts}}
   <li>
     <a
-      href="{{{ molino.baseHref }}}{{{ data.component.postsList.path }}}/{{{ outputPath }}}"
+      href="{{{ molino.baseHref }}}{{{ component.postsList.path }}}/{{{ outputPath }}}"
       >{{ title }}</a
     >
   </li>
-  {{/data.component.postsList.posts}}
+  {{/component.postsList.posts}}
 </ul>

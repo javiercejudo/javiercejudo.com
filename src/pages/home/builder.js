@@ -12,13 +12,17 @@ const homeBuilder = async ({buildPage, loadComponent}) => {
     pageSourcePath: path.join(__dirname, 'template.mustache'),
     relativeOutputPath: 'index.html',
     renderPage: (...args) => Mustache.render(...args, {postsList}),
-    layoutData: {
+    layoutData: (content, {molino, commonData}) => ({
+      content,
+      molino,
+      commonData,
       title: 'Homepage - javiercejudo.com',
       description: 'Javier Cejudo’s personal website',
       pageIsHome: true,
       styles: ['home/index.css'],
-    },
-    pageData: {
+    }),
+    pageData: ({molino}) => ({
+      molino,
       hasProjects: projectsData.length > 0,
       projects: projectsData,
       hasPosts: blogData.posts.length > 0,
@@ -29,7 +33,7 @@ const homeBuilder = async ({buildPage, loadComponent}) => {
           posts: blogData.posts,
         },
       },
-    },
+    }),
   });
 };
 

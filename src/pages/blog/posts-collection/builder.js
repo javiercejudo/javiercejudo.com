@@ -19,16 +19,20 @@ const postBuilder = ({blogPath, post}) => async ({buildPage, md}) => {
   return buildPage({
     pageSourcePath: path.join(__dirname, 'template.mustache'),
     relativeOutputPath: path.join(blogPath, ...post.outputPath.split('/')),
-    layoutData: {
+    layoutData: (content, {molino, commonData}) => ({
+      content,
+      molino,
+      commonData,
       title: `${post.title} - example.com`,
       description: post.description,
       styles,
-    },
-    pageData: {
+    }),
+    pageData: ({molino}) => ({
+      molino,
       post,
       blogPath,
       content,
-    },
+    }),
   });
 };
 
