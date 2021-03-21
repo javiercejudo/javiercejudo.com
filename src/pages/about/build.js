@@ -26,8 +26,7 @@ const aboutEsBuilder = ({buildPage}) =>
     layoutData: (content, {molino, commonData}) => ({
       content,
       molino,
-      commonData,
-      lang: 'es-ES',
+      commonData: {...commonData, lang: 'es-ES'},
       title: 'Sobre mí - javiercejudo.com',
       description: '¿Quién soy?',
     }),
