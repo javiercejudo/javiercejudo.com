@@ -1,6 +1,7 @@
 const path = require('path');
 const projectsData = require('./data');
 
+/** @type import('../builders').Builder */
 const homeBuilder = ({buildPage}) =>
   buildPage({
     pageSourcePath: path.join(__dirname, 'template.mustache'),

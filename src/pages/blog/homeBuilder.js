@@ -2,6 +2,7 @@ const path = require('path');
 const Mustache = require('mustache');
 const blogData = require('./data');
 
+/** @type import('../builders').Builder */
 const blogHomeBuilder = async ({buildPage, loadComponent}) => {
   const postsList = await loadComponent(
     path.join('src', 'components', 'posts-list', 'index.mustache')
@@ -24,7 +25,14 @@ const blogHomeBuilder = async ({buildPage, loadComponent}) => {
       component: {
         postsList: {
           posts: blogData.posts.map(post => ({
-            link: `${molino.baseHref}${blogData.path}/${post.outputPath}`,
+            link: `${
+              typeof molino === 'object' &&
+              molino !== null &&
+              'baseHref' in molino
+                // @ts-ignore
+                ? molino.baseHref
+                : ''
+            }${blogData.path}/${post.outputPath}`,
             title: post.title,
           })),
         },

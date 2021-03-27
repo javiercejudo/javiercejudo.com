@@ -2,6 +2,7 @@ const path = require('path');
 const blogData = require('../blog/data');
 const clockData = require('../clock/data');
 
+/** @type import('../builders').Builder */
 const menuBuilder = ({buildPage}) =>
   buildPage({
     pageSourcePath: path.join(__dirname, 'template.mustache'),

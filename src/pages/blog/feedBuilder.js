@@ -6,6 +6,7 @@ const blogData = require('./data');
 const readFile = util.promisify(fs.readFile);
 const MAX_FEED_LENGTH = 10;
 
+/** @type import('../builders').Builder */
 const homeBuilder = async ({buildPage, md}) => {
   const renderedPosts = await Promise.all(
     blogData.posts.slice(0, MAX_FEED_LENGTH).map(async post => {

@@ -1,5 +1,6 @@
 const path = require('path');
 
+/** @type import('../builders').Builder */
 const aboutEnBuilder = ({buildPage}) =>
   buildPage({
     pageSourcePath: path.join(__dirname, 'template.mustache'),
@@ -19,6 +20,7 @@ const aboutEnBuilder = ({buildPage}) =>
     }),
   });
 
+/** @type import('../builders').Builder */
 const aboutEsBuilder = ({buildPage}) =>
   buildPage({
     pageSourcePath: path.join(__dirname, 'template.mustache'),
@@ -26,7 +28,10 @@ const aboutEsBuilder = ({buildPage}) =>
     layoutData: (content, {molino, commonData}) => ({
       content,
       molino,
-      commonData: {...commonData, lang: 'es-ES'},
+      commonData: {
+        ...(typeof commonData === 'object' ? commonData : {}),
+        lang: 'es-ES',
+      },
       title: 'Sobre mí - javiercejudo.com',
       description: '¿Quién soy?',
     }),

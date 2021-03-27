@@ -1,6 +1,7 @@
 const path = require('path');
 const clockData = require('./data');
 
+/** @type import('../builders').Builder */
 const clockBuilder = ({buildPage, identityRender}) =>
   buildPage({
     pageSourcePath: path.join(__dirname, 'template.mustache'),
