@@ -1,3 +1,11 @@
+/**
+ * @typedef Project
+ * @property {string} name
+ * @property {string} description
+ * @property {string} path
+ */
+
+/** @type Project[] */
 const projectsData = [
   {
     name: 'javiercejudo.com',

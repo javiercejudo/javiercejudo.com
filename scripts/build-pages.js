@@ -9,6 +9,100 @@ const molino = require('../lib/molino');
 
 const builders = require('../src/pages/builders');
 
+const siteUrl = process.env.URL;
+
+if (!siteUrl) {
+  throw Error('Missing URL environment variable');
+}
+
+/**
+ * @template Data
+ * @callback MustacheRender
+ * @param {string} template
+ * @param {Data} viewData
+ * @returns {string}
+ */
+
+/**
+ * @template Data
+ * @type MustacheRender<Data>
+ */
+const mustacheRender = (template, viewData) =>
+  Mustache.render(template, viewData);
+
+/**
+ * @typedef MainLayout
+ * @property {string} title
+ * @property {string} description
+ * @property {boolean} [pageIsHome]
+ * @property {string[]} [styles]
+ * @property {string[]} [scripts]
+ */
+
+/**
+ * @typedef CommonData
+ * @property {string} lang
+ * @property {string} siteUrl
+ * @property {number} currentYear
+ */
+
+/**
+ * @typedef TemplateHelpers
+ * @property {molino.TemplateHelpers} molino
+ * @property {CommonData} commonData
+ */
+
+/**
+ * @template Layout
+ * @callback LayoutData
+ * @param {string} content
+ * @param {TemplateHelpers} molino
+ * @returns {{content?: string, molino?: molino.TemplateHelpers, commonData?: CommonData} & Layout}
+ */
+
+/**
+ * @template Page
+ * @callback PageData
+ * @param {TemplateHelpers} molino
+ * @returns {{molino?: molino.TemplateHelpers, commonData?: CommonData} & Page}
+ */
+
+/**
+ * @template Layout, Page
+ * @typedef BuildPageProps
+ * @property {string} pageSourcePath
+ * @property {string} relativeOutputPath
+ * @property {string} [layoutPath]
+ * @property {LayoutData<Layout>} [layoutData]
+ * @property {PageData<Page>} [pageData]
+ * @property {molino.RenderFn<Layout>} [renderLayout]
+ * @property {molino.RenderFn<Page>} [renderPage]
+ */
+
+/**
+ * @template Layout, Page
+ * @callback BuildPage
+ * @param {BuildPageProps<Layout, Page>} props
+ * @returns {Promise<molino.BuiltPageInfo>}
+ */
+
+/**
+ * @template Layout, Page
+ * @typedef BuilderProps
+ * @property {BuildPage<Layout, Page>} buildPage
+ * @property {any} identityRender
+ * @property {any} mustacheRender
+ * @property {any} loadComponent
+ * @property {any} md
+ */
+
+/**
+ * @template Layout, Page
+ * @callback Builder
+ * @param {BuilderProps<Layout, Page>} props
+ * @returns {Promise<molino.BuiltPageInfo>}
+ */
+
 /**
  *  @param {import("fs").PathLike | fs.FileHandle} componentPath
  */
@@ -35,13 +129,9 @@ const md = makeMd({
 });
 
 /**
- * @returns {Promise<import('../lib/molino').BuiltPageInfo>[]}
+ * @returns {Promise<molino.BuiltPageInfo>[]}
  */
 const siteBuilder = () => {
-  /** @type {import('../lib/molino').RenderFn} */
-  const mustacheRender = (template, viewData) =>
-    Mustache.render(template, viewData);
-
   /**
    * @template T
    * @param {T} x - A generic parameter that flows through to the return type
@@ -50,48 +140,21 @@ const siteBuilder = () => {
   const identityRender = x => x;
 
   /**
-   * @param {import('../src/pages/builders').Builder} pageBuilder
-   * @returns {Promise<import('../lib/molino').BuiltPageInfo>}
+   * @template Layout, Page
+   * @type BuildPage<Layout, Page>
    */
-  const buildPageMapper = pageBuilder =>
-    pageBuilder({
-      buildPage,
-      mustacheRender,
-      identityRender,
-      md,
-      loadComponent,
-    });
-
-  /**
-   * @typedef BuildPageProps
-   * @property {string} pageSourcePath
-   * @property {string} relativeOutputPath
-   * @property {string} [layoutPath]
-   * @property {import('../lib/molino').PageData} [pageData]
-   * @property {import('../lib/molino').LayoutData} [layoutData]
-   * @property {import('../lib/molino').RenderFn} [renderPage]
-   * @property {import('../lib/molino').RenderFn} [renderLayout]
-   */
-
-  /**
-   * @callback BuildPage
-   * @param {BuildPageProps} props
-   * @returns {Promise<import('../lib/molino').BuiltPageInfo>}
-   */
-
-  /** @type BuildPage */
   const buildPage = ({
     pageSourcePath,
     relativeOutputPath,
     layoutPath = path.join('src', 'layouts', 'main.mustache'),
-    pageData = helpers => ({helpers}),
-    layoutData = (content, helpers) => ({content, helpers}),
-    renderPage = mustacheRender,
+    layoutData = () => ({}),
+    pageData = () => ({}),
     renderLayout = mustacheRender,
+    renderPage = mustacheRender,
   }) => {
     const commonData = {
       lang: 'en-AU',
-      siteUrl: process.env.URL,
+      siteUrl,
       currentYear: new Date().getFullYear(),
     };
 
@@ -100,20 +163,39 @@ const siteBuilder = () => {
       relativeOutputPath,
       layoutPath,
       outputFolderPath: path.join('src', 'static'),
+      // @ts-ignore
       layoutData: (content, molino) => ({
         content,
         molino,
         commonData,
         ...layoutData(content, {molino, commonData}),
       }),
+      // @ts-ignore
       pageData: molino => ({
         molino,
         ...pageData({molino, commonData}),
       }),
+      // @ts-ignore
       renderLayout,
+      // @ts-ignore
       renderPage,
     });
   };
+
+  /**
+   * @template Layout, Page
+   * @param {Builder<Layout, Page>} pageBuilder
+   * @returns {Promise<molino.BuiltPageInfo>}
+   */
+  const buildPageMapper = pageBuilder =>
+    pageBuilder({
+      // @ts-ignore
+      buildPage,
+      mustacheRender,
+      identityRender,
+      md,
+      loadComponent,
+    });
 
   try {
     const pagesInfo = builders.map(buildPageMapper);

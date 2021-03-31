@@ -14,9 +14,30 @@ const postsPaths = [
 //   return a < b ? 1 : 0;
 // });
 
-const posts = postsPaths.map(postPath => ({
-  ...require(postPath),
-  sourcePath: path.join(...postPath.split('/'), 'index.md'),
-}));
+/**
+ * @typedef Post
+ * @property {string} title
+ * @property {string} date
+ * @property {string} description
+ * @property {string} outputPath
+ * @property {string[]} categories
+ * @property {string[]} sourcePath
+ */
+
+/**
+ * @param {string} postPath
+ * @param {number} index
+ * @returns {Post}
+ */
+const postsMapper = (postPath, index) => {
+  const postData = require(postPath);
+
+  return {
+    ...postData,
+    sourcePath: path.join(...postPath.split('/'), 'index.md'),
+  };
+};
+
+const posts = postsPaths.map(postsMapper);
 
 module.exports = posts;

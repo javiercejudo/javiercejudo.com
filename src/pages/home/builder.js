@@ -1,14 +1,39 @@
 const path = require('path');
 const Mustache = require('mustache');
 const blogData = require('../blog/data');
-const projectsData = require('../projects/projects-collection/data');
+const projects = require('../projects/projects-collection/data');
 const postsList = require('../../components/posts-list/api');
 
-/** @type import('../builders').Builder */
+/**
+ * @typedef Home
+ * @property {boolean} hasProjects
+ * @property {projects.Project[]} projects
+ * @property {boolean} hasPosts
+ * @property {blogData.BlogData} blogData
+ * @property {any} component
+ */
+
+/** @type import('../../../scripts/build-pages').Builder<import('../../../scripts/build-pages').MainLayout, Home> */
 const homeBuilder = async ({buildPage, loadComponent}) => {
   const postsListPartial = await loadComponent(
     path.join('src', 'components', 'posts-list', 'index.mustache')
   );
+
+  /** @type import('../../../scripts/build-pages').PageData<Home> */
+  const pageData = ({molino}) => ({
+    hasProjects: projects.length > 0,
+    projects: projects,
+    hasPosts: blogData.posts.length > 0,
+    blogData,
+    component: {
+      postsList: postsList({
+        posts: blogData.posts.map(post => ({
+          link: `${molino.baseHref}${blogData.path}/${post.outputPath}`,
+          title: post.title,
+        })),
+      }),
+    },
+  });
 
   return buildPage({
     pageSourcePath: path.join(__dirname, 'template.mustache'),
@@ -21,20 +46,7 @@ const homeBuilder = async ({buildPage, loadComponent}) => {
       pageIsHome: true,
       styles: ['home/index.css'],
     }),
-    pageData: ({molino}) => ({
-      hasProjects: projectsData.length > 0,
-      projects: projectsData,
-      hasPosts: blogData.posts.length > 0,
-      blogData,
-      component: {
-        postsList: postsList({
-          posts: blogData.posts.map(post => ({
-            link: `${molino.baseHref}${blogData.path}/${post.outputPath}`,
-            title: post.title,
-          })),
-        }),
-      },
-    }),
+    pageData,
   });
 };
 
