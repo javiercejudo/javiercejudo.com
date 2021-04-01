@@ -5,7 +5,7 @@ const projects = require('../projects/projects-collection/data');
 const postsList = require('../../components/posts-list/api');
 
 /**
- * @typedef Home
+ * @typedef HomePage
  * @property {boolean} hasProjects
  * @property {projects.Project[]} projects
  * @property {boolean} hasPosts
@@ -13,13 +13,13 @@ const postsList = require('../../components/posts-list/api');
  * @property {any} component
  */
 
-/** @type import('../../../scripts/build-pages').Builder<import('../../../scripts/build-pages').MainLayout, Home> */
+/** @type import('../../../scripts/build-pages').Builder<import('../../../scripts/build-pages').MainLayout, HomePage> */
 const homeBuilder = async ({buildPage, loadComponent}) => {
   const postsListPartial = await loadComponent(
     path.join('src', 'components', 'posts-list', 'index.mustache')
   );
 
-  /** @type import('../../../scripts/build-pages').PageData<Home> */
+  /** @type import('../../../scripts/build-pages').PageData<HomePage> */
   const pageData = ({molino}) => ({
     hasProjects: projects.length > 0,
     projects: projects,

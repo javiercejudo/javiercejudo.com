@@ -7,7 +7,6 @@ const readFile = util.promisify(fs.readFile);
 /**
  * @typedef PostBuilderProps
  * @property {string} blogPath
- * @property {import('./data').Post} post
  */
 
 /** @typedef {import('../../../../scripts/build-pages').MainLayout} MainLayout */
@@ -22,35 +21,28 @@ const readFile = util.promisify(fs.readFile);
 /**
  * @param {PostBuilderProps} props
  */
-const postBuilder = ({blogPath, post}) => {
+const postBuilder = ({blogPath}) => {
   /** @type import('../../../../scripts/build-pages').Builder<MainLayout, BlogPostPage> */
-  const builder = async ({buildPage, md}) => {
-    const markdownBuffer = await readFile(
-      path.join(__dirname, ...post.sourcePath.split('/'))
-    );
-
-    const content = md.render(markdownBuffer.toString());
-
-    /** @type string[] */
-    const styles = [];
-
-    if (post.withHighlightJs !== false) {
-      styles.push('highlight-js/index.css');
-    }
-
+  const builder = async ({buildPage, identityRender}) => {
     return buildPage({
       pageSourcePath: path.join(__dirname, 'template.mustache'),
-      relativeOutputPath: path.join(blogPath, ...post.outputPath.split('/')),
+      relativeOutputPath: path.join(blogPath, '_post.html'),
       layoutData: () => ({
-        title: `${post.title} - example.com`,
-        description: post.description,
-        styles,
+        content: '{{{content}}}',
+        molino: {
+          baseHref: '../',
+          isProd: true,
+          isDev: false,
+        },
+        commonData: {
+          lang: '{{commonData.lang}}',
+          currentYear: '{{commonData.currentYear}}',
+          siteUrl: process.env.URL || '',
+        },
+        title: '{{title}}',
+        description: '{{description}}',
       }),
-      pageData: () => ({
-        post,
-        blogPath,
-        content,
-      }),
+      renderPage: identityRender,
     });
   };
 

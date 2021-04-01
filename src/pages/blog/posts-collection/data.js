@@ -21,7 +21,8 @@ const postsPaths = [
  * @property {string} description
  * @property {string} outputPath
  * @property {string[]} categories
- * @property {string[]} sourcePath
+ * @property {string} sourcePath
+ * @property {boolean} [withHighlightJs]
  */
 
 /**

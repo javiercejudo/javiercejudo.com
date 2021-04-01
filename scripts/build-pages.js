@@ -16,6 +16,16 @@ if (!siteUrl) {
 }
 
 /**
+ * @template T
+ * @callback Identity
+ * @param {T} x
+ * @returns {T}
+ */
+
+/** @type Identity<string> */
+const identityRender = x => x;
+
+/**
  * @template Data
  * @callback MustacheRender
  * @param {string} template
@@ -43,7 +53,7 @@ const mustacheRender = (template, viewData) =>
  * @typedef CommonData
  * @property {string} lang
  * @property {string} siteUrl
- * @property {number} currentYear
+ * @property {string} currentYear
  */
 
 /**
@@ -90,10 +100,10 @@ const mustacheRender = (template, viewData) =>
  * @template Layout, Page
  * @typedef BuilderProps
  * @property {BuildPage<Layout, Page>} buildPage
- * @property {any} identityRender
- * @property {any} mustacheRender
+ * @property {Identity<string>} identityRender
+ * @property {molino.RenderFn<Layout | Page>} mustacheRender
  * @property {any} loadComponent
- * @property {any} md
+ * @property {ReturnType<typeof makeMd>} md
  */
 
 /**
@@ -133,13 +143,6 @@ const md = makeMd({
  */
 const siteBuilder = () => {
   /**
-   * @template T
-   * @param {T} x - A generic parameter that flows through to the return type
-   * @return {T}
-   */
-  const identityRender = x => x;
-
-  /**
    * @template Layout, Page
    * @type BuildPage<Layout, Page>
    */
@@ -155,7 +158,7 @@ const siteBuilder = () => {
     const commonData = {
       lang: 'en-AU',
       siteUrl,
-      currentYear: new Date().getFullYear(),
+      currentYear: new Date().getFullYear().toString(),
     };
 
     return molino.buildPage({
@@ -191,6 +194,7 @@ const siteBuilder = () => {
     pageBuilder({
       // @ts-ignore
       buildPage,
+      // @ts-ignore
       mustacheRender,
       identityRender,
       md,
