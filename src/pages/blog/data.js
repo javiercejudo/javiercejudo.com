@@ -13,7 +13,7 @@ const path = 'blog';
 /** @type BlogData */
 const blogData = {
   path,
-  title: 'Tech notes by Javier Cejudo',
+  title: 'Tech notes',
   authorName: 'Javier Cejudo',
   posts,
 };

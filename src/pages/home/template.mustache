@@ -20,7 +20,7 @@
   {{#hasPosts}}
   <h2>
     <a href="{{{ molino.baseHref }}}{{{ blogData.path }}}/index.html">
-      Blog
+      {{blogData.title}} by {{blogData.authorName}}
     </a>
   </h2>
   {{> postsList}}

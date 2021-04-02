@@ -8,6 +8,7 @@ const blogData = require('./data');
  * @typedef BlogHomePage
  * @property {boolean} hasPosts
  * @property {string} title
+ * @property {string} authorName
  * @property {any} component
  */
 
@@ -30,11 +31,16 @@ const blogHomeBuilder = async ({buildPage, loadComponent}) => {
           linkHref: `https://github.com/javiercejudo/javiercejudo.com/blob/next-simpler/src/pages/blog/data.js`,
           linkText: 'Edit data',
         },
+        {
+          linkHref: `https://github.com/javiercejudo/javiercejudo.com/blob/next-simpler/src/pages/blog/homeBuilder.js`,
+          linkText: 'Edit builder',
+        }
       ],
     }),
     pageData: ({molino}) => ({
       hasPosts: blogData.posts.length > 0,
       title: blogData.title,
+      authorName: blogData.authorName,
       component: {
         postsList: {
           posts: blogData.posts.map(post => ({

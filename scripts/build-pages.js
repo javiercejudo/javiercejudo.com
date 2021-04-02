@@ -161,12 +161,6 @@ const siteBuilder = () => {
       currentYear: new Date().getFullYear().toString(),
     };
 
-    // console.log('sourceFolderPath', sourceFolderPath);
-    // console.log(
-    //   'relativePageSourcePath',
-    //   pageSourcePath.replace(sourceFolderPath, '')
-    // );
-
     return molino.buildPage({
       layoutFolderPath,
       relativeLayoutSourcePath,
