@@ -8,7 +8,7 @@ npx nf -e .env,.env.local run ./scripts/build-pages.js
 npx parcel build \
   --public-url '.' \
   --experimental-scope-hoisting \
-  src/static/**/*.html
+  src/static/**/**/*.html
 
 # Necessary because Parcel hashes XML files like the RSS feed so we opt
 # out of having Parcel process it by referencing it with an absolut URL

@@ -1,6 +1,6 @@
 const path = require('path');
 
-const postsPaths = [
+const postDataPaths = [
   './posts/2014-08-03-ultimate-frontend-email-validation',
   './posts/2014-07-12-thoughts-on-the-status-of-web-development',
   './posts/2013-12-23-microdata-for-rich-snippets',
@@ -21,24 +21,25 @@ const postsPaths = [
  * @property {string} description
  * @property {string} outputPath
  * @property {string[]} categories
- * @property {string} sourcePath
  * @property {boolean} [withHighlightJs]
+ * @property {string} dataPath
+ * @property {string} sourcePath
  */
 
 /**
- * @param {string} postPath
- * @param {number} index
+ * @param {string} dataPath
  * @returns {Post}
  */
-const postsMapper = (postPath, index) => {
-  const postData = require(postPath);
+const postsMapper = dataPath => {
+  const postData = require(dataPath);
 
   return {
     ...postData,
-    sourcePath: path.join(...postPath.split('/'), 'index.md'),
+    dataPath,
+    sourcePath: path.join(...dataPath.split('/'), 'index.md'),
   };
 };
 
-const posts = postsPaths.map(postsMapper);
+const posts = postDataPaths.map(postsMapper);
 
 module.exports = posts;

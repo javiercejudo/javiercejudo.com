@@ -1,6 +1,6 @@
 const path = require('path');
 
-/** @type import('../builders').Builder */
+/** @type import('../../../scripts/build-pages').Builder<any, any> */
 const aboutEnBuilder = ({buildPage}) =>
   buildPage({
     pageSourcePath: path.join(__dirname, 'template.mustache'),
@@ -20,7 +20,7 @@ const aboutEnBuilder = ({buildPage}) =>
     }),
   });
 
-/** @type import('../builders').Builder */
+/** @type import('../../../scripts/build-pages').Builder<any, any> */
 const aboutEsBuilder = ({buildPage}) =>
   buildPage({
     pageSourcePath: path.join(__dirname, 'template.mustache'),

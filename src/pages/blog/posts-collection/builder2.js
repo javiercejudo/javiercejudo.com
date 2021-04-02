@@ -1,6 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 const util = require('util');
+const molino = require('../../../../lib/molino');
 
 const readFile = util.promisify(fs.readFile);
 
@@ -26,21 +27,32 @@ const postBuilder = ({blogPath}) => {
   const builder = async ({buildPage, identityRender}) => {
     return buildPage({
       pageSourcePath: path.join(__dirname, 'template.mustache'),
-      relativeOutputPath: path.join(blogPath, '_post.html'),
-      layoutData: () => ({
+      relativeOutputPath: path.join(blogPath, 'post', 'index.html'),
+      layoutData: (_, {molino, commonData}) => ({
         content: '{{{content}}}',
         molino: {
-          baseHref: '../',
-          isProd: true,
-          isDev: false,
+          ...molino,
+          relativeOutputPath: `{{{molino.relativeOutputPath}}}`,
         },
         commonData: {
+          ...commonData,
           lang: '{{commonData.lang}}',
-          currentYear: '{{commonData.currentYear}}',
-          siteUrl: process.env.URL || '',
         },
         title: '{{title}}',
         description: '{{description}}',
+        styles: ['highlight-js/index.css'],
+        editLinks: [
+          {
+            linkHref:
+              'https://github.com/javiercejudo/javiercejudo.com/blob/next-simpler/src/pages/blog/posts-collection/{{{post.dataPath}}}/index.md',
+            linkText: 'Edit post content',
+          },
+          {
+            linkHref:
+              'https://github.com/javiercejudo/javiercejudo.com/blob/next-simpler/src/pages/blog/posts-collection/{{{post.dataPath}}}/index.js',
+            linkText: 'Edit post metadata',
+          },
+        ],
       }),
       renderPage: identityRender,
     });

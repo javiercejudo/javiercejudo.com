@@ -40,6 +40,12 @@ const identityRender = x => x;
 const mustacheRender = (template, viewData) =>
   Mustache.render(template, viewData);
 
+
+/**
+ * @typedef EditLink
+ * @property {string} linkHref
+ * @property {string} linkText
+ */
 /**
  * @typedef MainLayout
  * @property {string} title
@@ -47,6 +53,7 @@ const mustacheRender = (template, viewData) =>
  * @property {boolean} [pageIsHome]
  * @property {string[]} [styles]
  * @property {string[]} [scripts]
+ * @property {EditLink[]} [editLinks]
  */
 
 /**
@@ -80,9 +87,11 @@ const mustacheRender = (template, viewData) =>
 /**
  * @template Layout, Page
  * @typedef BuildPageProps
+ * @property {string} [sourceFolderPath]
  * @property {string} pageSourcePath
  * @property {string} relativeOutputPath
- * @property {string} [layoutPath]
+ * @property {string} [layoutFolderPath]
+ * @property {string} [relativeLayoutSourcePath]
  * @property {LayoutData<Layout>} [layoutData]
  * @property {PageData<Page>} [pageData]
  * @property {molino.RenderFn<Layout>} [renderLayout]
@@ -147,9 +156,11 @@ const siteBuilder = () => {
    * @type BuildPage<Layout, Page>
    */
   const buildPage = ({
+    sourceFolderPath = path.join(__dirname, '..', 'src', 'pages'),
     pageSourcePath,
     relativeOutputPath,
-    layoutPath = path.join('src', 'layouts', 'main.mustache'),
+    layoutFolderPath = path.join('src', 'layouts'),
+    relativeLayoutSourcePath = 'main.mustache',
     layoutData = () => ({}),
     pageData = () => ({}),
     renderLayout = mustacheRender,
@@ -161,10 +172,18 @@ const siteBuilder = () => {
       currentYear: new Date().getFullYear().toString(),
     };
 
+    // console.log('sourceFolderPath', sourceFolderPath);
+    // console.log(
+    //   'relativePageSourcePath',
+    //   pageSourcePath.replace(sourceFolderPath, '')
+    // );
+
     return molino.buildPage({
-      pageSourcePath,
+      layoutFolderPath,
+      relativeLayoutSourcePath,
+      sourceFolderPath,
+      relativePageSourcePath: pageSourcePath.replace(sourceFolderPath, '').slice(1),
       relativeOutputPath,
-      layoutPath,
       outputFolderPath: path.join('src', 'static'),
       // @ts-ignore
       layoutData: (content, molino) => ({

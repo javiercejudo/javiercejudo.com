@@ -61,7 +61,11 @@
   </head>
 
   <body>
-    <a href="#skip-nav" class="skip-nav">Skip to content</a>
+    <a
+      href="{{{ commonData.siteUrl }}}/{{{molino.relativeOutputPath}}}#skip-nav"
+      class="skip-nav"
+      >Skip to content</a
+    >
 
     {{#styles}}
     <link
@@ -129,7 +133,30 @@
 
       <div class="content" id="skip-nav">{{{ content }}}</div>
 
-      <footer>© javiercejudo.com 2013-{{ commonData.currentYear }}</footer>
+      <footer>
+        <p>
+          <a
+            target="_blank"
+            href="https://github.com/javiercejudo/javiercejudo.com/blob/next-simpler/src/layouts/{{{molino.relativeLayoutSourcePath}}}"
+            rel="noreferrer noopener"
+            >Edit layout</a
+          >
+          |
+          <a
+            target="_blank"
+            href="https://github.com/javiercejudo/javiercejudo.com/blob/next-simpler/src/pages/{{{molino.relativePageSourcePath}}}"
+            rel="noreferrer noopener"
+            >Edit template</a
+          >
+          {{#editLinks}}
+          |
+          <a target="_blank" href="{{{linkHref}}}" rel="noreferrer noopener">{{
+            linkText
+          }}</a>
+          {{/editLinks}}
+        </p>
+        <p>© javiercejudo.com 2013-{{ commonData.currentYear }}</p>
+      </footer>
     </div>
   </body>
 </html>

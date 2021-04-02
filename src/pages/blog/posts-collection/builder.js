@@ -45,6 +45,16 @@ const postBuilder = ({blogPath, post}) => {
         title: `${post.title} - example.com`,
         description: post.description,
         styles,
+        editLinks: [
+          {
+            linkHref: `https://github.com/javiercejudo/javiercejudo.com/blob/next-simpler/src/pages/blog/posts-collection/${post.dataPath}/index.md`,
+            linkText: 'Edit post content',
+          },
+          {
+            linkHref: `https://github.com/javiercejudo/javiercejudo.com/blob/next-simpler/src/pages/blog/posts-collection/${post.dataPath}/index.js`,
+            linkText: 'Edit post metadata',
+          },
+        ],
       }),
       pageData: () => ({
         post,

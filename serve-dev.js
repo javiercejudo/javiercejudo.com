@@ -8,7 +8,7 @@ const port = 8081;
 const app = express();
 app.use('/src/static', router({templatesPath: path.join('src', 'static')}));
 app.use(serveStatic('.', {maxAge: '0'}));
-app.use('.', serveIndex(__dirname));
+app.use(serveIndex(__dirname));
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}.`);
