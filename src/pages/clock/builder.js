@@ -3,7 +3,12 @@ const clockData = require('./data');
 
 /** @typedef {import('../../../scripts/build-pages').MainLayout} MainLayout */
 
-/** @type import('../../../scripts/build-pages').Builder<MainLayout, {}> */
+/**
+ * @typedef ClockPage
+ * @property {string} time
+ */
+
+/** @type import('../../../scripts/build-pages').Builder<MainLayout, ClockPage> */
 const clockBuilder = ({buildPage, identityRender}) =>
   buildPage({
     pageSourcePath: path.join(__dirname, 'template.mustache'),

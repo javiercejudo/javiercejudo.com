@@ -26,20 +26,10 @@ if (!siteUrl) {
 const identityRender = x => x;
 
 /**
- * @template Data
- * @callback MustacheRender
- * @param {string} template
- * @param {Data} viewData
- * @returns {string}
- */
-
-/**
- * @template Data
- * @type MustacheRender<Data>
+ * @type {typeof Mustache.render}
  */
 const mustacheRender = (template, viewData) =>
   Mustache.render(template, viewData);
-
 
 /**
  * @typedef EditLink
@@ -152,8 +142,7 @@ const md = makeMd({
  */
 const siteBuilder = () => {
   /**
-   * @template Layout, Page
-   * @type BuildPage<Layout, Page>
+   * @type BuildPage<any, any>
    */
   const buildPage = ({
     sourceFolderPath = path.join(__dirname, '..', 'src', 'pages'),
@@ -182,38 +171,33 @@ const siteBuilder = () => {
       layoutFolderPath,
       relativeLayoutSourcePath,
       sourceFolderPath,
-      relativePageSourcePath: pageSourcePath.replace(sourceFolderPath, '').slice(1),
+      relativePageSourcePath: pageSourcePath
+        .replace(sourceFolderPath, '')
+        .slice(1),
       relativeOutputPath,
       outputFolderPath: path.join('src', 'static'),
-      // @ts-ignore
       layoutData: (content, molino) => ({
         content,
         molino,
         commonData,
         ...layoutData(content, {molino, commonData}),
       }),
-      // @ts-ignore
       pageData: molino => ({
         molino,
         ...pageData({molino, commonData}),
       }),
-      // @ts-ignore
       renderLayout,
-      // @ts-ignore
       renderPage,
     });
   };
 
   /**
-   * @template Layout, Page
-   * @param {Builder<Layout, Page>} pageBuilder
+   * @param {Builder<any, any>} pageBuilder
    * @returns {Promise<molino.BuiltPageInfo>}
    */
   const buildPageMapper = pageBuilder =>
     pageBuilder({
-      // @ts-ignore
       buildPage,
-      // @ts-ignore
       mustacheRender,
       identityRender,
       md,

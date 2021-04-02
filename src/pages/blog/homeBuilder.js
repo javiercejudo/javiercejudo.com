@@ -7,6 +7,7 @@ const blogData = require('./data');
 /**
  * @typedef BlogHomePage
  * @property {boolean} hasPosts
+ * @property {string} title
  * @property {any} component
  */
 
@@ -21,12 +22,19 @@ const blogHomeBuilder = async ({buildPage, loadComponent}) => {
     relativeOutputPath: path.join(blogData.path, 'index.html'),
     renderPage: (...args) => Mustache.render(...args, {postsList}),
     layoutData: () => ({
-      title: 'Blog - javiercejudo.com',
+      title: `${blogData.title} - javiercejudo.com`,
       description: 'Javier Cejudo’s blog',
       styles: ['blog/index.css'],
+      editLinks: [
+        {
+          linkHref: `https://github.com/javiercejudo/javiercejudo.com/blob/next-simpler/src/pages/blog/data.js`,
+          linkText: 'Edit data',
+        },
+      ],
     }),
     pageData: ({molino}) => ({
       hasPosts: blogData.posts.length > 0,
+      title: blogData.title,
       component: {
         postsList: {
           posts: blogData.posts.map(post => ({

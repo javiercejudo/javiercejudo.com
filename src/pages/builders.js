@@ -6,7 +6,7 @@ const aboutBuilders = require('./about/builders');
 const projectsBuilders = require('./projects/builders');
 const blogBuilders = require('./blog/builders');
 
-/** @type import('../../scripts/build-pages').Builder<any, any>[] */
+/** @type import('../../scripts/build-pages').Builder<unknown, unknown>[] */
 const builders = [
   homeBuilder,
   menuBuilder,
