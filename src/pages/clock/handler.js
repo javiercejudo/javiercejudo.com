@@ -7,11 +7,6 @@ const clockData = require('./data');
 const readFile = util.promisify(fs.readFile);
 
 /**
- * @typedef ClockPage
- * @property {string} time
- */
-
-/**
  * @typedef HandlerProps
  * @property {string} templatesPath
  */
@@ -26,14 +21,12 @@ const clockHandler = ({templatesPath}) => async (_, res) => {
       path.join(templatesPath, ...clockData.path.split('/'))
     );
 
-    /** @type ClockPage */
+    /** @type import('./builder').ClockPage */
     const view = {
       time: new Date().toISOString(),
-    }
+    };
 
-    res.send(
-      Mustache.render(template.toString(), view)
-    );
+    res.send(Mustache.render(template.toString(), view));
   } catch (err) {
     console.log(err);
     res.sendStatus(500);

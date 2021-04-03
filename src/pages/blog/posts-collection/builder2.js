@@ -14,7 +14,7 @@ const readFile = util.promisify(fs.readFile);
 
 /**
  * @typedef BlogPostPage
- * @property {string} blogPath
+ * @property {string} blogHref
  * @property {import('./data').Post} post
  * @property {string} content
  */
@@ -29,7 +29,7 @@ const postBuilder = ({blogPath}) => {
       pageSourcePath: path.join(__dirname, 'template.mustache'),
       relativeOutputPath: path.join(blogPath, 'post', 'index.html'),
       layoutData: (_, {molino, commonData}) => ({
-        content: '{{{content}}}',
+        // content: '{{{content}}}',
         molino: {
           ...molino,
           relativeOutputPath: `{{{molino.relativeOutputPath}}}`,
@@ -38,6 +38,7 @@ const postBuilder = ({blogPath}) => {
           ...commonData,
           lang: '{{commonData.lang}}',
         },
+        pagePath: '{{{pagePath}}}',
         title: '{{title}}',
         description: '{{description}}',
         styles: ['highlight-js/index.css'],

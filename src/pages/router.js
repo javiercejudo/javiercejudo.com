@@ -1,6 +1,7 @@
 const express = require('express');
 const clockData = require('./clock/data');
 const makeClockHandler = require('./clock/handler');
+const makeBlogPostHandler = require('./blog/posts-collection/handler');
 
 /**
  * @typedef RouterProps
@@ -24,6 +25,9 @@ const router = ({templatesPath}) => {
   };
 
   simpleRoute(clockData.path, makeClockHandler({templatesPath}));
+
+  // router.get('/blog/:slug/', makeBlogPostHandler({templatesPath}));
+  // router.get('/blog/:slug/index.html', makeBlogPostHandler({templatesPath}));
 
   return router;
 };

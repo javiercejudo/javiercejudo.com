@@ -57,21 +57,22 @@ const mustacheRender = (template, viewData) =>
  * @typedef TemplateHelpers
  * @property {molino.TemplateHelpers} molino
  * @property {CommonData} commonData
+ * @property {string} pagePath
  */
 
 /**
  * @template Layout
  * @callback LayoutData
  * @param {string} content
- * @param {TemplateHelpers} molino
- * @returns {{content?: string, molino?: molino.TemplateHelpers, commonData?: CommonData} & Layout}
+ * @param {TemplateHelpers} helpers
+ * @returns {{content?: string, molino?: molino.TemplateHelpers, commonData?: CommonData, pagePath?: string} & Layout}
  */
 
 /**
  * @template Page
  * @callback PageData
- * @param {TemplateHelpers} molino
- * @returns {{molino?: molino.TemplateHelpers, commonData?: CommonData} & Page}
+ * @param {TemplateHelpers} helpers
+ * @returns {{molino?: molino.TemplateHelpers, commonData?: CommonData, pagePath?: string} & Page}
  */
 
 /**
@@ -138,6 +139,11 @@ const md = makeMd({
 });
 
 /**
+ * @param {molino.TemplateHelpers} molino
+ */
+const getPagePath = molino => `${molino.baseHref}${molino.relativeOutputPath}`;
+
+/**
  * @returns {Promise<molino.BuiltPageInfo>[]}
  */
 const siteBuilder = () => {
@@ -170,16 +176,26 @@ const siteBuilder = () => {
         .slice(1),
       relativeOutputPath,
       outputFolderPath: path.join('src', 'static'),
-      layoutData: (content, molino) => ({
-        content,
-        molino,
-        commonData,
-        ...layoutData(content, {molino, commonData}),
-      }),
-      pageData: molino => ({
-        molino,
-        ...pageData({molino, commonData}),
-      }),
+      layoutData: (content, molino) => {
+        const pagePath = getPagePath(molino);
+
+        return {
+          content,
+          molino,
+          commonData,
+          pagePath,
+          ...layoutData(content, {molino, commonData, pagePath}),
+        };
+      },
+      pageData: molino => {
+        const pagePath = getPagePath(molino);
+
+        return {
+          molino,
+          pagePath,
+          ...pageData({molino, commonData, pagePath}),
+        };
+      },
       renderLayout,
       renderPage,
     });

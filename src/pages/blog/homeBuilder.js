@@ -1,5 +1,6 @@
 const path = require('path');
 const Mustache = require('mustache');
+const postsList = require('../../components/posts-list/api');
 const blogData = require('./data');
 
 /** @typedef {import('../../../scripts/build-pages').MainLayout} MainLayout */
@@ -14,14 +15,14 @@ const blogData = require('./data');
 
 /** @type import('../../../scripts/build-pages').Builder<MainLayout, BlogHomePage> */
 const blogHomeBuilder = async ({buildPage, loadComponent}) => {
-  const postsList = await loadComponent(
+  const postsListPartial = await loadComponent(
     path.join('src', 'components', 'posts-list', 'index.mustache')
   );
 
   return buildPage({
     pageSourcePath: path.join(__dirname, 'index.mustache'),
     relativeOutputPath: path.join(blogData.path, 'index.html'),
-    renderPage: (...args) => Mustache.render(...args, {postsList}),
+    renderPage: (...args) => Mustache.render(...args, {postsList: postsListPartial}),
     layoutData: () => ({
       title: `${blogData.title} - javiercejudo.com`,
       description: 'Javier Cejudo’s blog',
@@ -42,12 +43,13 @@ const blogHomeBuilder = async ({buildPage, loadComponent}) => {
       title: blogData.title,
       authorName: blogData.authorName,
       component: {
-        postsList: {
+        postsList: postsList({
           posts: blogData.posts.map(post => ({
+            // link: `${commonData.siteUrl}/${blogData.path}/${post.outputPath}`,
             link: `${molino.baseHref}${blogData.path}/${post.outputPath}`,
             title: post.title,
           })),
-        },
+        }),
       },
     }),
   });

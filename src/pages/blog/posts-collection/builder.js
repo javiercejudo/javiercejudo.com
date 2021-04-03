@@ -1,8 +1,5 @@
-const fs = require('fs');
+const fs = require('fs/promises');
 const path = require('path');
-const util = require('util');
-
-const readFile = util.promisify(fs.readFile);
 
 /**
  * @typedef PostBuilderProps
@@ -14,7 +11,7 @@ const readFile = util.promisify(fs.readFile);
 
 /**
  * @typedef BlogPostPage
- * @property {string} blogPath
+ * @property {string} blogHref
  * @property {import('./data').Post} post
  * @property {string} content
  */
@@ -25,7 +22,7 @@ const readFile = util.promisify(fs.readFile);
 const postBuilder = ({blogPath, post}) => {
   /** @type import('../../../../scripts/build-pages').Builder<MainLayout, BlogPostPage> */
   const builder = async ({buildPage, md}) => {
-    const markdownBuffer = await readFile(
+    const markdownBuffer = await fs.readFile(
       path.join(__dirname, ...post.sourcePath.split('/'))
     );
 
@@ -56,9 +53,9 @@ const postBuilder = ({blogPath, post}) => {
           },
         ],
       }),
-      pageData: () => ({
+      pageData: ({molino}) => ({
         post,
-        blogPath,
+        blogHref: `${molino.baseHref}${blogPath}/index.html`,
         content,
       }),
     });

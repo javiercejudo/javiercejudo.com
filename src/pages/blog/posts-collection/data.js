@@ -1,10 +1,11 @@
 const path = require('path');
 
+/** @type string[] */
 const postDataPaths = [
-  './posts/2014-08-03-ultimate-frontend-email-validation',
-  './posts/2014-07-12-thoughts-on-the-status-of-web-development',
-  './posts/2013-12-23-microdata-for-rich-snippets',
-  './posts/2013-12-15-css-limitations-on-ie',
+  './posts/ultimate-frontend-email-validation',
+  './posts/thoughts-on-the-status-of-web-development',
+  './posts/microdata-for-rich-snippets',
+  './posts/css-limitations-on-ie',
 ];
 // .sort((a, b) => {
 //   if (a > b) {
