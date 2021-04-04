@@ -5,10 +5,7 @@ const aboutEnBuilder = ({buildPage}) =>
   buildPage({
     pageSourcePath: path.join(__dirname, 'template.mustache'),
     relativeOutputPath: path.join('about-me', 'index.html'),
-    layoutData: (content, {molino, commonData}) => ({
-      content,
-      molino,
-      commonData,
+    layoutData: () => ({
       title: 'About me - javiercejudo.com',
       description: 'Who am I?',
     }),
@@ -25,11 +22,9 @@ const aboutEsBuilder = ({buildPage}) =>
   buildPage({
     pageSourcePath: path.join(__dirname, 'template.mustache'),
     relativeOutputPath: path.join('sobre-mi', 'index.html'),
-    layoutData: (content, {molino, commonData}) => ({
-      content,
-      molino,
+    layoutData: (_, {commonData}) => ({
       commonData: {
-        ...(typeof commonData === 'object' ? commonData : {}),
+        ...commonData,
         lang: 'es-ES',
       },
       title: 'Sobre mí - javiercejudo.com',

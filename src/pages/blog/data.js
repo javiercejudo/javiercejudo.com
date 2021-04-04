@@ -1,5 +1,3 @@
-const posts = require('./posts-collection/data');
-
 const path = 'blog';
 
 /**
@@ -7,7 +5,6 @@ const path = 'blog';
  * @property {string} path
  * @property {string} title
  * @property {string} authorName
- * @property {posts.Post[]} posts
  */
 
 /** @type BlogData */
@@ -15,7 +12,6 @@ const blogData = {
   path,
   title: 'Tech notes',
   authorName: 'Javier Cejudo',
-  posts,
 };
 
 module.exports = blogData;

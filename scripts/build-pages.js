@@ -202,7 +202,7 @@ const siteBuilder = () => {
   };
 
   /**
-   * @param {Builder<any, any>} pageBuilder
+   * @param {Builder<unknown, unknown>} pageBuilder
    * @returns {Promise<molino.BuiltPageInfo>}
    */
   const buildPageMapper = pageBuilder =>

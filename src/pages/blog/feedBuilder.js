@@ -1,16 +1,22 @@
 const path = require('path');
-const fs = require('fs');
-const util = require('util');
+const fs = require('fs/promises');
 const blogData = require('./data');
+const posts = require('./posts-collection/data');
 
-const readFile = util.promisify(fs.readFile);
+/** @typedef {import('../../../scripts/build-pages').MainLayout} MainLayout */
+
+/**
+ * @typedef Feed
+ * @property {blogData.BlogData} blog
+ */
+
 const MAX_FEED_LENGTH = 10;
 
-/** @type import('../builders').Builder */
+/** @type import('../../../scripts/build-pages').Builder<MainLayout, Feed> */
 const homeBuilder = async ({buildPage, md}) => {
   const renderedPosts = await Promise.all(
-    blogData.posts.slice(0, MAX_FEED_LENGTH).map(async post => {
-      const markdownBuffer = await readFile(
+    posts.slice(0, MAX_FEED_LENGTH).map(async post => {
+      const markdownBuffer = await fs.readFile(
         path.join(__dirname, 'posts-collection', ...post.sourcePath.split('/'))
       );
 
@@ -26,10 +32,8 @@ const homeBuilder = async ({buildPage, md}) => {
   return buildPage({
     pageSourcePath: path.join(__dirname, 'feed.mustache'),
     relativeOutputPath: path.join(blogData.path, 'feed.xml'),
-    layoutPath: path.join('src', 'layouts', 'identity.mustache'),
-    pageData: ({molino, commonData}) => ({
-      molino,
-      commonData,
+    relativeLayoutSourcePath: 'identity.mustache',
+    pageData: () => ({
       blog: blogData,
       updated: new Date().toISOString(),
       renderedPosts,

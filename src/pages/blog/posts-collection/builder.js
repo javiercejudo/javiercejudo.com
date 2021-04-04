@@ -3,7 +3,7 @@ const path = require('path');
 
 /**
  * @typedef PostBuilderProps
- * @property {string} blogPath
+ * @property {import('../data').BlogData} blogData
  * @property {import('./data').Post} post
  */
 
@@ -12,14 +12,19 @@ const path = require('path');
 /**
  * @typedef BlogPostPage
  * @property {string} blogHref
+ * @property {import('../data').BlogData} blogData
  * @property {import('./data').Post} post
  * @property {string} content
+ * @property {string} [prevLink]
+ * @property {string} [nextLink]
+ * @property {boolean} hasPrev
+ * @property {boolean} hasNext
  */
 
 /**
  * @param {PostBuilderProps} props
  */
-const postBuilder = ({blogPath, post}) => {
+const postBuilder = ({blogData, post}) => {
   /** @type import('../../../../scripts/build-pages').Builder<MainLayout, BlogPostPage> */
   const builder = async ({buildPage, md}) => {
     const markdownBuffer = await fs.readFile(
@@ -37,7 +42,10 @@ const postBuilder = ({blogPath, post}) => {
 
     return buildPage({
       pageSourcePath: path.join(__dirname, 'template.mustache'),
-      relativeOutputPath: path.join(blogPath, ...post.outputPath.split('/')),
+      relativeOutputPath: path.join(
+        blogData.path,
+        ...post.outputPath.split('/')
+      ),
       layoutData: () => ({
         title: `${post.title} - example.com`,
         description: post.description,
@@ -55,8 +63,19 @@ const postBuilder = ({blogPath, post}) => {
       }),
       pageData: ({molino}) => ({
         post,
-        blogHref: `${molino.baseHref}${blogPath}/index.html`,
+        blogHref: `${molino.baseHref}${blogData.path}/index.html`,
+        blogData,
         content,
+        hasPrev: post.prev !== undefined,
+        prevLink:
+          post.prev === undefined
+            ? undefined
+            : `${molino.baseHref}${blogData.path}/${post.prev.outputPath}`,
+        hasNext: post.next !== undefined,
+        nextLink:
+          post.next === undefined
+            ? undefined
+            : `${molino.baseHref}${blogData.path}/${post.next.outputPath}`,
       }),
     });
   };

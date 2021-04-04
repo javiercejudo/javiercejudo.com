@@ -13,10 +13,7 @@ const readFile = util.promisify(fs.readFile);
 /** @typedef {import('../../../../scripts/build-pages').MainLayout} MainLayout */
 
 /**
- * @typedef BlogPostPage
- * @property {string} blogHref
- * @property {import('./data').Post} post
- * @property {string} content
+ * @typedef {import('./builder').BlogPostPage} BlogPostPage
  */
 
 /**

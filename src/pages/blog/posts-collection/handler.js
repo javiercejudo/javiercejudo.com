@@ -4,6 +4,7 @@ const Mustache = require('mustache');
 const hljs = require('highlight.js');
 const makeMd = require('markdown-it');
 const blogData = require('../data');
+const posts = require('./data');
 
 const siteUrl = process.env.URL;
 
@@ -42,13 +43,16 @@ const md = makeMd({
 const postHandler = ({templatesPath}) => async (req, res) => {
   try {
     const postSlug = req.params.slug;
-    console.log('generating blog post', postSlug)
-    const dataPath = `posts/${postSlug}`;
-    // TODO: access to filesystem!!??
-    const postData = require(`./${dataPath}/index.js`);
-    const sourcePath = path.join(...dataPath.split('/'), 'index.md');
+    console.log('generating blog post', postSlug);
+    const post = posts.find(post => post.dataPath);
+
+    if (post === undefined) {
+      res.sendStatus(404);
+      return;
+    }
+
     const markdownBuffer = await fs.readFile(
-      path.join(__dirname, ...sourcePath.split('/'))
+      path.join(__dirname, ...post.sourcePath.split('/'))
     );
 
     const content = md.render(markdownBuffer.toString());
@@ -60,12 +64,19 @@ const postHandler = ({templatesPath}) => async (req, res) => {
     /** @type import('./builder2').BlogPostPage */
     const view = {
       blogHref: `${siteUrl}/${blogData.path}/index.html`,
-      post: {
-        ...postData,
-        dataPath,
-        sourcePath: path.join(...dataPath.split('/'), 'index.md'),
-      },
+      blogData,
+      post,
       content: content,
+      hasPrev: post.prev !== undefined,
+      prevLink:
+        post.prev === undefined
+          ? undefined
+          : `${siteUrl}/${blogData.path}/${post.prev.outputPath}`,
+      hasNext: post.next !== undefined,
+      nextLink:
+        post.next === undefined
+          ? undefined
+          : `${siteUrl}/${blogData.path}/${post.next.outputPath}`,
     };
 
     res.send(Mustache.render(template.toString(), view));

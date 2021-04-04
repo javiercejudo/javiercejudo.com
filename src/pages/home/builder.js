@@ -1,8 +1,11 @@
 const path = require('path');
 const Mustache = require('mustache');
 const blogData = require('../blog/data');
+const posts = require('../blog/posts-collection/data');
 const projects = require('../projects/projects-collection/data');
 const postsList = require('../../components/posts-list/api');
+
+/** @typedef {import('../../../scripts/build-pages').MainLayout} MainLayout */
 
 /**
  * @typedef HomePage
@@ -13,7 +16,7 @@ const postsList = require('../../components/posts-list/api');
  * @property {any} component
  */
 
-/** @type import('../../../scripts/build-pages').Builder<import('../../../scripts/build-pages').MainLayout, HomePage> */
+/** @type import('../../../scripts/build-pages').Builder<MainLayout, HomePage> */
 const homeBuilder = async ({buildPage, loadComponent}) => {
   const postsListPartial = await loadComponent(
     path.join('src', 'components', 'posts-list', 'index.mustache')
@@ -23,11 +26,11 @@ const homeBuilder = async ({buildPage, loadComponent}) => {
   const pageData = ({molino}) => ({
     hasProjects: projects.length > 0,
     projects: projects,
-    hasPosts: blogData.posts.length > 0,
+    hasPosts: posts.length > 0,
     blogData,
     component: {
       postsList: postsList({
-        posts: blogData.posts.map(post => ({
+        posts: posts.map(post => ({
           // link: `${commonData.siteUrl}/${blogData.path}/${post.outputPath}`,
           link: `${molino.baseHref}${blogData.path}/${post.outputPath}`,
           title: post.title,

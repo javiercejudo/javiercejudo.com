@@ -1,7 +1,22 @@
 <div class="container narrow">
   <p>
-    <a href="{{{blogHref}}}">Blog</a>
+    <a href="{{{ blogHref }}}"
+      >{{ blogData.title }} by {{ blogData.authorName }}</a
+    >
   </p>
   <h1>{{ post.title }}</h1>
-  TLDR: {{{ post.description }}} {{{ content }}}
+  <p>TLDR: {{{ post.description }}}</p>
+
+  {{{ content }}}
+
+  {{#hasPrev}}
+  <p>
+    Prev: <a href="{{{ prevLink }}}">{{ post.prev.title }}</a>
+  </p>
+  {{/hasPrev}}
+  {{#hasNext}}
+  <p>
+    Next: <a href="{{{ nextLink }}}">{{ post.next.title }}</a>
+  </p>
+  {{/hasNext}}
 </div>

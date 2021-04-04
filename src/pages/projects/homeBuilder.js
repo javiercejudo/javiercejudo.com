@@ -1,7 +1,15 @@
 const path = require('path');
-const projectsData = require('./data');
+const projects = require('./projects-collection/data');
 
-/** @type import('../builders').Builder */
+/** @typedef {import('../../../scripts/build-pages').MainLayout} MainLayout */
+
+/**
+ * @typedef ProjectsHomePage
+ * @property {boolean} hasProjects
+ * @property {projects.Project[]} projects
+ */
+
+/** @type import('../../../scripts/build-pages').Builder<MainLayout, ProjectsHomePage> */
 const homeBuilder = ({buildPage}) =>
   buildPage({
     pageSourcePath: path.join(__dirname, 'template.mustache'),
@@ -15,7 +23,8 @@ const homeBuilder = ({buildPage}) =>
     }),
     pageData: ({molino}) => ({
       molino,
-      ...projectsData,
+      hasProjects: projects.length > 0,
+      projects,
     }),
   });
 
