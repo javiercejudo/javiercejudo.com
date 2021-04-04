@@ -44,7 +44,7 @@ const postHandler = ({templatesPath}) => async (req, res) => {
   try {
     const postSlug = req.params.slug;
     console.log('generating blog post', postSlug);
-    const post = posts.find(post => post.dataPath);
+    const post = posts.find(post => post.dataPath.endsWith(`/${postSlug}`));
 
     if (post === undefined) {
       res.sendStatus(404);
