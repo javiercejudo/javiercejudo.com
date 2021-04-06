@@ -1,17 +1,24 @@
+:root {
+  --jc-color: #eee;
+  --jc-color-active: #bbb;
+}
+
+html[data-theme=jc-light] {
+  --jc-color: #111;
+  --jc-color-active: #444;
+}
+
 body,
 a {
-  color: #eee;
+  color: var(--jc-color);
+  transition: color 200ms ease-in;
 }
 
 body {
-  line-height: 1.4;
-}
-
-a {
-  transition: color 200ms ease-in;
+  line-height: 1.6;
 }
 
 a:hover,
 a:focus {
-  color: #bbb;
+  color: var(--jc-color-active);
 }

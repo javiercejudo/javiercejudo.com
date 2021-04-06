@@ -3,11 +3,10 @@
 const fs = require('fs/promises');
 const path = require('path');
 const Mustache = require('mustache');
-const makeMd = require('markdown-it');
-const hljs = require('highlight.js');
 const molino = require('../lib/molino');
 
 const builders = require('../src/pages/builders');
+const md = require('../src/utils/md');
 
 const siteUrl = process.env.URL;
 
@@ -103,7 +102,7 @@ const mustacheRender = (template, viewData) =>
  * @property {Identity<string>} identityRender
  * @property {molino.RenderFn<Layout | Page>} mustacheRender
  * @property {any} loadComponent
- * @property {ReturnType<typeof makeMd>} md
+ * @property {typeof md} md
  */
 
 /**
@@ -118,25 +117,6 @@ const mustacheRender = (template, viewData) =>
  */
 const loadComponent = async componentPath =>
   (await fs.readFile(componentPath)).toString();
-
-/** @type {ReturnType<typeof makeMd>} */
-const md = makeMd({
-  highlight: function (str, lang) {
-    if (lang && hljs.getLanguage(lang)) {
-      try {
-        return (
-          '<pre class="hljs"><code>' +
-          hljs.highlight(lang, str, true).value +
-          '</code></pre>'
-        );
-      } catch (__) {}
-    }
-
-    return (
-      '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>'
-    );
-  },
-});
 
 /**
  * @param {molino.TemplateHelpers} molino

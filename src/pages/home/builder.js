@@ -23,7 +23,8 @@ const homeBuilder = async ({buildPage, loadComponent}) => {
   );
 
   /** @type import('../../../scripts/build-pages').PageData<HomePage> */
-  const pageData = ({molino}) => ({
+  const pageData = ({commonData}) => ({
+    // const pageData = ({molino}) => ({
     hasProjects: projects.length > 0,
     projects: projects,
     hasPosts: posts.length > 0,
@@ -31,8 +32,8 @@ const homeBuilder = async ({buildPage, loadComponent}) => {
     component: {
       postsList: postsList({
         posts: posts.map(post => ({
-          // link: `${commonData.siteUrl}/${blogData.path}/${post.outputPath}`,
-          link: `${molino.baseHref}${blogData.path}/${post.outputPath}`,
+          link: `${commonData.siteUrl}/${blogData.path}/${post.outputPath}`,
+          // link: `${molino.baseHref}${blogData.path}/${post.outputPath}`,
           title: post.title,
         })),
       }),

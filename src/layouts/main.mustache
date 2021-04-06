@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ commonData.lang }}">
+<html lang="{{ commonData.lang }}" data-theme="jc-dark">
   <head>
     <meta charset="utf-8" />
     <title>{{ title }}</title>
@@ -28,20 +28,20 @@
     {{#molino.isProd}}
     <link
       rel="preload"
-      href="{{{ molino.baseHref }}}assets/js/quicklink.js"
+      href="{{{ molino.baseHref }}}assets/js/common/index.js"
       as="script"
     />
-    <script src="{{{ molino.baseHref }}}assets/js/quicklink.js" defer></script>
+    <script src="{{{ molino.baseHref }}}assets/js/common/index.js" defer></script>
     {{/molino.isProd}}
     {{^molino.isProd}}
     <link
       rel="modulepreload"
-      href="{{{ molino.baseHref }}}assets/js/quicklink.js"
+      href="{{{ molino.baseHref }}}assets/js/common/index.js"
       as="script"
     />
     <script
       type="module"
-      src="{{{ molino.baseHref }}}assets/js/quicklink.js"
+      src="{{{ molino.baseHref }}}assets/js/common/index.js"
     ></script>
     {{/molino.isProd}}
 
@@ -147,6 +147,7 @@
           <a href="{{{linkHref}}}" rel="noreferrer noopener">{{ linkText }}</a>
           {{/editLinks}}
         </p>
+        <div id="theme-switcher"></div>
         <p>© javiercejudo.com 2013-{{ commonData.currentYear }}</p>
       </footer>
     </div>

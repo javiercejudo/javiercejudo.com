@@ -26,7 +26,11 @@ const router = ({templatesPath}) => {
   };
 
   simpleRoute(clockData.path, makeClockHandler({templatesPath}));
-  // simpleRoute(`${blogData.path}/:slug/index.html`, makeBlogPostHandler({templatesPath}));
+
+  simpleRoute(
+    `${blogData.path}/:slug/index.html`,
+    makeBlogPostHandler({templatesPath})
+  );
 
   return router;
 };

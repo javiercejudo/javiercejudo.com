@@ -1,8 +1,14 @@
+html[data-theme='jc-light'] header {
+  --jc-header-divider-colour: #ddd;
+  --jc-header-link-colour-active: #ddd;
+}
+
 header {
-  border-bottom: 2px solid #222;
+  --jc-header-divider-colour: #222;
+  --jc-header-link-colour-active: #222;
+
   background-color: var(--jc-bg-colour);
-  position: sticky;
-  top: 0;
+  border-bottom: 2px solid var(--jc-header-divider-colour);
 }
 
 header nav {
@@ -36,6 +42,6 @@ header nav a {
 header nav ul a.is-active,
 header nav ul a:hover,
 header nav ul a:focus {
-  background-color: #222;
+  background-color: var(--jc-header-link-colour-active);
   border-radius: calc(5rem / 16);
 }

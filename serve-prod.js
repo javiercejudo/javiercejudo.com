@@ -13,16 +13,16 @@ app.use(router({templatesPath: 'dist'}));
 app.use(
   serveStatic('dist', {
     maxAge: '365d',
-    setHeaders: setCustomCacheControl,
+    setHeaders: (res, path) => {
+      if (serveStatic.mime.lookup(path) === 'text/html') {
+        res.set({
+          'Cache-Control': 'public, max-age=10, stale-while-revalidate=50',
+        });
+      }
+    },
   })
 );
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}.`);
 });
-
-function setCustomCacheControl(res, path) {
-  if (serveStatic.mime.lookup(path) === 'text/html') {
-    res.setHeader('Cache-Control', 'public, max-age=0');
-  }
-}

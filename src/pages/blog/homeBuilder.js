@@ -40,15 +40,16 @@ const blogHomeBuilder = async ({buildPage, loadComponent}) => {
         },
       ],
     }),
-    pageData: ({molino}) => ({
+    pageData: ({commonData}) => ({
+    // pageData: ({molino}) => ({
       hasPosts: posts.length > 0,
       title: blogData.title,
       authorName: blogData.authorName,
       component: {
         postsList: postsList({
           posts: posts.map(post => ({
-            // link: `${commonData.siteUrl}/${blogData.path}/${post.outputPath}`,
-            link: `${molino.baseHref}${blogData.path}/${post.outputPath}`,
+            link: `${commonData.siteUrl}/${blogData.path}/${post.outputPath}`,
+            // link: `${molino.baseHref}${blogData.path}/${post.outputPath}`,
             title: post.title,
           })),
         }),

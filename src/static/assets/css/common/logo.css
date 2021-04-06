@@ -1,3 +1,7 @@
+html[data-theme='jc-light'] .logo {
+  --jc-logo-colour: #000;
+}
+
 .logo {
   --jc-logo-letter-height: calc(18rem / 16);
   --jc-logo-j-width: var(--jc-logo-letter-height);
@@ -6,11 +10,9 @@
   --jc-logo-spacing: calc(var(--jc-logo-letter-height) / 6);
   --jc-logo-radius: calc(var(--jc-logo-letter-height) / 6);
   --jc-logo-border-width: calc(var(--jc-logo-letter-height) / 9);
-  --jc-logo-colour: white;
+  --jc-logo-colour: #fff;
   --jc-logo-bg-colour: var(--jc-bg-colour);
-}
 
-.logo {
   display: flex;
   align-items: center;
   padding: var(--jc-logo-spacing) 0 var(--jc-logo-spacing) 0px;
