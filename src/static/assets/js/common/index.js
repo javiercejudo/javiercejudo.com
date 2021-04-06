@@ -37,3 +37,4 @@ const setTheme = target => {
 };
 themeSwitcher.addEventListener('click', ev => setTheme(ev.target));
 document.getElementById('theme-switcher').append(themeSwitcher);
+document.body.style.display = 'block';

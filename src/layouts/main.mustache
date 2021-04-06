@@ -60,7 +60,14 @@
     />
   </head>
 
-  <body>
+  <body style="display: none;">
+    <noscript>
+      <style>
+        body {
+          display: block !important;
+        }
+      </style>
+    </noscript>
     <a href="{{{ pagePath }}}#skip-nav" class="skip-nav">Skip to content</a>
 
     {{#styles}}
