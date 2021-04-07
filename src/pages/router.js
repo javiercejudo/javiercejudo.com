@@ -21,14 +21,14 @@ const router = ({templatesPath}) => {
    * @param {express.RequestHandler} handler
    */
   const simpleRoute = (path, handler) => {
-    router.get(`/${path.replace(/index\.html$/, '')}`, handler);
-    router.get(`/${path}`, handler);
+    router.get(`${path.replace(/index\.html$/, '')}`, handler);
+    router.get(path, handler);
   };
 
-  simpleRoute(clockData.path, makeClockHandler({templatesPath}));
+  simpleRoute(`/${clockData.path}`, makeClockHandler({templatesPath}));
 
   simpleRoute(
-    `${blogData.path}/:slug/index.html`,
+    `/${blogData.path}/:slug/index.html`,
     makeBlogPostHandler({templatesPath})
   );
 

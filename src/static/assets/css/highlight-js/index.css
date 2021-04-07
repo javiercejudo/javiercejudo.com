@@ -1,1 +1,2 @@
-@import '../../../../../node_modules/highlight.js/styles/atom-one-dark.css';
+@import './dark.css';
+@import './light.css';

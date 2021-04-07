@@ -48,7 +48,7 @@ const blogHomeBuilder = async ({buildPage, loadComponent}) => {
       component: {
         postsList: postsList({
           posts: posts.map(post => ({
-            link: `${commonData.siteUrl}/${blogData.path}/${post.outputPath}`,
+            link: `${commonData.siteUrl}/${blogData.path}/${post.outputPath.replace(/index.html$/, '')}`,
             // link: `${molino.baseHref}${blogData.path}/${post.outputPath}`,
             title: post.title,
           })),

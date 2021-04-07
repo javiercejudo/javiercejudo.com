@@ -1,0 +1,77 @@
+/* the following is the same as atom-one-light with our theme selector in front */
+html[data-theme="jc-light"] .hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #383a42;
+  background: #fafafa;
+}
+
+html[data-theme="jc-light"] .hljs-comment,
+html[data-theme="jc-light"] .hljs-quote {
+  color: #a0a1a7;
+  font-style: italic;
+}
+
+html[data-theme="jc-light"] .hljs-doctag,
+html[data-theme="jc-light"] .hljs-keyword,
+html[data-theme="jc-light"] .hljs-formula {
+  color: #a626a4;
+}
+
+html[data-theme="jc-light"] .hljs-section,
+html[data-theme="jc-light"] .hljs-name,
+html[data-theme="jc-light"] .hljs-selector-tag,
+html[data-theme="jc-light"] .hljs-deletion,
+html[data-theme="jc-light"] .hljs-subst {
+  color: #e45649;
+}
+
+html[data-theme="jc-light"] .hljs-literal {
+  color: #0184bb;
+}
+
+html[data-theme="jc-light"] .hljs-string,
+html[data-theme="jc-light"] .hljs-regexp,
+html[data-theme="jc-light"] .hljs-addition,
+html[data-theme="jc-light"] .hljs-attribute,
+html[data-theme="jc-light"] .hljs-meta-string {
+  color: #50a14f;
+}
+
+html[data-theme="jc-light"] .hljs-built_in,
+html[data-theme="jc-light"] .hljs-class .hljs-title {
+  color: #c18401;
+}
+
+html[data-theme="jc-light"] .hljs-attr,
+html[data-theme="jc-light"] .hljs-variable,
+html[data-theme="jc-light"] .hljs-template-variable,
+html[data-theme="jc-light"] .hljs-type,
+html[data-theme="jc-light"] .hljs-selector-class,
+html[data-theme="jc-light"] .hljs-selector-attr,
+html[data-theme="jc-light"] .hljs-selector-pseudo,
+html[data-theme="jc-light"] .hljs-number {
+  color: #986801;
+}
+
+html[data-theme="jc-light"] .hljs-symbol,
+html[data-theme="jc-light"] .hljs-bullet,
+html[data-theme="jc-light"] .hljs-link,
+html[data-theme="jc-light"] .hljs-meta,
+html[data-theme="jc-light"] .hljs-selector-id,
+html[data-theme="jc-light"] .hljs-title {
+  color: #4078f2;
+}
+
+html[data-theme="jc-light"] .hljs-emphasis {
+  font-style: italic;
+}
+
+html[data-theme="jc-light"] .hljs-strong {
+  font-weight: bold;
+}
+
+html[data-theme="jc-light"] .hljs-link {
+  text-decoration: underline;
+}

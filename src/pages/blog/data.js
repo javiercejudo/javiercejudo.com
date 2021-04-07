@@ -1,5 +1,3 @@
-const path = 'blog';
-
 /**
  * @typedef BlogData
  * @property {string} path
@@ -9,7 +7,7 @@ const path = 'blog';
 
 /** @type BlogData */
 const blogData = {
-  path,
+  path: 'blog',
   title: 'Tech notes',
   authorName: 'Javier Cejudo',
 };

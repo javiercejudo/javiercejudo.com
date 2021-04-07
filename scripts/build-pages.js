@@ -39,6 +39,7 @@ const mustacheRender = (template, viewData) =>
  * @typedef MainLayout
  * @property {string} title
  * @property {string} description
+ * @property {string} [pagePath]
  * @property {boolean} [pageIsHome]
  * @property {string[]} [styles]
  * @property {string[]} [scripts]

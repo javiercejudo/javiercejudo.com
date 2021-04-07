@@ -47,7 +47,7 @@ const postBuilder = ({blogData, post}) => {
         ...post.outputPath.split('/')
       ),
       layoutData: () => ({
-        title: `${post.title} - example.com`,
+        title: `${post.title} - javiercejudo.com`,
         description: post.description,
         styles,
         editLinks: [
