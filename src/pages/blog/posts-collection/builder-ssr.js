@@ -41,6 +41,10 @@ const postBuilder = ({blogPath}) => {
         styles: ['highlight-js/index.css'],
         editLinks: [
           {
+            linkHref: `https://github.com/javiercejudo/javiercejudo.com/blob/next-simpler/src/pages/blog/posts-collection/builder-ssr.js`,
+            linkText: 'Edit builder',
+          },
+          {
             linkHref:
               'https://github.com/javiercejudo/javiercejudo.com/blob/next-simpler/src/pages/blog/posts-collection/{{{post.dataPath}}}/index.md',
             linkText: 'Edit post content',

@@ -9,11 +9,16 @@ const init = () => {
       (themes.findIndex(theme => theme === currentTheme) + 1) % themes.length
     ];
 
-  const setNextThemeText = nextTheme => {
+  const setNextTheme = currentTheme => el => {
+    const nextTheme = getNextTheme(currentTheme);
+    el.dataset.nextTheme = nextTheme;
+
     if (nextTheme === 'jc-dark') {
-      themeSwitcher.textContent = 'Switch to dark theme';
+      el.textContent = 'Switch to dark theme';
     } else if (nextTheme === 'jc-light') {
-      themeSwitcher.textContent = 'Switch to light theme';
+      el.textContent = 'Switch to light theme';
+    } else {
+      el.textContent = 'Switch to next theme';
     }
   };
 
@@ -23,20 +28,30 @@ const init = () => {
     document.body.parentElement.dataset.theme = savedTheme;
   }
 
-  const currentTheme = document.body.parentElement.dataset.theme;
-  themeSwitcher.dataset.nextTheme = getNextTheme(currentTheme);
-  setNextThemeText(themeSwitcher.dataset.nextTheme);
+  const currentTheme = document.documentElement.dataset.theme;
+  setNextTheme(currentTheme)(themeSwitcher);
 
-  const setTheme = target => {
-    document.body.parentElement.dataset.theme = target.dataset.nextTheme;
-    target.dataset.nextTheme = getNextTheme(target.dataset.nextTheme);
-    setNextThemeText(target.dataset.nextTheme);
-    localStorage.setItem('jc-theme', document.body.parentElement.dataset.theme);
+  const setTheme = theme => {
+    document.documentElement.dataset.theme = theme;
+    const els = document.querySelectorAll('.jc-theme-switcher > button');
+    els.forEach(setNextTheme(theme));
+
+    try {
+      localStorage.setItem('jc-theme', document.documentElement.dataset.theme);
+    } catch (_) {
+      // ignore
+    }
   };
 
-  themeSwitcher.addEventListener('click', ev => setTheme(ev.target));
-  document.getElementById('theme-switcher').append(themeSwitcher);
-  document.body.style.display = 'block';
+  document.querySelectorAll('.jc-theme-switcher').forEach(switcherRoot => {
+    const switcher = themeSwitcher.cloneNode(true);
+
+    switcher.addEventListener('click', ev =>
+      setTheme(ev.target.dataset.nextTheme)
+    );
+
+    switcherRoot.append(switcher);
+  });
 };
 
 export default init;

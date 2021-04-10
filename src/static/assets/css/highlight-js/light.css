@@ -1,4 +1,15 @@
-/* the following is the same as atom-one-light with our theme selector in front */
+/**
+ * The following is the same as atom-one-light with our theme selector in front.
+ * Conceptually:
+ *
+ * html[data-theme="jc-light"] {
+ *  @import '../../../../../node_modules/highlight.js/styles/atom-one-dark.css';
+ * }
+ *
+ * Unfortunately, that isn't possible without pre-processors.
+ *
+ */
+
 html[data-theme="jc-light"] .hljs {
   display: block;
   overflow-x: auto;
