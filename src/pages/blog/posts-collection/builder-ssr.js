@@ -25,7 +25,7 @@ const postBuilder = ({blogPath}) => {
     return buildPage({
       pageSourcePath: path.join(__dirname, 'template.mustache'),
       relativeOutputPath: path.join(blogPath, 'post', 'index.html'),
-      layoutData: (_, {molino, commonData}) => ({
+      layoutData: (_, {molino, commonData, editLinks}) => ({
         // content: '{{{content}}}',
         molino: {
           ...molino,
@@ -39,11 +39,7 @@ const postBuilder = ({blogPath}) => {
         title: '{{title}}',
         description: '{{description}}',
         styles: ['highlight-js/index.css'],
-        editLinks: [
-          {
-            linkHref: `https://github.com/javiercejudo/javiercejudo.com/blob/next-simpler/src/pages/blog/posts-collection/builder-ssr.js`,
-            linkText: 'Edit builder',
-          },
+        editLinks: editLinks.concat([
           {
             linkHref:
               'https://github.com/javiercejudo/javiercejudo.com/blob/next-simpler/src/pages/blog/posts-collection/{{{post.dataPath}}}/index.md',
@@ -54,7 +50,7 @@ const postBuilder = ({blogPath}) => {
               'https://github.com/javiercejudo/javiercejudo.com/blob/next-simpler/src/pages/blog/posts-collection/{{{post.dataPath}}}/index.js',
             linkText: 'Edit post metadata',
           },
-        ],
+        ]),
       }),
       renderPage: identityRender,
     });

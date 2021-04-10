@@ -9,7 +9,7 @@ const feedBuilder = require('./feedBuilder');
 const blogBuilders = [
   homeBuilder,
   postSsrBuilder({blogPath: blogData.path}),
-  // ...posts.map(post => postBuilder({blogData, post})),
+  ...posts.map(post => postBuilder({blogData, post})),
   feedBuilder,
 ];
 

@@ -138,20 +138,8 @@
 
       <footer>
         <p>
-          <a
-            href="https://github.com/javiercejudo/javiercejudo.com/blob/next-simpler/src/layouts/{{{molino.relativeLayoutSourcePath}}}"
-            rel="noreferrer noopener"
-            >Edit layout</a
-          >
-          |
-          <a
-            href="https://github.com/javiercejudo/javiercejudo.com/blob/next-simpler/src/pages/{{{molino.relativePageSourcePath}}}"
-            rel="noreferrer noopener"
-            >Edit page</a
-          >
           {{#editLinks}}
-          |
-          <a href="{{{linkHref}}}" rel="noreferrer noopener">{{ linkText }}</a>
+          <span class="edit-link"><a href="{{{linkHref}}}" rel="noreferrer noopener">{{ linkText }}</a></span>
           {{/editLinks}}
         </p>
         <div class="jc-theme-switcher"></div>

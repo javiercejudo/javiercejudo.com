@@ -9,3 +9,7 @@ footer {
   font-size: calc(13rem / 16);
   background-color: var(--jc-footer-bg-colour);
 }
+
+.edit-link:not(:last-child)::after {
+  content: ' · '
+}

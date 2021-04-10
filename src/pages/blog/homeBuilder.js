@@ -25,31 +25,29 @@ const blogHomeBuilder = async ({buildPage, loadComponent}) => {
     relativeOutputPath: path.join(blogData.path, 'index.html'),
     renderPage: (...args) =>
       Mustache.render(...args, {postsList: postsListPartial}),
-    layoutData: () => ({
+    layoutData: (_, {editLinks}) => ({
       title: `${blogData.title} - javiercejudo.com`,
       description: 'Javier Cejudo’s blog',
       styles: ['blog/index.css'],
-      editLinks: [
+      editLinks: editLinks.concat([
         {
           linkHref: `https://github.com/javiercejudo/javiercejudo.com/blob/next-simpler/src/pages/blog/data.js`,
           linkText: 'Edit data',
         },
-        {
-          linkHref: `https://github.com/javiercejudo/javiercejudo.com/blob/next-simpler/src/pages/blog/homeBuilder.js`,
-          linkText: 'Edit builder',
-        },
-      ],
+      ]),
     }),
-    pageData: ({commonData}) => ({
-    // pageData: ({molino}) => ({
+    // pageData: ({commonData}) => ({
+    pageData: ({molino}) => ({
       hasPosts: posts.length > 0,
       title: blogData.title,
       authorName: blogData.authorName,
       component: {
         postsList: postsList({
           posts: posts.map(post => ({
-            link: `${commonData.siteUrl}/${blogData.path}/${post.outputPath.replace(/index.html$/, '')}`,
-            // link: `${molino.baseHref}${blogData.path}/${post.outputPath}`,
+            // link: `${commonData.siteUrl}/${
+            //   blogData.path
+            // }/${post.outputPath.replace(/index.html$/, '')}`,
+            link: `${molino.baseHref}${blogData.path}/${post.outputPath}`,
             title: post.title,
           })),
         }),

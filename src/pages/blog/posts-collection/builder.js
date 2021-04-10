@@ -46,15 +46,11 @@ const postBuilder = ({blogData, post}) => {
         blogData.path,
         ...post.outputPath.split('/')
       ),
-      layoutData: () => ({
+      layoutData: (_, {editLinks}) => ({
         title: `${post.title} - javiercejudo.com`,
         description: post.description,
         styles,
-        editLinks: [
-          {
-            linkHref: `https://github.com/javiercejudo/javiercejudo.com/blob/next-simpler/src/pages/blog/posts-collection/builder.js`,
-            linkText: 'Edit builder',
-          },
+        editLinks: editLinks.concat([
           {
             linkHref: `https://github.com/javiercejudo/javiercejudo.com/blob/next-simpler/src/pages/blog/posts-collection/${post.dataPath}/index.md`,
             linkText: 'Edit post content',
@@ -63,7 +59,7 @@ const postBuilder = ({blogData, post}) => {
             linkHref: `https://github.com/javiercejudo/javiercejudo.com/blob/next-simpler/src/pages/blog/posts-collection/${post.dataPath}/index.js`,
             linkText: 'Edit post metadata',
           },
-        ],
+        ]),
       }),
       pageData: ({molino}) => ({
         post,

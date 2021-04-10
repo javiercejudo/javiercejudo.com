@@ -58,6 +58,7 @@ const mustacheRender = (template, viewData) =>
  * @property {molino.TemplateHelpers} molino
  * @property {CommonData} commonData
  * @property {string} pagePath
+ * @property {EditLink[]} editLinks
  */
 
 /**
@@ -65,14 +66,14 @@ const mustacheRender = (template, viewData) =>
  * @callback LayoutData
  * @param {string} content
  * @param {TemplateHelpers} helpers
- * @returns {{content?: string, molino?: molino.TemplateHelpers, commonData?: CommonData, pagePath?: string} & Layout}
+ * @returns {{content?: string, molino?: molino.TemplateHelpers, commonData?: CommonData, pagePath?: string, editLinks?: EditLink[]} & Layout}
  */
 
 /**
  * @template Page
  * @callback PageData
  * @param {TemplateHelpers} helpers
- * @returns {{molino?: molino.TemplateHelpers, commonData?: CommonData, pagePath?: string} & Page}
+ * @returns {{molino?: molino.TemplateHelpers, commonData?: CommonData, pagePath?: string, editLinks?: EditLink[]} & Page}
  */
 
 /**
@@ -148,13 +149,26 @@ const siteBuilder = () => {
       currentYear: new Date().getFullYear().toString(),
     };
 
+    const relativePageSourcePath = pageSourcePath
+      .replace(sourceFolderPath, '')
+      .slice(1);
+
+    const editLinks = [
+      {
+        linkHref: `https://github.com/javiercejudo/javiercejudo.com/blob/next-simpler/src/layouts/${relativeLayoutSourcePath}`,
+        linkText: 'Edit layout',
+      },
+      {
+        linkHref: `https://github.com/javiercejudo/javiercejudo.com/blob/next-simpler/src/pages/${relativePageSourcePath}`,
+        linkText: 'Edit page',
+      },
+    ];
+
     return molino.buildPage({
       layoutFolderPath,
       relativeLayoutSourcePath,
       sourceFolderPath,
-      relativePageSourcePath: pageSourcePath
-        .replace(sourceFolderPath, '')
-        .slice(1),
+      relativePageSourcePath,
       relativeOutputPath,
       outputFolderPath: path.join('src', 'static'),
       layoutData: (content, molino) => {
@@ -165,7 +179,8 @@ const siteBuilder = () => {
           molino,
           commonData,
           pagePath,
-          ...layoutData(content, {molino, commonData, pagePath}),
+          editLinks,
+          ...layoutData(content, {molino, commonData, pagePath, editLinks}),
         };
       },
       pageData: molino => {
@@ -174,7 +189,8 @@ const siteBuilder = () => {
         return {
           molino,
           pagePath,
-          ...pageData({molino, commonData, pagePath}),
+          editLinks,
+          ...pageData({molino, commonData, pagePath, editLinks}),
         };
       },
       renderLayout,
