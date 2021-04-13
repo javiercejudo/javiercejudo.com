@@ -16,7 +16,9 @@ const postsList = require('../../components/posts-list/api');
  * @property {any} component
  */
 
-/** @type import('../../../scripts/build-pages').Builder<MainLayout, HomePage> */
+/** @typedef {import('../../../scripts/build-pages').Builder<MainLayout, HomePage>} HomeBuilder */
+
+/** @type HomeBuilder */
 const homeBuilder = async ({buildPage, loadComponent}) => {
   const postsListPartial = await loadComponent(
     path.join('src', 'components', 'posts-list', 'index.mustache')

@@ -8,7 +8,9 @@ const clockData = require('./data');
  * @property {string} time
  */
 
-/** @type import('../../../scripts/build-pages').Builder<MainLayout, ClockPage> */
+/** @typedef {import('../../../scripts/build-pages').Builder<MainLayout, ClockPage>} ClockBuilder */
+
+/** @type ClockBuilder */
 const clockBuilder = ({buildPage, identityRender}) =>
   buildPage({
     pageSourcePath: path.join(__dirname, 'template.mustache'),

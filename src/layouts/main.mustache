@@ -25,13 +25,23 @@
       href="{{{ molino.baseHref }}}assets/css/common/index.css"
     />
 
+    <link
+      rel="preload"
+      href="{{{ molino.baseHref }}}assets/js/common/theme.js"
+      as="script"
+    />
+    <script src="{{{ molino.baseHref }}}assets/js/common/theme.js"></script>
+
     {{#molino.isProd}}
     <link
       rel="preload"
       href="{{{ molino.baseHref }}}assets/js/common/index.js"
       as="script"
     />
-    <script src="{{{ molino.baseHref }}}assets/js/common/index.js" defer></script>
+    <script
+      src="{{{ molino.baseHref }}}assets/js/common/index.js"
+      defer
+    ></script>
     {{/molino.isProd}}
     {{^molino.isProd}}
     <link
@@ -60,14 +70,7 @@
     />
   </head>
 
-  <body style="display: none;">
-    <noscript>
-      <style>
-        body {
-          display: block !important;
-        }
-      </style>
-    </noscript>
+  <body>
     <a href="{{{ pagePath }}}#skip-nav" class="skip-nav">Skip to content</a>
 
     {{#styles}}
@@ -139,10 +142,16 @@
       <footer>
         <p>
           {{#editLinks}}
-          <span class="edit-link"><a href="{{{linkHref}}}" rel="noreferrer noopener">{{ linkText }}</a></span>
+          <span class="edit-link"
+            ><a href="{{{linkHref}}}" rel="noreferrer noopener">{{
+              linkText
+            }}</a></span
+          >
           {{/editLinks}}
         </p>
-        <div class="jc-theme-switcher"></div>
+        <div class="jc-theme-switcher jc-theme-switcher-cloak">
+          <button>Switch theme</button>
+        </div>
         <p>© javiercejudo.com 2013-{{ commonData.currentYear }}</p>
       </footer>
     </div>

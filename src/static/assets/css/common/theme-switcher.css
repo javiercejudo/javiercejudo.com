@@ -1,0 +1,7 @@
+.jc-theme-switcher-cloak {
+  visibility: hidden;
+}
+
+.jc-theme-switcher-initialised .jc-theme-switcher-cloak {
+  visibility: visible;
+}

@@ -2,22 +2,28 @@ const path = require('path');
 const blogData = require('../blog/data');
 const clockData = require('../clock/data');
 
-/** @type import('../builders').Builder */
-const menuBuilder = ({buildPage}) =>
+/** @typedef {import('../../../scripts/build-pages').MainLayout} MainLayout */
+
+/**
+ * @typedef MenuPage
+ * @property {string} blogPath
+ * @property {string} clockPath
+ */
+
+/** @typedef {import('../../../scripts/build-pages').Builder<MainLayout, MenuPage>} MenuBuilder */
+
+/** @type MenuBuilder */
+const menuBuilder = ({buildPage, identityRender}) =>
   buildPage({
     pageSourcePath: path.join(__dirname, 'template.mustache'),
     relativeOutputPath: path.join('menu', 'index.html'),
-    layoutData: (content, {molino, commonData}) => ({
-      content,
-      molino,
-      commonData,
+    layoutData: () => ({
       title: 'Menu - javiercejudo.com',
       description: 'Find your way around my site',
       pageIsMenu: true,
       styles: ['menu/index.css'],
     }),
-    pageData: ({molino}) => ({
-      molino,
+    pageData: () => ({
       blogPath: blogData.path,
       clockPath: clockData.path,
     }),
