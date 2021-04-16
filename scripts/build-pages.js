@@ -103,7 +103,6 @@ const mustacheRender = (template, viewData) =>
  * @property {BuildPage<Layout, Page>} buildPage
  * @property {Identity<string>} identityRender
  * @property {molino.RenderFn<Layout | Page>} mustacheRender
- * @property {any} loadComponent
  * @property {typeof md} md
  */
 
@@ -113,12 +112,6 @@ const mustacheRender = (template, viewData) =>
  * @param {BuilderProps<Layout, Page>} props
  * @returns {Promise<molino.BuiltPageInfo>}
  */
-
-/**
- *  @param {import("fs").PathLike | fs.FileHandle} componentPath
- */
-const loadComponent = async componentPath =>
-  (await fs.readFile(componentPath)).toString();
 
 /**
  * @param {molino.TemplateHelpers} molino
@@ -190,7 +183,7 @@ const siteBuilder = () => {
           molino,
           pagePath,
           editLinks,
-          ...pageData({molino, commonData, pagePath, editLinks}),
+          ...(pageData({molino, commonData, pagePath, editLinks})),
         };
       },
       renderLayout,
@@ -208,7 +201,6 @@ const siteBuilder = () => {
       mustacheRender,
       identityRender,
       md,
-      loadComponent,
     });
 
   try {

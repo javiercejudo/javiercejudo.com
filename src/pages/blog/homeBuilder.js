@@ -1,6 +1,5 @@
 const path = require('path');
-const Mustache = require('mustache');
-const postsList = require('../../components/posts-list/api');
+const makePostsListComponent = require('../../components/posts-list');
 const blogData = require('./data');
 const posts = require('./posts-collection/data');
 
@@ -11,20 +10,16 @@ const posts = require('./posts-collection/data');
  * @property {boolean} hasPosts
  * @property {string} title
  * @property {string} authorName
- * @property {any} component
+ * @property {string} postsList
  */
 
 /** @type import('../../../scripts/build-pages').Builder<MainLayout, BlogHomePage> */
-const blogHomeBuilder = async ({buildPage, loadComponent}) => {
-  const postsListPartial = await loadComponent(
-    path.join('src', 'components', 'posts-list', 'index.mustache')
-  );
+const blogHomeBuilder = async ({buildPage}) => {
+  const postsListComponent = await makePostsListComponent();
 
   return buildPage({
     pageSourcePath: path.join(__dirname, 'index.mustache'),
     relativeOutputPath: path.join(blogData.path, 'index.html'),
-    renderPage: (...args) =>
-      Mustache.render(...args, {postsList: postsListPartial}),
     layoutData: (_, {editLinks}) => ({
       title: `${blogData.title} - javiercejudo.com`,
       description: 'Javier Cejudo’s blog',
@@ -41,17 +36,15 @@ const blogHomeBuilder = async ({buildPage, loadComponent}) => {
       hasPosts: posts.length > 0,
       title: blogData.title,
       authorName: blogData.authorName,
-      component: {
-        postsList: postsList({
-          posts: posts.map(post => ({
-            // link: `${commonData.siteUrl}/${
-            //   blogData.path
-            // }/${post.outputPath.replace(/index.html$/, '')}`,
-            link: `${molino.baseHref}${blogData.path}/${post.outputPath}`,
-            title: post.title,
-          })),
-        }),
-      },
+      postsList: postsListComponent({
+        posts: posts.map(post => ({
+          // link: `${commonData.siteUrl}/${
+          //   blogData.path
+          // }/${post.outputPath.replace(/index.html$/, '')}`,
+          link: `${molino.baseHref}${blogData.path}/${post.outputPath}`,
+          title: post.title,
+        })),
+      }),
     }),
   });
 };
