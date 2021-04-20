@@ -1,6 +1,9 @@
-const fs = require('fs/promises');
 const path = require('path');
 const Mustache = require('mustache');
+const getTemplatePromise = require('../getTemplatePromise');
+
+/** @type Promise<string> */
+let templatePromise;
 
 /**
  * @typedef Post - a post in the postsList
@@ -13,21 +16,12 @@ const Mustache = require('mustache');
  * @property {Post[]} posts - the list of posts
  */
 
-/** @type Promise<string> */
-let templatePromise;
-
 /** @returns {Promise<(props: Props) => string>} */
 module.exports = async () => {
-  if (templatePromise === undefined) {
-    templatePromise = fs
-      .readFile(path.join(__dirname, 'index.mustache'))
-      .then(b => {
-        const template = b.toString();
-        Mustache.parse(template);
-
-        return template;
-      });
-  }
+  templatePromise = getTemplatePromise(
+    templatePromise,
+    path.join(__dirname, 'index.mustache')
+  );
 
   const template = await templatePromise;
 

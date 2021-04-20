@@ -18,8 +18,17 @@ const clockBuilder = ({buildPage, identityRender}) =>
     layoutData: () => ({
       title: 'Clock - javiercejudo.com',
       description: 'In case you were wondering what the time is',
+      scripts: ['clock/index.js']
     }),
-    renderPage: identityRender,
+    renderPage: template => {
+      return `
+        ${template}
+        <template id="time-template">
+          {{=<% %>=}}
+          ${template}
+        </template>
+      `;
+    },
   });
 
 module.exports = clockBuilder;

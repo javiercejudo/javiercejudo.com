@@ -21,9 +21,10 @@ const clockHandler = ({templatesPath}) => async (_, res) => {
       path.join(templatesPath, ...clockData.path.split('/'))
     );
 
+    const now = new Date();
     /** @type import('./builder').ClockPage */
     const view = {
-      time: new Date().toISOString(),
+      time: `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`,
     };
 
     res.send(Mustache.render(template.toString(), view));

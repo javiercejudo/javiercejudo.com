@@ -2,7 +2,7 @@ const express = require('express');
 const clockData = require('./clock/data');
 const blogData = require('./blog/data');
 const makeClockHandler = require('./clock/handler');
-const makeBlogPostHandler = require('./blog/posts-collection/handler');
+// const makeBlogPostHandler = require('./blog/posts-collection/handler');
 
 /**
  * @typedef RouterProps
