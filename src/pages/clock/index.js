@@ -1,25 +1,16 @@
 // @ts-nocheck
 
-import('https://cdn.skypack.dev/mustache').then(({default: Mustache}) => {
-  const templateNode = document.getElementById('time-template');
+import Mustache from '../../../node_modules/mustache/mustache.mjs';
 
-  if (!templateNode) {
-    throw Error('Template could not be found');
-  }
+const templateNode = document.getElementById('time-template');
+const template = templateNode.innerHTML;
 
-  // @ts-ignore
-  const template = templateNode.innerHTML;
+const render = () => {
+  const now = new Date();
+  const time = `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
+  const html = Mustache.render(template, {time});
+  document.getElementById('clock-content').parentElement.innerHTML = html;
+};
 
-  const render = () => {
-    const clockContent = document.getElementById('clock-content');
-
-    const now = new Date();
-    const view = {
-      time: `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`,
-    };
-
-    clockContent.parentElement.innerHTML = Mustache.render(template, view);
-  };
-
-  setInterval(render, 1000);
-});
+setInterval(render, 1000);
+render();
