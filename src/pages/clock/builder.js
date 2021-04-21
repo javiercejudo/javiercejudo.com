@@ -11,7 +11,7 @@ const clockData = require('./data');
 /** @typedef {import('../../../scripts/build-pages').Builder<MainLayout, ClockPage>} ClockBuilder */
 
 /** @type ClockBuilder */
-const clockBuilder = ({buildPage, identityRender}) =>
+const clockBuilder = ({buildPage}) =>
   buildPage({
     pageSourcePath: path.join(__dirname, 'template.mustache'),
     relativeOutputPath: path.join(...clockData.path.split('/')),

@@ -1,15 +1,16 @@
-const express = require('express');
-// const helmet = require('helmet');
-const serveStatic = require('serve-static');
-const serveIndex = require('serve-index');
-const path = require('path');
+import express from 'express';
+// import helmet from 'helmet';
+import serveStatic from 'serve-static';
+import serveIndex from 'serve-index';
+import path from 'path';
 
-const router = require('./src/pages/router');
+import router from './src/pages/router.mjs';
+
 const port = 8081;
 const app = express();
 // app.use(helmet());
 app.use('/src/static', router({templatesPath: path.join('src', 'static')}));
-app.use(serveIndex(__dirname));
+app.use(serveIndex('.'));
 
 app.use(
   serveStatic('.', {

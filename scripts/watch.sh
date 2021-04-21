@@ -9,5 +9,5 @@ npx nodemon \
   --watch src/static/assets \
   --watch lib \
   --watch scripts \
-  -e mustache,html,css,js,sh,md \
+  -e mustache,html,css,js,sh,md,mjs \
   -x ./scripts/dev.sh

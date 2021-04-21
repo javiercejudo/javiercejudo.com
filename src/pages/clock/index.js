@@ -1,16 +1,14 @@
 // @ts-nocheck
-
-import Mustache from '../../../node_modules/mustache/mustache.mjs';
+import getFormattedTime from './shared.mjs'
 
 const templateNode = document.getElementById('time-template');
 const template = templateNode.innerHTML;
 
 const render = () => {
-  const now = new Date();
-  const time = `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
+  const time = getFormattedTime()
   const html = Mustache.render(template, {time});
   document.getElementById('clock-content').parentElement.innerHTML = html;
 };
 
-setInterval(render, 1000);
 render();
+setInterval(render, 1000);

@@ -5,4 +5,4 @@ set -x
 # npx http-server dist \
 #   --gzip \
 #   --brotli
-npx nf -e .env,.env.local run node ./serve-prod.js
+npx nf -e .env,.env.local run node ./serve-prod.mjs

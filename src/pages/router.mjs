@@ -1,7 +1,7 @@
-const express = require('express');
-const clockData = require('./clock/data');
-const blogData = require('./blog/data');
-const makeClockHandler = require('./clock/handler');
+import express from 'express';
+import clockData from './clock/data.js';
+// const blogData = require('./blog/data');
+import makeClockHandler from './clock/handler.mjs';
 // const makeBlogPostHandler = require('./blog/posts-collection/handler');
 
 /**
@@ -35,4 +35,4 @@ const router = ({templatesPath}) => {
   return router;
 };
 
-module.exports = router;
+export default router;

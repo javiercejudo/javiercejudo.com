@@ -1,9 +1,9 @@
-const express = require('express');
-const helmet = require('helmet');
-const compression = require('compression');
-const serveStatic = require('serve-static');
+import express from 'express';
+import helmet from 'helmet';
+import compression from 'compression';
+import serveStatic from 'serve-static';
 
-const router = require('./src/pages/router');
+import router from './src/pages/router.mjs';
 const port = 8080;
 const app = express();
 app.use(helmet());

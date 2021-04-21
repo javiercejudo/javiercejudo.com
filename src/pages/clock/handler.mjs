@@ -1,8 +1,9 @@
-const fs = require('fs');
-const util = require('util');
-const path = require('path');
-const Mustache = require('mustache');
-const clockData = require('./data');
+import fs from 'fs';
+import util from 'util';
+import path from 'path';
+import Mustache from 'mustache';
+import clockData from './data.js';
+import getFormattedTime from './shared.mjs';
 
 const readFile = util.promisify(fs.readFile);
 
@@ -21,11 +22,9 @@ const clockHandler = ({templatesPath}) => async (_, res) => {
       path.join(templatesPath, ...clockData.path.split('/'))
     );
 
-    const now = new Date();
+    const time = getFormattedTime();
     /** @type import('./builder').ClockPage */
-    const view = {
-      time: `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`,
-    };
+    const view = {time};
 
     res.send(Mustache.render(template.toString(), view));
   } catch (err) {
@@ -34,4 +33,4 @@ const clockHandler = ({templatesPath}) => async (_, res) => {
   }
 };
 
-module.exports = clockHandler;
+export default clockHandler;
