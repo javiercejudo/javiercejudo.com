@@ -24,7 +24,7 @@ const clockBuilder = ({buildPage}) =>
       return `
         ${template}
         <template id="time-template">
-          {{=<% %>=}}
+          {{={[{ }]}=}}
           ${template}
         </template>
       `;
