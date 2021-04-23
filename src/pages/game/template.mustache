@@ -1,0 +1,157 @@
+<link
+  rel="stylesheet/less"
+  type="text/css"
+  href="{{{ molino.baseHref }}}assets/css/game/index.less"
+/>
+
+{{#molino.isProd}}
+<script src="{{{ molino.baseHref }}}assets/js/game/index.js" defer></script>
+{{/molino.isProd}}
+{{^molino.isProd}}
+<script
+  type="module"
+  src="{{{ molino.baseHref }}}assets/js/game/index.js"
+></script>
+{{/molino.isProd}}
+
+{{={[{ }]}=}}
+<div class="container" data-ng-app="SecretaryProblem" data-ng-strict-di>
+  <!-- <div data-ng-strict-di> -->
+  <div
+    class="secretary-problem ng-cloak"
+    data-ng-controller="SecretaryProblemCtrl"
+    data-ng-init="initSecretaryProblem()"
+  >
+    <p>
+      Click on a briefcase to see its content. If you stop and bet on the one
+      with the highest amount of money, you win; otherwise you lose.
+      <a href="http://en.wikipedia.org/wiki/Secretary_problem"
+        >Read more about this game.</a
+      >
+    </p>
+    <!-- <p class="num-items">
+      Number of briefcases:
+      <a
+        data-ng-href="{{ prefixLink }}/game/3"
+        data-ng-class="{current: game.n == 3  }"
+        >3</a
+      >
+      ·
+      <a
+        data-ng-href="{{ prefixLink }}/game/5"
+        data-ng-class="{current: game.n == 5  }"
+        >5</a
+      >
+      ·
+      <a
+        data-ng-href="{{ prefixLink }}/game/10"
+        data-ng-class="{current: game.n == 10 }"
+        >10</a
+      >
+      ·
+      <a
+        data-ng-href="{{ prefixLink }}/game/15"
+        data-ng-class="{current: game.n == 15 }"
+        >15</a
+      >
+      ·
+      <a
+        data-ng-href="{{ prefixLink }}/game/20"
+        data-ng-class="{current: game.n == 20 }"
+        >20</a
+      >
+      ·
+      <a
+        data-ng-href="{{ prefixLink }}/game/50"
+        data-ng-class="{current: game.n == 50 }"
+        >50</a
+      >
+      ·
+      <a
+        data-ng-href="{{ prefixLink }}/game/100"
+        data-ng-class="{current: game.n == 100}"
+        >100</a
+      >
+      ·
+      <a
+        data-ng-href="{{ prefixLink }}/game/250"
+        data-ng-class="{current: game.n == 250}"
+        >250</a
+      >
+      ·
+      <a
+        data-ng-href="{{ prefixLink }}/game/500"
+        data-ng-class="{current: game.n == 500}"
+        >500</a
+      >
+    </p> -->
+    <p class="visible-xs">Find controls at the bottom.</p>
+    <ul class="list">
+      <li
+        class="item"
+        data-ng-repeat="item in game.items track by $index"
+        data-ng-click="generateItemValue($index)"
+        data-ng-class="{selected: game.itemSelected == $index,
+                        max: isMax($index),
+                        current: isCurrent($index),
+                        rejected: isRejected($index),
+                        'losing-bet': isLosingBet($index),
+                        'non-actionable': isRejected($index)}"
+      >
+        <span class="icon glyphicon glyphicon-briefcase"></span>
+        <div data-ng-switch data-on="item">
+          <div data-ng-switch-when="-1">
+            {{ game.unknownValue }}
+          </div>
+          <div data-ng-switch-default>${{ item | number: 0 }}</div>
+        </div>
+      </li>
+    </ul>
+    <div>
+      <ul class="list-inline">
+        <li>
+          <span
+            class="btn btn-primary button-select-item"
+            data-ng-click="selectItem(game.lastItemShown)"
+            data-ng-class="{disabled: !canSelectItem()}"
+          >
+            Stop and bet on the current briefcase
+          </span>
+        </li>
+        <li>
+          <span
+            class="btn btn-primary button-next-item"
+            data-ng-click="showNext()"
+            data-ng-class="{disabled: !canShowNext()}"
+          >
+            Show next
+          </span>
+        </li>
+        <li>
+          <span
+            class="btn btn-danger button-new-game"
+            data-ng-click="initSecretaryProblem()"
+            data-ng-class="{disabled: game.itemSelected == -1 && game.numItemsShown == 0}"
+          >
+            New game
+          </span>
+        </li>
+        <li>
+          <span data-ng-switch data-on="game.won" class="result">
+            <span data-ng-switch-when="true">You won :)</span>
+            <span data-ng-switch-when="false">You lost :(</span>
+          </span>
+        </li>
+      </ul>
+    </div>
+    <p data-ng-show="game.record.gamesPlayed > 0">
+      Your record with {{ game.n }} briefcases: {{ game.record.gamesWon }}/{{
+        game.record.gamesPlayed
+      }}
+      ({{
+        (100 * game.record.gamesWon) / game.record.gamesPlayed | number: 2
+      }}%) -
+      <a data-ng-click="resetRecord()">Reset</a>
+    </p>
+  </div>
+</div>

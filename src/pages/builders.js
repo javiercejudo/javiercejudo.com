@@ -5,6 +5,7 @@ const clockBuilder = require('./clock/builder');
 const aboutBuilders = require('./about/builders');
 const projectsBuilders = require('./projects/builders');
 const blogBuilders = require('./blog/builders');
+const gameBuilder = require('./game/builder');
 
 /** @typedef {import('../../scripts/build-pages').MainLayout} MainLayout */
 /** @typedef {MainLayout} Layouts */
@@ -13,22 +14,24 @@ const blogBuilders = require('./blog/builders');
 /** @typedef {menuBuilder.MenuBuilder} MenuBuilder */
 /** @typedef {contactBuilder.ContactBuilder} ContactBuilder */
 /** @typedef {clockBuilder.ClockBuilder} ClockBuilder */
+/** @typedef {gameBuilder.GameBuilder} GameBuilder */
 /** @typedef {import('../pages/projects/homeBuilder').ProjectsHomeBuilder} ProjectsHomeBuilder */
 /** @typedef {import('../pages/projects/projects-collection/build').ProjectBuilder} ProjectBuilder */
 
 /**
- * @typedef {HomeBuilder | MenuBuilder | ContactBuilder | ClockBuilder | ProjectsHomeBuilder | ProjectBuilder} Builder
+ * @typedef {HomeBuilder | MenuBuilder | ContactBuilder | ClockBuilder | ProjectsHomeBuilder | ProjectBuilder | GameBuilder} Builder
  **/
 
 /** @type Builder[] */
 const builders = [
+  homeBuilder,
   menuBuilder,
   contactBuilder,
   clockBuilder,
+  gameBuilder,
   ...aboutBuilders,
   ...projectsBuilders,
   ...blogBuilders,
-  homeBuilder,
 ];
 
 module.exports = builders;

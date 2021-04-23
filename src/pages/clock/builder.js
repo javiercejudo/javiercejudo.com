@@ -18,7 +18,7 @@ const clockBuilder = ({buildPage}) =>
     layoutData: () => ({
       title: 'Clock - javiercejudo.com',
       description: 'In case you were wondering what the time is',
-      scripts: ['clock/index.js']
+      scripts: ['mustache/index.js', 'clock/index.js'],
     }),
     renderPage: template => {
       return `
