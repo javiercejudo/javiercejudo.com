@@ -5,7 +5,7 @@ dist-server/
 /build/
 *.temp
 sitemap.txt
-.env.local
+*.local
 
 src/static/*
 !src/static/assets/
