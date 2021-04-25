@@ -1,3 +1,8 @@
+// @ts-ignore
+window.less = {
+  env: 'production'
+}
+
 import './app/deps/less.js';
 import './app/deps/angular.js';
 import './app/deps/angular-route.js';

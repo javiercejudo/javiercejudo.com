@@ -41,6 +41,8 @@ const mustacheRender = (template, viewData) =>
  * @property {string} description
  * @property {string} [pagePath]
  * @property {boolean} [pageIsHome]
+ * @property {boolean} [pageIsMenu]
+ * @property {string} [pageClass]
  * @property {string[]} [styles]
  * @property {string[]} [scripts]
  * @property {EditLink[]} [editLinks]
@@ -59,6 +61,7 @@ const mustacheRender = (template, viewData) =>
  * @property {CommonData} commonData
  * @property {string} pagePath
  * @property {EditLink[]} editLinks
+ * @property {string} pageClass
  */
 
 /**
@@ -157,6 +160,8 @@ const siteBuilder = () => {
       },
     ];
 
+    const pageClass = 'standard-page';
+
     return molino.buildPage({
       layoutFolderPath,
       relativeLayoutSourcePath,
@@ -173,7 +178,14 @@ const siteBuilder = () => {
           commonData,
           pagePath,
           editLinks,
-          ...layoutData(content, {molino, commonData, pagePath, editLinks}),
+          pageClass,
+          ...layoutData(content, {
+            molino,
+            commonData,
+            pagePath,
+            editLinks,
+            pageClass,
+          }),
         };
       },
       pageData: molino => {
@@ -183,7 +195,7 @@ const siteBuilder = () => {
           molino,
           pagePath,
           editLinks,
-          ...(pageData({molino, commonData, pagePath, editLinks})),
+          ...pageData({molino, commonData, pagePath, editLinks, pageClass}),
         };
       },
       renderLayout,

@@ -12,6 +12,7 @@ const gameBuilder = ({buildPage, identityRender}) =>
     layoutData: () => ({
       title: 'Game - javiercejudo.com',
       description: 'Secretary problem online game',
+      pageClass: 'game-page',
       styles: ['game/index.css'],
       // scripts: ['game/index.js'],
     }),

@@ -1,3 +1,7 @@
 .ng-cloak {
   display: none;
 }
+
+.game-page .container {
+  max-width: calc(750rem / 16);
+}
