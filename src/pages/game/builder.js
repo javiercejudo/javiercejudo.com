@@ -14,7 +14,7 @@ const gameBuilder = ({buildPage, identityRender}) =>
       description: 'Secretary problem online game',
       pageClass: 'game-page',
       styles: ['game/index.css'],
-      // scripts: ['game/index.js'],
+      scripts: ['game/index.js'],
     }),
   });
 

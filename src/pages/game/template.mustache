@@ -1,16 +1,19 @@
+{{#molino.isProd}}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="{{{ molino.baseHref }}}assets/css/game/index.less"
+/>
+{{/molino.isProd}}
+{{^molino.isProd}}
 <link
   rel="stylesheet/less"
   type="text/css"
   href="{{{ molino.baseHref }}}assets/css/game/index.less"
 />
-
-{{#molino.isProd}}
-<script src="{{{ molino.baseHref }}}assets/js/game/index.js" defer></script>
-{{/molino.isProd}}
-{{^molino.isProd}}
 <script
   type="module"
-  src="{{{ molino.baseHref }}}assets/js/game/index.js"
+  src="{{{ molino.baseHref }}}../pages/game/app/deps/less.js"
 ></script>
 {{/molino.isProd}}
 

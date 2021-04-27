@@ -8,7 +8,6 @@ const Mustache = require('mustache');
  */
 const getTemplatePromise = (templatePromise, path) => {
   if (templatePromise === undefined) {
-    console.log('Hereeee')
     templatePromise = fs.readFile(path).then(b => {
       const template = b.toString();
       Mustache.parse(template);
