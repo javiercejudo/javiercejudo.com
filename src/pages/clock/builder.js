@@ -23,8 +23,8 @@ const clockBuilder = ({buildPage}) =>
     renderPage: template => {
       return `
         ${template}
+        <template>{{={[{ }]}=}}</template>
         <template id="time-template">
-          {{={[{ }]}=}}
           ${template}
         </template>
       `;

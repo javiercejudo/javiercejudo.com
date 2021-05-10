@@ -15,40 +15,20 @@
     {{/molino.isProd}}
 
     <link
-      rel="preload"
-      href="{{{ molino.baseHref }}}assets/css/common/index.css"
-      as="style"
-    />
-    <link
       rel="stylesheet"
       type="text/css"
       href="{{{ molino.baseHref }}}assets/css/common/index.css"
     />
 
-    <link
-      rel="preload"
-      href="{{{ molino.baseHref }}}assets/js/common/theme.js"
-      as="script"
-    />
     <script src="{{{ molino.baseHref }}}assets/js/common/theme.js"></script>
 
     {{#molino.isProd}}
-    <link
-      rel="preload"
-      href="{{{ molino.baseHref }}}assets/js/common/index.js"
-      as="script"
-    />
     <script
       src="{{{ molino.baseHref }}}assets/js/common/index.js"
       defer
     ></script>
     {{/molino.isProd}}
     {{^molino.isProd}}
-    <link
-      rel="modulepreload"
-      href="{{{ molino.baseHref }}}assets/js/common/index.js"
-      as="script"
-    />
     <script
       type="module"
       src="{{{ molino.baseHref }}}assets/js/common/index.js"
@@ -68,17 +48,8 @@
       href="{{{ commonData.siteUrl }}}/blog/feed.xml"
       title="Tech notes by Javier Cejudo"
     />
-  </head>
-
-  <body class="{{ pageClass }}">
-    <a href="{{{ pagePath }}}#skip-nav" class="skip-nav">Skip to content</a>
 
     {{#styles}}
-    <link
-      rel="preload"
-      href="{{{ molino.baseHref }}}assets/css/{{{ . }}}"
-      as="style"
-    />
     <link
       rel="stylesheet"
       type="text/css"
@@ -97,6 +68,10 @@
     ></script>
     {{/molino.isProd}}
     {{/scripts}}
+  </head>
+
+  <body class="{{ pageClass }}">
+    <a href="{{{ pagePath }}}#skip-nav" class="skip-nav">Skip to content</a>
 
     <div class="page">
       <header>
