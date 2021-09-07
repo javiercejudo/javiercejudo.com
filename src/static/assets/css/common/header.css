@@ -37,6 +37,7 @@ header nav a {
   padding: calc(10rem / 16);
   display: inline-block;
   position: relative;
+  border-radius: calc(5rem / 16);
   transition: background-color 200ms ease;
 }
 
@@ -44,5 +45,4 @@ header nav ul a.is-active,
 header nav ul a:hover,
 header nav ul a:focus {
   background-color: var(--jc-header-link-colour-active);
-  border-radius: calc(5rem / 16);
 }

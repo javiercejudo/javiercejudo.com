@@ -28,7 +28,7 @@
     "dev": "npm run start-dev & npm run livereload & ./scripts/watch.sh"
   },
   "devDependencies": {
-    "@hotwired/turbo": "^7.0.0-beta.4",
+    "@hotwired/turbo": "7.0.0-rc.3",
     "@types/compression": "^1.7.0",
     "@types/express": "^4.17.11",
     "@types/markdown-it": "^12.0.1",
