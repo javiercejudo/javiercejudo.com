@@ -6,7 +6,7 @@ import path from 'path';
 
 import router from './src/pages/router.mjs';
 
-const port = 8081;
+const port = 8080;
 const app = express();
 app.set('etag', false);
 app.use(helmet());
@@ -31,7 +31,7 @@ function setCustomCacheControl(res, path) {
   const contentType = serveStatic.mime.lookup(path);
   if (contentType === 'text/html') {
     res.set({
-      'Cache-Control': 'public, max-age=10, stale-while-revalidate=50',
+      'Cache-Control': 'public, max-age=60, stale-while-revalidate=300',
     });
   } else if (
     contentType === 'text/css' ||

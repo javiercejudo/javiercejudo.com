@@ -5,13 +5,19 @@ import {listen} from './quicklink.mjs';
 // import {start} from '../../../../../node_modules/@hotwired/turbo/dist/turbo.es2017-esm.js';
 
 window.addEventListener('load', () => {
-  // listen({
-  //   relAttr: 'prefetch',
-  //   ignores: [(_uri, elem) => elem.hasAttribute('data-noprefetch')],
-  // });
   listen({
     relAttr: 'prerender',
-    ignores: [(_uri, elem) => elem.hasAttribute('data-noprefetch')],
+    // make prerender opt-in only
+    ignores: [(_uri, elem) => !elem.hasAttribute('data-prerender')],
+  });
+  listen({
+    relAttr: 'prefetch',
+    // make prerender opt-out only
+    ignores: [
+      (_uri, elem) =>
+        elem.hasAttribute('data-prerender') ||
+        elem.hasAttribute('data-noprefetch'),
+    ],
   });
   // start();
 });
