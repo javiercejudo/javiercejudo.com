@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-const fs = require('fs/promises');
+const fs = require('fs');
 const path = require('path');
 const Mustache = require('mustache');
-const molino = require('../lib/molino');
+const molino = require('../lib/molino2');
 
 const builders = require('../src/pages/builders');
 const md = require('../src/utils/md');
@@ -16,6 +16,14 @@ if (!siteUrl) {
 
 /**
  * @template T
+ * @callback RenderFnOld
+ * @param {string} template
+ * @param {T} data
+ * @returns {Promise<string>}
+ */
+
+/**
+ * @template T
  * @callback Identity
  * @param {T} x
  * @returns {T}
@@ -25,10 +33,12 @@ if (!siteUrl) {
 const identityRender = x => x;
 
 /**
- * @type {typeof Mustache.render}
+ * @param {string} template
+ * @param {any} viewData
+ * @returns {Promise<string>}
  */
 const mustacheRender = (template, viewData) =>
-  Mustache.render(template, viewData);
+  Promise.resolve(Mustache.render(template, viewData));
 
 /**
  * @typedef EditLink
@@ -97,7 +107,7 @@ const mustacheRender = (template, viewData) =>
  * @template Layout, Page
  * @callback BuildPage
  * @param {BuildPageProps<Layout, Page>} props
- * @returns {Promise<molino.BuiltPageInfo>}
+ * @returns {Promise<molino.BuildPageOutput>}
  */
 
 /**
@@ -105,7 +115,7 @@ const mustacheRender = (template, viewData) =>
  * @typedef BuilderProps
  * @property {BuildPage<Layout, Page>} buildPage
  * @property {Identity<string>} identityRender
- * @property {molino.RenderFn<Layout | Page>} mustacheRender
+ * @property {RenderFnOld<Layout | Page>} mustacheRender
  * @property {typeof md} md
  */
 
@@ -113,16 +123,11 @@ const mustacheRender = (template, viewData) =>
  * @template Layout, Page
  * @callback Builder
  * @param {BuilderProps<Layout, Page>} props
- * @returns {Promise<molino.BuiltPageInfo>}
+ * @returns {Promise<molino.BuildPageOutput>}
  */
 
 /**
- * @param {molino.TemplateHelpers} molino
- */
-const getPagePath = molino => `${molino.baseHref}${molino.relativeOutputPath}`;
-
-/**
- * @returns {Promise<molino.BuiltPageInfo>[]}
+ * @returns {Promise<molino.BuildPageOutput>[]}
  */
 const siteBuilder = () => {
   /**
@@ -163,49 +168,65 @@ const siteBuilder = () => {
     const pageClass = 'standard-page';
 
     return molino.buildPage({
-      layoutFolderPath,
-      relativeLayoutSourcePath,
-      sourceFolderPath,
-      relativePageSourcePath,
-      relativeOutputPath,
-      outputFolderPath: path.join('src', 'static'),
-      layoutData: (content, molino) => {
-        const pagePath = getPagePath(molino);
+      page: {
+        dataMapper: molino => {
+          const pagePath = `${molino.baseHref}${relativeOutputPath}`;
 
-        return {
-          content,
-          molino,
-          commonData,
-          pagePath,
-          editLinks,
-          pageClass,
-          ...layoutData(content, {
+          return {
+            molino,
+            pagePath,
+            editLinks,
+            ...pageData({molino, commonData, pagePath, editLinks, pageClass}),
+          };
+        },
+        renderFn: data =>
+          renderPage(
+            fs
+              .readFileSync(path.join(sourceFolderPath, relativePageSourcePath))
+              .toString(),
+            data
+          ),
+      },
+      layout: {
+        dataMapper: (content, molino) => {
+          const pagePath = `${molino.baseHref}${relativeOutputPath}`;
+
+          return {
+            content,
             molino,
             commonData,
             pagePath,
             editLinks,
             pageClass,
-          }),
-        };
+            ...layoutData(content, {
+              molino,
+              commonData,
+              pagePath,
+              editLinks,
+              pageClass,
+            }),
+          };
+        },
+        renderFn: data =>
+          renderLayout(
+            fs
+              .readFileSync(
+                path.join(layoutFolderPath, relativeLayoutSourcePath)
+              )
+              .toString(),
+            data
+          ),
       },
-      pageData: molino => {
-        const pagePath = getPagePath(molino);
-
-        return {
-          molino,
-          pagePath,
-          editLinks,
-          ...pageData({molino, commonData, pagePath, editLinks, pageClass}),
-        };
+      output: {
+        publicPath: path.join('src', 'static'),
+        relativePath: relativeOutputPath,
       },
-      renderLayout,
-      renderPage,
     });
   };
 
   /**
    * @param {builders.Builder} pageBuilder
-   * @returns {Promise<molino.BuiltPageInfo>}
+   * @returns {Promise<molino.BuildPageOutput>}
    */
   const buildPageMapper = pageBuilder =>
     pageBuilder({
@@ -219,7 +240,7 @@ const siteBuilder = () => {
     const pagesInfo = builders.map(buildPageMapper);
 
     pagesInfo.forEach(pageInfo => {
-      pageInfo.then(info => console.log(`Built ${info.outputPath}.`));
+      pageInfo.then(info => console.log(`Built ${info.path}.`));
     });
 
     Promise.all(pagesInfo).then(() => {

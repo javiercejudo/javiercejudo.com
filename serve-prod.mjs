@@ -19,7 +19,6 @@ app.use(
     setHeaders: setCustomCacheControl,
     etag: false,
     lastModified: false,
-    cacheControl: false,
   })
 );
 
@@ -32,13 +31,6 @@ function setCustomCacheControl(res, path) {
   if (contentType === 'text/html') {
     res.set({
       'Cache-Control': 'public, max-age=60, stale-while-revalidate=300',
-    });
-  } else if (
-    contentType === 'text/css' ||
-    contentType === 'application/javascript'
-  ) {
-    res.set({
-      'Cache-Control': `public, max-age=${60 * 60 * 24 * 365}`,
     });
   }
 }
