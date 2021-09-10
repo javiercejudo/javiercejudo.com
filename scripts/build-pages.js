@@ -16,7 +16,7 @@ if (!siteUrl) {
 
 /**
  * @template T
- * @callback RenderFnOld
+ * @callback RenderFn
  * @param {string} template
  * @param {T} data
  * @returns {Promise<string>}
@@ -37,7 +37,7 @@ const identityRender = x => x;
  * @param {any} viewData
  * @returns {Promise<string>}
  */
-const mustacheRender = (template, viewData) =>
+const renderMustache = (template, viewData) =>
   Promise.resolve(Mustache.render(template, viewData));
 
 /**
@@ -99,8 +99,8 @@ const mustacheRender = (template, viewData) =>
  * @property {string} [relativeLayoutSourcePath]
  * @property {LayoutData<Layout>} [layoutData]
  * @property {PageData<Page>} [pageData]
- * @property {molino.RenderFn<Layout>} [renderLayout]
- * @property {molino.RenderFn<Page>} [renderPage]
+ * @property {RenderFn<Page>} [renderPage]
+ * @property {RenderFn<Layout>} [renderLayout]
  */
 
 /**
@@ -115,7 +115,7 @@ const mustacheRender = (template, viewData) =>
  * @typedef BuilderProps
  * @property {BuildPage<Layout, Page>} buildPage
  * @property {Identity<string>} identityRender
- * @property {RenderFnOld<Layout | Page>} mustacheRender
+ * @property {RenderFn<Layout | Page>} renderMustache
  * @property {typeof md} md
  */
 
@@ -141,8 +141,8 @@ const siteBuilder = () => {
     relativeLayoutSourcePath = 'main.mustache',
     layoutData = () => ({}),
     pageData = () => ({}),
-    renderLayout = mustacheRender,
-    renderPage = mustacheRender,
+    renderLayout = renderMustache,
+    renderPage = renderMustache,
   }) => {
     const commonData = {
       lang: 'en-AU',
@@ -168,54 +168,50 @@ const siteBuilder = () => {
     const pageClass = 'standard-page';
 
     return molino.buildPage({
-      page: {
-        dataMapper: molino => {
-          const pagePath = `${molino.baseHref}${relativeOutputPath}`;
+      page: templateHelpers => {
+        const pagePath = `${templateHelpers.baseHref}${relativeOutputPath}`;
 
-          return {
-            molino,
+        return renderPage(
+          fs
+            .readFileSync(path.join(sourceFolderPath, relativePageSourcePath))
+            .toString(),
+          {
+            molino: templateHelpers,
             pagePath,
             editLinks,
-            ...pageData({molino, commonData, pagePath, editLinks, pageClass}),
-          };
-        },
-        renderFn: data =>
-          renderPage(
-            fs
-              .readFileSync(path.join(sourceFolderPath, relativePageSourcePath))
-              .toString(),
-            data
-          ),
-      },
-      layout: {
-        dataMapper: (content, molino) => {
-          const pagePath = `${molino.baseHref}${relativeOutputPath}`;
-
-          return {
-            content,
-            molino,
-            commonData,
-            pagePath,
-            editLinks,
-            pageClass,
-            ...layoutData(content, {
-              molino,
+            ...pageData({
+              molino: templateHelpers,
               commonData,
               pagePath,
               editLinks,
               pageClass,
             }),
-          };
-        },
-        renderFn: data =>
-          renderLayout(
-            fs
-              .readFileSync(
-                path.join(layoutFolderPath, relativeLayoutSourcePath)
-              )
-              .toString(),
-            data
-          ),
+          }
+        );
+      },
+      layout: (content, templateHelpers) => {
+        const pagePath = `${templateHelpers.baseHref}${relativeOutputPath}`;
+
+        return renderLayout(
+          fs
+            .readFileSync(path.join(layoutFolderPath, relativeLayoutSourcePath))
+            .toString(),
+          {
+            content,
+            molino: templateHelpers,
+            commonData,
+            pagePath,
+            editLinks,
+            pageClass,
+            ...layoutData(content, {
+              molino: templateHelpers,
+              commonData,
+              pagePath,
+              editLinks,
+              pageClass,
+            }),
+          }
+        );
       },
       output: {
         publicPath: path.join('src', 'static'),
@@ -231,7 +227,7 @@ const siteBuilder = () => {
   const buildPageMapper = pageBuilder =>
     pageBuilder({
       buildPage,
-      mustacheRender,
+      renderMustache,
       identityRender,
       md,
     });
