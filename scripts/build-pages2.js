@@ -7,6 +7,22 @@ const molino = require('../lib/molino2');
 const homeBuilder = require('../src/pages/home/builder');
 const md = require('../src/utils/md');
 
+/**
+ * @param {TemplateStringsArray} template
+ * @param {...any} args
+ */
+const html = (template, ...args) => {
+  let str = '';
+  for (let i = 0; i < args.length; i++) {
+    const argString = Array.isArray(args[i])
+      ? args[i].map(String).join('')
+      : String(args[i]);
+
+    str += template[i] + argString;
+  }
+  return str + template[template.length - 1];
+};
+
 const siteUrl = process.env.URL;
 
 if (!siteUrl) {
@@ -76,7 +92,7 @@ const MainLayout = input => {
   return renderMustache(mainLayoutTemplate, {
     ...input,
     commonData,
-    editLinks
+    editLinks,
   });
 };
 
@@ -87,6 +103,7 @@ const MainLayout = input => {
  * @property {MainLayout} MainLayout
  * @property {RenderMustache} renderMustache
  * @property {typeof md} md
+ * @property {typeof html} html
  */
 
 /**
@@ -109,6 +126,7 @@ const siteBuilder = () => {
       buildPage: molino.buildPage,
       MainLayout,
       renderMustache,
+      html,
       md,
     });
 
