@@ -21,13 +21,13 @@ const clockBuilder = ({buildPage}) =>
       scripts: ['mustache/index.js', 'clock/index.js'],
     }),
     renderPage: template => {
-      return `
+      return Promise.resolve(`
         ${template}
         <template>{{={[{ }]}=}}</template>
         <template id="time-template">
           ${template}
         </template>
-      `;
+      `);
     },
   });
 

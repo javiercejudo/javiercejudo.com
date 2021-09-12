@@ -10,7 +10,7 @@ const gameBuilder = require('./game/builder');
 /** @typedef {import('../../scripts/build-pages').MainLayout} MainLayout */
 /** @typedef {MainLayout} Layouts */
 
-/** @typedef {homeBuilder.HomeBuilder} HomeBuilder */
+// /** @typedef {homeBuilder.HomeBuilder} HomeBuilder */
 /** @typedef {menuBuilder.MenuBuilder} MenuBuilder */
 /** @typedef {contactBuilder.ContactBuilder} ContactBuilder */
 /** @typedef {clockBuilder.ClockBuilder} ClockBuilder */
@@ -19,12 +19,11 @@ const gameBuilder = require('./game/builder');
 /** @typedef {import('../pages/projects/projects-collection/build').ProjectBuilder} ProjectBuilder */
 
 /**
- * @typedef {HomeBuilder | MenuBuilder | ContactBuilder | ClockBuilder | ProjectsHomeBuilder | ProjectBuilder | GameBuilder} Builder
+ * @typedef {MenuBuilder | ContactBuilder | ClockBuilder | ProjectsHomeBuilder | ProjectBuilder | GameBuilder} Builder
  **/
 
 /** @type Builder[] */
 const builders = [
-  homeBuilder,
   menuBuilder,
   contactBuilder,
   clockBuilder,

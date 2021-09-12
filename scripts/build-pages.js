@@ -45,6 +45,7 @@ const renderMustache = (template, viewData) =>
  * @property {string} linkHref
  * @property {string} linkText
  */
+
 /**
  * @typedef MainLayout
  * @property {string} title
@@ -168,10 +169,10 @@ const siteBuilder = () => {
     const pageClass = 'standard-page';
 
     return molino.buildPage({
-      page: templateHelpers => {
+      page: async templateHelpers => {
         const pagePath = `${templateHelpers.baseHref}${relativeOutputPath}`;
 
-        return renderPage(
+        const content = await renderPage(
           fs
             .readFileSync(path.join(sourceFolderPath, relativePageSourcePath))
             .toString(),
@@ -188,9 +189,6 @@ const siteBuilder = () => {
             }),
           }
         );
-      },
-      layout: (content, templateHelpers) => {
-        const pagePath = `${templateHelpers.baseHref}${relativeOutputPath}`;
 
         return renderLayout(
           fs

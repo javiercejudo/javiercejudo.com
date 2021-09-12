@@ -23,7 +23,7 @@ app.use(
 );
 
 app.listen(port, () => {
-  console.log(`Listening on port ${port}.`);
+  console.log(`Running on http://localhost:${port}`);
 });
 
 function setCustomCacheControl(res, path) {
