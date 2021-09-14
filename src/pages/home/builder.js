@@ -4,15 +4,7 @@ const posts = require('../blog/posts-collection/data');
 const projects = require('../projects/projects-collection/data');
 const makePostsListComponent = require('../../components/posts-list');
 
-/**
- * @typedef HomePageData
- * @property {boolean} hasProjects
- * @property {boolean} hasPosts
- * @property {blogData.BlogData} blogData
- * @property {string} postsList
- */
-
-/** @type {import('../../../scripts/build-pages2').Builder<HomePageData>} */
+/** @type {import('../../../scripts/build-pages2').Builder} */
 const homeBuilder = async ({buildPage, MainLayout, html}) => {
   const postsListComponent = await makePostsListComponent();
 
@@ -28,18 +20,18 @@ const homeBuilder = async ({buildPage, MainLayout, html}) => {
       })),
     });
 
-    /** @param {HomePageData} props */
-    const Page = ({hasProjects, hasPosts, postsList, blogData}) => html`
+    const content = html`
       <div class="container">
         <p>Hey, I'm Javier!</p>
 
         <!-- <div id="root"></div> -->
 
-        ${hasProjects
+        <h2>
+          <a href="${molino.baseHref}projects/index.html">Projects</a>
+        </h2>
+
+        ${projects.length > 0
           ? html`
-              <h2>
-                <a href="${molino.baseHref}projects/index.html">Projects</a>
-              </h2>
               <ul>
                 ${projects.map(
                   project => html`
@@ -53,12 +45,14 @@ const homeBuilder = async ({buildPage, MainLayout, html}) => {
               </ul>
             `
           : html`<p>No projects</p>`}
+
         <h2>
           <a href="${molino.baseHref}${blogData.path}/index.html">
             ${blogData.title} by ${blogData.authorName}
           </a>
         </h2>
-        ${hasPosts ? postsList : html`<p>No blog posts</p>`}
+
+        ${posts.length > 0 ? postsList : html`<p>No blog posts</p>`}
       </div>
     `;
 
@@ -75,12 +69,7 @@ const homeBuilder = async ({buildPage, MainLayout, html}) => {
           linkText: 'Edit page',
         },
       ],
-      content: Page({
-        hasProjects: projects.length > 0,
-        hasPosts: posts.length > 0,
-        blogData,
-        postsList,
-      }),
+      content,
     });
   };
 
