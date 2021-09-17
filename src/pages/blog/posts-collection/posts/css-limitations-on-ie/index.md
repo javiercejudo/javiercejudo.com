@@ -1,5 +1,5 @@
 If you search for CSS limitations on IE, you will see sites where they state
-that IE has asize limitation for CSS files, but in fact that is not the case:
+that IE has a size limitation for CSS files, but in fact that is not the case:
 
 - All style rules after the first 4,095 selectors are not applied. This is limited per sheet, not globally.
 - All style tags after the first 31 style tags are not applied.
