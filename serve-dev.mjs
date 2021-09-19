@@ -20,7 +20,7 @@ app.use(
 );
 
 app.listen(port, () => {
-  console.log(`Listening on port ${port}.`);
+  console.log(`Running on http://localhost:${port}/src/static/index.html`);
 });
 
 function setCustomCacheControl(res, path) {
@@ -28,6 +28,7 @@ function setCustomCacheControl(res, path) {
     res.setHeader(
       'Cache-Control',
       'public, max-age=10, stale-while-revalidate=50'
+      // 'no-store, must-revalidate'
     );
   }
 }
