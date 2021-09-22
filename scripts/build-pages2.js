@@ -2,7 +2,7 @@
 
 const path = require('path');
 const Mustache = require('mustache');
-const { html } = require('common-tags');
+const {html} = require('common-tags');
 const molino = require('../lib/molino2');
 const homeBuilder = require('../src/pages/home/builder');
 const md = require('../src/utils/md');
@@ -13,6 +13,20 @@ const siteUrl = process.env.URL;
 if (!siteUrl) {
   throw Error('Missing URL environment variable');
 }
+
+/**
+ * @typedef CustomHelpers
+ * @property {string} lang
+ * @property {string} siteUrl
+ * @property {number} currentYear
+ */
+
+/** @type CustomHelpers */
+const customHelpers = {
+  lang: 'en-AU',
+  siteUrl,
+  currentYear: new Date().getFullYear(),
+};
 
 /**
  * @callback RenderMustache
@@ -27,10 +41,10 @@ if (!siteUrl) {
 const renderMustache = (template, viewData) =>
   Promise.resolve(Mustache.render(template, viewData));
 
-
 /**
  * @typedef BuilderInput
  * @property {typeof molino.buildPage} buildPage
+ * @property {CustomHelpers} customHelpers
  * @property {import('../src/layouts/main').MainLayout} MainLayout
  * @property {RenderMustache} renderMustache
  * @property {typeof md} md
@@ -55,7 +69,7 @@ const siteBuilder = () => {
     pageBuilder({
       buildPage: async (...args) => {
         if (process.env.NODE_ENV !== 'development') {
-          return molino.buildPage(...args)
+          return molino.buildPage(...args);
         }
 
         try {
@@ -63,10 +77,14 @@ const siteBuilder = () => {
         } catch (/** @type any */ e) {
           return Promise.resolve({
             html: html`<pre>${e.stack || e}</pre>`,
-            path: path.join(args[0].output.publicPath, args[0].output.relativePath)
+            path: path.join(
+              args[0].output.publicPath,
+              args[0].output.relativePath
+            ),
           });
         }
       },
+      customHelpers,
       MainLayout,
       renderMustache,
       html,
