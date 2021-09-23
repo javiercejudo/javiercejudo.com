@@ -6,13 +6,73 @@ const {html} = require('common-tags');
 const molino = require('../lib/molino2');
 const homeBuilder = require('../src/pages/home/builder');
 const md = require('../src/utils/md');
-const MainLayout = require('../src/layouts/main');
+const {
+  mainLayout: mainLayoutImpl,
+  baseHref,
+  deferredScript,
+  moduleScript,
+  styleTag,
+  editLinksPartial,
+} = require('../src/layouts/main');
 
 const siteUrl = process.env.URL;
 
 if (!siteUrl) {
   throw Error('Missing URL environment variable');
 }
+
+/**
+ * @param {Omit<
+ *   Parameters<import('../src/layouts/main').MainLayout>[0],
+ *   | 'baseHrefTag'
+ *   | 'commonScriptTag'
+ *   | 'styleTags'
+ *   | 'scriptTags'
+ *   | 'editLinksPartial'
+ * > & {
+ *   styles: string[],
+ *   scripts?: string[],
+ *   editLinks?: import('../src/layouts/main').EditLink[],
+ *   isProd: boolean,
+ * }} input
+ */
+const mainLayout = ({scripts = [], styles = [], editLinks = [], ...input}) =>
+  mainLayoutImpl({
+    ...input,
+    baseHrefTag: input.isProd ? baseHref(input.baseHref) : '',
+    commonScriptTag: input.isProd
+      ? deferredScript(input.baseHref)
+      : moduleScript(input.baseHref),
+    styleTags: html`${styles.map(style => styleTag(input.baseHref, style))}`,
+    scriptTags: html`${scripts.map(script =>
+      input.isProd
+        ? deferredScript(input.baseHref, script)
+        : moduleScript(input.baseHref, script)
+    )}`,
+    editLinksPartial: editLinksPartial([
+      {
+        linkHref: `https://github.com/javiercejudo/javiercejudo.com/blob/next-simpler/src/layouts/main.js`,
+        linkText: 'Edit layout',
+      },
+      ...editLinks,
+    ]),
+  });
+
+// Example of rendering the layout with Mustache placeholders for use in other languages
+// mainLayoutImpl({
+//   baseHref: '{{{baseHref}}}',
+//   siteUrl: '{{siteUrl}}',
+//   currentYear: '{{currentYear}}',
+//   title: '{{title}}',
+//   description: '{{description}}',
+//   content: '{{{content}}}',
+//   lang: '{{lang}}',
+//   baseHrefTag: '{{{baseHrefTag}}}',
+//   commonScriptTag: '{{{commonScriptTag}}}',
+//   styleTags: '{{{styleTags}}}',
+//   scriptTags: '{{{scriptTags}}}',
+//   editLinksPartial: '{{{editLinksPartial}}}',
+// }).then(console.log);
 
 /**
  * @typedef CustomHelpers
@@ -45,7 +105,7 @@ const renderMustache = (template, viewData) =>
  * @typedef BuilderInput
  * @property {typeof molino.buildPage} buildPage
  * @property {CustomHelpers} customHelpers
- * @property {import('../src/layouts/main').MainLayout} MainLayout
+ * @property {typeof mainLayout} mainLayout
  * @property {RenderMustache} renderMustache
  * @property {typeof md} md
  * @property {import('common-tags').TemplateTag} html
@@ -85,7 +145,7 @@ const siteBuilder = () => {
         }
       },
       customHelpers,
-      MainLayout,
+      mainLayout,
       renderMustache,
       html,
       md,

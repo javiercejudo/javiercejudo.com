@@ -2,15 +2,13 @@ const path = require('path');
 const blogData = require('../blog/data');
 const posts = require('../blog/posts-collection/data');
 const projects = require('../projects/projects-collection/data');
-const makePostsListComponent = require('../../components/posts-list');
+const postsListComponent = require('../../components/posts-list/index2');
 
 /** @type {import('../../../scripts/build-pages2').Builder} */
-const homeBuilder = async ({buildPage, MainLayout, html, customHelpers}) => {
-  const postsListComponent = await makePostsListComponent();
-
+const homeBuilder = async ({buildPage, mainLayout, html, customHelpers}) => {
   /** @type {import('../../../lib/molino2').BuildPageInput['page']} */
   const page = async molinoHelpers => {
-    const postsList = postsListComponent({
+    const postsList = await postsListComponent({
       posts: posts.map(post => ({
         // link: `${customHelpers.siteUrl}/${
         //   blogData.path
@@ -36,7 +34,8 @@ const homeBuilder = async ({buildPage, MainLayout, html, customHelpers}) => {
                 ${projects.map(
                   project => html`
                     <li>
-                      <a href="${molinoHelpers.baseHref}projects/${project.path}"
+                      <a
+                        href="${molinoHelpers.baseHref}projects/${project.path}"
                         >${project.name}</a
                       >
                     </li>
@@ -56,12 +55,12 @@ const homeBuilder = async ({buildPage, MainLayout, html, customHelpers}) => {
       </div>
     `;
 
-    return MainLayout({
+    return mainLayout({
       baseHref: molinoHelpers.baseHref,
       isProd: molinoHelpers.isProd,
       lang: customHelpers.lang,
       siteUrl: customHelpers.siteUrl,
-      currentYear: customHelpers.currentYear,
+      currentYear: customHelpers.currentYear.toString(),
       title: 'Homepage - javiercejudo.com',
       description: 'Javier Cejudo’s personal website',
       pageIsHome: true,
