@@ -24,13 +24,13 @@ if (!siteUrl) {
 
 /**
  * @template T
- * @callback Identity
+ * @callback IdentityRenderFn
  * @param {T} x
- * @returns {T}
+ * @returns {Promise<T>}
  */
 
-/** @type Identity<string> */
-const identityRender = x => x;
+/** @type IdentityRenderFn<string> */
+const identityRender = x => Promise.resolve(x);
 
 /**
  * @param {string} template
@@ -68,7 +68,7 @@ const renderMustache = (template, viewData) =>
 
 /**
  * @typedef TemplateHelpers
- * @property {molino.TemplateHelpers} molino
+ * @property {molino.MolinoHelpers} molino
  * @property {CommonData} commonData
  * @property {string} pagePath
  * @property {EditLink[]} editLinks
@@ -80,14 +80,14 @@ const renderMustache = (template, viewData) =>
  * @callback LayoutData
  * @param {string} content
  * @param {TemplateHelpers} helpers
- * @returns {{content?: string, molino?: molino.TemplateHelpers, commonData?: CommonData, pagePath?: string, editLinks?: EditLink[]} & Layout}
+ * @returns {{content?: string, molino?: molino.MolinoHelpers, commonData?: CommonData, pagePath?: string, editLinks?: EditLink[]} & Layout}
  */
 
 /**
  * @template Page
  * @callback PageData
  * @param {TemplateHelpers} helpers
- * @returns {{molino?: molino.TemplateHelpers, commonData?: CommonData, pagePath?: string, editLinks?: EditLink[]} & Page}
+ * @returns {{molino?: molino.MolinoHelpers, commonData?: CommonData, pagePath?: string, editLinks?: EditLink[]} & Page}
  */
 
 /**
@@ -115,7 +115,7 @@ const renderMustache = (template, viewData) =>
  * @template Layout, Page
  * @typedef BuilderProps
  * @property {BuildPage<Layout, Page>} buildPage
- * @property {Identity<string>} identityRender
+ * @property {IdentityRenderFn<string>} identityRender
  * @property {RenderFn<Layout | Page>} renderMustache
  * @property {typeof md} md
  */
