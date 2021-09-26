@@ -70,6 +70,7 @@ exports.editLinksPartial = editLinksPartial;
 /**
  * @typedef MainLayoutData
  * @property {string} lang
+ * @property {string} relativePath
  * @property {string} baseHref
  * @property {string} baseHrefTag
  * @property {string} styleTags
@@ -81,7 +82,7 @@ exports.editLinksPartial = editLinksPartial;
  * @property {string} description
  * @property {string} content
  * @property {string} editLinksPartial
- * @property {string} [pagePath]
+ * @property {string} pagePath
  * @property {boolean} [pageIsHome]
  * @property {boolean} [pageIsMenu]
  * @property {string} [pageClass]
@@ -108,8 +109,8 @@ const mainLayout = async ({
   description,
   content,
   editLinksPartial,
+  pagePath,
   pageClass = '',
-  pagePath = '',
   pageIsHome = false,
   pageIsMenu = false,
 }) => html`
@@ -184,6 +185,14 @@ const mainLayout = async ({
                     class="nav-menu ${pageIsMenu ? 'is-active' : ''}"
                   >
                     Menu
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="${baseHref}menu/index.html"
+                    class="nav-menu ${pageIsMenu ? 'is-active' : ''}"
+                  >
+                    Page path: "${pagePath}"
                   </a>
                 </li>
               </ul>

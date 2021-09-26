@@ -1,19 +1,36 @@
 const path = require('path');
 
-/** @typedef {import('../../../scripts/build-pages').MainLayout} MainLayout */
+/** @type {import('../../../scripts/build-pages2').Builder} */
+const contactBuilder = async ({buildPage, mainLayout, html}) => {
+  /** @type {import('../../../lib/molino2').PageRenderFn} */
+  const page = async molinoHelpers => {
+    const content = html`
+      <div class="container">
+        <p><a href="mailto:javier@javiercejudo.com">Send me an email</a></p>
+      </div>
+    `;
 
-/** @typedef {import('../../../scripts/build-pages').Builder<MainLayout, {}>} ContactBuilder */
-
-/** @type ContactBuilder */
-const contactBuilder = ({buildPage, identityRender}) =>
-  buildPage({
-    pageSourcePath: path.join(__dirname, 'template.html'),
-    relativeOutputPath: path.join('contact', 'index.html'),
-    layoutData: () => ({
+    return mainLayout({
+      ...molinoHelpers,
       title: 'Contact me - javiercejudo.com',
       description: 'Get in touch',
-    }),
-    renderPage: identityRender,
+      editLinks: [
+        {
+          linkHref: `https://github.com/javiercejudo/javiercejudo.com/blob/next-simpler/src/pages/contact/builder.js`,
+          linkText: 'Edit page',
+        },
+      ],
+      content,
+    });
+  };
+
+  return buildPage({
+    page,
+    output: {
+      publicPath: path.join('src', 'static'),
+      relativePath: path.join('contact', 'index.html'),
+    },
   });
+};
 
 module.exports = contactBuilder;

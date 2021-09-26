@@ -12,20 +12,18 @@ const gameBuilder = require('./game/builder');
 
 // /** @typedef {homeBuilder.HomeBuilder} HomeBuilder */
 /** @typedef {menuBuilder.MenuBuilder} MenuBuilder */
-/** @typedef {contactBuilder.ContactBuilder} ContactBuilder */
 /** @typedef {clockBuilder.ClockBuilder} ClockBuilder */
 /** @typedef {gameBuilder.GameBuilder} GameBuilder */
 /** @typedef {import('../pages/projects/homeBuilder').ProjectsHomeBuilder} ProjectsHomeBuilder */
 /** @typedef {import('../pages/projects/projects-collection/build').ProjectBuilder} ProjectBuilder */
 
 /**
- * @typedef {MenuBuilder | ContactBuilder | ClockBuilder | ProjectsHomeBuilder | ProjectBuilder | GameBuilder} Builder
+ * @typedef {MenuBuilder | ClockBuilder | ProjectsHomeBuilder | ProjectBuilder | GameBuilder} Builder
  **/
 
 /** @type Builder[] */
 const builders = [
   menuBuilder,
-  contactBuilder,
   clockBuilder,
   gameBuilder,
   ...aboutBuilders,

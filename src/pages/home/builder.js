@@ -5,8 +5,8 @@ const projects = require('../projects/projects-collection/data');
 const postsListComponent = require('../../components/posts-list/index2');
 
 /** @type {import('../../../scripts/build-pages2').Builder} */
-const homeBuilder = async ({buildPage, mainLayout, html, customHelpers}) => {
-  /** @type {import('../../../lib/molino2').BuildPageInput['page']} */
+const homeBuilder = async ({buildPage, mainLayout, html}) => {
+  /** @type {import('../../../lib/molino2').PageRenderFn} */
   const page = async molinoHelpers => {
     const postsList = await postsListComponent({
       posts: posts.map(post => ({
@@ -56,11 +56,7 @@ const homeBuilder = async ({buildPage, mainLayout, html, customHelpers}) => {
     `;
 
     return mainLayout({
-      baseHref: molinoHelpers.baseHref,
-      isProd: molinoHelpers.isProd,
-      lang: customHelpers.lang,
-      siteUrl: customHelpers.siteUrl,
-      currentYear: customHelpers.currentYear.toString(),
+      ...molinoHelpers,
       title: 'Homepage - javiercejudo.com',
       description: 'Javier Cejudo’s personal website',
       pageIsHome: true,

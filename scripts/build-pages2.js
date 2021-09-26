@@ -5,6 +5,7 @@ const Mustache = require('mustache');
 const {html} = require('common-tags');
 const molino = require('../lib/molino2');
 const homeBuilder = require('../src/pages/home/builder');
+const contactBuilder = require('../src/pages/contact/builder');
 const md = require('../src/utils/md');
 const {
   mainLayout: mainLayoutImpl,
@@ -22,15 +23,31 @@ if (!siteUrl) {
 }
 
 /**
+ * @typedef CustomHelpers
+ * @property {string} lang
+ * @property {string} siteUrl
+ * @property {string} currentYear
+ */
+
+/** @type CustomHelpers */
+const customHelpers = {
+  lang: 'en-AU',
+  siteUrl,
+  currentYear: new Date().getFullYear().toString(),
+};
+
+/**
  * @param {Omit<
  *   Parameters<import('../src/layouts/main').MainLayout>[0],
+ *   | keyof CustomHelpers
+ *   | 'pagePath'
  *   | 'baseHrefTag'
  *   | 'commonScriptTag'
  *   | 'styleTags'
  *   | 'scriptTags'
  *   | 'editLinksPartial'
  * > & {
- *   styles: string[],
+ *   styles?: string[],
  *   scripts?: string[],
  *   editLinks?: import('../src/layouts/main').EditLink[],
  *   isProd: boolean,
@@ -38,7 +55,9 @@ if (!siteUrl) {
  */
 const mainLayout = ({scripts = [], styles = [], editLinks = [], ...input}) =>
   mainLayoutImpl({
+    ...customHelpers,
     ...input,
+    pagePath: input.relativePath,
     baseHrefTag: input.isProd ? baseHref(input.baseHref) : '',
     commonScriptTag: input.isProd
       ? deferredScript(input.baseHref)
@@ -75,20 +94,6 @@ const mainLayout = ({scripts = [], styles = [], editLinks = [], ...input}) =>
 // }).then(console.log);
 
 /**
- * @typedef CustomHelpers
- * @property {string} lang
- * @property {string} siteUrl
- * @property {number} currentYear
- */
-
-/** @type CustomHelpers */
-const customHelpers = {
-  lang: 'en-AU',
-  siteUrl,
-  currentYear: new Date().getFullYear(),
-};
-
-/**
  * @callback RenderMustache
  * @param {string} template
  * @param {Record<string, unknown>} viewData
@@ -118,7 +123,7 @@ const renderMustache = (template, viewData) =>
  */
 
 /** @type Builder[] */
-const builders = [homeBuilder];
+const builders = [homeBuilder, contactBuilder];
 
 /**
  * @returns {Promise<molino.BuildPageOutput>[]}
