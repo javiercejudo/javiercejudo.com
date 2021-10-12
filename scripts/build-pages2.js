@@ -57,7 +57,7 @@ const mainLayout = ({scripts = [], styles = [], editLinks = [], ...input}) =>
   mainLayoutImpl({
     ...customHelpers,
     ...input,
-    pagePath: input.relativePath,
+    pagePath: `${input.baseHref}${input.relativePath}`,
     baseHrefTag: input.isProd ? baseHref(input.baseHref) : '',
     commonScriptTag: input.isProd
       ? deferredScript(input.baseHref)
@@ -114,6 +114,7 @@ const renderMustache = (template, viewData) =>
  * @property {RenderMustache} renderMustache
  * @property {typeof md} md
  * @property {import('common-tags').TemplateTag} html
+ * @property {string} publicPath
  */
 
 /**
@@ -154,6 +155,7 @@ const siteBuilder = () => {
       renderMustache,
       html,
       md,
+      publicPath: path.join('src', 'static'),
     });
 
   try {

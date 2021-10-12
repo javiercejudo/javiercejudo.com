@@ -1,7 +1,7 @@
 const path = require('path');
 
 /** @type {import('../../../scripts/build-pages2').Builder} */
-const contactBuilder = async ({buildPage, mainLayout, html}) => {
+const contactBuilder = async ({buildPage, mainLayout, html, publicPath}) => {
   /** @type {import('../../../lib/molino2').PageRenderFn} */
   const page = async molinoHelpers => {
     const content = html`
@@ -27,7 +27,7 @@ const contactBuilder = async ({buildPage, mainLayout, html}) => {
   return buildPage({
     page,
     output: {
-      publicPath: path.join('src', 'static'),
+      publicPath,
       relativePath: path.join('contact', 'index.html'),
     },
   });

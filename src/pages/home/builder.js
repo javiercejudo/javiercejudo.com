@@ -5,7 +5,7 @@ const projects = require('../projects/projects-collection/data');
 const postsListComponent = require('../../components/posts-list/index2');
 
 /** @type {import('../../../scripts/build-pages2').Builder} */
-const homeBuilder = async ({buildPage, mainLayout, html}) => {
+const homeBuilder = async ({buildPage, mainLayout, html, publicPath}) => {
   /** @type {import('../../../lib/molino2').PageRenderFn} */
   const page = async molinoHelpers => {
     const postsList = await postsListComponent({
@@ -75,7 +75,7 @@ const homeBuilder = async ({buildPage, mainLayout, html}) => {
   return buildPage({
     page,
     output: {
-      publicPath: path.join('src', 'static'),
+      publicPath,
       relativePath: 'index.html',
     },
   });

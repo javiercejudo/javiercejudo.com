@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 const {html} = require('common-tags');
 
 /**
@@ -187,14 +185,7 @@ const mainLayout = async ({
                     Menu
                   </a>
                 </li>
-                <li>
-                  <a
-                    href="${baseHref}menu/index.html"
-                    class="nav-menu ${pageIsMenu ? 'is-active' : ''}"
-                  >
-                    Page path: "${pagePath}"
-                  </a>
-                </li>
+                <li>Page path: "${pagePath}"</li>
               </ul>
             </nav>
           </div>
