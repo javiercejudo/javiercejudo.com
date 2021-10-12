@@ -41,6 +41,30 @@ const styleTag = (baseHref, style) =>
   `;
 
 exports.styleTag = styleTag;
+/**
+ * @param {string} baseHref
+ * @param {string} relativePath
+ */
+const navLink = (baseHref, relativePath) => {
+  const pagePath = `${baseHref}${relativePath}`;
+
+  /**
+   * @param {string} linkPath
+   * @param {string} linkText
+   */
+  return (linkPath, linkText) => {
+    const linkHref = `${baseHref}${linkPath}`;
+
+    return html`<a
+      href="${linkHref}"
+      class="nav-home ${pagePath === linkHref ? 'is-active' : ''}"
+    >
+      ${linkText}
+    </a>`;
+  };
+};
+
+exports.navLink = navLink;
 
 /**
  * @typedef EditLink
@@ -59,16 +83,17 @@ const editLink = link => html`
   >
 `;
 
+exports.editLink = editLink;
+
 /**
- * @param {EditLink[]} editLinks
+ * @param {string} editLinks
  */
-const editLinksPartial = editLinks => html` <p>${editLinks.map(editLink)}</p> `;
+const editLinksPartial = editLinks => html` <p>${editLinks}</p> `;
 exports.editLinksPartial = editLinksPartial;
 
 /**
  * @typedef MainLayoutData
  * @property {string} lang
- * @property {string} relativePath
  * @property {string} baseHref
  * @property {string} baseHrefTag
  * @property {string} styleTags
@@ -81,10 +106,9 @@ exports.editLinksPartial = editLinksPartial;
  * @property {string} content
  * @property {string} editLinksPartial
  * @property {string} pagePath
- * @property {boolean} [pageIsHome]
- * @property {boolean} [pageIsMenu]
+ * @property {string} homeNavLink
+ * @property {string} menuNavLink
  * @property {string} [pageClass]
- * @property {EditLink[]} [editLinks]
  */
 
 /**
@@ -108,9 +132,9 @@ const mainLayout = async ({
   content,
   editLinksPartial,
   pagePath,
-  pageClass = '',
-  pageIsHome = false,
-  pageIsMenu = false,
+  homeNavLink,
+  menuNavLink,
+  pageClass = 'standard-page',
 }) => html`
   <!DOCTYPE html>
   <html lang="${lang}" data-theme="jc-dark">
@@ -158,14 +182,7 @@ const mainLayout = async ({
           <div class="container">
             <nav>
               <ul>
-                <li>
-                  <a
-                    href="${baseHref}index.html"
-                    class="nav-home ${pageIsHome ? 'is-active' : ''}"
-                  >
-                    Home
-                  </a>
-                </li>
+                <li>${homeNavLink}</li>
               </ul>
 
               <a class="logo-link" href="${baseHref}index.html" title="Home">
@@ -177,15 +194,8 @@ const mainLayout = async ({
               </a>
 
               <ul>
-                <li>
-                  <a
-                    href="${baseHref}menu/index.html"
-                    class="nav-menu ${pageIsMenu ? 'is-active' : ''}"
-                  >
-                    Menu
-                  </a>
-                </li>
-                <li>Page path: "${pagePath}"</li>
+                <li>${menuNavLink}</li>
+                <!-- <li>Page path: "${pagePath}"</li> -->
               </ul>
             </nav>
           </div>

@@ -59,7 +59,6 @@ const homeBuilder = async ({buildPage, mainLayout, html, publicPath}) => {
       ...molinoHelpers,
       title: 'Homepage - javiercejudo.com',
       description: 'Javier Cejudo’s personal website',
-      pageIsHome: true,
       // scripts: ['home/index.js'],
       styles: ['home/index.css'],
       editLinks: [

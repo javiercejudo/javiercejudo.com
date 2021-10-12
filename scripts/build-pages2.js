@@ -14,6 +14,8 @@ const {
   moduleScript,
   styleTag,
   editLinksPartial,
+  editLink,
+  navLink,
 } = require('../src/layouts/main');
 
 const siteUrl = process.env.URL;
@@ -46,15 +48,20 @@ const customHelpers = {
  *   | 'styleTags'
  *   | 'scriptTags'
  *   | 'editLinksPartial'
+ *   | 'homeNavLink'
+ *   | 'menuNavLink'
  * > & {
+ *   relativePath: string,
  *   styles?: string[],
  *   scripts?: string[],
  *   editLinks?: import('../src/layouts/main').EditLink[],
  *   isProd: boolean,
  * }} input
  */
-const mainLayout = ({scripts = [], styles = [], editLinks = [], ...input}) =>
-  mainLayoutImpl({
+const mainLayout = ({scripts = [], styles = [], editLinks = [], ...input}) => {
+  const layoutNavLink = navLink(input.baseHref, input.relativePath);
+
+  return mainLayoutImpl({
     ...customHelpers,
     ...input,
     pagePath: `${input.baseHref}${input.relativePath}`,
@@ -68,18 +75,24 @@ const mainLayout = ({scripts = [], styles = [], editLinks = [], ...input}) =>
         ? deferredScript(input.baseHref, script)
         : moduleScript(input.baseHref, script)
     )}`,
-    editLinksPartial: editLinksPartial([
-      {
-        linkHref: `https://github.com/javiercejudo/javiercejudo.com/blob/next-simpler/src/layouts/main.js`,
-        linkText: 'Edit layout',
-      },
-      ...editLinks,
-    ]),
+    homeNavLink: layoutNavLink('index.html', 'Home'),
+    menuNavLink: layoutNavLink('menu/index.html', 'Menu'),
+    editLinksPartial: editLinksPartial(
+      html`${[
+        {
+          linkHref: `https://github.com/javiercejudo/javiercejudo.com/blob/next-simpler/src/layouts/main.js`,
+          linkText: 'Edit layout',
+        },
+        ...editLinks,
+      ].map(editLink)}`
+    ),
   });
+};
 
 // Example of rendering the layout with Mustache placeholders for use in other languages
 // mainLayoutImpl({
 //   baseHref: '{{{baseHref}}}',
+//   pagePath: '{{{pagePath}}}',
 //   siteUrl: '{{siteUrl}}',
 //   currentYear: '{{currentYear}}',
 //   title: '{{title}}',
@@ -90,6 +103,8 @@ const mainLayout = ({scripts = [], styles = [], editLinks = [], ...input}) =>
 //   commonScriptTag: '{{{commonScriptTag}}}',
 //   styleTags: '{{{styleTags}}}',
 //   scriptTags: '{{{scriptTags}}}',
+//   homeNavLink: '{{{homeNavLink}}}',
+//   menuNavLink: '{{{menuNavLink}}}',
 //   editLinksPartial: '{{{editLinksPartial}}}',
 // }).then(console.log);
 
