@@ -5,8 +5,8 @@ const projects = require('../projects/projects-collection/data');
 const postsListComponent = require('../../components/posts-list/index2');
 
 /** @type {import('../../../scripts/build-pages2').Builder} */
-const homeBuilder = async ({buildPage, mainLayout, html, publicPath}) => {
-  /** @type {import('../../../lib/molino2').PageRenderFn} */
+const homeBuilder = async ({buildPage, html}) => {
+  /** @type {import('../../../scripts/build-pages2').PageFn} */
   const page = async molinoHelpers => {
     const postsList = await postsListComponent({
       posts: posts.map(post => ({
@@ -55,8 +55,7 @@ const homeBuilder = async ({buildPage, mainLayout, html, publicPath}) => {
       </div>
     `;
 
-    return mainLayout({
-      ...molinoHelpers,
+    return {
       title: 'Homepage - javiercejudo.com',
       description: 'Javier Cejudo’s personal website',
       // scripts: ['home/index.js'],
@@ -68,15 +67,12 @@ const homeBuilder = async ({buildPage, mainLayout, html, publicPath}) => {
         },
       ],
       content,
-    });
+    };
   };
 
   return buildPage({
     page,
-    output: {
-      publicPath,
-      relativePath: 'index.html',
-    },
+    path: 'index.html',
   });
 };
 

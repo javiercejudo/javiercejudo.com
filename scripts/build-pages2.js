@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 const path = require('path');
-const Mustache = require('mustache');
 const {html} = require('common-tags');
 const molino = require('../lib/molino2');
 const homeBuilder = require('../src/pages/home/builder');
@@ -39,7 +38,7 @@ const customHelpers = {
 };
 
 /**
- * @param {Omit<
+ * @typedef {Omit<
  *   Parameters<import('../src/layouts/main').MainLayout>[0],
  *   | keyof CustomHelpers
  *   | 'pagePath'
@@ -56,7 +55,11 @@ const customHelpers = {
  *   scripts?: string[],
  *   editLinks?: import('../src/layouts/main').EditLink[],
  *   isProd: boolean,
- * }} input
+ * }} MainLayoutProps
+ */
+
+/**
+ * @param {MainLayoutProps} input
  */
 const mainLayout = ({scripts = [], styles = [], editLinks = [], ...input}) => {
   const layoutNavLink = navLink(input.baseHref, input.relativePath);
@@ -116,17 +119,22 @@ const mainLayout = ({scripts = [], styles = [], editLinks = [], ...input}) => {
  */
 
 /**
- * @type RenderMustache
+ * @callback PageFn
+ * @param {molino.MolinoHelpers} input
+ * @returns {Omit<MainLayoutProps, keyof molino.MolinoHelpers>}
  */
-const renderMustache = (template, viewData) =>
-  Promise.resolve(Mustache.render(template, viewData));
+
+/**
+ * @callback BuildPage
+ * @param {{page: PageFn, path: string}} input
+ * @returns {Promise<molino.BuildPageOutput>}
+ */
 
 /**
  * @typedef BuilderInput
- * @property {typeof molino.buildPage} buildPage
+ * @property {BuildPage} buildPage
  * @property {CustomHelpers} customHelpers
  * @property {typeof mainLayout} mainLayout
- * @property {RenderMustache} renderMustache
  * @property {typeof md} md
  * @property {import('common-tags').TemplateTag} html
  * @property {string} publicPath
@@ -145,32 +153,39 @@ const builders = [homeBuilder, contactBuilder];
  * @returns {Promise<molino.BuildPageOutput>[]}
  */
 const siteBuilder = () => {
+  const publicPath = path.join('src', 'static');
+
   /** @param {Builder} pageBuilder */
   const buildPageMapper = pageBuilder =>
     pageBuilder({
-      buildPage: async (...args) => {
-        if (process.env.NODE_ENV !== 'development') {
-          return molino.buildPage(...args);
-        }
-
+      buildPage: async ({page, path: relativePath}) => {
         try {
-          return await molino.buildPage(...args);
+          return await molino.buildPage({
+            page: async molinoHelpers =>
+              mainLayout({...molinoHelpers, ...(await page(molinoHelpers))}),
+            output: {publicPath, relativePath},
+          });
         } catch (/** @type any */ e) {
+          if (process.env.NODE_ENV !== 'development') {
+            console.log(e);
+            throw e;
+          }
+
           return Promise.resolve({
-            html: html`<pre>${e.stack || e}</pre>`,
-            path: path.join(
-              args[0].output.publicPath,
-              args[0].output.relativePath
-            ),
+            html: `<div style="display: flex; align-items: center; justify-content:center; height: 50%">
+              <pre style="white-space: pre-wrap; word-break: break-all;">${
+                e.stack || e
+              }</pre>
+            </div>`,
+            path: path.join(publicPath, relativePath),
           });
         }
       },
       customHelpers,
       mainLayout,
-      renderMustache,
       html,
       md,
-      publicPath: path.join('src', 'static'),
+      publicPath,
     });
 
   try {
