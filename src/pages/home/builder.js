@@ -5,9 +5,8 @@ const projects = require('../projects/projects-collection/data');
 const postsListComponent = require('../../components/posts-list/index2');
 
 /** @type {import('../../../scripts/build-pages2').Builder} */
-const homeBuilder = async ({buildPage, html}) => {
-  /** @type {import('../../../scripts/build-pages2').PageFn} */
-  const page = async molinoHelpers => {
+const homeBuilder = async ({buildPage, html, withMainLayout}) => {
+  const page = withMainLayout(async molinoHelpers => {
     const postsList = await postsListComponent({
       posts: posts.map(post => ({
         // link: `${customHelpers.siteUrl}/${
@@ -68,7 +67,7 @@ const homeBuilder = async ({buildPage, html}) => {
       ],
       content,
     };
-  };
+  });
 
   return buildPage({
     page,

@@ -7,7 +7,7 @@ const homeBuilder = require('../src/pages/home/builder');
 const contactBuilder = require('../src/pages/contact/builder');
 const md = require('../src/utils/md');
 const {
-  mainLayout: mainLayoutImpl,
+  mainLayout: mainLayoutBase,
   baseHref,
   deferredScript,
   moduleScript,
@@ -64,7 +64,7 @@ const customHelpers = {
 const mainLayout = ({scripts = [], styles = [], editLinks = [], ...input}) => {
   const layoutNavLink = navLink(input.baseHref, input.relativePath);
 
-  return mainLayoutImpl({
+  return mainLayoutBase({
     ...customHelpers,
     ...input,
     pagePath: `${input.baseHref}${input.relativePath}`,
@@ -93,7 +93,7 @@ const mainLayout = ({scripts = [], styles = [], editLinks = [], ...input}) => {
 };
 
 // Example of rendering the layout with Mustache placeholders for use in other languages
-// mainLayoutImpl({
+// mainLayoutBase({
 //   baseHref: '{{{baseHref}}}',
 //   pagePath: '{{{pagePath}}}',
 //   siteUrl: '{{siteUrl}}',
@@ -112,6 +112,20 @@ const mainLayout = ({scripts = [], styles = [], editLinks = [], ...input}) => {
 // }).then(console.log);
 
 /**
+ * @callback PageWithMainLayoutFn
+ * @param {molino.MolinoHelpers} input
+ * @returns {Promise<Omit<MainLayoutProps, keyof molino.MolinoHelpers>>}
+ */
+
+/**
+ *
+ * @param {PageWithMainLayoutFn} pageFn
+ * @returns {molino.PageRenderFn}
+ */
+const withMainLayout = pageFn => async molinoHelpers =>
+  mainLayout({...molinoHelpers, ...(await pageFn(molinoHelpers))});
+
+/**
  * @callback RenderMustache
  * @param {string} template
  * @param {Record<string, unknown>} viewData
@@ -119,14 +133,8 @@ const mainLayout = ({scripts = [], styles = [], editLinks = [], ...input}) => {
  */
 
 /**
- * @callback PageFn
- * @param {molino.MolinoHelpers} input
- * @returns {Omit<MainLayoutProps, keyof molino.MolinoHelpers>}
- */
-
-/**
  * @callback BuildPage
- * @param {{page: PageFn, path: string}} input
+ * @param {{page: molino.PageRenderFn, path: string}} input
  * @returns {Promise<molino.BuildPageOutput>}
  */
 
@@ -134,6 +142,7 @@ const mainLayout = ({scripts = [], styles = [], editLinks = [], ...input}) => {
  * @typedef BuilderInput
  * @property {BuildPage} buildPage
  * @property {CustomHelpers} customHelpers
+ * @property {typeof withMainLayout} withMainLayout
  * @property {typeof mainLayout} mainLayout
  * @property {typeof md} md
  * @property {import('common-tags').TemplateTag} html
@@ -161,8 +170,7 @@ const siteBuilder = () => {
       buildPage: async ({page, path: relativePath}) => {
         try {
           return await molino.buildPage({
-            page: async molinoHelpers =>
-              mainLayout({...molinoHelpers, ...(await page(molinoHelpers))}),
+            page,
             output: {publicPath, relativePath},
           });
         } catch (/** @type any */ e) {
@@ -183,6 +191,7 @@ const siteBuilder = () => {
       },
       customHelpers,
       mainLayout,
+      withMainLayout,
       html,
       md,
       publicPath,

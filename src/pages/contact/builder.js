@@ -1,9 +1,8 @@
 const path = require('path');
 
 /** @type {import('../../../scripts/build-pages2').Builder} */
-const contactBuilder = async ({buildPage, html}) => {
-  /** @type {import('../../../scripts/build-pages2').PageFn} */
-  const page = async () => ({
+const contactBuilder = async ({buildPage, html, withMainLayout}) => {
+  const page = withMainLayout(async () => ({
     title: 'Contact me - javiercejudo.com',
     description: 'Get in touch',
     editLinks: [
@@ -17,7 +16,7 @@ const contactBuilder = async ({buildPage, html}) => {
         <p><a href="mailto:javier@javiercejudo.com">Send me an email</a></p>
       </div>
     `,
-  });
+  }));
 
   return buildPage({
     page,
