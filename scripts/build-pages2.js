@@ -6,16 +6,7 @@ const molino = require('../lib/molino2');
 const homeBuilder = require('../src/pages/home/builder');
 const contactBuilder = require('../src/pages/contact/builder');
 const md = require('../src/utils/md');
-const {
-  mainLayout: mainLayoutBase,
-  baseHref,
-  deferredScript,
-  moduleScript,
-  styleTag,
-  editLinksPartial,
-  editLink,
-  navLink,
-} = require('../src/layouts/main');
+const {mainLayout} = require('../src/layouts/main');
 
 const siteUrl = process.env.URL;
 
@@ -38,83 +29,9 @@ const customHelpers = {
 };
 
 /**
- * @typedef {Omit<
- *   Parameters<import('../src/layouts/main').MainLayout>[0],
- *   | keyof CustomHelpers
- *   | 'pagePath'
- *   | 'baseHrefTag'
- *   | 'commonScriptTag'
- *   | 'styleTags'
- *   | 'scriptTags'
- *   | 'editLinksPartial'
- *   | 'homeNavLink'
- *   | 'menuNavLink'
- * > & {
- *   relativePath: string,
- *   styles?: string[],
- *   scripts?: string[],
- *   editLinks?: import('../src/layouts/main').EditLink[],
- *   isProd: boolean,
- * }} MainLayoutProps
- */
-
-/**
- * @param {MainLayoutProps} input
- */
-const mainLayout = ({scripts = [], styles = [], editLinks = [], ...input}) => {
-  const layoutNavLink = navLink(input.baseHref, input.relativePath);
-
-  return mainLayoutBase({
-    ...customHelpers,
-    ...input,
-    pagePath: `${input.baseHref}${input.relativePath}`,
-    baseHrefTag: input.isProd ? baseHref(input.baseHref) : '',
-    commonScriptTag: input.isProd
-      ? deferredScript(input.baseHref)
-      : moduleScript(input.baseHref),
-    styleTags: html`${styles.map(style => styleTag(input.baseHref, style))}`,
-    scriptTags: html`${scripts.map(script =>
-      input.isProd
-        ? deferredScript(input.baseHref, script)
-        : moduleScript(input.baseHref, script)
-    )}`,
-    homeNavLink: layoutNavLink('index.html', 'Home'),
-    menuNavLink: layoutNavLink('menu/index.html', 'Menu'),
-    editLinksPartial: editLinksPartial(
-      html`${[
-        {
-          linkHref: `https://github.com/javiercejudo/javiercejudo.com/blob/next-simpler/src/layouts/main.js`,
-          linkText: 'Edit layout',
-        },
-        ...editLinks,
-      ].map(editLink)}`
-    ),
-  });
-};
-
-// Example of rendering the layout with Mustache placeholders for use in other languages
-// mainLayoutBase({
-//   baseHref: '{{{baseHref}}}',
-//   pagePath: '{{{pagePath}}}',
-//   siteUrl: '{{siteUrl}}',
-//   currentYear: '{{currentYear}}',
-//   title: '{{title}}',
-//   description: '{{description}}',
-//   content: '{{{content}}}',
-//   lang: '{{lang}}',
-//   baseHrefTag: '{{{baseHrefTag}}}',
-//   commonScriptTag: '{{{commonScriptTag}}}',
-//   styleTags: '{{{styleTags}}}',
-//   scriptTags: '{{{scriptTags}}}',
-//   homeNavLink: '{{{homeNavLink}}}',
-//   menuNavLink: '{{{menuNavLink}}}',
-//   editLinksPartial: '{{{editLinksPartial}}}',
-// }).then(console.log);
-
-/**
  * @callback PageWithMainLayoutFn
  * @param {molino.MolinoHelpers} input
- * @returns {Promise<Omit<MainLayoutProps, keyof molino.MolinoHelpers>>}
+ * @returns {Promise<Omit<import('../src/layouts/main.js').MainLayoutProps, keyof molino.MolinoHelpers | keyof customHelpers>>}
  */
 
 /**
@@ -123,7 +40,11 @@ const mainLayout = ({scripts = [], styles = [], editLinks = [], ...input}) => {
  * @returns {molino.PageRenderFn}
  */
 const withMainLayout = pageFn => async molinoHelpers =>
-  mainLayout({...molinoHelpers, ...(await pageFn(molinoHelpers))});
+  mainLayout({
+    ...molinoHelpers,
+    ...customHelpers,
+    ...(await pageFn(molinoHelpers)),
+  });
 
 /**
  * @callback RenderMustache
@@ -143,7 +64,6 @@ const withMainLayout = pageFn => async molinoHelpers =>
  * @property {BuildPage} buildPage
  * @property {CustomHelpers} customHelpers
  * @property {typeof withMainLayout} withMainLayout
- * @property {typeof mainLayout} mainLayout
  * @property {typeof md} md
  * @property {import('common-tags').TemplateTag} html
  * @property {string} publicPath
@@ -180,17 +100,26 @@ const siteBuilder = () => {
           }
 
           return Promise.resolve({
-            html: `<div style="display: flex; align-items: center; justify-content:center; height: 50%">
-              <pre style="white-space: pre-wrap; word-break: break-all;">${
-                e.stack || e
-              }</pre>
-            </div>`,
+            html: `<!DOCTYPE html>
+            <html lang="en" data-theme="jc-dark">
+              <head>
+                <meta charset="utf-8" />
+                <title>Error: ${e.message}</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+              </head>
+              <body style="height: 100vh;">
+                <div style="display: flex; align-items: center; justify-content:center; height: 50%;">
+                  <pre style="white-space: pre-wrap; word-break: break-all;">${
+                    e.stack || e
+                  }</pre>
+                </div>
+              </body>
+            </html>`,
             path: path.join(publicPath, relativePath),
           });
         }
       },
       customHelpers,
-      mainLayout,
       withMainLayout,
       html,
       md,

@@ -58,9 +58,8 @@ const navLink = (baseHref, relativePath) => {
     return html`<a
       href="${linkHref}"
       class="nav-home ${pagePath === linkHref ? 'is-active' : ''}"
-    >
-      ${linkText}
-    </a>`;
+      >${linkText}</a
+    >`;
   };
 };
 
@@ -118,7 +117,7 @@ exports.editLinksPartial = editLinksPartial;
  */
 
 /** @type MainLayout */
-const mainLayout = async ({
+const mainLayoutBase = async ({
   lang,
   baseHref,
   baseHrefTag,
@@ -216,5 +215,79 @@ const mainLayout = async ({
     </body>
   </html>
 `;
+
+exports.mainLayoutBase = mainLayoutBase;
+
+// Example of rendering the layout with Mustache placeholders for use in other languages
+// mainLayoutBase({
+//   baseHref: '{{{baseHref}}}',
+//   pagePath: '{{{pagePath}}}',
+//   siteUrl: '{{siteUrl}}',
+//   currentYear: '{{currentYear}}',
+//   title: '{{title}}',
+//   description: '{{description}}',
+//   content: '{{{content}}}',
+//   lang: '{{lang}}',
+//   baseHrefTag: '{{{baseHrefTag}}}',
+//   commonScriptTag: '{{{commonScriptTag}}}',
+//   styleTags: '{{{styleTags}}}',
+//   scriptTags: '{{{scriptTags}}}',
+//   homeNavLink: '{{{homeNavLink}}}',
+//   menuNavLink: '{{{menuNavLink}}}',
+//   editLinksPartial: '{{{editLinksPartial}}}',
+// }).then(console.log);
+
+/**
+ * @typedef {Omit<
+ *   Parameters<MainLayout>[0],
+ *   | 'pagePath'
+ *   | 'baseHrefTag'
+ *   | 'commonScriptTag'
+ *   | 'styleTags'
+ *   | 'scriptTags'
+ *   | 'editLinksPartial'
+ *   | 'homeNavLink'
+ *   | 'menuNavLink'
+ * > & {
+ *   relativePath: string,
+ *   styles?: string[],
+ *   scripts?: string[],
+ *   editLinks?: EditLink[],
+ *   isProd: boolean,
+ * }} MainLayoutProps
+ */
+
+/**
+ * @param {MainLayoutProps} input
+ */
+const mainLayout = ({scripts = [], styles = [], editLinks = [], ...input}) => {
+  const layoutNavLink = navLink(input.baseHref, input.relativePath);
+
+  return mainLayoutBase({
+    ...input,
+    pagePath: `${input.baseHref}${input.relativePath}`,
+    baseHrefTag: input.isProd ? baseHref(input.baseHref) : '',
+    commonScriptTag: input.isProd
+      ? deferredScript(input.baseHref)
+      : moduleScript(input.baseHref),
+    styleTags: html`${styles.map(style => styleTag(input.baseHref, style))}`,
+    scriptTags: html`${scripts.map(script =>
+      input.isProd
+        ? deferredScript(input.baseHref, script)
+        : moduleScript(input.baseHref, script)
+    )}`,
+    homeNavLink: layoutNavLink('index.html', 'Home'),
+    menuNavLink: layoutNavLink('menu/index.html', 'Menu'),
+    editLinksPartial: editLinksPartial(
+      html`${[
+        {
+          linkHref: `https://github.com/javiercejudo/javiercejudo.com/blob/next-simpler/src/layouts/main.js`,
+          linkText: 'Edit layout',
+        },
+        ...editLinks,
+      ].map(editLink)}`
+    ),
+  });
+};
 
 exports.mainLayout = mainLayout;
