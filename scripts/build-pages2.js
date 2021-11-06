@@ -4,6 +4,7 @@ const path = require('path');
 const {html} = require('common-tags');
 const molino = require('../lib/molino2');
 const homeBuilder = require('../src/pages/home/builder');
+const menuBuilder = require('../src/pages/menu/builder');
 const contactBuilder = require('../src/pages/contact/builder');
 const md = require('../src/utils/md');
 const {mainLayout} = require('../src/layouts/main');
@@ -76,7 +77,7 @@ const withMainLayout = pageFn => async molinoHelpers =>
  */
 
 /** @type Builder[] */
-const builders = [homeBuilder, contactBuilder];
+const builders = [homeBuilder, menuBuilder, contactBuilder];
 
 /**
  * @returns {Promise<molino.BuildPageOutput>[]}

@@ -52,7 +52,6 @@ const renderMustache = (template, viewData) =>
  * @property {string} description
  * @property {string} [pagePath]
  * @property {boolean} [pageIsHome]
- * @property {boolean} [pageIsMenu]
  * @property {string} [pageClass]
  * @property {string[]} [styles]
  * @property {string[]} [scripts]
