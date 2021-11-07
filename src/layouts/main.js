@@ -107,6 +107,7 @@ exports.editLinksPartial = editLinksPartial;
  * @property {string} pagePath
  * @property {string} homeNavLink
  * @property {string} menuNavLink
+ * @property {string} [rawHead]
  * @property {string} [pageClass]
  */
 
@@ -133,6 +134,7 @@ const mainLayoutBase = async ({
   pagePath,
   homeNavLink,
   menuNavLink,
+  rawHead = '',
   pageClass = 'standard-page',
 }) => html`
   <!DOCTYPE html>
@@ -170,7 +172,7 @@ const mainLayoutBase = async ({
         title="Tech notes by Javier Cejudo"
       />
 
-      ${styleTags} ${scriptTags}
+      ${styleTags} ${scriptTags} ${rawHead}
     </head>
 
     <body class="${pageClass}">

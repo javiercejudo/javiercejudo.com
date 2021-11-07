@@ -28,6 +28,8 @@
     "dev": "npm run start-dev & npm run livereload & ./scripts/watch.sh"
   },
   "devDependencies": {
+    "@emotion/css": "^11.5.0",
+    "@emotion/server": "^11.4.0",
     "@hotwired/turbo": "7.0.0-rc.3",
     "@types/common-tags": "^1.8.1",
     "@types/compression": "^1.7.0",
