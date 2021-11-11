@@ -3,6 +3,8 @@ const {css} = require('@emotion/css');
 const blogData = require('../blog/data');
 const clockData = require('../clock/data');
 
+const pagePath = 'menu';
+
 const stylesClass = css`
   ul {
     margin: calc(32rem / 16) 0;
@@ -69,14 +71,14 @@ const menuBuilder = ({buildPage, withMainLayout, html}) => {
           linkText: 'Edit page',
         },
       ],
-      genStyles: [path.join('menu', 'index.css')],
+      genStyles: [pagePath],
       content,
     };
   });
 
   return buildPage({
     page,
-    path: path.join('menu', 'index.html'),
+    path: pagePath,
   });
 };
 

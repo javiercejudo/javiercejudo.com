@@ -1,5 +1,7 @@
 const path = require('path');
 
+const pagePath = 'contact';
+
 /** @type {import('../../../scripts/build-pages2').Builder} */
 const contactBuilder = async ({buildPage, html, withMainLayout}) => {
   const page = withMainLayout(async () => ({
@@ -20,7 +22,7 @@ const contactBuilder = async ({buildPage, html, withMainLayout}) => {
 
   return buildPage({
     page,
-    path: path.join('contact', 'index.html'),
+    path: pagePath,
   });
 };
 

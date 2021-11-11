@@ -21,7 +21,7 @@
   "scripts": {
     "prebuild": "npm run clean",
     "build": "./scripts/build.sh",
-    "clean": "./scripts/clean.js && find src/static -type d -empty -delete && del dist",
+    "clean": "./scripts/clean.js && find src/static -type d -empty -delete && del dist && del src/static/assets-gen",
     "start": "./scripts/serve-prod.sh",
     "start-dev": "./scripts/serve-dev.sh",
     "livereload": "livereload src/static",

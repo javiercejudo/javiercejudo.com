@@ -50,18 +50,24 @@ const customHelpers = {
 const withMainLayout = pageFn => async molinoHelpers => {
   const mainLayoutProps = await pageFn(molinoHelpers);
   const {genStyles = []} = mainLayoutProps;
+  const enhancedGenStyles = genStyles.map(
+    genStyle => `${genStyle === '' ? 'index' : genStyle}.css`
+  );
 
-  await Promise.all(genStyles.map(genStyle =>
-    fse.outputFile(
-      path.join(cssFolderPath, genStyle),
-      emotionServer.extractCritical(mainLayoutProps.content).css
+  await Promise.all(
+    enhancedGenStyles.map(enhancedGenStyle =>
+      fse.outputFile(
+        path.join(cssFolderPath, enhancedGenStyle),
+        emotionServer.extractCritical(mainLayoutProps.content).css
+      )
     )
-  ));
+  );
 
   return mainLayout({
     ...molinoHelpers,
     ...customHelpers,
     ...mainLayoutProps,
+    genStyles: enhancedGenStyles,
   });
 };
 
@@ -104,10 +110,12 @@ const siteBuilder = () => {
   const buildPageMapper = pageBuilder =>
     pageBuilder({
       buildPage: async ({page, path: relativePath}) => {
+        const fullRelativePath = path.join(relativePath, 'index.html');
+
         try {
           return await molino.buildPage({
             page,
-            output: {publicPath, relativePath},
+            output: {publicPath, relativePath: fullRelativePath},
           });
         } catch (/** @type any */ e) {
           if (process.env.NODE_ENV !== 'development') {
@@ -131,7 +139,7 @@ const siteBuilder = () => {
                 </div>
               </body>
             </html>`,
-            path: path.join(publicPath, relativePath),
+            path: path.join(publicPath, fullRelativePath),
           });
         }
       },

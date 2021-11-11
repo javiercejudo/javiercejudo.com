@@ -4,6 +4,8 @@ const posts = require('../blog/posts-collection/data');
 const projects = require('../projects/projects-collection/data');
 const postsListComponent = require('../../components/posts-list/index2');
 
+const pagePath = '';
+
 /** @type {import('../../../scripts/build-pages2').Builder} */
 const homeBuilder = async ({buildPage, html, withMainLayout}) => {
   const page = withMainLayout(async molinoHelpers => {
@@ -58,7 +60,7 @@ const homeBuilder = async ({buildPage, html, withMainLayout}) => {
       title: 'Homepage - javiercejudo.com',
       description: 'Javier Cejudo’s personal website',
       // scripts: ['home/index.js'],
-      genStyles: [path.join('home', 'index.css')],
+      genStyles: [pagePath],
       editLinks: [
         {
           linkHref: `https://github.com/javiercejudo/javiercejudo.com/blob/next-simpler/src/pages/home/builder.js`,
@@ -71,7 +73,7 @@ const homeBuilder = async ({buildPage, html, withMainLayout}) => {
 
   return buildPage({
     page,
-    path: 'index.html',
+    path: pagePath,
   });
 };
 
