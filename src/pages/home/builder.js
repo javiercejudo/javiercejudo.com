@@ -58,7 +58,7 @@ const homeBuilder = async ({buildPage, html, withMainLayout}) => {
       title: 'Homepage - javiercejudo.com',
       description: 'Javier Cejudo’s personal website',
       // scripts: ['home/index.js'],
-      styles: ['home/index.css'],
+      genStyles: [path.join('home', 'index.css')],
       editLinks: [
         {
           linkHref: `https://github.com/javiercejudo/javiercejudo.com/blob/next-simpler/src/pages/home/builder.js`,

@@ -41,6 +41,21 @@ const styleTag = (baseHref, style) =>
   `;
 
 exports.styleTag = styleTag;
+
+/**
+ * @param {string} baseHref
+ * @param {string} style
+ */
+const genStyleTag = (baseHref, style) =>
+  html`
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="${baseHref}assets-gen/css/${style}"
+    />
+  `;
+
+exports.genStyleTag = genStyleTag;
 /**
  * @param {string} baseHref
  * @param {string} relativePath
@@ -96,6 +111,7 @@ exports.editLinksPartial = editLinksPartial;
  * @property {string} baseHref
  * @property {string} baseHrefTag
  * @property {string} styleTags
+ * @property {string} genStyleTags
  * @property {string} scriptTags
  * @property {string} commonScriptTag
  * @property {string} siteUrl
@@ -107,7 +123,6 @@ exports.editLinksPartial = editLinksPartial;
  * @property {string} pagePath
  * @property {string} homeNavLink
  * @property {string} menuNavLink
- * @property {string} [rawHead]
  * @property {string} [pageClass]
  */
 
@@ -124,6 +139,7 @@ const mainLayoutBase = async ({
   baseHrefTag,
   commonScriptTag,
   styleTags,
+  genStyleTags,
   scriptTags,
   siteUrl,
   currentYear,
@@ -134,7 +150,6 @@ const mainLayoutBase = async ({
   pagePath,
   homeNavLink,
   menuNavLink,
-  rawHead = '',
   pageClass = 'standard-page',
 }) => html`
   <!DOCTYPE html>
@@ -172,7 +187,7 @@ const mainLayoutBase = async ({
         title="Tech notes by Javier Cejudo"
       />
 
-      ${styleTags} ${scriptTags} ${rawHead}
+      ${styleTags} ${genStyleTags} ${scriptTags}
     </head>
 
     <body class="${pageClass}">
@@ -246,6 +261,7 @@ exports.mainLayoutBase = mainLayoutBase;
  *   | 'baseHrefTag'
  *   | 'commonScriptTag'
  *   | 'styleTags'
+ *   | 'genStyleTags'
  *   | 'scriptTags'
  *   | 'editLinksPartial'
  *   | 'homeNavLink'
@@ -253,6 +269,7 @@ exports.mainLayoutBase = mainLayoutBase;
  * > & {
  *   relativePath: string,
  *   styles?: string[],
+ *   genStyles?: string[],
  *   scripts?: string[],
  *   editLinks?: EditLink[],
  *   isProd: boolean,
@@ -262,7 +279,13 @@ exports.mainLayoutBase = mainLayoutBase;
 /**
  * @param {MainLayoutProps} input
  */
-const mainLayout = ({scripts = [], styles = [], editLinks = [], ...input}) => {
+const mainLayout = ({
+  scripts = [],
+  styles = [],
+  genStyles = [],
+  editLinks = [],
+  ...input
+}) => {
   const layoutNavLink = navLink(input.baseHref, input.relativePath);
 
   return mainLayoutBase({
@@ -273,6 +296,9 @@ const mainLayout = ({scripts = [], styles = [], editLinks = [], ...input}) => {
       ? deferredScript(input.baseHref)
       : moduleScript(input.baseHref),
     styleTags: html`${styles.map(style => styleTag(input.baseHref, style))}`,
+    genStyleTags: html`${genStyles.map(genStyle =>
+      genStyleTag(input.baseHref, genStyle)
+    )}`,
     scriptTags: html`${scripts.map(script =>
       input.isProd
         ? deferredScript(input.baseHref, script)

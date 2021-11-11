@@ -1,6 +1,16 @@
 const path = require('path');
 const Mustache = require('mustache');
+const {css} = require('@emotion/css');
 const getTemplatePromise = require('../getTemplatePromise');
+
+const stylesClass = css`
+  list-style: none;
+  padding: 0;
+
+  > li {
+    padding: calc(8rem / 16) 0;
+  }
+`;
 
 /** @type Promise<string> */
 let templatePromise;
@@ -28,5 +38,5 @@ module.exports = async ({posts}) => {
 
   const template = await templatePromise;
 
-  return Mustache.render(template, {posts});
+  return Mustache.render(template, {posts, stylesClass});
 };

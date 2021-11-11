@@ -1,7 +1,10 @@
 #!/usr/bin/env node
 
 const path = require('path');
+const fse = require('fs-extra');
 const {html} = require('common-tags');
+const {cache} = require('@emotion/css');
+const createEmotionServer = require('@emotion/server/create-instance').default;
 const molino = require('../lib/molino2');
 const homeBuilder = require('../src/pages/home/builder');
 const menuBuilder = require('../src/pages/menu/builder');
@@ -14,6 +17,10 @@ const siteUrl = process.env.URL;
 if (!siteUrl) {
   throw Error('Missing URL environment variable');
 }
+
+const emotionServer = createEmotionServer(cache);
+const publicPath = path.join('src', 'static');
+const cssFolderPath = path.join(publicPath, 'assets-gen', 'css');
 
 /**
  * @typedef CustomHelpers
@@ -40,12 +47,23 @@ const customHelpers = {
  * @param {PageWithMainLayoutFn} pageFn
  * @returns {molino.PageRenderFn}
  */
-const withMainLayout = pageFn => async molinoHelpers =>
-  mainLayout({
+const withMainLayout = pageFn => async molinoHelpers => {
+  const mainLayoutProps = await pageFn(molinoHelpers);
+  const {genStyles = []} = mainLayoutProps;
+
+  await Promise.all(genStyles.map(genStyle =>
+    fse.outputFile(
+      path.join(cssFolderPath, genStyle),
+      emotionServer.extractCritical(mainLayoutProps.content).css
+    )
+  ));
+
+  return mainLayout({
     ...molinoHelpers,
     ...customHelpers,
-    ...(await pageFn(molinoHelpers)),
+    ...mainLayoutProps,
   });
+};
 
 /**
  * @callback RenderMustache
@@ -67,7 +85,6 @@ const withMainLayout = pageFn => async molinoHelpers =>
  * @property {typeof withMainLayout} withMainLayout
  * @property {typeof md} md
  * @property {import('common-tags').TemplateTag} html
- * @property {string} publicPath
  */
 
 /**
@@ -83,8 +100,6 @@ const builders = [homeBuilder, menuBuilder, contactBuilder];
  * @returns {Promise<molino.BuildPageOutput>[]}
  */
 const siteBuilder = () => {
-  const publicPath = path.join('src', 'static');
-
   /** @param {Builder} pageBuilder */
   const buildPageMapper = pageBuilder =>
     pageBuilder({
@@ -105,7 +120,7 @@ const siteBuilder = () => {
             <html lang="en" data-theme="jc-dark">
               <head>
                 <meta charset="utf-8" />
-                <title>Error: ${e.message}</title>
+                <title>Error: ${e.message || e}</title>
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
               </head>
               <body style="height: 100vh;">
@@ -124,7 +139,6 @@ const siteBuilder = () => {
       withMainLayout,
       html,
       md,
-      publicPath,
     });
 
   try {

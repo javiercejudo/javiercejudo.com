@@ -1,11 +1,9 @@
 const path = require('path');
-const {css, cache} = require('@emotion/css');
-const createEmotionServer = require('@emotion/server/create-instance').default;
+const {css} = require('@emotion/css');
 const blogData = require('../blog/data');
 const clockData = require('../clock/data');
 
-const {extractCritical} = createEmotionServer(cache);
-const styles = css`
+const stylesClass = css`
   ul {
     margin: calc(32rem / 16) 0;
     padding: 0;
@@ -30,7 +28,7 @@ const styles = css`
 const menuBuilder = ({buildPage, withMainLayout, html}) => {
   const page = withMainLayout(async molinoHelpers => {
     const content = html`
-      <div class="container ${styles}">
+      <div class="container ${stylesClass}">
         <ul>
           <li>
             <a href="${molinoHelpers.baseHref}projects/index.html">Projects</a>
@@ -62,8 +60,6 @@ const menuBuilder = ({buildPage, withMainLayout, html}) => {
       </div>
     `;
 
-    const {css} = extractCritical(content);
-
     return {
       title: 'Menu - javiercejudo.com',
       description: 'Find your way around my site',
@@ -73,9 +69,7 @@ const menuBuilder = ({buildPage, withMainLayout, html}) => {
           linkText: 'Edit page',
         },
       ],
-      rawHead: html`<style>
-        ${css}
-      </style>`,
+      genStyles: [path.join('menu', 'index.css')],
       content,
     };
   });
