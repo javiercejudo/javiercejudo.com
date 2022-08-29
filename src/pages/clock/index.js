@@ -5,9 +5,13 @@ const templateNode = document.getElementById('time-template');
 const template = templateNode.innerHTML;
 
 const render = () => {
-  const time = getFormattedTime();
-  const html = Mustache.render(template, {time});
-  document.getElementById('clock-content').parentElement.innerHTML = html;
+    const time = getFormattedTime();
+    console.log({template});
+    const html = Mustache.render(template, {
+        time,
+        cloakClass: '',
+    });
+    document.getElementById('clock-content').parentElement.innerHTML = html;
 };
 
 render();

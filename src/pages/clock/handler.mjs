@@ -16,21 +16,26 @@ const readFile = util.promisify(fs.readFile);
  * @param {HandlerProps} props
  * @returns {import('express').RequestHandler}
  */
-const clockHandler = ({templatesPath}) => async (_, res) => {
-  try {
-    const template = await readFile(
-      path.join(templatesPath, ...clockData.path.split('/'))
-    );
+const clockHandler =
+  ({templatesPath}) =>
+  async (_, res) => {
+    try {
+      const template = await readFile(
+        path.join(templatesPath, ...clockData.path.split('/'))
+      );
 
-    const time = getFormattedTime();
-    /** @type import('./builder').ClockPage */
-    const view = {time};
+      const time = getFormattedTime();
+      /** @type import('./builder').ClockPage */
+      const view = {
+        time,
+        cloakClass: '',
+      };
 
-    res.send(Mustache.render(template.toString(), view));
-  } catch (err) {
-    console.log(err);
-    res.sendStatus(500);
-  }
-};
+      res.send(Mustache.render(template.toString(), view));
+    } catch (err) {
+      console.log(err);
+      res.sendStatus(500);
+    }
+  };
 
 export default clockHandler;

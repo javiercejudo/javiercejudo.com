@@ -6,6 +6,7 @@ const clockData = require('./data');
 /**
  * @typedef ClockPage
  * @property {string} time
+ * @property {string} cloakClass
  */
 
 /** @typedef {import('../../../scripts/build-pages').Builder<MainLayout, ClockPage>} ClockBuilder */
@@ -19,6 +20,7 @@ const clockBuilder = ({buildPage}) =>
       title: 'Clock - javiercejudo.com',
       description: 'In case you were wondering what the time is',
       scripts: ['mustache/index.js', 'clock/index.js'],
+      styles: ['clock/index.css'],
     }),
     renderPage: template => {
       return Promise.resolve(`
@@ -27,6 +29,7 @@ const clockBuilder = ({buildPage}) =>
         <template id="time-template">
           ${template}
         </template>
+        <template>{[{={{ }}=}]}</template>
       `);
     },
   });
