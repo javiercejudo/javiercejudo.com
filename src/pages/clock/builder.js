@@ -20,7 +20,7 @@ const clockBuilder = ({buildPage}) =>
       title: 'Clock - javiercejudo.com',
       description: 'In case you were wondering what the time is',
       scripts: ['mustache/index.js', 'clock/index.js'],
-      styles: ['clock/index.css'],
+      styles: ['assets/css/clock/index.css'],
     }),
     renderPage: template => {
       return Promise.resolve(`

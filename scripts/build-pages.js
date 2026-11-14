@@ -6,6 +6,7 @@ const Mustache = require('mustache');
 const molino = require('../lib/molino2');
 
 const builders = require('../src/pages/builders');
+const commonStyles = require('../src/layouts/common-styles');
 const md = require('../src/utils/md');
 
 const siteUrl = process.env.URL;
@@ -53,7 +54,9 @@ const renderMustache = (template, viewData) =>
  * @property {string} [pagePath]
  * @property {boolean} [pageIsHome]
  * @property {string} [pageClass]
- * @property {string[]} [styles]
+ * @property {string[]} [styles] - paths relative to the page's base href
+ * (the static root), e.g. 'assets/css/clock/index.css' or
+ * '../components/posts-list/index.css'
  * @property {string[]} [scripts]
  * @property {EditLink[]} [editLinks]
  */
@@ -189,6 +192,14 @@ const siteBuilder = () => {
           }
         );
 
+        const layout = layoutData(content, {
+          molino: templateHelpers,
+          commonData,
+          pagePath,
+          editLinks,
+          pageClass,
+        });
+
         return renderLayout(
           fs
             .readFileSync(path.join(layoutFolderPath, relativeLayoutSourcePath))
@@ -200,13 +211,10 @@ const siteBuilder = () => {
             pagePath,
             editLinks,
             pageClass,
-            ...layoutData(content, {
-              molino: templateHelpers,
-              commonData,
-              pagePath,
-              editLinks,
-              pageClass,
-            }),
+            ...layout,
+            styles: [
+              ...new Set([...commonStyles, ...(layout.styles || [])]),
+            ],
           }
         );
       },
