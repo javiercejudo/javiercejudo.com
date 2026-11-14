@@ -23,7 +23,7 @@ const blogHomeBuilder = async ({buildPage}) => {
     layoutData: (_, {editLinks}) => ({
       title: `${blogData.title} - javiercejudo.com`,
       description: 'Javier Cejudo’s blog',
-      styles: ['blog/index.css'],
+      styles: ['../components/posts-list/index.css'],
       editLinks: editLinks.concat([
         {
           linkHref: `https://github.com/javiercejudo/javiercejudo.com/blob/next-simpler/src/pages/blog/data.js`,

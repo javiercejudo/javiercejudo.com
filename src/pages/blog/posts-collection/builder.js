@@ -37,7 +37,10 @@ const postBuilder = ({blogData, post}) => {
     const styles = [];
 
     if (post.withHighlightJs !== false) {
-      styles.push('highlight-js/index.css');
+      styles.push(
+        'assets/css/highlight-js/dark.css',
+        'assets/css/highlight-js/light.css'
+      );
     }
 
     return buildPage({

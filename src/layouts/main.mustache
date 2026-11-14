@@ -14,11 +14,13 @@
     <base href="{{{ molino.baseHref }}}" />
     {{/molino.isProd}}
 
+    {{#styles}}
     <link
       rel="stylesheet"
       type="text/css"
-      href="{{{ molino.baseHref }}}assets/css/common/index.css"
+      href="{{{ molino.baseHref }}}{{{ . }}}"
     />
+    {{/styles}}
 
     <script src="{{{ molino.baseHref }}}assets/js/common/theme.js"></script>
 
@@ -38,7 +40,13 @@
     {{! Resources that are likely to be needed soon }}
     <link
       rel="prefetch"
-      href="{{{ molino.baseHref }}}assets/css/highlight-js/index.css"
+      href="{{{ molino.baseHref }}}assets/css/highlight-js/dark.css"
+      as="style"
+    />
+
+    <link
+      rel="prefetch"
+      href="{{{ molino.baseHref }}}assets/css/highlight-js/light.css"
       as="style"
     />
 
@@ -48,14 +56,6 @@
       href="{{{ commonData.siteUrl }}}/blog/feed.xml"
       title="Tech notes by Javier Cejudo"
     />
-
-    {{#styles}}
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="{{{ molino.baseHref }}}assets/css/{{{ . }}}"
-    />
-    {{/styles}}
 
     {{#scripts}}
     {{#molino.isProd}}

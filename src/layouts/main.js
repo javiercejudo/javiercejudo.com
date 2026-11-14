@@ -1,4 +1,5 @@
 const {html} = require('common-tags');
+const commonStyles = require('./common-styles');
 
 /**
  * @param {string} href
@@ -29,15 +30,12 @@ exports.moduleScript = moduleScript;
 
 /**
  * @param {string} baseHref
- * @param {string} style
+ * @param {string} style - path relative to the page's base href, e.g.
+ * 'assets/css/clock/index.css' or '../components/posts-list/index.css'
  */
 const styleTag = (baseHref, style) =>
   html`
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="${baseHref}assets/css/${style}"
-    />
+    <link rel="stylesheet" type="text/css" href="${baseHref}${style}" />
   `;
 
 exports.styleTag = styleTag;
@@ -163,11 +161,7 @@ const mainLayoutBase = async ({
 
       ${baseHrefTag}
 
-      <link
-        rel="stylesheet"
-        type="text/css"
-        href="${baseHref}assets/css/common/index.css"
-      />
+      ${styleTags}
 
       <script src="${baseHref}assets/js/common/theme.js"></script>
 
@@ -176,7 +170,13 @@ const mainLayoutBase = async ({
       <!-- Resources that are likely to be needed soon  -->
       <link
         rel="prefetch"
-        href="${baseHref}assets/css/highlight-js/index.css"
+        href="${baseHref}assets/css/highlight-js/dark.css"
+        as="style"
+      />
+
+      <link
+        rel="prefetch"
+        href="${baseHref}assets/css/highlight-js/light.css"
         as="style"
       />
 
@@ -187,7 +187,7 @@ const mainLayoutBase = async ({
         title="Tech notes by Javier Cejudo"
       />
 
-      ${styleTags} ${genStyleTags} ${scriptTags}
+      ${genStyleTags} ${scriptTags}
     </head>
 
     <body class="${pageClass}">
@@ -274,6 +274,10 @@ exports.mainLayoutBase = mainLayoutBase;
  *   editLinks?: EditLink[],
  *   isProd: boolean,
  * }} MainLayoutProps
+ *
+ * `styles` are paths relative to the page's base href (the static root),
+ * e.g. 'assets/css/clock/index.css' or '../components/posts-list/index.css'.
+ * `mainLayout` prepends the shared common styles, deduped, before them.
  */
 
 /**
@@ -295,7 +299,9 @@ const mainLayout = ({
     commonScriptTag: input.isProd
       ? deferredScript(input.baseHref)
       : moduleScript(input.baseHref),
-    styleTags: html`${styles.map(style => styleTag(input.baseHref, style))}`,
+    styleTags: html`${[...new Set([...commonStyles, ...styles])].map(
+      style => styleTag(input.baseHref, style)
+    )}`,
     genStyleTags: html`${genStyles.map(genStyle =>
       genStyleTag(input.baseHref, genStyle)
     )}`,

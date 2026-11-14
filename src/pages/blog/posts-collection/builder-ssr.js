@@ -38,7 +38,10 @@ const postBuilder = ({blogPath}) => {
         pagePath: '{{{pagePath}}}',
         title: '{{title}}',
         description: '{{description}}',
-        styles: ['highlight-js/index.css'],
+        styles: [
+          'assets/css/highlight-js/dark.css',
+          'assets/css/highlight-js/light.css',
+        ],
         editLinks: editLinks.concat([
           {
             linkHref:

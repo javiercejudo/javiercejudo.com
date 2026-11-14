@@ -13,7 +13,7 @@ const gameBuilder = ({buildPage, identityRender}) =>
       title: 'Game - javiercejudo.com',
       description: 'Secretary problem online game',
       pageClass: 'game-page',
-      styles: ['game/index.css'],
+      styles: ['../pages/game/index.css'],
       scripts: ['game/index.js'],
     }),
   });
